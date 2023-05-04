@@ -1,0 +1,7 @@
+.todoListItem-checkbox {
+    cursor: pointer;
+}
+
+.todoListItem--label {
+    cursor: pointer;
+}
