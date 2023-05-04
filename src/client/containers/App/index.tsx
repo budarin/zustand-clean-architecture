@@ -14,21 +14,22 @@ function AppContainer() {
     const deleteCategory = useTodoStore((state) => state.deleteCategory);
 
     useEffect(() => {
-        // const timer = setTimeout(() => {
-        //     const rnd = Math.random();
-        //     const b = rnd < 0.5;
-        //     dispatch(
-        //         updateTodo({
-        //             id: 1,
-        //             todo: String(rnd),
-        //             deleted: b,
-        //             completed: b,
-        //         }),
-        //     );
-        //     dispatch(deleteTodo(5));
-        // }, 5000);
-        // () => clearTimeout(timer);
-        // deleteCategory(4);
+        const timer = setTimeout(() => {
+            // const rnd = Math.random();
+            // const b = rnd < 0.5;
+            // dispatch(
+            //     updateTodo({
+            //         id: 1,
+            //         todo: String(rnd),
+            //         deleted: b,
+            //         completed: b,
+            //     }),
+            // );
+            // dispatch(deleteTodo(5));
+
+            deleteCategory(4);
+        }, 5000);
+        () => clearTimeout(timer);
     }, []);
 
     return (

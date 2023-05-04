@@ -13,8 +13,6 @@ import {
 import { updateFilterCounters } from './updateFilterCounters';
 import { updateICategoryCounters } from './updateICategoryCounters';
 import { serverInitialState } from '../../server/serverInitialState';
-import { toast } from 'react-toastify';
-import React from 'react';
 
 type Actions = {
     // icon
@@ -35,9 +33,6 @@ type Actions = {
 
     // navigationFilter
     setNavigationFilter(filter: NavigationFilter): void;
-
-    //
-    updateEntities(entities: EntitiesPayload): void;
 };
 
 export const useTodoStore = create<State & Actions>((set, get) => ({
@@ -99,7 +94,7 @@ export const useTodoStore = create<State & Actions>((set, get) => ({
 
     updateCategory: (category) =>
         set((state) => {
-            state.categories.byId = { ...state.categories.byId, [category.id]: category };
+            state.categories.byId[category.id] = { ...state.categories.byId[category.id], ...category };
 
             return { ...state };
         }),
@@ -109,9 +104,10 @@ export const useTodoStore = create<State & Actions>((set, get) => ({
             const { [id]: deleted, ...rest } = state.categories.byId;
             state.categories.byId = rest;
 
-            const idx = state.categories.ids.indexOf(id);
+            const ids = state.categories.ids;
+            const idx = ids.indexOf(id);
             if (idx > -1) {
-                state.categories.ids.splice(idx, 1);
+                state.categories.ids = ids.filter((item) => item !== id);
             }
 
             return { ...state };
@@ -144,9 +140,10 @@ export const useTodoStore = create<State & Actions>((set, get) => ({
             const { [id]: del, ...rest } = state.todos.byId;
             state.todos.byId = rest;
 
-            let idx = state.todos.ids.indexOf(id);
+            const ids = state.todos.ids;
+            let idx = ids.indexOf(id);
             if (idx > -1) {
-                state.todos.ids.splice(idx, 1);
+                state.todos.ids = ids.filter((item) => item !== id);
             }
 
             return { ...state };
@@ -158,22 +155,6 @@ export const useTodoStore = create<State & Actions>((set, get) => ({
             state.navigationFilter = filter;
 
             return { ...state };
-        }),
-
-    updateEntities: (entities: EntitiesPayload) =>
-        set((state) => {
-            toast.error(
-                <>
-                    <p>
-                        Некоторые данные не будут отображены из-за ошибок при их обработке. Однако, мы уже занимаемся
-                        решением этой проблемы, поэтому не стоит беспокоиться.
-                    </p>
-                    <p>Если вы заметите неправильное отображение данных, обновите страницу или попробуйте позже.</p>
-                </>,
-                { autoClose: false },
-            );
-
-            return state;
         }),
 }));
 
