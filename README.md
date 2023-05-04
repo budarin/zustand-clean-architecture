@@ -1,3 +1,3 @@
-# redux-clean-architecture
+# zustand-clean-architecture
 
-Todo app based on React Redux clean architecture
+Todo app based on React + zustand + clean architecture
