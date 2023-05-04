@@ -13,6 +13,7 @@ import {
 import { updateFilterCounters } from './updateFilterCounters';
 import { updateICategoryCounters } from './updateICategoryCounters';
 import { serverInitialState } from '../../server/serverInitialState';
+import createSelectors from './createSelectors';
 
 type Actions = {
     // icon
@@ -35,7 +36,7 @@ type Actions = {
     setNavigationFilter(filter: NavigationFilter): void;
 };
 
-export const useTodoStore = create<State & Actions>((set, get) => ({
+const todoStore = create<State & Actions>((set, get) => ({
     icons: {
         byId: {},
         ids: [],
@@ -167,3 +168,5 @@ unstable_batchedUpdates(() => {
     categories?.forEach((category) => createCategory(category));
     todos?.forEach((todo) => createTodo(todo));
 });
+
+export const useTodoStore = createSelectors(todoStore);

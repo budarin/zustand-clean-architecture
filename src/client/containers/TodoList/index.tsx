@@ -6,11 +6,8 @@ import { navigationFilterTypes } from '../../store/navigationFilter.ts';
 // components
 import TodoListItemContainer from '../TodoListItem/index.tsx';
 
-// selectors
-const getNavigationFilter = (state: State) => state.navigationFilter;
-
 function TodoListContainer() {
-    const { key, type } = useTodoStore(getNavigationFilter);
+    const { key, type } = useTodoStore.use.navigationFilter();
     const isCategoryNavigation = navigationFilterTypes.category === type;
 
     const todoIds =

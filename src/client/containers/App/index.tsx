@@ -11,7 +11,7 @@ import NavigationPanelContainer from '../NavigationPanel/index.tsx';
 import 'react-toastify/dist/ReactToastify.css';
 
 function AppContainer() {
-    const deleteCategory = useTodoStore((state) => state.deleteCategory);
+    const deleteCategory = useTodoStore.use.deleteCategory();
 
     useEffect(() => {
         const timer = setTimeout(() => {

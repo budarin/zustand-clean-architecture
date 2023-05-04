@@ -13,7 +13,8 @@ const getTodoStatus = (status_id: TodoStatusId) =>
     useCallback((state: State) => state.statuses.byId[status_id as Id], [status_id]);
 
 const TodoListItemContainer = ({ id }: TodoListItemContainerProps): JSX.Element => {
-    const updateTodo = useTodoStore((s) => s.updateTodo);
+    const updateTodo = useTodoStore.use.updateTodo();
+
     const todo = useTodoStore(getTodoById(id));
     const status = useTodoStore(getTodoStatus(todo.status_id));
 
