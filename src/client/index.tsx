@@ -1,7 +1,12 @@
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import AppContainer from './containers/App/index.tsx';
+import { initStore } from './domain/utils/initStore.tsx';
+
+// components
+import AppContainer from './ui/containers/App/index.tsx';
+
+initStore();
 
 function createRootElement() {
     const root = document.createElement('div');
