@@ -1,8 +1,8 @@
-import { useTodoStore } from '../domain/store.ts';
+import { useTodoStore } from '../../store.ts';
 import { updateFilterCounters } from './utils/updateFilterCounters.ts';
-import { updateICategoryCounters } from './utils/updateICategoryCounters';
+import { updateICategoryCounters } from './utils/updateICategoryCounters.ts';
 
-export function createTodo(todo: Todo): void {
+export function _createTodo(todo: Todo): void {
     return useTodoStore.setState((state) => {
         state.todos.byId = { ...state.todos.byId, [todo.id]: todo };
         state.todos.ids = [...state.todos.ids, todo.id];
@@ -13,7 +13,7 @@ export function createTodo(todo: Todo): void {
     });
 }
 
-export function updateTodo(todo: Todo): void {
+export function _updateTodo(todo: Todo): void {
     return useTodoStore.setState((state) => {
         const newTodo = { ...state.todos.byId[todo.id], ...todo };
 
@@ -25,7 +25,7 @@ export function updateTodo(todo: Todo): void {
     });
 }
 
-export function deleteTodo(id: Todo['id']): void {
+export function _deleteTodo(id: Todo['id']): void {
     return useTodoStore.setState((state) => {
         const { [id]: del, ...rest } = state.todos.byId;
         state.todos.byId = rest;

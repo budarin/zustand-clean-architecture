@@ -4,10 +4,10 @@ import {
     todoValidationRules,
     validateCategoryIdRelation,
     validateStatusIdRelation,
-} from '../todo';
+} from '../../todo/validation';
 
-import { applyEntityConverters } from '../validation_utils/getEntity';
-import { checkEntityValidation } from '../validation_utils/validateEntity';
+import { applyEntityConverters } from '../getEntity';
+import { checkEntityValidation } from '../validateEntity';
 
 const STATUS_ID_ERROR_MESSAGE = 'Todos: Значение status_id отсутствует в Statuses';
 const CATEGORY_ID_ERROR_MESSAGE = 'Todos: Значение category_id отсутствует в Categories';

@@ -1,5 +1,5 @@
-import { checkEntityValidation } from '../validation_utils/validateEntity';
-import { getStatusFomUnknownObject, statusValidationRules } from '../status';
+import { checkEntityValidation } from '../validateEntity';
+import { getStatusFomUnknownObject, statusValidationRules } from '../../status/validation';
 
 export function checkStatusConstraints(
     payload: EntitiesPayload,

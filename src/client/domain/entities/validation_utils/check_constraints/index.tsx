@@ -5,7 +5,7 @@ import { checkTodoConstraints } from './checkTodoConstraints';
 import { checkIconConstraints } from './checkIconConstraints';
 import { checkStatusConstraints } from './checkStatusConstraints';
 import { checkCategoryConstraints } from './checkCategoryConstraints';
-import { everyIsEmptyArrayOrUndefined } from '../validation_utils/everyIsEmptyArrayOrUndefined';
+import { everyIsEmptyArrayOrUndefined } from '../everyIsEmptyArrayOrUndefined';
 
 export function checkEntityPayload(payload: EntitiesPayload, store: State) {
     if (payload && everyIsEmptyArrayOrUndefined(payload) === false) {

@@ -2,7 +2,7 @@ import { isNextItem } from './isNextItem.ts';
 import { isInboxItem } from './isInboxItem.ts';
 import { isTodayItem } from './isTodayItem.ts';
 import { isRecycleBinItem } from './isRecycleBinItem.ts';
-import { inboxKey, nextKey, recycleBinKey, todayKey } from '../../domain/utils/navigationFilter.ts';
+import { inboxKey, nextKey, recycleBinKey, todayKey } from '../../../utils/navigationFilter.ts';
 
 export function updateFilterCounters(todo: Todo, state: TodoState): void {
     const byId = state.idsByFilterId;

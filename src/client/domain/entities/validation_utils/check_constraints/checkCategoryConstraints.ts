@@ -1,5 +1,9 @@
-import { categoryValidationRules, getCategoryFomUnknownObject, validateIconIdRelation } from '../category';
-import { checkEntityValidation } from '../validation_utils/validateEntity';
+import {
+    categoryValidationRules,
+    getCategoryFomUnknownObject,
+    validateIconIdRelation,
+} from '../../category/validation';
+import { checkEntityValidation } from '../validateEntity';
 
 const ICON_ID_ERROR_MESSAGE = 'Значение icon_id отсутствует в Icons';
 

@@ -1,5 +1,5 @@
-import { getIconFomUnknownObject, iconValidationRules } from '../icon';
-import { checkEntityValidation } from '../validation_utils/validateEntity';
+import { getIconFomUnknownObject, iconValidationRules } from '../../icon/validation';
+import { checkEntityValidation } from '../validateEntity';
 
 export function checkIconConstraints(payload: EntitiesPayload, icons: Icon[] | undefined, iconIds: IdsHash): boolean {
     let isValid = true;

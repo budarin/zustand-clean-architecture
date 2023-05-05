@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 
-import { deleteCategory } from '../../../useCases/category.ts';
-
 // components
 import App from '../../components/App/index.tsx';
 import TodoListViewContainer from '../TodoListView/index.tsx';
 import NavigationPanelContainer from '../NavigationPanel/index.tsx';
 
 import 'react-toastify/dist/ReactToastify.css';
+import { deleteCategory } from '../../../useCases/deleteCategory.ts';
 
 function AppContainer() {
     useEffect(() => {

@@ -1,6 +1,6 @@
-import { useTodoStore } from '../domain/store.ts';
+import { useTodoStore } from '../../store.ts';
 
-export function createCategory(category: Category): void {
+export function _createCategory(category: Category): void {
     return useTodoStore.setState((state) => {
         state.categories.byId = { ...state.categories.byId, [category.id]: category };
         state.categories.ids = [...state.categories.ids, category.id];
@@ -9,7 +9,7 @@ export function createCategory(category: Category): void {
     });
 }
 
-export function updateCategory(category: Category): void {
+export function _updateCategory(category: Category): void {
     return useTodoStore.setState((state) => {
         state.categories.byId[category.id] = { ...state.categories.byId[category.id], ...category };
 
@@ -17,7 +17,7 @@ export function updateCategory(category: Category): void {
     });
 }
 
-export function deleteCategory(id: Category['id']): void {
+export function _deleteCategory(id: Category['id']): void {
     return useTodoStore.setState((state) => {
         const { [id]: deleted, ...rest } = state.categories.byId;
         state.categories.byId = rest;

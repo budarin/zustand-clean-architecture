@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 
 import { useTodoStore } from '../../../domain/store.ts';
-import { updateTodo } from '../../../useCases/todos.ts';
+import { updateTodo } from '../../../useCases/updateTodo.ts';
 
 // components
 import TodoListItem from '../../components/TodoListItem/index.tsx';

@@ -1,6 +1,6 @@
-import { useTodoStore } from '../domain/store.ts';
+import { useTodoStore } from '../../store.ts';
 
-export function setNavigationFilter(filter: NavigationFilter): void {
+export function _setNavigationFilter(filter: NavigationFilter): void {
     return useTodoStore.setState((state) => {
         state.navigationFilter = filter;
 
