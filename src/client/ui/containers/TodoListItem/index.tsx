@@ -34,7 +34,7 @@ const TodoListItemContainer = ({ id }: TodoListItemContainerProps): JSX.Element 
         [id],
     );
 
-    return <TodoListItem todo={todo} disabled={inProgress} status={status} handleChange={handleChangeCheckBox} />;
+    return <TodoListItem todo={todo} status={status} handleChange={handleChangeCheckBox} />;
 };
 
 export default TodoListItemContainer;

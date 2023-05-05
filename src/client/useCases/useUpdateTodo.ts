@@ -12,6 +12,8 @@ type UseUpdateTodo = [
     update: Dispatch<SetStateAction<Todo | undefined>>,
 ];
 
+const updatingTodos = new Set();
+
 export function useUpdateTodo(): UseUpdateTodo {
     const [todo, setTodo] = useState<Todo>();
     const [error, setError] = useState<string>();
@@ -23,6 +25,12 @@ export function useUpdateTodo(): UseUpdateTodo {
                 return;
             }
 
+            if (updatingTodos.has(todo.id)) {
+                toast.error('Запись еще не обновлена на сервере!', { autoClose: 2000 });
+                return;
+            }
+
+            updatingTodos.add(todo.id);
             setInProgress(true);
 
             const { todos, updateTodo } = useTodoStore.getState();
@@ -46,6 +54,7 @@ export function useUpdateTodo(): UseUpdateTodo {
             updateTodo(oldValue);
 
             setInProgress(false);
+            updatingTodos.delete(todo.id);
         };
 
         doDelete();
