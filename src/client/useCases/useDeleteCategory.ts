@@ -23,9 +23,10 @@ export function useDeleteCategory(): UseDeleteCategory {
                 return;
             }
 
+            setError(undefined);
             setInProgress(true);
 
-            const { categories, deleteCategory, createCategory } = useTodoStore.getState();
+            const { categories, _deleteCategory, _createCategory } = useTodoStore.getState();
             const oldValue = categories.byId[categoryId];
 
             if (!oldValue) {
@@ -35,7 +36,7 @@ export function useDeleteCategory(): UseDeleteCategory {
                 return;
             }
 
-            deleteCategory(categoryId);
+            _deleteCategory(categoryId);
 
             toast.info('Категория успешно удалена', { autoClose: 1000 });
 
@@ -45,7 +46,7 @@ export function useDeleteCategory(): UseDeleteCategory {
 
             toast.error('Упс! вышла ошибочка - восстанавливаем', { autoClose: 2000 });
 
-            createCategory(oldValue);
+            _createCategory(oldValue);
 
             setInProgress(false);
         };

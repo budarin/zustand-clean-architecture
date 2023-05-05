@@ -15,7 +15,7 @@ const TodoListItem = ({ todo, status, handleChange }: TodoListItemProps) => {
                 <input
                     name="completed"
                     type="checkbox"
-                    checked={todo.completed}
+                    checked={Boolean(todo.completed)}
                     onChange={handleChange}
                     className="todoListItem-checkbox"
                 ></input>{' '}

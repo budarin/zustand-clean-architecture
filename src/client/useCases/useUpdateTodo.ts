@@ -35,7 +35,7 @@ export function useUpdateTodo(): UseUpdateTodo {
             updatingTodos.add(todo.id);
             setInProgress(true);
 
-            const { todos, updateTodo } = useTodoStore.getState();
+            const { todos, _updateTodo } = useTodoStore.getState();
             const oldValue = todos.byId[todo.id];
 
             if (!oldValue) {
@@ -45,7 +45,7 @@ export function useUpdateTodo(): UseUpdateTodo {
                 return;
             }
 
-            updateTodo(todo);
+            _updateTodo(todo);
 
             toast.info('Тодо обновлен', { autoClose: 1000 });
 
@@ -53,7 +53,7 @@ export function useUpdateTodo(): UseUpdateTodo {
 
             toast.error('Упс! вышла ошибочка - восстанавливаем', { autoClose: 2000 });
 
-            updateTodo(oldValue);
+            _updateTodo(oldValue);
 
             setInProgress(false);
             updatingTodos.delete(todo.id);

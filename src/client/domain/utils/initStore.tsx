@@ -5,7 +5,12 @@ import { serverInitialState } from '../../../server/serverInitialState';
 
 export function initStore() {
     unstable_batchedUpdates(() => {
-        const { createIcon, createStatus, createCategory, createTodo } = useTodoStore.getState();
+        const {
+            _createIcon: createIcon,
+            _createStatus: createStatus,
+            _createCategory: createCategory,
+            _createTodo: createTodo,
+        } = useTodoStore.getState();
         const { icons, statuses, categories, todos } = serverInitialState;
 
         icons?.forEach((icon) => createIcon(icon));

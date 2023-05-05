@@ -14,16 +14,16 @@ import { updateICategoryCounters } from './entities/todo/utils/updateICategoryCo
 import { updateFilterCounters } from './entities/todo/utils/updateFilterCounters.ts';
 
 type Actions = {
-    createIcon: (icon: Icon) => void;
-    createStatus: (status: Status) => void;
+    _createIcon: (icon: Icon) => void;
+    _createStatus: (status: Status) => void;
 
-    createCategory: (category: Category) => void;
-    updateCategory: (category: Category) => void;
-    deleteCategory: (id: Category['id']) => void;
+    _createCategory: (category: Category) => void;
+    _updateCategory: (category: Category) => void;
+    _deleteCategory: (id: Category['id']) => void;
 
-    createTodo: (todo: Todo) => void;
-    updateTodo: (todo: Todo) => void;
-    deleteTodo: (id: Todo['id']) => void;
+    _createTodo: (todo: Todo) => void;
+    _updateTodo: (todo: Todo) => void;
+    _deleteTodo: (id: Todo['id']) => void;
 };
 
 const todoStore = create<State & Actions>((set) => ({
@@ -60,7 +60,7 @@ const todoStore = create<State & Actions>((set) => ({
         type: navigationFilterTypes.filter,
     },
 
-    createIcon: (icon: Icon) => {
+    _createIcon: (icon: Icon) => {
         return set((state) => {
             state.icons.byId = { ...state.icons.byId, [icon.id]: icon };
             state.icons.ids = [...state.icons.ids, icon.id];
@@ -68,7 +68,7 @@ const todoStore = create<State & Actions>((set) => ({
         });
     },
 
-    createStatus: (status: Status) => {
+    _createStatus: (status: Status) => {
         return set((state) => {
             state.statuses.byId = { ...state.statuses.byId, [status.id]: status };
             state.statuses.ids = [...state.statuses.ids, status.id];
@@ -76,7 +76,7 @@ const todoStore = create<State & Actions>((set) => ({
         });
     },
 
-    createCategory: (category: Category) => {
+    _createCategory: (category: Category) => {
         return set((state) => {
             state.categories.byId = { ...state.categories.byId, [category.id]: category };
             state.categories.ids = [...state.categories.ids, category.id];
@@ -84,14 +84,14 @@ const todoStore = create<State & Actions>((set) => ({
         });
     },
 
-    updateCategory: (category: Category) => {
+    _updateCategory: (category: Category) => {
         return set((state) => {
             state.categories.byId[category.id] = { ...state.categories.byId[category.id], ...category };
             return { ...state };
         });
     },
 
-    deleteCategory: (id) => {
+    _deleteCategory: (id) => {
         return set((state) => {
             const { [id]: deleted, ...rest } = state.categories.byId;
             state.categories.byId = rest;
@@ -106,7 +106,7 @@ const todoStore = create<State & Actions>((set) => ({
         });
     },
 
-    createTodo: (todo: Todo) => {
+    _createTodo: (todo: Todo) => {
         return set((state) => {
             state.todos.byId = { ...state.todos.byId, [todo.id]: todo };
             state.todos.ids = [...state.todos.ids, todo.id];
@@ -116,7 +116,7 @@ const todoStore = create<State & Actions>((set) => ({
         });
     },
 
-    updateTodo: (todo: Todo) => {
+    _updateTodo: (todo: Todo) => {
         return set((state) => {
             const newTodo = { ...state.todos.byId[todo.id], ...todo };
 
@@ -128,7 +128,7 @@ const todoStore = create<State & Actions>((set) => ({
         });
     },
 
-    deleteTodo: (id: Todo['id']) => {
+    _deleteTodo: (id: Todo['id']) => {
         return set((state) => {
             const { [id]: del, ...rest } = state.todos.byId;
             state.todos.byId = rest;
