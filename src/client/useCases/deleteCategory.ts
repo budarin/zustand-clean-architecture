@@ -9,7 +9,7 @@ export async function deleteCategory(id: Category['id']) {
     const oldValue = categories.byId[4];
 
     deleteCategory(4);
-    toast.info('Категория успешно удалена', { autoClose: 2000 });
+    toast.info('Категория успешно удалена', { autoClose: 1000 });
 
     await delay(3000);
 
