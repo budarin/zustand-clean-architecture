@@ -25,6 +25,8 @@ CREATE TABLE mytable (
 
 -   если удаляем активную категорию - ставить по умолчанию navigationFilter в inbox
 
+-   в useCases должны быть только методы доступные компонентам (createIcon и др не должны там быть)
+
 <!--  -->
 
 Unit tests:
