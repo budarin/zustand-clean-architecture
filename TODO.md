@@ -27,6 +27,8 @@ CREATE TABLE mytable (
 
 -   в useCases должны быть только методы доступные компонентам (createIcon и др не должны там быть) вынести все функции в свои файлы (все что сейчас в useCases -> /domain/entities а в use cases только высокоуровневые функции с fetch alert toast ...)
 
+-   useCases переписать на хуки
+
 <!--  -->
 
 Unit tests:
