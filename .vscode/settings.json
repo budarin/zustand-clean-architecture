@@ -89,7 +89,7 @@
         "javascript": "javascriptreact"
     },
     "emmet.showSuggestionsAsSnippets": true,
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 0,
 
     // npm
     "npm.packageManager": "yarn",
