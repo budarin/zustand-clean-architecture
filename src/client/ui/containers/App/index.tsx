@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 
+import { deleteCategory } from '../../../useCases/deleteCategory.ts';
+
 // components
 import App from '../../components/App/index.tsx';
 import TodoListViewContainer from '../TodoListView/index.tsx';
 import NavigationPanelContainer from '../NavigationPanel/index.tsx';
 
 import 'react-toastify/dist/ReactToastify.css';
-import { deleteCategory } from '../../../useCases/deleteCategory.ts';
 
 function AppContainer() {
     useEffect(() => {
-        const timer = setTimeout(() => {
+        const timer = setTimeout(async () => {
             // const rnd = Math.random();
             // const b = rnd < 0.5;
             // dispatch(
@@ -24,8 +25,9 @@ function AppContainer() {
             // );
             // dispatch(deleteTodo(5));
 
-            deleteCategory(4);
+            await deleteCategory(4);
         }, 5000);
+
         () => clearTimeout(timer);
     }, []);
 

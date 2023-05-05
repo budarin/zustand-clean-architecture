@@ -1,13 +1,16 @@
 import { toast } from 'react-toastify';
 
 import { useTodoStore } from '../domain/store.ts';
-import { _deleteCategory } from '../domain/entities/category/actions.ts';
+import { delay } from '../../common/promises/delay.ts';
 
-export function deleteCategory(id: Category['id']) {
-    return useTodoStore.setState((state) => {
-        toast.info('Категория успешно удалена', { autoClose: 2000 });
+export async function deleteCategory(id: Category['id']) {
+    const categories = useTodoStore.getState().categories;
+    const oldValue = categories.byId[4];
 
-        _deleteCategory(id);
-        return state;
-    });
+    toast.info('Категория успешно удалена', { autoClose: 2000 });
+    useTodoStore.getState().deleteCategory(4);
+
+    await delay(200);
+
+    useTodoStore.getState().createCategory(oldValue);
 }
