@@ -26,6 +26,8 @@ export function useUpdateTodo(): UseUpdateTodo {
             }
 
             if (updatingTodos.has(todo.id)) {
+                // так же можно подмешивать в todo "inProgres" в  state для предотвращения повторных попыток
+                // изменить состояние пока оно еще не изменено на сервере
                 toast.error('Запись еще не обновлена на сервере!', { autoClose: 2000 });
                 return;
             }
