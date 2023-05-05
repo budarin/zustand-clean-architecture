@@ -50,7 +50,7 @@ const NavigationPanelItemContainer = ({ id, navigationType }: NavigationPanelIte
     const { isCategory, title, checked } = useTodoStore(selector(id, navigationType), shallow);
 
     const handleChange = React.useCallback(
-        (e: { target: { value: string } }): void => {
+        (e: React.ChangeEvent<HTMLInputElement>): void => {
             const containerTitle = e.target.value;
 
             _setNavigationFilter({

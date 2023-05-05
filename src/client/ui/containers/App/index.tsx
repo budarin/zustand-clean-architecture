@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 
-import { deleteCategory } from '../../../useCases/deleteCategory.ts';
+import { useDeleteCategory } from '../../../useCases/useDeleteCategory.ts';
 
 // components
 import App from '../../components/App/index.tsx';
@@ -11,16 +11,16 @@ import NavigationPanelContainer from '../NavigationPanel/index.tsx';
 import 'react-toastify/dist/ReactToastify.css';
 
 function AppContainer() {
-    useEffect(() => {
-        const timer = setTimeout(async () => {
-            await deleteCategory(4);
-        }, 5000);
+    const [{ inProgress, error }, doDelete] = useDeleteCategory();
 
-        () => clearTimeout(timer);
+    useEffect(() => {
+        doDelete(4);
     }, []);
 
     return (
         <>
+            {inProgress ? 'processing...' : null}
+            {error ? `Ашипка: ${error}` : null}
             <App navigationPanel={<NavigationPanelContainer />} todos={<TodoListViewContainer />} />
             <ToastContainer hideProgressBar={true} />
         </>

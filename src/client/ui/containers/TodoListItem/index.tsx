@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 
 import { useTodoStore } from '../../../domain/store.ts';
-import { updateTodo } from '../../../useCases/updateTodo.ts';
+import { useUpdateTodo } from '../../../useCases/useUpdateTodo.ts';
 
 // components
 import TodoListItem from '../../components/TodoListItem/index.tsx';
@@ -16,11 +16,13 @@ const getTodoStatus = (status_id: TodoStatusId) =>
 const TodoListItemContainer = ({ id }: TodoListItemContainerProps): JSX.Element => {
     const todo = useTodoStore(getTodoById(id));
     const status = useTodoStore(getTodoStatus(todo.status_id));
+    const [{ inProgress, error }, updateTodo] = useUpdateTodo();
 
     const handleChangeCheckBox = React.useCallback(
-        (e: { target: { checked: boolean } }): void => {
-            const isChecked = e.target.checked;
+        (e: React.ChangeEvent<HTMLInputElement>): void => {
+            e.preventDefault();
 
+            const isChecked = e.target.checked;
             updateTodo({
                 id: 1,
                 status_id: 1,
