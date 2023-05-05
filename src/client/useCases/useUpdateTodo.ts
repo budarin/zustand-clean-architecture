@@ -1,7 +1,8 @@
+import { toast } from 'react-toastify';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+
 import { useTodoStore } from '../domain/store';
 import { delay } from '../../common/promises/delay';
-import { toast } from 'react-toastify';
 
 type UseUpdateTodo = [
     state: {
