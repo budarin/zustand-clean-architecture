@@ -10,7 +10,7 @@ export const recycleBinKey = 'recycleBin';
 
 export const navigationFilters = {
     [todayKey]: 'Сегодня',
-    [nextKey]: 'Завтра и после',
+    [nextKey]: 'Завтра',
     [inboxKey]: 'Черновики',
     [recycleBinKey]: 'Корзина',
 };
