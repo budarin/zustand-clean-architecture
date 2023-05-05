@@ -19,7 +19,7 @@ export function useDeleteCategory(): UseDeleteCategory {
 
     useEffect(() => {
         const doDelete = async () => {
-            if (!categoryId) {
+            if (categoryId === undefined) {
                 return;
             }
 
@@ -50,7 +50,7 @@ export function useDeleteCategory(): UseDeleteCategory {
             setInProgress(false);
         };
 
-        categoryId !== undefined && doDelete();
+        doDelete();
     }, [categoryId]);
 
     return [{ inProgress, error }, setCategoryId];

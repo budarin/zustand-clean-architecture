@@ -18,7 +18,7 @@ export function useUpdateTodo(): UseUpdateTodo {
 
     useEffect(() => {
         const doDelete = async () => {
-            if (!todo) {
+            if (todo === undefined) {
                 return;
             }
 
@@ -47,7 +47,7 @@ export function useUpdateTodo(): UseUpdateTodo {
             setInProgress(false);
         };
 
-        todo && doDelete();
+        doDelete();
     }, [todo]);
 
     return [{ inProgress, error }, setTodo];
