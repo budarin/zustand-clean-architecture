@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { useTodoStore } from '../../../domain/store.ts';
-import { navigationFilterTypes } from '../../../domain/utils/navigationFilter.ts';
+import { useTodoStore } from '../../domain/store.ts';
+import { navigationFilterTypes } from '../../domain/utils/navigationFilter.ts';
 
 // components
 import TodoListItemContainer from '../TodoListItem/index.tsx';

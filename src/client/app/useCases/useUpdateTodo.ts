@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import { useTodoStore } from '../domain/store';
-import { delay } from '../../common/promises/delay';
+import { delay } from '../../../common/promises/delay';
 
 type UseUpdateTodo = [
     state: {
@@ -28,32 +28,39 @@ export function useUpdateTodo(): UseUpdateTodo {
             if (updatingTodos.has(todo.id)) {
                 // так же можно подмешивать в todo "inProgres" в  state для предотвращения повторных попыток
                 // изменить состояние пока оно еще не изменено на сервере
-                toast.error('Запись еще не обновлена на сервере!', { autoClose: 2000 });
+                toast.error(`${todo.id}: Запись еще не обновлена на сервере!`, {
+                    autoClose: 2000,
+                    toastId: 'updating_todo' + todo.id,
+                });
                 return;
             }
 
             updatingTodos.add(todo.id);
             setInProgress(true);
 
-            const { todos, _updateTodo } = useTodoStore.getState();
-            const oldValue = todos.byId[todo.id];
+            const store = useTodoStore.getState();
+            const oldValue = store.todos.byId[todo.id];
 
             if (!oldValue) {
                 setError('Нет ткой записи!');
                 setInProgress(false);
-                toast.error('Запись отсутствует в базе данных!', { autoClose: 2000 });
+                toast.error('Запись отсутствует в базе данных!', {
+                    autoClose: 2000,
+                });
                 return;
             }
 
-            _updateTodo(todo);
+            store._updateTodo(todo);
 
             // toast.info('Тодо обновлен', { autoClose: 1000 });
 
             await delay(3000);
 
-            toast.error('Упс! вышла ошибочка - восстанавливаем', { autoClose: 2000 });
+            toast.error(`${todo.id}: Упс! вышла ошибочка - восстанавливаем`, {
+                toastId: 'server_error_todo' + todo.id,
+            });
 
-            _updateTodo(oldValue);
+            store._updateTodo(oldValue);
 
             setInProgress(false);
             updatingTodos.delete(todo.id);

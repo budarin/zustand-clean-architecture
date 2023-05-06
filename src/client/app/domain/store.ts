@@ -7,9 +7,9 @@ import {
     recycleBinKey,
     navigationFilters,
     navigationFilterTypes,
-} from './utils/navigationFilter';
+} from './utils/navigationFilter.ts';
 
-import { createSelectors } from './utils/createSelectors';
+import { createSelectors } from './utils/createSelectors.ts';
 import { updateICategoryCounters } from './entities/todo/utils/updateICategoryCounters.ts';
 import { updateFilterCounters } from './entities/todo/utils/updateFilterCounters.ts';
 

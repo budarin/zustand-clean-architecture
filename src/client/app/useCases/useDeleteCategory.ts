@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import { useTodoStore } from '../domain/store';
-import { delay } from '../../common/promises/delay';
+import { delay } from '../../../common/promises/delay';
 
 type UseDeleteCategory = [
     state: {
@@ -26,8 +26,8 @@ export function useDeleteCategory(): UseDeleteCategory {
             setError(undefined);
             setInProgress(true);
 
-            const { categories, _deleteCategory, _createCategory } = useTodoStore.getState();
-            const oldValue = categories.byId[categoryId];
+            const store = useTodoStore.getState();
+            const oldValue = store.categories.byId[categoryId];
 
             if (!oldValue) {
                 setError('Нет ткой записи!');
@@ -36,7 +36,7 @@ export function useDeleteCategory(): UseDeleteCategory {
                 return;
             }
 
-            _deleteCategory(categoryId);
+            store._deleteCategory(categoryId);
 
             // toast.info('Категория успешно удалена', { autoClose: 1000 });
 
@@ -46,7 +46,7 @@ export function useDeleteCategory(): UseDeleteCategory {
 
             toast.error('Упс! вышла ошибочка - восстанавливаем', { autoClose: 2000 });
 
-            _createCategory(oldValue);
+            store._createCategory(oldValue);
 
             setInProgress(false);
         };
