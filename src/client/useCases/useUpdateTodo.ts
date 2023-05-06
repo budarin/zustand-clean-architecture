@@ -47,7 +47,7 @@ export function useUpdateTodo(): UseUpdateTodo {
 
             _updateTodo(todo);
 
-            toast.info('Тодо обновлен', { autoClose: 1000 });
+            // toast.info('Тодо обновлен', { autoClose: 1000 });
 
             await delay(3000);
 

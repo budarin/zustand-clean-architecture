@@ -38,7 +38,7 @@ export function useDeleteCategory(): UseDeleteCategory {
 
             _deleteCategory(categoryId);
 
-            toast.info('Категория успешно удалена', { autoClose: 1000 });
+            // toast.info('Категория успешно удалена', { autoClose: 1000 });
 
             await delay(3000);
 
