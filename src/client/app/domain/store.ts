@@ -10,8 +10,8 @@ import {
 } from './utils/navigationFilter.ts';
 
 import { createSelectors } from './utils/createSelectors.ts';
-import { updateICategoryCounters } from './entities/todo/utils/updateICategoryCounters.ts';
-import { updateFilterCounters } from './entities/todo/utils/updateFilterCounters.ts';
+import { updateICategoryCounters } from './todo/utils/updateICategoryCounters.ts';
+import { updateFilterCounters } from './todo/utils/updateFilterCounters.ts';
 
 type Actions = {
     _createIcon: (icon: Icon) => void;

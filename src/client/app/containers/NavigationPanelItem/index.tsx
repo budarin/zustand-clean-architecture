@@ -8,7 +8,7 @@ import {
 } from '../../domain/utils/navigationFilter.ts';
 
 import { useTodoStore } from '../../domain/store.ts';
-import { _setNavigationFilter } from '../../domain/entities/navigationFilter/navigationFilter.ts';
+import { _setNavigationFilter } from '../../domain/navigationFilter/navigationFilter.ts';
 
 // components
 import TodosCountBadge from '../TodosCountBadge/index.tsx';
