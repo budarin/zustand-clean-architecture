@@ -1,14 +1,14 @@
-import { isInt } from '../validation_utils/isInt.ts';
-import { inRange } from '../validation_utils/inRange.ts';
-import { isString } from '../validation_utils/isString.ts';
-import { isBoolean } from '../validation_utils/isBoolean.ts';
-import { isUndefined } from '../validation_utils/isUndefined.ts';
-import { isTimeStamp } from '../validation_utils/isTimeStamp.ts';
-import { isNotExists } from '../validation_utils/isNotExists.ts';
-import { toDefaultBoolean } from '../validation_utils/toDefaultBoolean.ts';
+import { isInt } from '../utils/validation_utils/isInt.ts';
+import { inRange } from '../utils/validation_utils/inRange.ts';
+import { isString } from '../utils/validation_utils/isString.ts';
+import { isBoolean } from '../utils/validation_utils/isBoolean.ts';
+import { isUndefined } from '../utils/validation_utils/isUndefined.ts';
+import { isTimeStamp } from '../utils/validation_utils/isTimeStamp.ts';
+import { isNotExists } from '../utils/validation_utils/isNotExists.ts';
+import { toDefaultBoolean } from '../utils/validation_utils/toDefaultBoolean.ts';
 
-import type { TypeConverters } from '../validation_utils/getEntity.ts';
-import type { ValidationRules } from '../validation_utils/validateEntity.ts';
+import type { TypeConverters } from '../utils/validation_utils/getEntity.ts';
+import type { ValidationRules } from '../utils/validation_utils/validateEntity.ts';
 
 export const MIN_TODO_LENGTH = 5;
 export const MAX_TODO_LENGTH = 150;

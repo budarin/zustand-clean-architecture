@@ -1,8 +1,8 @@
-import { isInt } from '../validation_utils/isInt.ts';
-import { inRange } from '../validation_utils/inRange.ts';
-import { isString } from '../validation_utils/isString.ts';
+import { isInt } from '../utils/validation_utils/isInt.ts';
+import { inRange } from '../utils/validation_utils/inRange.ts';
+import { isString } from '../utils/validation_utils/isString.ts';
 
-import type { ValidationRules } from '../validation_utils/validateEntity.ts';
+import type { ValidationRules } from '../utils/validation_utils/validateEntity.ts';
 
 const MIN_ICON_NAME_LENGTH = 5;
 const MAX_ICON_NAME_LENGTH = 50;

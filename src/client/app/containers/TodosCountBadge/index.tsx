@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import { useTodoStore } from '../../domain/store.ts';
 import { navigationFilterTypes } from '../../domain/utils/navigationFilter.ts';
 
-import Badge from '../../../components/Badge/index.tsx';
+import Badge from '../../../ui/Badge/index.tsx';
 
 type TodosCountBadgeProps = {
     id: NavigationFilterKey;

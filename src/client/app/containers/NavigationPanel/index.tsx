@@ -4,7 +4,7 @@ import { useTodoStore } from '../../domain/store';
 import { inboxKey, navigationFilterTypes, nextKey, recycleBinKey, todayKey } from '../../domain/utils/navigationFilter';
 
 // components
-import NavigationPanel from '../../../components/NavigationPanel';
+import NavigationPanel from '../../../ui/NavigationPanel';
 import NavigationPanelItemContainer from '../NavigationPanelItem';
 
 import './index.css';

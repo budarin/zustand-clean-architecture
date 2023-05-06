@@ -12,7 +12,7 @@ import { _setNavigationFilter } from '../../domain/entities/navigationFilter/nav
 
 // components
 import TodosCountBadge from '../TodosCountBadge/index.tsx';
-import NavigationIPanelIem from '../../../components/NavigationIPanelIem/index.tsx';
+import NavigationIPanelIem from '../../../ui/NavigationIPanelIem/index.tsx';
 
 type NavigationPanelItemContainerProps = {
     id: NavigationFilterKey;

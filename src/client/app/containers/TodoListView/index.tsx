@@ -4,7 +4,7 @@ import { useTodoStore } from '../../domain/store.ts';
 
 // components
 import TodoListContainer from '../TodoList/index.tsx';
-import TodoList from '../../../components/TodoList/index.tsx';
+import TodoList from '../../../ui/TodoList/index.tsx';
 
 function TodoListViewContainer(): JSX.Element {
     const { title } = useTodoStore.use.navigationFilter();

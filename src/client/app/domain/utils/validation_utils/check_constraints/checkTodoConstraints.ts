@@ -4,7 +4,7 @@ import {
     todoValidationRules,
     validateCategoryIdRelation,
     validateStatusIdRelation,
-} from '../../todo/validation';
+} from '../../../todo/validation';
 
 import { applyEntityConverters } from '../getEntity';
 import { checkEntityValidation } from '../validateEntity';
