@@ -59,7 +59,7 @@ export function useUpdateTodo(): UseUpdateTodo {
             updatingTodos.delete(todo.id);
         };
 
-        doDelete();
+        todo && doDelete();
     }, [todo]);
 
     return [{ inProgress, error }, setTodo];

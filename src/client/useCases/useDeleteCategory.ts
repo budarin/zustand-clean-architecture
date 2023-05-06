@@ -51,7 +51,7 @@ export function useDeleteCategory(): UseDeleteCategory {
             setInProgress(false);
         };
 
-        doDelete();
+        categoryId && doDelete();
     }, [categoryId]);
 
     return [{ inProgress, error }, setCategoryId];
