@@ -8,7 +8,6 @@ import {
 } from '../../domain/utils/navigationFilter.ts';
 
 import { useTodoStore } from '../../domain/store.ts';
-import { _setNavigationFilter } from '../../domain/navigationFilter/navigationFilter.ts';
 
 // components
 import TodosCountBadge from '../TodosCountBadge/index.tsx';
@@ -53,7 +52,7 @@ const NavigationPanelItemContainer = ({ id, navigationType }: NavigationPanelIte
         (e: React.ChangeEvent<HTMLInputElement>): void => {
             const containerTitle = e.target.value;
 
-            _setNavigationFilter({
+            useTodoStore.getState()._setNavigationFilter({
                 key: isCategory ? Number(id) : id,
                 title: containerTitle,
                 type: navigationType as NavigationFilterType,

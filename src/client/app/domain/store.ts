@@ -10,8 +10,8 @@ import {
 } from './utils/navigationFilter.ts';
 
 import { createSelectors } from './utils/createSelectors.ts';
-import { updateICategoryCounters } from './todo/utils/updateICategoryCounters.ts';
 import { updateFilterCounters } from './todo/utils/updateFilterCounters.ts';
+import { updateICategoryCounters } from './todo/utils/updateICategoryCounters.ts';
 
 type Actions = {
     _createIcon: (icon: Icon) => void;
@@ -24,6 +24,8 @@ type Actions = {
     _createTodo: (todo: Todo) => void;
     _updateTodo: (todo: Todo) => void;
     _deleteTodo: (id: Todo['id']) => void;
+
+    _setNavigationFilter: (filter: NavigationFilter) => void;
 };
 
 const todoStore = create<State & Actions>((set) => ({
@@ -138,6 +140,14 @@ const todoStore = create<State & Actions>((set) => ({
             if (idx > -1) {
                 state.todos.ids = ids.filter((item) => item !== id);
             }
+
+            return { ...state };
+        });
+    },
+
+    _setNavigationFilter: (filter) => {
+        return set((state) => {
+            state.navigationFilter = filter;
 
             return { ...state };
         });
