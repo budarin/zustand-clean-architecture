@@ -46,7 +46,7 @@ function NavigationPanelContainer() {
                 <NavigationPanelItemContainer key={key} id={key} navigationType={navigationFilterTypes.filter} />
             ))}
 
-            <CategoryHeader onCreateCategory={onCreateCategory} />
+            <CategoryHeader inProgress={inProgress} onCreateCategory={onCreateCategory} />
 
             {categoryIds.map((key) => (
                 <NavigationPanelItemContainer key={key} id={key} navigationType={navigationFilterTypes.category} />

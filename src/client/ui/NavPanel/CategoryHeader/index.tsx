@@ -1,12 +1,14 @@
 import React, { MouseEvent, MouseEventHandler, memo, useCallback, useState } from 'react';
 
 import './index.css';
+import CreateCategoryForm from '../CreateCategoryForm';
 
 type CategoryHeader = {
+    inProgress: boolean;
     onCreateCategory: MouseEventHandler<HTMLButtonElement>;
 };
 
-const CategoryHeader = memo(({ onCreateCategory }: CategoryHeader): JSX.Element => {
+const CategoryHeader = memo(({ inProgress, onCreateCategory }: CategoryHeader): JSX.Element => {
     const [isOpen, setOpen] = useState<boolean>(false);
 
     return (
@@ -71,12 +73,7 @@ const CategoryHeader = memo(({ onCreateCategory }: CategoryHeader): JSX.Element 
                 </button>
             </div>
 
-            <form className="category-header-form" style={{ display: isOpen ? 'block' : 'none' }}>
-                <input type="text" maxLength={15} className="category-header-form-input" />
-                <button type="button" className="category-header-form-button" onClick={onCreateCategory}>
-                    Добавить
-                </button>
-            </form>
+            <CreateCategoryForm inProgress={inProgress} isOpen={isOpen} onCreateCategory={onCreateCategory} />
         </div>
     );
 });

@@ -33,7 +33,7 @@ export function useCreateCategory(): UseCreateCategory {
                 notifyError(errorMessage, {
                     toastId: 'create_todo_error' + category.category,
                 });
-
+            } finally {
                 setInProgress(false);
             }
         };
