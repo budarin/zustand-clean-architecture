@@ -38,6 +38,7 @@ CREATE TABLE mytable (
 -   использовать код use sound для переписывания хуков useCase для возвращения функции
 -   нотификацию сделать сервисом как и localStorage
 -   векторные иконки https://www.svgrepo.com/vectors/add/
+-   проверка на уникальность справочных сущностей (category, status, icon_name)
 
 <!--  -->
 

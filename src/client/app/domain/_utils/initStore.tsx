@@ -13,9 +13,33 @@ export function initStore() {
         } = useTodoStore.getState();
         const { icons, statuses, categories, todos } = serverInitialState;
 
-        icons?.forEach((icon) => createIcon(icon));
-        statuses?.forEach((status) => createStatus(status));
-        categories?.forEach((category) => createCategory(category));
-        todos?.forEach((todo) => createTodo(todo));
+        icons?.forEach((icon) => {
+            try {
+                createIcon(icon);
+            } catch (error) {
+                console.error(error);
+            }
+        });
+        statuses?.forEach((status) => {
+            try {
+                createStatus(status);
+            } catch (error) {
+                console.error(error);
+            }
+        });
+        categories?.forEach((category) => {
+            try {
+                createCategory(category);
+            } catch (error) {
+                console.error(error);
+            }
+        });
+        todos?.forEach((todo) => {
+            try {
+                createTodo(todo);
+            } catch (error) {
+                console.error(error);
+            }
+        });
     });
 }

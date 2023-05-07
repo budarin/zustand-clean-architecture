@@ -14,25 +14,30 @@ import { updateFilterCounters } from './todo/utils/updateFilterCounters.ts';
 import { updateICategoryCounters } from './todo/utils/updateICategoryCounters.ts';
 
 export class TodoStoreError extends Error {
-    constructor(message: string) {
+    constructor(message: string, data?: Record<string | number, unknown>) {
         super(message);
         this.name = 'TodoStoreError';
     }
 }
 
 type Actions = {
+    // Icon
     _createIcon: (icon: Icon) => void;
 
+    // Status
     _createStatus: (status: Status) => void;
 
+    // Category
     _createCategory: (category: Category) => void;
     _updateCategory: (category: Category) => void;
     _deleteCategory: (id: Category['id']) => void;
 
+    // Todo
     _createTodo: (todo: Todo) => void;
     _updateTodo: (todo: Todo) => void;
     _deleteTodo: (id: Todo['id']) => void;
 
+    // NavigationFilter
     _setNavigationFilter: (filter: NavigationFilter) => void;
 };
 
@@ -91,6 +96,13 @@ const todoStore = create<State & Actions>((set) => ({
     // Category
     _createCategory: (category: Category) => {
         return set((state) => {
+            if (state.icons.ids.includes(category.icon_id) === false) {
+                throw new TodoStoreError(
+                    `Категория "${category.category}" содержит не допустимое значение icon_id: ${category.icon_id}!`,
+                    category,
+                );
+            }
+
             state.categories.byId = { ...state.categories.byId, [category.id]: category };
             state.categories.ids = [...state.categories.ids, category.id];
             return { ...state };
@@ -110,7 +122,7 @@ const todoStore = create<State & Actions>((set) => ({
 
             if (Object.values(state.todos.byId).some((todo) => todo.category_id === id)) {
                 throw new TodoStoreError(
-                    `Нельзя удалить категорию "${deleted.category}" - в этой категории есть задачи!`,
+                    `Нельзя удалить категорию "${deleted.category}": в этой категории есть задачи!`,
                 );
             }
 
@@ -164,6 +176,7 @@ const todoStore = create<State & Actions>((set) => ({
         });
     },
 
+    // NavigationFilter
     _setNavigationFilter: (filter: NavigationFilter) => {
         return set((state) => {
             state.navigationFilter = filter;

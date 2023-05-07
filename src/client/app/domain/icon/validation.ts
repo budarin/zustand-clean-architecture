@@ -1,11 +1,11 @@
-import { isInt } from '../utils/validation_utils/isInt.ts';
-import { inRange } from '../utils/validation_utils/inRange.ts';
-import { isString } from '../utils/validation_utils/isString.ts';
+import { isInt } from '../_utils/validation_utils/isInt.ts';
+import { inRange } from '../_utils/validation_utils/inRange.ts';
+import { isString } from '../_utils/validation_utils/isString.ts';
 
-import type { ValidationRules } from '../utils/validation_utils/validateEntity.ts';
+import type { ValidationRules } from '../_utils/validation_utils/validateEntity.ts';
 
 const MIN_ICON_NAME_LENGTH = 5;
-const MAX_ICON_NAME_LENGTH = 50;
+const MAX_ICON_NAME_LENGTH = 20;
 
 // Идентификатор (id) должен быть целочисленного типа.
 export const validateId = ({ id }: UnknownObject): boolean => isInt(id);
