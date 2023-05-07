@@ -18,19 +18,17 @@ export function useUCreateTodo(): UseCreateTodo {
 
             try {
                 setInProgress(true);
-
                 const store = useTodoStore.getState();
-
                 await delay(3000);
 
-                store._createTodo(todo);
+                const numbers = Object.keys(store.todos.byId).map(Number);
+                const newTodoId = Math.max(...numbers) + 1;
+                store._createTodo({ ...todo, todo_id: newTodoId });
             } catch (error) {
-                const errorMessage = `Упс! Не удалось создать ${todo.todo.slice(10)}...`;
-
-                notifyError(errorMessage, {
+                notifyError(`Упс! Не удалось создать ${todo.todo.slice(10)}...`, {
                     toastId: 'create_todo_error' + todo.todo,
                 });
-
+            } finally {
                 setInProgress(false);
             }
         };

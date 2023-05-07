@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useCallback } from 'react';
+import React, { MouseEventHandler, useCallback, useState } from 'react';
 
 import { useTodoStore } from '../../../domain/store';
 import { useCreateCategory } from '../../../useCases/useCreateCategory';
@@ -21,9 +21,6 @@ function NavigationPanelContainer() {
     const [inProgress, createcategory] = useCreateCategory();
 
     const onCreateCategory: MouseEventHandler<HTMLButtonElement> = async (event) => {
-        console.log(event);
-        console.log(event.target.form[0].value);
-
         event.target.form[1].disabled = inProgress;
 
         if (!inProgress) {

@@ -18,9 +18,7 @@ export function useCreateCategory(): UseCreateCategory {
 
             try {
                 setInProgress(true);
-
                 const store = useTodoStore.getState();
-
                 await delay(3000);
 
                 const numbers = Object.keys(store.categories.byId).map(Number);
