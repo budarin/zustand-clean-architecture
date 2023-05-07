@@ -23,7 +23,7 @@
     border: 0;
     cursor: pointer;
     background-color: #cee3ff;
-    color: rgb(153, 153, 153);
+    color: rgb(107, 107, 107);
 }
 
 .category-header-button-icon {
@@ -58,6 +58,8 @@
     margin-left: 8px;
     background-color: rgb(207, 255, 159);
     cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
 }
 
 @media only screen and (min-width: 640px) {
