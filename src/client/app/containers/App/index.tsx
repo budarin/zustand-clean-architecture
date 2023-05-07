@@ -6,15 +6,15 @@ import { deleteCategory } from '../../useCases/deleteCategory.ts';
 
 // components
 import App from '../../../ui/App/index.tsx';
-import TodoListViewContainer from '../TodoListView/index.tsx';
-import NavigationPanelContainer from '../NavigationPanel/index.tsx';
+import TodoListViewContainer from '../TodoList/ListView/index.tsx';
+import NavigationPanelContainer from '../NavPanel/Panel/index.tsx';
 
 import 'react-toastify/dist/ReactToastify.css';
 
 function AppContainer() {
     useEffect(() => {
         delay(1000).then(() => {
-            deleteCategory(4);
+            deleteCategory(1);
         });
     });
 

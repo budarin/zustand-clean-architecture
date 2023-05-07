@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 
-import { useTodoStore } from '../../domain/store.tsx';
-import { navigationFilterTypes } from '../../domain/utils/navigationFilter.ts';
+import { useTodoStore } from '../../../domain/store.tsx';
+import { navigationFilterTypes } from '../../../domain/utils/navigationFilter.ts';
 
-import Badge from '../../../ui/Badge/index.tsx';
+import Badge from '../../../../ui/NavPanel/Badge/index.tsx';
 
 type TodosCountBadgeProps = {
     id: NavigationFilterKey;

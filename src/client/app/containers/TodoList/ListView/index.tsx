@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { useTodoStore } from '../../domain/store.tsx';
+import { useTodoStore } from '../../../domain/store.tsx';
 
 // components
-import TodoListContainer from '../TodoList/index.tsx';
-import TodoList from '../../../ui/TodoList/index.tsx';
+import TodoListContainer from '../List/index.tsx';
+import TodoList from '../../../../ui/TodoList/TodoList/index.tsx';
 
 function TodoListViewContainer(): JSX.Element {
     const { title } = useTodoStore.use.navigationFilter();

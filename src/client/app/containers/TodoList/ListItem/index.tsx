@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
 
-import { useTodoStore } from '../../domain/store.tsx';
-import { updateTodo } from '../../useCases/updateTodo.ts';
+import { useTodoStore } from '../../../domain/store.tsx';
+import { updateTodo } from '../../../useCases/updateTodo.ts';
 
 // components
-import TodoListItem from '../../../ui/TodoListItem/index.tsx';
+import TodoListItem from '../../../../ui/TodoList/TodoListItem/index.tsx';
 
 type TodoListItemContainerProps = { id: Id };
 

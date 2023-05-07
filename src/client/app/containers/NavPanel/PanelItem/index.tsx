@@ -5,13 +5,13 @@ import {
     type NavigationFiltersKey,
     navigationFilterTypes,
     navigationFilters,
-} from '../../domain/utils/navigationFilter.ts';
+} from '../../../domain/utils/navigationFilter.ts';
 
-import { useTodoStore } from '../../domain/store.tsx';
+import { useTodoStore } from '../../../domain/store.tsx';
 
 // components
-import TodosCountBadge from '../TodosCountBadge/index.tsx';
-import NavigationIPanelIem from '../../../ui/NavigationIPanelIem/index.tsx';
+import TodosCountBadge from '../../TodoList/CountBadge/index.tsx';
+import NavigationIPanelIem from '../../../../ui/NavPanel/PanelIem/index.tsx';
 
 type NavigationPanelItemContainerProps = {
     id: NavigationFilterKey;

@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 
-import { useTodoStore } from '../../domain/store';
-import { inboxKey, navigationFilterTypes, nextKey, recycleBinKey, todayKey } from '../../domain/utils/navigationFilter';
+import { useTodoStore } from '../../../domain/store';
+import {
+    inboxKey,
+    navigationFilterTypes,
+    nextKey,
+    recycleBinKey,
+    todayKey,
+} from '../../../domain/utils/navigationFilter';
 
 // components
-import NavigationPanel from '../../../ui/NavigationPanel';
-import NavigationPanelItemContainer from '../NavigationPanelItem';
+import NavigationPanel from '../../../../ui/NavPanel/Panel';
+import NavigationPanelItemContainer from '../PanelItem';
 
 import './index.css';
 
@@ -35,23 +41,23 @@ function NavigationPanelContainer(): JSX.Element {
                     <path
                         d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
                         stroke="#292D32"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                     />
                     <path
                         d="M8 12H16"
                         stroke="#292D32"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                     />
                     <path
                         d="M12 16V8"
                         stroke="#292D32"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                     />
                 </svg>
             </button>
