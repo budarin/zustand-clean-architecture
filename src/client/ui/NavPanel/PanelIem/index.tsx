@@ -6,7 +6,7 @@ import './index.css';
 type NavigationIPanelIemProps = {
     title: string;
     checked: boolean;
-    handleChange: (e: any) => void;
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     children: ReactNode;
 };
 

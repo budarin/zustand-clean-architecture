@@ -6,7 +6,7 @@ import { notifyError } from '../../services/notification';
 
 type UseCreateCategory = [inProgress: boolean, createTodo: Dispatch<SetStateAction<Category | undefined>>];
 
-export function useUCreateCategory(): UseCreateCategory {
+export function useCreateCategory(): UseCreateCategory {
     const [category, setCategory] = useState<Category>();
     const [inProgress, setInProgress] = useState<boolean>(false);
 

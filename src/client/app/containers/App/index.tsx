@@ -14,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 function AppContainer() {
     useEffect(() => {
         delay(1000).then(() => {
-            deleteCategory(1);
+            deleteCategory(4);
         });
     });
 

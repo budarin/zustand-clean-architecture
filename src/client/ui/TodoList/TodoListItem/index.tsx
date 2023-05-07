@@ -5,7 +5,7 @@ import './index.css';
 type TodoListItemProps = {
     todo: Todo;
     status: Status;
-    handleChange: (e: any) => void;
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const TodoListItem = ({ todo, status, handleChange }: TodoListItemProps) => {
