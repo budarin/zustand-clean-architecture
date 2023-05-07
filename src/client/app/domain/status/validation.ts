@@ -8,7 +8,7 @@ const MIN_STATUS_LENGTH = 3;
 const MAX_STATUS_LENGTH = 20;
 
 // Идентификатор (id) должен быть целочисленного типа.
-export const validateId = ({ id }: UnknownObject): boolean => isInt(id);
+export const validateId = ({ id: status_id }: UnknownObject): boolean => isInt(status_id);
 
 // Длина поля color должна быть 7 символов и первый символ должен быть #.
 export const validateColor = ({ color }: UnknownObject): boolean =>
@@ -25,7 +25,7 @@ export function validateStatus({ status }: UnknownObject): boolean {
 
 // validation rules
 export const statusValidationRules: ValidationRules<Todo> = {
-    id: [validateId, 'обязательное поле id должно быть целочисленным числом'],
+    status_id: [validateId, 'обязательное поле status_id должно быть целочисленным числом'],
     status: [
         validateStatus,
         `Длина названия статуса должна быть более ${MIN_STATUS_LENGTH} символов и не превышать ${MAX_STATUS_LENGTH} символов`,
@@ -36,7 +36,7 @@ export const statusValidationRules: ValidationRules<Todo> = {
 // Category getter
 export function getStatusFomUnknownObject(input: UnknownObject): Status {
     return {
-        status_id: input['id'],
+        status_id: input['status_id'],
         status: input['status'],
         color: input['color'],
     } as Status;

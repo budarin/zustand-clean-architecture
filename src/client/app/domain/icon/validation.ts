@@ -8,7 +8,7 @@ const MIN_ICON_NAME_LENGTH = 5;
 const MAX_ICON_NAME_LENGTH = 20;
 
 // Идентификатор (id) должен быть целочисленного типа.
-export const validateId = ({ id }: UnknownObject): boolean => isInt(id);
+export const validateId = ({ id: icon_id }: UnknownObject): boolean => isInt(icon_id);
 
 // Длина поля name должна быть не менее 5 символов и не более 50 символов.
 export function validateName({ name }: UnknownObject): boolean {
@@ -21,14 +21,14 @@ export function validateName({ name }: UnknownObject): boolean {
 
 // validation rules
 export const iconValidationRules: ValidationRules<Todo> = {
-    id: [validateId, 'обязательное поле id должно быть целочисленным числом'],
+    icon_id: [validateId, 'обязательное поле icon_id должно быть целочисленным числом'],
     name: [validateName, 'обязательное name name должно быть строкой'],
 };
 
 // Category getter
 export function getIconFomUnknownObject(input: UnknownObject): Icon {
     return {
-        icon_id: input['id'],
+        icon_id: input['icon_id'],
         name: input['name'],
     } as Icon;
 }

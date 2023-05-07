@@ -17,7 +17,7 @@ export const MIN_DESCRIPTION_LENGTH = 10;
 export const MAX_DESCRIPTION_LENGTH = 1000;
 
 // Идентификатор (id) должен быть целочисленного типа.
-export const validateId = ({ id }: UnknownObject): boolean => isInt(id);
+export const validateId = ({ id: todo_id }: UnknownObject): boolean => isInt(todo_id);
 
 // Поле status_id должно быть целочисленного типа и должно ссылаться на существующий статус в списке Statuses.
 export const validateStatusId = ({ status_id }: UnknownObject): boolean => isInt(status_id);
@@ -74,7 +74,7 @@ export const todoConverters: TypeConverters = {
 
 // validation rules
 export const todoValidationRules: ValidationRules<Todo> = {
-    id: [validateId, 'обязательное поле id должно быть целым числом'],
+    todo_id: [validateId, 'обязательное поле todo_id должно быть целым числом'],
     status_id: [validateStatusId, 'обязательное поле status_id должно быть целым числом'],
     category_id: [validateCategoryId, 'необязательное поле category_id должно быть целым числом'],
     todo: [
@@ -93,7 +93,7 @@ export const todoValidationRules: ValidationRules<Todo> = {
 // Todo getter
 export function getTodoFomUnknownObject(input: UnknownObject): Todo {
     return {
-        todo_id: input['id'],
+        todo_id: input['todo_id'],
         todo: input['todo'],
         status_id: input['status_id'],
         category_id: input['category_id'],
