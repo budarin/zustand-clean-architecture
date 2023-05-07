@@ -25,6 +25,8 @@ type Category = {
     category: CategoryName;
 };
 
+type NewCategory = Omit<Category, 'category_id'>;
+
 type TodoStatusId = number;
 type TodoCategoryId = Id | undefined;
 type TodoTodo = string;
@@ -43,6 +45,8 @@ type Todo = {
     deleted?: TodoDeleted;
     completed?: TodoCompleted;
 };
+
+type NewTodo = Omit<Todo, 'todo_id'>;
 
 type NavigationFilterTitle = string;
 type NavigationFilterKey = NavigationFilterTitle | Id;

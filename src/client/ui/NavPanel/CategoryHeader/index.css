@@ -3,9 +3,9 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    gap: 8px;
 
     background-color: rgb(206, 227, 255);
-    gap: 8px;
 }
 
 .category-header h4 {
@@ -32,14 +32,24 @@
     fill: rgb(207, 255, 159);
 }
 
+/* form */
+
 .category-header-form {
     padding: 16px;
     text-align: right;
     border: 1px solid #e8e8e8;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    gap: 8px;
 }
 
 .category-header-form-input {
     height: 22px;
+    flex: 1;
 }
 
 .category-header-form-button {
@@ -51,9 +61,9 @@
 
 @media only screen and (min-width: 640px) {
     .category-header-form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
         padding: 8px;
-    }
-
-    .category-header-form-input {
     }
 }

@@ -1,6 +1,7 @@
 import React, { MouseEventHandler, useCallback } from 'react';
 
 import { useTodoStore } from '../../../domain/store';
+import { useCreateCategory } from '../../../useCases/useCreateCategory';
 import { inboxKey, navigationFilterTypes, nextKey, recycleBinKey, todayKey } from '../../../domain/navigationFilter';
 
 // components
@@ -9,7 +10,6 @@ import NavigationPanel from '../../../../ui/NavPanel/Panel';
 import CategoryHeader from '../../../../ui/NavPanel/CategoryHeader';
 
 import './index.css';
-import { useCreateCategory } from '../../../useCases/useCreateCategory';
 
 const topFilters = [todayKey, nextKey, inboxKey];
 
