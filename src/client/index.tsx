@@ -1,7 +1,7 @@
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import { initStore } from './app/domain/utils/initStore.tsx';
+import { initStore } from './app/domain/_utils/initStore.tsx';
 
 // components
 import AppContainer from './app/containers/App/index.tsx';

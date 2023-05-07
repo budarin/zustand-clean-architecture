@@ -5,7 +5,7 @@ import {
     type NavigationFiltersKey,
     navigationFilterTypes,
     navigationFilters,
-} from '../../../domain/utils/navigationFilter.ts';
+} from '../../../domain/navigationFilter/index.ts';
 
 import { useTodoStore } from '../../../domain/store.tsx';
 

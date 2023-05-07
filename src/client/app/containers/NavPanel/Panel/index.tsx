@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 
 import { useTodoStore } from '../../../domain/store';
-import {
-    inboxKey,
-    navigationFilterTypes,
-    nextKey,
-    recycleBinKey,
-    todayKey,
-} from '../../../domain/utils/navigationFilter';
+import { inboxKey, navigationFilterTypes, nextKey, recycleBinKey, todayKey } from '../../../domain/navigationFilter';
 
 // components
 import NavigationPanel from '../../../../ui/NavPanel/Panel';

@@ -7,9 +7,9 @@ import {
     recycleBinKey,
     navigationFilters,
     navigationFilterTypes,
-} from './utils/navigationFilter.ts';
+} from './navigationFilter/index.ts';
 
-import { createSelectors } from './utils/createSelectors.ts';
+import { createSelectors } from './_utils/createSelectors.ts';
 import { updateFilterCounters } from './todo/utils/updateFilterCounters.ts';
 import { updateICategoryCounters } from './todo/utils/updateICategoryCounters.ts';
 
@@ -22,6 +22,7 @@ export class TodoStoreError extends Error {
 
 type Actions = {
     _createIcon: (icon: Icon) => void;
+
     _createStatus: (status: Status) => void;
 
     _createCategory: (category: Category) => void;
@@ -69,6 +70,7 @@ const todoStore = create<State & Actions>((set) => ({
         type: navigationFilterTypes.filter,
     },
 
+    // Icon
     _createIcon: (icon: Icon) => {
         return set((state) => {
             state.icons.byId = { ...state.icons.byId, [icon.id]: icon };
@@ -77,6 +79,7 @@ const todoStore = create<State & Actions>((set) => ({
         });
     },
 
+    // Status
     _createStatus: (status: Status) => {
         return set((state) => {
             state.statuses.byId = { ...state.statuses.byId, [status.id]: status };
@@ -85,6 +88,7 @@ const todoStore = create<State & Actions>((set) => ({
         });
     },
 
+    // Category
     _createCategory: (category: Category) => {
         return set((state) => {
             state.categories.byId = { ...state.categories.byId, [category.id]: category };
@@ -100,7 +104,7 @@ const todoStore = create<State & Actions>((set) => ({
         });
     },
 
-    _deleteCategory: (id) => {
+    _deleteCategory: (id: Category['id']) => {
         return set((state) => {
             const { [id]: deleted, ...rest } = state.categories.byId;
 
@@ -122,6 +126,7 @@ const todoStore = create<State & Actions>((set) => ({
         });
     },
 
+    // Todo
     _createTodo: (todo: Todo) => {
         return set((state) => {
             state.todos.byId = { ...state.todos.byId, [todo.id]: todo };
@@ -159,7 +164,7 @@ const todoStore = create<State & Actions>((set) => ({
         });
     },
 
-    _setNavigationFilter: (filter) => {
+    _setNavigationFilter: (filter: NavigationFilter) => {
         return set((state) => {
             state.navigationFilter = filter;
 
