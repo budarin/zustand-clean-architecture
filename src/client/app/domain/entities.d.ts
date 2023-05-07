@@ -4,7 +4,7 @@ type IconName = string;
 
 type Icon = {
     icon_id: Id;
-    name: IconName;
+    icon_name: IconName;
 };
 
 type StatusName = string;

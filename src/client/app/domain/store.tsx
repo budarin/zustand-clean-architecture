@@ -78,6 +78,14 @@ const todoStore = create<State & Actions>((set) => ({
     // Icon
     _createIcon: (icon: Icon) => {
         return set((state) => {
+            if (state.icons.ids.includes(icon.icon_id) === true) {
+                throw new TodoStoreError(`Нарушение уникальности ключа icons.icon_id!`, icon);
+            }
+
+            if (Object.values(state.icons.byId).find((item) => item.icon_name == icon.icon_name)) {
+                throw new TodoStoreError(`Нарушение уникальности имени иконки в  icons!`, icon);
+            }
+
             state.icons.byId = { ...state.icons.byId, [icon.icon_id]: icon };
             state.icons.ids = [...state.icons.ids, icon.icon_id];
             return { ...state };
@@ -87,6 +95,14 @@ const todoStore = create<State & Actions>((set) => ({
     // Status
     _createStatus: (status: Status) => {
         return set((state) => {
+            if (state.statuses.ids.includes(status.status_id) === true) {
+                throw new TodoStoreError(`Нарушение уникальности ключа statuses.status_id!`, status);
+            }
+
+            if (Object.values(state.statuses.byId).find((item) => item.status == status.status)) {
+                throw new TodoStoreError(`Нарушение уникальности имени статуса в  statuses!`, status);
+            }
+
             state.statuses.byId = { ...state.statuses.byId, [status.status_id]: status };
             state.statuses.ids = [...state.statuses.ids, status.status_id];
             return { ...state };
@@ -96,6 +112,14 @@ const todoStore = create<State & Actions>((set) => ({
     // Category
     _createCategory: (category: Category) => {
         return set((state) => {
+            if (state.categories.ids.includes(category.category_id) === true) {
+                throw new TodoStoreError(`Нарушение уникальности ключа categories.category_id!`, category);
+            }
+
+            if (Object.values(state.categories.byId).find((item) => item.category == category.category)) {
+                throw new TodoStoreError(`Нарушение уникальности имени категории в categories!`, category);
+            }
+
             if (state.icons.ids.includes(category.icon_id) === false) {
                 throw new TodoStoreError(
                     `Категория "${category.category}" содержит не допустимое значение icon_id: ${category.icon_id}!`,
@@ -111,6 +135,10 @@ const todoStore = create<State & Actions>((set) => ({
 
     _updateCategory: (category: Category) => {
         return set((state) => {
+            if (Object.values(state.categories.byId).find((item) => item.category == category.category)) {
+                throw new TodoStoreError(`Нарушение уникальности имени категории в categories!`, category);
+            }
+
             state.categories.byId[category.category_id] = {
                 ...state.categories.byId[category.category_id],
                 ...category,
@@ -123,7 +151,7 @@ const todoStore = create<State & Actions>((set) => ({
         return set((state) => {
             const { [id]: deleted, ...rest } = state.categories.byId;
 
-            if (Object.values(state.todos.byId).some((todo) => todo.category_id === id)) {
+            if (Object.values(state.todos.byId).find((todo) => todo.category_id === id)) {
                 throw new TodoStoreError(
                     `Нельзя удалить категорию "${deleted.category}": в этой категории есть задачи!`,
                 );
@@ -144,6 +172,10 @@ const todoStore = create<State & Actions>((set) => ({
     // Todo
     _createTodo: (todo: Todo) => {
         return set((state) => {
+            if (state.todos.ids.includes(todo.todo_id) === true) {
+                throw new TodoStoreError(`Нарушение уникальности ключа todos.todo_id!`, todo);
+            }
+
             state.todos.byId = { ...state.todos.byId, [todo.todo_id]: todo };
             state.todos.ids = [...state.todos.ids, todo.todo_id];
             updateICategoryCounters(todo, state.todos);
