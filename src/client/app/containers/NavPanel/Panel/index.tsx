@@ -26,7 +26,6 @@ function NavigationPanelContainer() {
         if (!inProgress) {
             try {
                 await createcategory({
-                    category_id: 5,
                     category: event.target.form[0].value,
                     icon_id: 1,
                 });

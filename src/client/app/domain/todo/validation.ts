@@ -8,7 +8,7 @@ import { isNotExists } from '../_utils/validation_utils/isNotExists.ts';
 import { toDefaultBoolean } from '../_utils/validation_utils/toDefaultBoolean.ts';
 
 import type { TypeConverters } from '../_utils/validation_utils/getEntity.ts';
-import type { ValidationRules } from '../_utils/validation_utils/validateEntity.ts';
+import type { ValidationRules } from '../_utils/validation_utils/validateFormEntity.ts';
 
 export const MIN_TODO_LENGTH = 5;
 export const MAX_TODO_LENGTH = 100;

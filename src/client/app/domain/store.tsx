@@ -9,6 +9,7 @@ import {
     navigationFilterTypes,
 } from './navigationFilter/index.ts';
 
+import { validateIcon } from './icon/validation.ts';
 import { createSelectors } from './_utils/createSelectors.ts';
 import { updateFilterCounters } from './todo/utils/updateFilterCounters.ts';
 import { updateICategoryCounters } from './todo/utils/updateICategoryCounters.ts';
@@ -78,6 +79,12 @@ const todoStore = create<State & Actions>((set) => ({
     // Icon
     _createIcon: (icon: Icon) => {
         return set((state) => {
+            const { isValid, error } = validateIcon(icon);
+
+            if (isValid === false) {
+                throw new TodoStoreError('Ошибка валидации объекта icon', { error });
+            }
+
             if (state.icons.ids.includes(icon.icon_id) === true) {
                 throw new TodoStoreError(`Нарушение уникальности ключа icons.icon_id!`, icon);
             }

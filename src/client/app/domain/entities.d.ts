@@ -58,7 +58,7 @@ type NavigationFilter = {
     type: NavigationFilterType;
 };
 
-type OneOfEntities = Icon | Status | Category | Todo;
+type OneOfEntities = Category | Status | Category | Todo;
 
 type EntitiesPayload = {
     todos?: Todo[];

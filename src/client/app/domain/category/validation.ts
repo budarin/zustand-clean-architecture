@@ -2,7 +2,7 @@ import { isInt } from '../_utils/validation_utils/isInt.ts';
 import { inRange } from '../_utils/validation_utils/inRange.ts';
 import { isString } from '../_utils/validation_utils/isString.ts';
 
-import type { ValidationRules } from '../_utils/validation_utils/validateEntity.ts';
+import { checkEntity } from '../_utils/validation_utils/validateEntity.ts';
 
 export const MIN_CATEGOTY_LENGTH = 3;
 export const MAX_CATEGOTY_LENGTH = 15;
@@ -14,7 +14,7 @@ export const validateId = ({ id: category_id }: UnknownObject): boolean => isInt
 export const validateIconId = ({ icon_id }: UnknownObject): boolean => isInt(icon_id);
 
 // Обязательно должно присутствовать поле category, и его длина должна быть более 3-х символов и не должна превышать 15 символов.
-export function validateCategory({ category }: UnknownObject): boolean {
+export function validate_category({ category }: UnknownObject): boolean {
     if (isString(category)) {
         return inRange(category.length, MIN_CATEGOTY_LENGTH, MAX_CATEGOTY_LENGTH);
     }
@@ -27,14 +27,18 @@ export const validateIconIdRelation = (icon_id: CategoryIconId, iconIdsSores: Re
     !!iconIdsSores.find((idsStore) => Boolean(idsStore[icon_id]));
 
 // validation rules
-export const categoryValidationRules: ValidationRules<Todo> = {
+
+export const categoryValidationRules: ValidationRules<Category> = {
     category_id: [validateId, 'Category обязан иметь category_id целым числомr'],
     category: [
-        validateCategory,
+        validate_category,
         `Длина названия категории должна быть более ${MIN_CATEGOTY_LENGTH} символов и не превышать ${MAX_CATEGOTY_LENGTH} символов`,
     ],
     icon_id: [validateIconId, 'Category обязан иметь icon_id целым числом'],
 };
+
+const { category_id, ...restCategoryValidationRules } = categoryValidationRules;
+export const newCategoryValidationRules = restCategoryValidationRules;
 
 // Category getter
 export function getCategoryFomUnknownObject(input: UnknownObject): Category {
@@ -43,4 +47,12 @@ export function getCategoryFomUnknownObject(input: UnknownObject): Category {
         category: input['category'],
         icon_id: input['icon_id'],
     } as Category;
+}
+
+export function validateCategory(category: Category) {
+    return checkEntity<Category>(category, categoryValidationRules, 'Category');
+}
+
+export function validateNewCategory(category: NewCategory) {
+    return checkEntity<NewCategory>(category, newCategoryValidationRules, 'Category');
 }

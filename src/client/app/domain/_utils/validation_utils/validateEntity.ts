@@ -1,25 +1,19 @@
-export type ValidationRules<T> = Record<string, [(x: any) => boolean, string]>;
+type CheckEntityValidation = { isValid: boolean; error?: string };
 
-export function checkEntityValidation<T>(
-    entity: object,
-    rules: ValidationRules<T>,
-    errorPrefix: string,
-): { valid: boolean; errors: Record<string, string> } {
-    const errors = {} as Record<string, string>;
-    let hasNoErrors = true;
-
+export function checkEntity<T>(entity: object, rules: ValidationRules<T>, errorPrefix: string): CheckEntityValidation {
     Object.keys(rules).forEach((propName) => {
         const rule = rules[propName];
         const [validator, errorMessage] = rule;
 
         if (validator(entity) === false) {
-            errors[propName] = `${errorPrefix}: ${errorMessage}`;
-            hasNoErrors && (hasNoErrors = false);
+            return {
+                isvalid: false,
+                error: `${errorPrefix}: ${errorMessage}`,
+            };
         }
     });
 
     return {
-        valid: hasNoErrors,
-        errors,
+        isValid: true,
     };
 }
