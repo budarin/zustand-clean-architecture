@@ -1,7 +1,6 @@
-import { toast } from 'react-toastify';
-
 import { useTodoStore } from '../domain/store';
 import { delay } from '../../../common/promises/delay';
+import { notifyError } from '../../services/notification';
 
 const updatingTodos = new Set();
 
@@ -12,7 +11,7 @@ export async function updateTodo(todo: Todo) {
     const oldValue = store.todos.byId[todo.id];
 
     if (!oldValue) {
-        toast.error('Запись отсутствует в базе данных!', {
+        notifyError('Запись отсутствует в базе данных!', {
             autoClose: 2000,
         });
         return;
@@ -24,7 +23,7 @@ export async function updateTodo(todo: Todo) {
 
     await delay(3000);
 
-    toast.error(`${todo.id}: Упс! вышла ошибочка - восстанавливаем`, {
+    notifyError(`${todo.id}: Упс! вышла ошибочка - восстанавливаем`, {
         toastId: 'server_error_todo' + todo.id,
     });
 

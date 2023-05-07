@@ -1,8 +1,8 @@
-import { toast } from 'react-toastify';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import { useTodoStore } from '../domain/store';
 import { delay } from '../../../common/promises/delay';
+import { notifyError } from '../../services/notification';
 
 type UseCreateCategory = [inProgress: boolean, createTodo: Dispatch<SetStateAction<Category | undefined>>];
 
@@ -27,7 +27,7 @@ export function useUCreateCategory(): UseCreateCategory {
             } catch (error) {
                 const errorMessage = `Упс! Не удалось создать ${category.category}`;
 
-                toast.error(errorMessage, {
+                notifyError(errorMessage, {
                     toastId: 'create_todo_error' + category.id,
                 });
 

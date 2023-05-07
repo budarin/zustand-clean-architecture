@@ -13,6 +13,13 @@ import { createSelectors } from './utils/createSelectors.ts';
 import { updateFilterCounters } from './todo/utils/updateFilterCounters.ts';
 import { updateICategoryCounters } from './todo/utils/updateICategoryCounters.ts';
 
+export class TodoStoreError extends Error {
+    constructor(message: string) {
+        super(message);
+        this.name = 'TodoStoreError';
+    }
+}
+
 type Actions = {
     _createIcon: (icon: Icon) => void;
     _createStatus: (status: Status) => void;
@@ -98,7 +105,9 @@ const todoStore = create<State & Actions>((set) => ({
             const { [id]: deleted, ...rest } = state.categories.byId;
 
             if (Object.values(state.todos.byId).some((todo) => todo.category_id === id)) {
-                throw new Error(`Нельзя удалить категорию "${deleted.category}" - в этой категории есть задачи!`);
+                throw new TodoStoreError(
+                    `Нельзя удалить категорию "${deleted.category}" - в этой категории есть задачи!`,
+                );
             }
 
             state.categories.byId = rest;

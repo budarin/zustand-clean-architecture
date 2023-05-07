@@ -1,7 +1,6 @@
-import { toast } from 'react-toastify';
-
 import { useTodoStore } from '../domain/store';
 import { delay } from '../../../common/promises/delay';
+import { notifyError } from '../../services/notification';
 
 export async function updateCategory(category: Category) {
     const store = useTodoStore.getState();
@@ -13,7 +12,7 @@ export async function updateCategory(category: Category) {
 
     await delay(3000);
 
-    toast.error('Упс! вышла ошибочка - восстанавливаем', { autoClose: 2000 });
+    notifyError('Упс! вышла ошибочка - восстанавливаем', { autoClose: 2000 });
 
     store._updateCategory(oldValue);
 }

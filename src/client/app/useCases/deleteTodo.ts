@@ -1,7 +1,6 @@
-import { toast } from 'react-toastify';
-
 import { useTodoStore } from '../domain/store';
 import { delay } from '../../../common/promises/delay';
+import { notifyError } from '../../services/notification';
 
 export async function deleteTodo(todo: Todo) {
     const store = useTodoStore.getState();
@@ -13,7 +12,7 @@ export async function deleteTodo(todo: Todo) {
 
     await delay(3000);
 
-    toast.error(
+    notifyError(
         `${todo.id}: Упс! Не удалось удалить "${todo.todo.slice(10)}..."
     вышла ошибочка - восстанавливаем`,
         {

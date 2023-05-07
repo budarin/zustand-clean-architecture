@@ -1,8 +1,8 @@
-import { toast } from 'react-toastify';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import { useTodoStore } from '../domain/store';
 import { delay } from '../../../common/promises/delay';
+import { notifyError } from '../../services/notification';
 
 type UseCreateTodo = [inProgress: boolean, createTodo: Dispatch<SetStateAction<Todo | undefined>>];
 
@@ -27,7 +27,7 @@ export function useUCreateTodo(): UseCreateTodo {
             } catch (error) {
                 const errorMessage = `Упс! Не удалось создать ${todo.todo.slice(10)}...`;
 
-                toast.error(errorMessage, {
+                notifyError(errorMessage, {
                     toastId: 'create_todo_error' + todo.todo,
                 });
 

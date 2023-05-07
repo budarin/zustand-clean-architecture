@@ -1,40 +1,31 @@
-import { toast } from 'react-toastify';
-
-import { useTodoStore } from '../domain/store';
+import { TodoStoreError, useTodoStore } from '../domain/store';
 import { delay } from '../../../common/promises/delay';
 
-import sound from '../../../../assets/plucky.mp3';
-
-const au = new Audio(sound);
-au.volume = 0.25;
+import { notifyError } from '../../services/notification';
 
 export async function deleteCategory(id: Category['id']) {
     const store = useTodoStore.getState();
     const oldValue = store.categories.byId[id];
 
     if (!oldValue) {
-        toast.error('Запись отсутствует в базе данных!', { autoClose: 2000 });
+        notifyError('Запись отсутствует в базе данных!', { autoClose: 2000 });
+
         return;
     }
 
     try {
         store._deleteCategory(id);
+
         await delay(3000);
-        toast.error('Упс! вышла ошибочка - восстанавливаем', { autoClose: 2000 });
+
+        notifyError('Упс! вышла ошибочка - восстанавливаем', { autoClose: 2000 });
+
         store._createCategory(oldValue);
     } catch (err) {
-        // console.log('error', err);
-        toast.error((err as Error).message, {
-            onOpen: () => {
-                delay(300).then(() => {
-                    au.play();
-                });
-            },
-            onClose: () => {
-                au.pause();
-            },
-        });
+        if (err instanceof TodoStoreError) {
+            notifyError(err.message);
+        } else {
+            notifyError(`Error: ${(err as Error).message}`);
+        }
     }
-
-    // toast.info('Категория успешно удалена', { autoClose: 1000 });
 }
