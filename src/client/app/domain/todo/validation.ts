@@ -93,7 +93,7 @@ export const todoValidationRules: ValidationRules<Todo> = {
 // Todo getter
 export function getTodoFomUnknownObject(input: UnknownObject): Todo {
     return {
-        id: input['id'],
+        todo_id: input['id'],
         todo: input['todo'],
         status_id: input['status_id'],
         category_id: input['category_id'],

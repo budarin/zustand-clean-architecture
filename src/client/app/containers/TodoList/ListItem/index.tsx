@@ -23,7 +23,7 @@ const TodoListItemContainer = ({ id }: TodoListItemContainerProps): JSX.Element 
 
             const isChecked = e.target.checked;
             updateTodo({
-                id: 1,
+                todo_id: 1,
                 status_id: 1,
                 todo: String(Math.random()),
                 completed: isChecked,

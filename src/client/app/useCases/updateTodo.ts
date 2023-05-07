@@ -5,10 +5,10 @@ import { notifyError } from '../../services/notification';
 const updatingTodos = new Set();
 
 export async function updateTodo(todo: Todo) {
-    updatingTodos.add(todo.id);
+    updatingTodos.add(todo.todo_id);
 
     const store = useTodoStore.getState();
-    const oldValue = store.todos.byId[todo.id];
+    const oldValue = store.todos.byId[todo.todo_id];
 
     if (!oldValue) {
         notifyError('Запись отсутствует в базе данных!', {
@@ -23,11 +23,11 @@ export async function updateTodo(todo: Todo) {
 
     await delay(3000);
 
-    notifyError(`${todo.id}: Упс! вышла ошибочка - восстанавливаем`, {
-        toastId: 'server_error_todo' + todo.id,
+    notifyError(`${todo.todo_id}: Упс! вышла ошибочка - восстанавливаем`, {
+        toastId: 'server_error_todo' + todo.todo_id,
     });
 
     store._updateTodo(oldValue);
 
-    updatingTodos.delete(todo.id);
+    updatingTodos.delete(todo.todo_id);
 }

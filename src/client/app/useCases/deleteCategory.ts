@@ -3,7 +3,7 @@ import { delay } from '../../../common/promises/delay';
 
 import { notifyError } from '../../services/notification';
 
-export async function deleteCategory(id: Category['id']) {
+export async function deleteCategory(id: Category['category_id']) {
     const store = useTodoStore.getState();
     const oldValue = store.categories.byId[id];
 

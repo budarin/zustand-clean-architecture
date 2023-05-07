@@ -33,7 +33,7 @@ export function checkCategoryConstraints(
 
         if (valid && linksAreCorrect) {
             newCategories.push(getCategoryFomUnknownObject(category));
-            categoryIds[category.id] = true;
+            categoryIds[category.category_id] = true;
         } else {
             console.error('Category', { category, errors });
             isValid = false;

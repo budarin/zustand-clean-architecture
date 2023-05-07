@@ -7,12 +7,12 @@ export function updateICategoryCounters(todo: Todo, state: TodoState) {
         // если есть такая категория
         if (byId[todo.category_id]) {
             // вставляем todo.id
-            if (byId[todo.category_id].indexOf(todo.id) === -1) {
-                state.idsByCategoryId[todo.category_id] = [...byId[todo.category_id], todo.id];
+            if (byId[todo.category_id].indexOf(todo.todo_id) === -1) {
+                state.idsByCategoryId[todo.category_id] = [...byId[todo.category_id], todo.todo_id];
             }
         } else {
             // создаем и вставляем todo.id
-            state.idsByCategoryId[todo.category_id] = [todo.id];
+            state.idsByCategoryId[todo.category_id] = [todo.todo_id];
         }
 
         // проходимся по остальным категориям и если там есть todo.id - удаляем его
@@ -21,7 +21,7 @@ export function updateICategoryCounters(todo: Todo, state: TodoState) {
 
             if (id !== todo.category_id) {
                 const ids = state.idsByCategoryId;
-                const idx = ids[id].indexOf(todo.id);
+                const idx = ids[id].indexOf(todo.todo_id);
 
                 if (idx > -1) {
                     ids[id] = [...ids[id]];
@@ -34,7 +34,7 @@ export function updateICategoryCounters(todo: Todo, state: TodoState) {
         Object.keys(state.idsByCategoryId).forEach((categoryId) => {
             const id = Number(categoryId);
             const ids = state.idsByCategoryId;
-            const idx = ids[id].indexOf(todo.id);
+            const idx = ids[id].indexOf(todo.todo_id);
 
             if (idx > -1) {
                 ids[id] = [...ids[id]];

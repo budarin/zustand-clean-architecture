@@ -4,7 +4,7 @@ import { notifyError } from '../../services/notification';
 
 export async function updateCategory(category: Category) {
     const store = useTodoStore.getState();
-    const oldValue = store.categories.byId[category.id];
+    const oldValue = store.categories.byId[category.category_id];
 
     store._updateCategory(category);
 

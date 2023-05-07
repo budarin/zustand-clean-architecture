@@ -14,7 +14,7 @@ export function checkStatusConstraints(
 
         if (valid) {
             newStatuses.push(getStatusFomUnknownObject(status));
-            statusIds[status.id] = true;
+            statusIds[status.status_id] = true;
         } else {
             console.error('Status', { status, errors });
             isValid = false;

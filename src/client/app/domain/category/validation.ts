@@ -39,7 +39,7 @@ export const categoryValidationRules: ValidationRules<Todo> = {
 // Category getter
 export function getCategoryFomUnknownObject(input: UnknownObject): Category {
     return {
-        id: input['id'],
+        category_id: input['id'],
         category: input['category'],
         icon_id: input['icon_id'],
     } as Category;

@@ -30,12 +30,12 @@ type Actions = {
     // Category
     _createCategory: (category: Category) => void;
     _updateCategory: (category: Category) => void;
-    _deleteCategory: (id: Category['id']) => void;
+    _deleteCategory: (id: Category['category_id']) => void;
 
     // Todo
     _createTodo: (todo: Todo) => void;
     _updateTodo: (todo: Todo) => void;
-    _deleteTodo: (id: Todo['id']) => void;
+    _deleteTodo: (id: Todo['todo_id']) => void;
 
     // NavigationFilter
     _setNavigationFilter: (filter: NavigationFilter) => void;
@@ -78,8 +78,8 @@ const todoStore = create<State & Actions>((set) => ({
     // Icon
     _createIcon: (icon: Icon) => {
         return set((state) => {
-            state.icons.byId = { ...state.icons.byId, [icon.id]: icon };
-            state.icons.ids = [...state.icons.ids, icon.id];
+            state.icons.byId = { ...state.icons.byId, [icon.icon_id]: icon };
+            state.icons.ids = [...state.icons.ids, icon.icon_id];
             return { ...state };
         });
     },
@@ -87,8 +87,8 @@ const todoStore = create<State & Actions>((set) => ({
     // Status
     _createStatus: (status: Status) => {
         return set((state) => {
-            state.statuses.byId = { ...state.statuses.byId, [status.id]: status };
-            state.statuses.ids = [...state.statuses.ids, status.id];
+            state.statuses.byId = { ...state.statuses.byId, [status.status_id]: status };
+            state.statuses.ids = [...state.statuses.ids, status.status_id];
             return { ...state };
         });
     },
@@ -103,20 +103,23 @@ const todoStore = create<State & Actions>((set) => ({
                 );
             }
 
-            state.categories.byId = { ...state.categories.byId, [category.id]: category };
-            state.categories.ids = [...state.categories.ids, category.id];
+            state.categories.byId = { ...state.categories.byId, [category.category_id]: category };
+            state.categories.ids = [...state.categories.ids, category.category_id];
             return { ...state };
         });
     },
 
     _updateCategory: (category: Category) => {
         return set((state) => {
-            state.categories.byId[category.id] = { ...state.categories.byId[category.id], ...category };
+            state.categories.byId[category.category_id] = {
+                ...state.categories.byId[category.category_id],
+                ...category,
+            };
             return { ...state };
         });
     },
 
-    _deleteCategory: (id: Category['id']) => {
+    _deleteCategory: (id: Category['category_id']) => {
         return set((state) => {
             const { [id]: deleted, ...rest } = state.categories.byId;
 
@@ -141,8 +144,8 @@ const todoStore = create<State & Actions>((set) => ({
     // Todo
     _createTodo: (todo: Todo) => {
         return set((state) => {
-            state.todos.byId = { ...state.todos.byId, [todo.id]: todo };
-            state.todos.ids = [...state.todos.ids, todo.id];
+            state.todos.byId = { ...state.todos.byId, [todo.todo_id]: todo };
+            state.todos.ids = [...state.todos.ids, todo.todo_id];
             updateICategoryCounters(todo, state.todos);
             updateFilterCounters(todo, state.todos);
             return { ...state };
@@ -151,9 +154,9 @@ const todoStore = create<State & Actions>((set) => ({
 
     _updateTodo: (todo: Todo) => {
         return set((state) => {
-            const newTodo = { ...state.todos.byId[todo.id], ...todo };
+            const newTodo = { ...state.todos.byId[todo.todo_id], ...todo };
 
-            state.todos.byId[todo.id] = newTodo;
+            state.todos.byId[todo.todo_id] = newTodo;
             updateICategoryCounters(newTodo, state.todos);
             updateFilterCounters(newTodo, state.todos);
 
@@ -161,7 +164,7 @@ const todoStore = create<State & Actions>((set) => ({
         });
     },
 
-    _deleteTodo: (id: Todo['id']) => {
+    _deleteTodo: (id: Todo['todo_id']) => {
         return set((state) => {
             const { [id]: del, ...rest } = state.todos.byId;
             state.todos.byId = rest;

@@ -28,7 +28,7 @@ export function useUCreateCategory(): UseCreateCategory {
                 const errorMessage = `Упс! Не удалось создать ${category.category}`;
 
                 notifyError(errorMessage, {
-                    toastId: 'create_todo_error' + category.id,
+                    toastId: 'create_todo_error' + category.category_id,
                 });
 
                 setInProgress(false);

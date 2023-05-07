@@ -1,69 +1,69 @@
 export const serverInitialState: EntitiesPayload = {
     icons: [
         {
-            id: 1,
+            icon_id: 1,
             name: 'folder.png',
         },
         {
-            id: 2,
+            icon_id: 2,
             name: 'home.png',
         },
         {
-            id: 3,
+            icon_id: 3,
             name: 'work.png',
         },
         {
-            id: 4,
+            icon_id: 4,
             name: 'sport.png',
         },
     ],
     statuses: [
         {
-            id: 1,
+            status_id: 1,
             status: 'низкий',
             color: '#808080',
         },
         {
-            id: 2,
+            status_id: 2,
             status: 'нормальный',
             color: '#000000',
         },
         {
-            id: 3,
+            status_id: 3,
             status: 'повышенный',
             color: '#008000',
         },
         {
-            id: 4,
+            status_id: 4,
             status: 'высокий',
             color: '#ff0000',
         },
     ],
     categories: [
         {
-            id: 1,
+            category_id: 1,
             icon_id: 3,
             category: 'Работа',
         },
         {
-            id: 2,
+            category_id: 2,
             icon_id: 2,
             category: 'Дом',
         },
         {
-            id: 3,
+            category_id: 3,
             icon_id: 4,
             category: 'Здоровье',
         },
         {
-            id: 4,
+            category_id: 4,
             icon_id: 4,
             category: 'Фуфло',
         },
     ],
     todos: [
         {
-            id: 1,
+            todo_id: 1,
             status_id: 1,
             category_id: 1,
             todo: 'Todo1',
@@ -73,7 +73,7 @@ export const serverInitialState: EntitiesPayload = {
             deleted: false,
         },
         {
-            id: 2,
+            todo_id: 2,
             status_id: 2,
             category_id: 2,
             todo: 'Hover your mouse over a project or item and click the icon on the right side of the item for more options',
@@ -83,7 +83,7 @@ export const serverInitialState: EntitiesPayload = {
             deleted: false,
         },
         {
-            id: 3,
+            todo_id: 3,
             status_id: 3,
             category_id: 3,
             todo: 'Todo3',
@@ -93,7 +93,7 @@ export const serverInitialState: EntitiesPayload = {
             deleted: false,
         },
         {
-            id: 4,
+            todo_id: 4,
             status_id: 4,
             category_id: 1,
             todo: 'Todo4',
@@ -103,7 +103,7 @@ export const serverInitialState: EntitiesPayload = {
             deleted: false,
         },
         {
-            id: 5,
+            todo_id: 5,
             status_id: 4,
             category_id: undefined,
             todo: 'Todo5',
@@ -113,7 +113,7 @@ export const serverInitialState: EntitiesPayload = {
             deleted: false,
         },
         {
-            id: 6,
+            todo_id: 6,
             status_id: 4,
             category_id: undefined,
             todo: 'Todo6',
@@ -123,7 +123,7 @@ export const serverInitialState: EntitiesPayload = {
             deleted: false,
         },
         {
-            id: 7,
+            todo_id: 7,
             status_id: 2,
             category_id: undefined,
             todo: 'Todo7',

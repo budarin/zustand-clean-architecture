@@ -10,7 +10,7 @@ export function checkIconConstraints(payload: EntitiesPayload, icons: Icon[] | u
 
         if (valid) {
             newIcons.push(getIconFomUnknownObject(icon));
-            iconIds[icon.id] = true;
+            iconIds[icon.icon_id] = true;
         } else {
             console.error('Icon', { icon, errors });
             isValid = false;
