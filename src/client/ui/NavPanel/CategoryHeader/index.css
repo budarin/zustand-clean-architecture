@@ -23,6 +23,7 @@
     border: 0;
     cursor: pointer;
     background-color: #cee3ff;
+    color: rgb(153, 153, 153);
 }
 
 .category-header-button-icon {
