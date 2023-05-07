@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useTodoStore } from '../../domain/store.ts';
+import { useTodoStore } from '../../domain/store.tsx';
 import { navigationFilterTypes } from '../../domain/utils/navigationFilter.ts';
 
 // components

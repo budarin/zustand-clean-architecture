@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useTodoStore } from '../../domain/store.ts';
+import { useTodoStore } from '../../domain/store.tsx';
 
 // components
 import TodoListContainer from '../TodoList/index.tsx';

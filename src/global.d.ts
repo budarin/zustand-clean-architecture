@@ -1,4 +1,8 @@
 declare module '*.module.css';
+declare module '*.mp3';
+declare module '*.wav';
+declare module '*.svg';
+declare module '*.png';
 
 type Optional<T> = T | undefined;
 type List<T> = T[];

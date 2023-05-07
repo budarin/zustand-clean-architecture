@@ -15,11 +15,19 @@ module.exports = {
         }),
     ],
     resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.jsx', '.jsm', '.json', '.css'],
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.jsm', '.json', '.css', '.mp3', '.svg', '.png'],
         modules: ['node_modules', 'src'],
     },
     module: {
         rules: [
+            {
+                test: /\.(gif|jpg|png|mp3|aac|ogg)$/,
+                type: 'asset/resource',
+            },
+            {
+                test: /\.(svg|png)$/,
+                type: 'asset/resource',
+            },
             {
                 test: /\.(ts|tsx|js|jsx|json)$/,
                 exclude: /node_modules/,

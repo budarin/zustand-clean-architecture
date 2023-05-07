@@ -1,6 +1,6 @@
 import { unstable_batchedUpdates } from 'react-dom';
 
-import { useTodoStore } from '../store.ts';
+import { useTodoStore } from '../store.tsx';
 import { serverInitialState } from '../../../../server/serverInitialState.ts';
 
 export function initStore() {

@@ -33,6 +33,11 @@ CREATE TABLE mytable (
 -   useCases: иметь возможность отключать в хуке генерацию состояний (isLoading, error) и алерты чтобы если их не используем -не аффектить перерисовки
 
 -   зачем нам еще триггерить setState в хуке если мы и так меняем состояние стейта??
+-   создать класс ошибки для стора
+-   use sound for error https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/ или этот код в нотификаторе https://stackoverflow.com/questions/52578406/playing-sound-in-react
+-   использовать код use sound для переписывания хуков useCase для возвращения функции
+-   нотификацию сделать сервисом как и localStorage
+-   векторные иконки https://www.svgrepo.com/vectors/add/
 
 <!--  -->
 

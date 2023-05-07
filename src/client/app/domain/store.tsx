@@ -96,6 +96,11 @@ const todoStore = create<State & Actions>((set) => ({
     _deleteCategory: (id) => {
         return set((state) => {
             const { [id]: deleted, ...rest } = state.categories.byId;
+
+            if (Object.values(state.todos.byId).some((todo) => todo.category_id === id)) {
+                throw new Error(`Нельзя удалить категорию "${deleted.category}" - в этой категории есть задачи!`);
+            }
+
             state.categories.byId = rest;
 
             const ids = state.categories.ids;

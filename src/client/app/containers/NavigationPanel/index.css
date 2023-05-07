@@ -4,3 +4,47 @@
     margin: 0;
     padding-left: 8px;
 }
+
+.navPanel-addd-button {
+    padding: 0;
+    margin: 0;
+    height: 24px;
+    width: 24px;
+    border: 0;
+    cursor: pointer;
+    background-color: #cee3ff;
+}
+
+.navPanel-addd-button-icon {
+    fill: #cee3ff;
+}
+.navPanel-addd-button-icon:hover {
+    fill: rgb(207, 255, 159);
+}
+
+.navPanel-form {
+    padding: 16px;
+    text-align: right;
+    border: 1px solid #e8e8e8;
+}
+
+.navPanel-form-input {
+    height: 22px;
+}
+
+.navPanel-form-button {
+    height: 29px;
+    margin-left: 8px;
+    background-color: rgb(207, 255, 159);
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 640px) {
+    .navPanel-form {
+        padding: 8px;
+    }
+
+    .navPanel-form-input {
+        width: calc(100% -8px);
+    }
+}
