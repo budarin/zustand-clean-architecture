@@ -1,4 +1,5 @@
 import { isInt } from '../_utils/validation_utils/isInt.ts';
+import { exists } from '../_utils/validation_utils/isExists.ts';
 import { inRange } from '../_utils/validation_utils/inRange.ts';
 import { isString } from '../_utils/validation_utils/isString.ts';
 import { isBoolean } from '../_utils/validation_utils/isBoolean.ts';
@@ -8,7 +9,6 @@ import { isNotExists } from '../_utils/validation_utils/isNotExists.ts';
 import { toDefaultBoolean } from '../_utils/validation_utils/toDefaultBoolean.ts';
 
 import type { TypeConverters } from '../_utils/validation_utils/getEntity.ts';
-import type { ValidationRules } from '../_utils/validation_utils/validateFormEntity.ts';
 
 export const MIN_TODO_LENGTH = 5;
 export const MAX_TODO_LENGTH = 100;
@@ -17,10 +17,10 @@ export const MIN_DESCRIPTION_LENGTH = 10;
 export const MAX_DESCRIPTION_LENGTH = 1000;
 
 // Идентификатор (id) должен быть целочисленного типа.
-export const validateId = ({ id: todo_id }: UnknownObject): boolean => isInt(todo_id);
+export const validateId = ({ id: todo_id }: UnknownObject): boolean => exists(todo_id) && isInt(todo_id);
 
 // Поле status_id должно быть целочисленного типа и должно ссылаться на существующий статус в списке Statuses.
-export const validateStatusId = ({ status_id }: UnknownObject): boolean => isInt(status_id);
+export const validateStatusId = ({ status_id }: UnknownObject): boolean => exists(status_id) && isInt(status_id);
 
 // Поле category_id должно быть целочисленного типа и должно ссылаться на существующую категорию в списке Categories,
 // либо оно может быть неопределенным.

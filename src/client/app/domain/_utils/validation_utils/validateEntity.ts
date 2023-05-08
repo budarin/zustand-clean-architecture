@@ -1,6 +1,10 @@
 type CheckEntityValidation = { isValid: boolean; error?: string };
 
-export function checkEntity<T>(entity: object, rules: ValidationRules<T>, errorPrefix: string): CheckEntityValidation {
+export function validateEntity<T>(
+    entity: object,
+    rules: ValidationRules<T>,
+    errorPrefix: string,
+): CheckEntityValidation {
     Object.keys(rules).forEach((propName) => {
         const rule = rules[propName];
         const [validator, errorMessage] = rule;

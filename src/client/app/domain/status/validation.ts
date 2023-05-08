@@ -1,14 +1,13 @@
 import { isInt } from '../_utils/validation_utils/isInt.ts';
+import { exists } from '../_utils/validation_utils/isExists.ts';
 import { inRange } from '../_utils/validation_utils/inRange.ts';
 import { isString } from '../_utils/validation_utils/isString.ts';
-
-import type { ValidationRules } from '../_utils/validation_utils/validateFormEntity.ts';
 
 const MIN_STATUS_LENGTH = 3;
 const MAX_STATUS_LENGTH = 20;
 
 // Идентификатор (id) должен быть целочисленного типа.
-export const validateId = ({ id: status_id }: UnknownObject): boolean => isInt(status_id);
+export const validateId = ({ id: status_id }: UnknownObject): boolean => exists(status_id) && isInt(status_id);
 
 // Длина поля color должна быть 7 символов и первый символ должен быть #.
 export const validateColor = ({ color }: UnknownObject): boolean =>

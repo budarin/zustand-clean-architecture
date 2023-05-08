@@ -13,6 +13,7 @@ import { validateIcon } from './icon/validation.ts';
 import { createSelectors } from './_utils/createSelectors.ts';
 import { updateFilterCounters } from './todo/utils/updateFilterCounters.ts';
 import { updateICategoryCounters } from './todo/utils/updateICategoryCounters.ts';
+import { validateCategory } from './category/validation.ts';
 
 export class TodoStoreError extends Error {
     constructor(message: string, data?: Record<string | number, unknown>) {
@@ -82,7 +83,7 @@ const todoStore = create<State & Actions>((set) => ({
             const { isValid, error } = validateIcon(icon);
 
             if (isValid === false) {
-                throw new TodoStoreError('Ошибка валидации объекта icon', { error });
+                throw new TodoStoreError('Ошибка валидации объекта icon', { icon, error });
             }
 
             if (state.icons.ids.includes(icon.icon_id) === true) {
@@ -119,6 +120,12 @@ const todoStore = create<State & Actions>((set) => ({
     // Category
     _createCategory: (category: Category) => {
         return set((state) => {
+            const { isValid, error } = validateCategory(category);
+
+            if (isValid === false) {
+                throw new TodoStoreError('Ошибка валидации объекта category', { category, error });
+            }
+
             if (state.categories.ids.includes(category.category_id) === true) {
                 throw new TodoStoreError(`Нарушение уникальности ключа categories.category_id!`, category);
             }

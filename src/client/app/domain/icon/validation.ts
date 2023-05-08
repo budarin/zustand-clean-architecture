@@ -1,14 +1,15 @@
 import { isInt } from '../_utils/validation_utils/isInt.ts';
+import { exists } from '../_utils/validation_utils/isExists.ts';
 import { inRange } from '../_utils/validation_utils/inRange.ts';
 import { isString } from '../_utils/validation_utils/isString.ts';
 
-import { checkEntity } from '../_utils/validation_utils/validateEntity.ts';
+import { validateEntity } from '../_utils/validation_utils/validateEntity.ts';
 
 const MIN_ICON_NAME_LENGTH = 5;
 const MAX_ICON_NAME_LENGTH = 20;
 
 // Идентификатор (id) должен быть целочисленного типа.
-export const validateId = ({ icon_id }: UnknownObject): boolean => isInt(icon_id);
+export const validateId = ({ icon_id }: UnknownObject): boolean => exists(icon_id) && isInt(icon_id);
 
 // Длина поля name должна быть не менее 5 символов и не более 50 символов.
 export function validateName({ icon_name }: UnknownObject): boolean {
@@ -34,5 +35,5 @@ export function getIconFomUnknownObject(input: UnknownObject): Icon {
 }
 
 export function validateIcon(icon: Icon) {
-    return checkEntity<Icon>(icon, iconValidationRules, 'Icon');
+    return validateEntity<Icon>(icon, iconValidationRules, 'Icon');
 }

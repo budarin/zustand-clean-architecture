@@ -1,19 +1,19 @@
-import { isExists } from '../isExists';
+import { exists } from '../isExists';
 
 describe('функция isExists', () => {
     test("если аргумент не null, undefined, false, '', 0, NaN, функция возвращает true", () => {
-        expect(isExists('hello')).toBe(true);
-        expect(isExists(123)).toBe(true);
-        expect(isExists([])).toBe(true);
-        expect(isExists({})).toBe(true);
-        expect(isExists(false)).toBe(true);
-        expect(isExists('')).toBe(true);
-        expect(isExists(0)).toBe(true);
-        expect(isExists(NaN)).toBe(true);
+        expect(exists('hello')).toBe(true);
+        expect(exists(123)).toBe(true);
+        expect(exists([])).toBe(true);
+        expect(exists({})).toBe(true);
+        expect(exists(false)).toBe(true);
+        expect(exists('')).toBe(true);
+        expect(exists(0)).toBe(true);
+        expect(exists(NaN)).toBe(true);
     });
 
     test("если аргумент равен null, undefined, false, '', 0, NaN, функция возвращает false", () => {
-        expect(isExists(null)).toBe(false);
-        expect(isExists(undefined)).toBe(false);
+        expect(exists(null)).toBe(false);
+        expect(exists(undefined)).toBe(false);
     });
 });
