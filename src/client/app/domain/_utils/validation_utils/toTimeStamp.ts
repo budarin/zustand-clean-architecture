@@ -18,4 +18,4 @@ export function toTimeStamp(x: unknown): number | undefined {
     }
 }
 
-export type ToRimeStamp = typeof toTimeStamp;
+export type ToTimeStamp = typeof toTimeStamp;

@@ -9,11 +9,12 @@ import {
     navigationFilterTypes,
 } from './navigationFilter/index.ts';
 
-import { validateIcon } from './icon/validation.ts';
+import { getIconFomObject, validateIcon } from './icon/validation.ts';
+import { getCategoryFomObject, validateCategory } from './category/validation.ts';
 import { createSelectors } from './_utils/createSelectors.ts';
 import { updateFilterCounters } from './todo/utils/updateFilterCounters.ts';
 import { updateICategoryCounters } from './todo/utils/updateICategoryCounters.ts';
-import { validateCategory } from './category/validation.ts';
+import { getStatusFomObject, validateStatus } from './status/validation.ts';
 
 export class TodoStoreError extends Error {
     constructor(message: string, data?: Record<string | number, unknown>) {
@@ -80,6 +81,7 @@ const todoStore = create<State & Actions>((set) => ({
     // Icon
     _createIcon: (icon: Icon) => {
         return set((state) => {
+            // FIXME: может validate в случае успеха должен возвращать и новый объект?
             const { isValid, error } = validateIcon(icon);
 
             if (isValid === false) {
@@ -94,8 +96,9 @@ const todoStore = create<State & Actions>((set) => ({
                 throw new TodoStoreError(`Нарушение уникальности имени иконки в  icons!`, icon);
             }
 
-            state.icons.byId = { ...state.icons.byId, [icon.icon_id]: icon };
-            state.icons.ids = [...state.icons.ids, icon.icon_id];
+            const newIcon = getIconFomObject(icon);
+            state.icons.byId = { ...state.icons.byId, [icon.icon_id]: newIcon };
+            state.icons.ids = [...state.icons.ids, newIcon.icon_id];
             return { ...state };
         });
     },
@@ -103,16 +106,23 @@ const todoStore = create<State & Actions>((set) => ({
     // Status
     _createStatus: (status: Status) => {
         return set((state) => {
+            const { isValid, error } = validateStatus(status);
+
+            if (isValid === false) {
+                throw new TodoStoreError('Ошибка валидации объекта Status', { status, error });
+            }
+
             if (state.statuses.ids.includes(status.status_id) === true) {
                 throw new TodoStoreError(`Нарушение уникальности ключа statuses.status_id!`, status);
             }
 
             if (Object.values(state.statuses.byId).find((item) => item.status == status.status)) {
-                throw new TodoStoreError(`Нарушение уникальности имени статуса в  statuses!`, status);
+                throw new TodoStoreError(`Нарушение уникальности имени статуса в statuses!`, status);
             }
 
-            state.statuses.byId = { ...state.statuses.byId, [status.status_id]: status };
-            state.statuses.ids = [...state.statuses.ids, status.status_id];
+            const newStatus = getStatusFomObject(status);
+            state.statuses.byId = { ...state.statuses.byId, [status.status_id]: newStatus };
+            state.statuses.ids = [...state.statuses.ids, newStatus.status_id];
             return { ...state };
         });
     },
@@ -126,11 +136,43 @@ const todoStore = create<State & Actions>((set) => ({
                 throw new TodoStoreError('Ошибка валидации объекта category', { category, error });
             }
 
-            if (state.categories.ids.includes(category.category_id) === true) {
-                throw new TodoStoreError(`Нарушение уникальности ключа categories.category_id!`, category);
+            if (Object.values(state.categories.byId).find((item) => item.category == category.category)) {
+                throw new TodoStoreError(`Нарушение уникальности имени категории в categories!`, category);
             }
 
-            if (Object.values(state.categories.byId).find((item) => item.category == category.category)) {
+            if (state.categories.ids.includes(category.category_id) === true) {
+                throw new TodoStoreError(`содержит не допустимое значение categories.category_id!`, category);
+            }
+
+            if (state.icons.ids.includes(category.icon_id) === false) {
+                throw new TodoStoreError(
+                    `Категория "${category.category}" содержит не допустимое значение icon_id: ${category.icon_id}!`,
+                    category,
+                );
+            }
+
+            const newCategory = getCategoryFomObject(category);
+            state.categories.byId = { ...state.categories.byId, [category.category_id]: newCategory };
+            state.categories.ids = [...state.categories.ids, newCategory.category_id];
+            return { ...state };
+        });
+    },
+
+    // FIXME: избавиться от дублирования кода !!!
+
+    _updateCategory: (category: Category) => {
+        return set((state) => {
+            const { isValid, error } = validateCategory(category);
+
+            if (isValid === false) {
+                throw new TodoStoreError('Ошибка валидации объекта category', { category, error });
+            }
+
+            if (
+                Object.values(state.categories.byId).find(
+                    (item) => item.category == category.category && item.category_id! == category.category_id,
+                )
+            ) {
                 throw new TodoStoreError(`Нарушение уникальности имени категории в categories!`, category);
             }
 
@@ -141,21 +183,10 @@ const todoStore = create<State & Actions>((set) => ({
                 );
             }
 
-            state.categories.byId = { ...state.categories.byId, [category.category_id]: category };
-            state.categories.ids = [...state.categories.ids, category.category_id];
-            return { ...state };
-        });
-    },
-
-    _updateCategory: (category: Category) => {
-        return set((state) => {
-            if (Object.values(state.categories.byId).find((item) => item.category == category.category)) {
-                throw new TodoStoreError(`Нарушение уникальности имени категории в categories!`, category);
-            }
-
-            state.categories.byId[category.category_id] = {
-                ...state.categories.byId[category.category_id],
-                ...category,
+            const newCategory = getCategoryFomObject(category);
+            state.categories.byId[newCategory.category_id] = {
+                ...state.categories.byId[newCategory.category_id],
+                ...newCategory,
             };
             return { ...state };
         });

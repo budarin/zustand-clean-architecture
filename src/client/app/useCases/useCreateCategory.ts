@@ -35,10 +35,11 @@ export function useCreateCategory(): UseCreateCategory {
                     store._createCategory({ ...category, category_id: newCategoryId });
                 }
             } catch (error) {
-                console.log(error);
                 notifyError(`Упс! Не удалось создать ${category.category}`, {
                     toastId: 'create_todo_error' + category.category,
                 });
+
+                console.log(error);
             } finally {
                 setInProgress(false);
             }

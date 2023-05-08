@@ -1,4 +1,4 @@
-import { exists } from '../isExists';
+import { exists } from '../exists';
 
 describe('функция isExists', () => {
     test("если аргумент не null, undefined, false, '', 0, NaN, функция возвращает true", () => {

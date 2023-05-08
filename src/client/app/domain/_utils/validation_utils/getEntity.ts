@@ -1,9 +1,9 @@
 import type { ToInt } from './toInt.ts';
 import type { ToBoolean } from './toBoolean.ts';
-import type { ToRimeStamp } from './toTimeStamp.ts';
+import type { ToTimeStamp } from './toTimeStamp.ts';
 import type { ToDefaultBoolean } from './toDefaultBoolean.ts';
 
-type TypeConverter = ToRimeStamp | ToInt | ToBoolean | ToDefaultBoolean;
+type TypeConverter = ToTimeStamp | ToInt | ToBoolean | ToDefaultBoolean;
 
 export type TypeConverters = Record<string, TypeConverter>;
 
