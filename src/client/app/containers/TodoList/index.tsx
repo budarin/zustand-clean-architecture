@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { useTodoStore } from '../../../domain/store.tsx';
-import { navigationFilterTypes } from '../../../../../common/domain/navigationFilter/index.ts';
+import { useTodoStore } from '../../domain/store.tsx';
+import { navigationFilterTypes } from '../../../../common/domain/navigationFilter/index.ts';
 
 // components
-import TodoListItemContainer from '../ListItem/index.tsx';
+import TodoListItemContainer from './ListItem/index.tsx';
 
 function TodoListContainer() {
     const { key, type } = useTodoStore.use.navigationFilter();

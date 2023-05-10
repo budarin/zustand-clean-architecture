@@ -5,11 +5,16 @@ import { delay } from '../../../common/promises/delay';
 import { notifyError } from '../../services/notification';
 import { validateNewCategory } from '../../../common/domain/category/validation';
 
-type UseCreateCategory = [inProgress: boolean, createTodo: Dispatch<SetStateAction<NewCategory | undefined>>];
+type UseCreateCategory = [
+    success: boolean,
+    inProgress: boolean,
+    createTodo: Dispatch<SetStateAction<NewCategory | undefined>>,
+];
 
 export function useCreateCategory(): UseCreateCategory {
     const [category, setCategory] = useState<NewCategory>();
     const [inProgress, setInProgress] = useState<boolean>(false);
+    const [success, setSuccess] = useState<boolean>(false);
 
     useEffect(() => {
         const doCreate = async () => {
@@ -19,6 +24,7 @@ export function useCreateCategory(): UseCreateCategory {
 
             try {
                 setInProgress(true);
+                setSuccess(false);
                 const { entity, error } = validateNewCategory(category);
 
                 if (error) {
@@ -33,6 +39,8 @@ export function useCreateCategory(): UseCreateCategory {
                     const numbers = Object.keys(store.categories.byId).map(Number);
                     const newCategoryId = Math.max(...numbers) + 1;
                     store._createCategory({ ...category, category_id: newCategoryId });
+
+                    setSuccess(true);
                 }
             } catch (error) {
                 notifyError(`Упс! Не удалось создать ${category.category}`, {
@@ -48,5 +56,5 @@ export function useCreateCategory(): UseCreateCategory {
         category && doCreate();
     }, [category]);
 
-    return [inProgress, setCategory];
+    return [success, inProgress, setCategory];
 }

@@ -1,5 +1,5 @@
-import React, { useCallback } from 'react';
 import { shallow } from 'zustand/shallow';
+import React, { memo, useCallback } from 'react';
 
 import { useTodoStore } from '../../../domain/store.tsx';
 import {
@@ -9,7 +9,7 @@ import {
 } from '../../../../../common/domain/navigationFilter/index.ts';
 
 // components
-import TodosCountBadge from '../../TodoList/CountBadge/index.tsx';
+import TodosCountBadge from '../../TodoList/ListItem/CountBadge/index.tsx';
 import NavigationIPanelIem from '../../../../ui/NavPanel/PanelIem/index.tsx';
 
 type NavigationPanelItemContainerProps = {
@@ -44,7 +44,7 @@ const selector = (id: NavigationFilterKey, navigationType: NavigationFilterType)
         [id, navigationType],
     );
 
-const NavigationPanelItemContainer = ({ id, navigationType }: NavigationPanelItemContainerProps): JSX.Element => {
+const NavigationPanelItemContainer = memo(({ id, navigationType }: NavigationPanelItemContainerProps): JSX.Element => {
     const { isCategory, title, checked } = useTodoStore(selector(id, navigationType), shallow);
 
     const handleChange = React.useCallback(
@@ -65,6 +65,6 @@ const NavigationPanelItemContainer = ({ id, navigationType }: NavigationPanelIte
             <TodosCountBadge id={id} navigationType={navigationType} />
         </NavigationIPanelIem>
     );
-};
+});
 
 export default NavigationPanelItemContainer;

@@ -7,7 +7,7 @@ import { deleteCategory } from '../../useCases/deleteCategory.ts';
 // components
 import App from '../../../ui/App/index.tsx';
 import TodoListViewContainer from '../TodoList/ListView/index.tsx';
-import NavigationPanelContainer from '../NavPanel/Panel/index.tsx';
+import NavigationPanelContainer from '../NavPanel/index.tsx';
 
 import 'react-toastify/dist/ReactToastify.css';
 
