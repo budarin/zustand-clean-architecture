@@ -1,7 +1,9 @@
 import React, { FormEventHandler, MouseEventHandler, memo } from 'react';
 
-import './index.css';
+//components
 import CreateCategoryForm from '../CreateCategoryForm';
+
+import './index.css';
 
 type CategoryHeader = {
     isOpen: boolean;

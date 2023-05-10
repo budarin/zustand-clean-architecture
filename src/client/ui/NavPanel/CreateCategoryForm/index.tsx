@@ -1,7 +1,8 @@
-import React, { FormEventHandler, useEffect, useRef } from 'react';
+import React, { FormEventHandler, forwardRef, useEffect, useRef } from 'react';
+
+import { MAX_CATEGOTY_LENGTH, MIN_CATEGOTY_LENGTH } from '../../../../common/domain/category/validation';
 
 import './index.css';
-import { MAX_CATEGOTY_LENGTH, MIN_CATEGOTY_LENGTH } from '../../../../common/domain/category/validation';
 
 type CreatecategoryForm = {
     isResetForm: boolean;
@@ -47,4 +48,4 @@ function CreateCategoryForm(props: CreatecategoryForm) {
     );
 }
 
-export default CreateCategoryForm;
+export default forwardRef(CreateCategoryForm);
