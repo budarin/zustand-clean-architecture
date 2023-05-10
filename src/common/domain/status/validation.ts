@@ -34,7 +34,7 @@ export const statusValidationRules: ValidationRules = {
 };
 
 export function validateStatus(status: UnknownObject): ValidateEntity<Status> {
-    return validateRawEntity(status, statusValidationRules, 'Status');
+    return validateRawEntity<Status>(status, statusValidationRules);
 }
 
 // Category getter

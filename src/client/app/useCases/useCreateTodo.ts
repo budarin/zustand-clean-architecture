@@ -25,7 +25,7 @@ export function useUCreateTodo(): UseCreateTodo {
                 const newTodoId = Math.max(...numbers) + 1;
                 store._createTodo({ ...todo, todo_id: newTodoId });
             } catch (error) {
-                notifyError(`Упс! Не удалось создать ${todo.todo.slice(10)}...`, {
+                notifyError(`Ошибка: ${(error as Error).message}`, {
                     toastId: 'create_todo_error' + todo.todo,
                 });
             } finally {

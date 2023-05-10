@@ -42,11 +42,11 @@ export const newCategoryValidationRules: ValidationRules = {
 };
 
 export function validateCategory(category: UnknownObject): ValidateEntity<Category> {
-    return validateRawEntity(category, categoryValidationRules, 'Category');
+    return validateRawEntity<Category>(category, categoryValidationRules);
 }
 
 export function validateNewCategory(category: NewCategory) {
-    return validateRawEntity(category, newCategoryValidationRules, 'Category');
+    return validateRawEntity<Category>(category, newCategoryValidationRules);
 }
 
 // Category getter

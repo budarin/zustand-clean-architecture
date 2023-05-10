@@ -1,4 +1,4 @@
-import { validateCategory } from '../../../../common/domain/category/validation';
+import { validateCategory } from '../../../common/domain/category/validation';
 
 export function validateCategoryEntity(icon: UnknownObject, state: State): ValidateEntity<Category> {
     const result = validateCategory(icon);
@@ -9,9 +9,9 @@ export function validateCategoryEntity(icon: UnknownObject, state: State): Valid
 
     const { entity } = result;
 
-    if (state.icons.ids.includes(entity.icon_id) === false) {
+    if (state.categories.ids.includes(entity.category_id) === true) {
         return {
-            error: 'Идентификатор иконки отсутствует в справочнике!',
+            error: `Нарушение уникальности ключа icons.icon_id!`,
         };
     }
 

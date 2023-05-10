@@ -37,7 +37,7 @@ type Actions = {
 
     // Category
     _createCategory: (category: UnknownObject) => void;
-    _updateCategory: (category: Category) => void;
+    _updateCategory: (category: UnknownObject) => void;
     _deleteCategory: (id: Category['category_id']) => void;
 
     // Todo
@@ -95,7 +95,7 @@ const todoStore = create<State & Actions>((set) => ({
                 return { ...state };
             }
 
-            throw new TodoStoreError('Ошибка валидации объекта icon', { icon, error });
+            throw new TodoStoreError(error, icon);
         });
     },
 
@@ -114,7 +114,7 @@ const todoStore = create<State & Actions>((set) => ({
                 return { ...state };
             }
 
-            throw new TodoStoreError('Ошибка валидации объекта Status', { status, error });
+            throw new TodoStoreError(error, status);
         });
     },
 
@@ -133,11 +133,11 @@ const todoStore = create<State & Actions>((set) => ({
                 return { ...state };
             }
 
-            throw new TodoStoreError('Ошибка валидации объекта category', { category, error });
+            throw new TodoStoreError(error, category);
         });
     },
 
-    _updateCategory: (category: Category) => {
+    _updateCategory: (category: UnknownObject) => {
         return set((state) => {
             const { entity, error } = validateCategoryEntity(category, state);
 
@@ -153,7 +153,7 @@ const todoStore = create<State & Actions>((set) => ({
                 return { ...state };
             }
 
-            throw new TodoStoreError('Ошибка валидации объекта category', { category, error });
+            throw new TodoStoreError(error, category);
         });
     },
 
@@ -198,7 +198,7 @@ const todoStore = create<State & Actions>((set) => ({
                 return { ...state };
             }
 
-            throw new TodoStoreError('Ошибка валидации объекта todo', { todo, error });
+            throw new TodoStoreError(error, todo);
         });
     },
 
@@ -216,7 +216,7 @@ const todoStore = create<State & Actions>((set) => ({
                 return { ...state };
             }
 
-            throw new TodoStoreError('Ошибка валидации объекта todo', { todo, error });
+            throw new TodoStoreError(error, todo);
         });
     },
 

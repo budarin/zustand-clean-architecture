@@ -109,10 +109,10 @@ export const newTodoValidationRules: ValidationRules = {
 };
 
 export function validateTodo(todo: UnknownObject): ValidateEntity<Todo> {
-    return validateRawEntity(getTodoFomObject(todo), todoValidationRules, 'Todo');
+    return validateRawEntity<Todo>(getTodoFomObject(todo), todoValidationRules);
 }
 export function validateNewTodo(todo: NewTodo) {
-    return validateRawEntity(todo, newTodoValidationRules, 'Todo');
+    return validateRawEntity<Todo>(todo, newTodoValidationRules);
 }
 
 // Todo getter

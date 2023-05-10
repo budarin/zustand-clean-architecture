@@ -27,7 +27,7 @@ export const iconValidationRules: ValidationRules = {
 };
 
 export function validateIcon(icon: UnknownObject): ValidateEntity<Icon> {
-    return validateRawEntity(getIconFomObject(icon), iconValidationRules, 'Icon');
+    return validateRawEntity<Icon>(getIconFomObject(icon), iconValidationRules);
 }
 
 // Category getter

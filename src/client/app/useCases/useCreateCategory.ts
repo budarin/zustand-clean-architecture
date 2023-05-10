@@ -27,11 +27,7 @@ export function useCreateCategory(): UseCreateCategory {
                 setSuccess(false);
                 const { entity, error } = validateNewCategory(category);
 
-                if (error) {
-                    notifyError(`Упс! Ошибка в объекте ${category.category}: ${error}`, {
-                        toastId: 'create_todo_error' + category.category,
-                    });
-                } else {
+                if (entity) {
                     const store = useTodoStore.getState();
 
                     await delay(3000);
@@ -41,9 +37,13 @@ export function useCreateCategory(): UseCreateCategory {
                     store._createCategory({ ...category, category_id: newCategoryId });
 
                     setSuccess(true);
+                } else {
+                    notifyError(`Ошибка: ${error}`, {
+                        toastId: 'create_todo_error' + category.category,
+                    });
                 }
             } catch (error) {
-                notifyError(`Упс! Не удалось создать ${category.category}`, {
+                notifyError(`Ошибка: ${(error as Error).message}`, {
                     toastId: 'create_todo_error' + category.category,
                 });
 
