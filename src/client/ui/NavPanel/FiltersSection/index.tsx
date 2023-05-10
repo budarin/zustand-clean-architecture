@@ -5,10 +5,12 @@ type FilterSection = {
 };
 
 function FiltersSection(props: FilterSection) {
+    const { children } = props;
+
     return (
         <li>
             <h2>Фильтры</h2>
-            <ul>{props.children}</ul>
+            <ul>{children}</ul>
         </li>
     );
 }

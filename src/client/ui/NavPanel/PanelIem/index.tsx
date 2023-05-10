@@ -12,7 +12,8 @@ type NavigationIPanelIemProps = {
 
 const navItem = cn('navPanel-item');
 
-const NavigationIPanelIem = ({ title, checked, handleClick, children }: NavigationIPanelIemProps) => {
+const NavigationIPanelIem = (props: NavigationIPanelIemProps) => {
+    const { title, checked, handleClick, children } = props;
     const itemClass = navItem({ selected: checked });
 
     return (

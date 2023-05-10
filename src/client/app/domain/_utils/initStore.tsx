@@ -11,6 +11,7 @@ export function initStore() {
             _createCategory: createCategory,
             _createTodo: createTodo,
         } = useTodoStore.getState();
+
         const { icons, statuses, categories, todos } = serverInitialState;
 
         icons?.forEach((icon) => {

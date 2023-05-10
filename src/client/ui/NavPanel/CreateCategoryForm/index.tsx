@@ -10,7 +10,8 @@ type CreatecategoryForm = {
     onCreateCategory: FormEventHandler<HTMLFormElement>;
 };
 
-function CreateCategoryForm({ inProgress, isResetForm, isOpen, onCreateCategory }: CreatecategoryForm) {
+function CreateCategoryForm(props: CreatecategoryForm) {
+    const { inProgress, isResetForm, isOpen, onCreateCategory } = props;
     const formRef = useRef<HTMLFormElement>(null);
 
     useEffect(() => {

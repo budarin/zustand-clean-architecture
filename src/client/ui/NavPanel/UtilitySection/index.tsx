@@ -5,10 +5,12 @@ type UtilitySection = {
 };
 
 function UtilitySection(props: UtilitySection) {
+    const { children } = props;
+
     return (
         <li>
             <h2>Утилиты</h2>
-            <ul>{props.children}</ul>
+            <ul>{children}</ul>
         </li>
     );
 }

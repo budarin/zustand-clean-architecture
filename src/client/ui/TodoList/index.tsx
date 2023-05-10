@@ -7,7 +7,9 @@ type ListProps = {
     children: ReactNode;
 };
 
-function TodoList({ category, children }: ListProps) {
+function TodoList(props: ListProps) {
+    const { category, children } = props;
+
     return (
         <>
             <h3>{category}</h3>

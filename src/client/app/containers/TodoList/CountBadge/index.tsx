@@ -22,7 +22,8 @@ const getTodoCount = (id: NavigationFilterKey, isCategory: boolean) =>
         [id, isCategory],
     );
 
-function TodosCountBadge({ id, navigationType }: TodosCountBadgeProps): JSX.Element {
+function TodosCountBadge(props: TodosCountBadgeProps): JSX.Element {
+    const { id, navigationType } = props;
     const isCategory = navigationFilterTypes.category === navigationType;
     const todoCount = useTodoStore(getTodoCount(id, isCategory));
 

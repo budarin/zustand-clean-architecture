@@ -44,7 +44,8 @@ const selector = (id: NavigationFilterKey, navigationType: NavigationFilterType)
         [id, navigationType],
     );
 
-const NavigationPanelItemContainer = memo(({ id, navigationType }: NavigationPanelItemContainerProps): JSX.Element => {
+const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainerProps): JSX.Element => {
+    const { id, navigationType } = props;
     const { isCategory, title, checked } = useTodoStore(selector(id, navigationType), shallow);
 
     const handleClick = React.useCallback<MouseEventHandler<HTMLLIElement>>(

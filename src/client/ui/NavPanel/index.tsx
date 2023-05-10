@@ -5,7 +5,9 @@ type ListProps = {
     children: ReactNode;
 };
 
-function NavigationPanel({ children }: ListProps) {
+function NavigationPanel(props: ListProps) {
+    const { children } = props;
+
     return (
         <nav className="navPanel">
             <ul>{children}</ul>

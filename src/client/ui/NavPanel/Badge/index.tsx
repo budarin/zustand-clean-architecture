@@ -2,7 +2,9 @@ import React from 'react';
 
 import './index.css';
 
-function Badge({ count }: { count: string | number }) {
+function Badge(props: { count: string | number }) {
+    const { count } = props;
+
     return <span className="badge">{count}</span>;
 }
 

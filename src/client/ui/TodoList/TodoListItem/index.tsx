@@ -8,7 +8,9 @@ type TodoListItemProps = {
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const TodoListItem = ({ todo, status, handleChange }: TodoListItemProps) => {
+const TodoListItem = (props: TodoListItemProps) => {
+    const { todo, status, handleChange } = props;
+
     return (
         <li>
             <label className="todoListItem--label">
