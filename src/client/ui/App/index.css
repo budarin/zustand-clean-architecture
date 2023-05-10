@@ -17,20 +17,32 @@ html,
     block-size: 100%;
 }
 
-@media only screen and (min-width: 640px) {
-    .app {
-        padding: 0 8px;
-    }
+h1 {
+    font-size: 1.5rem;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 @media only screen and (min-width: 640px) {
     .app {
-        font-size: 0.9rem;
+        padding: 0 8px;
+    }
+
+    .app-container {
+        flex-direction: row;
     }
 }
 
 @media only screen and (min-width: 800px) {
     .app {
         font-size: initial;
+    }
+
+    .app-container {
+        gap: 24px;
     }
 }

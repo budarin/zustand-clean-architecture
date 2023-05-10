@@ -10,8 +10,11 @@ function App(props: AppProps) {
     return (
         <main className="app">
             <h1>Todo App</h1>
-            {navigationPanel}
-            {todos}
+
+            <div className="app-container">
+                {navigationPanel}
+                {todos}
+            </div>
         </main>
     );
 }

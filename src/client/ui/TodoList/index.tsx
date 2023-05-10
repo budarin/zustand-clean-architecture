@@ -11,10 +11,10 @@ function TodoList(props: ListProps) {
     const { category, children } = props;
 
     return (
-        <>
+        <div className="todoList">
             <h3>{category}</h3>
-            <ul className="todoList">{children}</ul>
-        </>
+            <ul>{children}</ul>
+        </div>
     );
 }
 
