@@ -3,6 +3,7 @@ import React from 'react';
 import { useTodoStore } from '../../../domain/store';
 import { navigationFilterTypes } from '../../../../../common/domain/navigationFilter';
 
+// components
 import NavigationPanelItemContainer from '../PanelItem';
 import CategoryHeadersContainer from '../CategoryHeader';
 

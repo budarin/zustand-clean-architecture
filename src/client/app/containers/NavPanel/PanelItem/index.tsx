@@ -9,7 +9,7 @@ import {
 } from '../../../../../common/domain/navigationFilter/index.ts';
 
 // components
-import TodosCountBadge from '../../TodoList/ListItem/CountBadge/index.tsx';
+import TodosCountBadge from '../../TodoList/CountBadge/index.tsx';
 import NavigationIPanelIem from '../../../../ui/NavPanel/PanelIem/index.tsx';
 
 type NavigationPanelItemContainerProps = {

@@ -2,6 +2,7 @@ import React from 'react';
 
 import { inboxKey, navigationFilterTypes, nextKey, todayKey } from '../../../../../common/domain/navigationFilter';
 
+// components
 import NavigationPanelItemContainer from '../PanelItem';
 import FiltersSection from '../../../../ui/NavPanel/FiltersSection';
 
