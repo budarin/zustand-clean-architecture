@@ -1,13 +1,12 @@
 import React, { useCallback } from 'react';
 import { shallow } from 'zustand/shallow';
 
+import { useTodoStore } from '../../../domain/store.tsx';
 import {
-    type NavigationFiltersKey,
+    NavigationFiltersKey,
     navigationFilterTypes,
     navigationFilters,
-} from '../../../domain/navigationFilter/index.ts';
-
-import { useTodoStore } from '../../../domain/store.tsx';
+} from '../../../../../common/domain/navigationFilter/index.ts';
 
 // components
 import TodosCountBadge from '../../TodoList/CountBadge/index.tsx';

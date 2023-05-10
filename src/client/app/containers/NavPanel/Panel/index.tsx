@@ -1,13 +1,18 @@
-import React, { MouseEventHandler, useCallback, useState } from 'react';
+import React from 'react';
 
 import { useTodoStore } from '../../../domain/store';
-import { useCreateCategory } from '../../../useCases/useCreateCategory';
-import { inboxKey, navigationFilterTypes, nextKey, recycleBinKey, todayKey } from '../../../domain/navigationFilter';
+import {
+    inboxKey,
+    navigationFilterTypes,
+    nextKey,
+    recycleBinKey,
+    todayKey,
+} from '../../../../../common/domain/navigationFilter';
 
 // components
 import NavigationPanelItemContainer from '../PanelItem';
 import NavigationPanel from '../../../../ui/NavPanel/Panel';
-import CategoryHeader from '../../../../ui/NavPanel/CategoryHeader';
+import { CategoryHeadersContainer } from '../CategoryHeader';
 
 import './index.css';
 
@@ -18,22 +23,6 @@ const getCategoryIds = (state: State) => state.categories.ids;
 
 function NavigationPanelContainer() {
     const categoryIds = useTodoStore(getCategoryIds);
-    const [inProgress, createcategory] = useCreateCategory();
-
-    const onCreateCategory: MouseEventHandler<HTMLButtonElement> = async (event) => {
-        event.target.form[1].disabled = inProgress;
-
-        if (!inProgress) {
-            try {
-                await createcategory({
-                    category: event.target.form[0].value,
-                    icon_id: 1,
-                });
-            } catch (error) {
-                console.log(error);
-            }
-        }
-    };
 
     return (
         <NavigationPanel>
@@ -42,7 +31,7 @@ function NavigationPanelContainer() {
                 <NavigationPanelItemContainer key={key} id={key} navigationType={navigationFilterTypes.filter} />
             ))}
 
-            <CategoryHeader inProgress={inProgress} onCreateCategory={onCreateCategory} />
+            <CategoryHeadersContainer />
 
             {categoryIds.map((key) => (
                 <NavigationPanelItemContainer key={key} id={key} navigationType={navigationFilterTypes.category} />

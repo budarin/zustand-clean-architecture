@@ -1,20 +1,20 @@
 import { create } from 'zustand';
 
+import { validateIconEntity } from './icon/validation.ts';
+import { createSelectors } from './_utils/createSelectors.ts';
+import { updateFilterCounters } from './_utils/navFilter/updateFilterCounters.ts';
+import { updateICategoryCounters } from './_utils/navFilter/updateICategoryCounters.ts';
+import { getStatusFomObject, validateStatus } from '../../../common/domain/status/validation.ts';
+import { getCategoryFomObject, validateCategory } from '../../../common/domain/category/validation.ts';
+
 import {
-    todayKey,
     inboxKey,
+    navigationFilterTypes,
+    navigationFilters,
     nextKey,
     recycleBinKey,
-    navigationFilters,
-    navigationFilterTypes,
-} from './navigationFilter/index.ts';
-
-import { getIconFomObject, validateIcon } from './icon/validation.ts';
-import { getCategoryFomObject, validateCategory } from './category/validation.ts';
-import { createSelectors } from './_utils/createSelectors.ts';
-import { updateFilterCounters } from './todo/utils/updateFilterCounters.ts';
-import { updateICategoryCounters } from './todo/utils/updateICategoryCounters.ts';
-import { getStatusFomObject, validateStatus } from './status/validation.ts';
+    todayKey,
+} from '../../../common/domain/navigationFilter/index.ts';
 
 export class TodoStoreError extends Error {
     constructor(message: string, data?: Record<string | number, unknown>) {
@@ -81,34 +81,25 @@ const todoStore = create<State & Actions>((set) => ({
     // Icon
     _createIcon: (icon: Icon) => {
         return set((state) => {
-            // FIXME: может validate в случае успеха должен возвращать и новый объект?
-            const { isValid, error } = validateIcon(icon);
+            const { entity, error } = validateIconEntity(icon, state);
 
-            if (isValid === false) {
-                throw new TodoStoreError('Ошибка валидации объекта icon', { icon, error });
+            if (entity) {
+                state.icons.byId = { ...state.icons.byId, [icon.icon_id]: entity };
+                state.icons.ids = [...state.icons.ids, entity.icon_id];
+
+                return { ...state };
             }
 
-            if (state.icons.ids.includes(icon.icon_id) === true) {
-                throw new TodoStoreError(`Нарушение уникальности ключа icons.icon_id!`, icon);
-            }
-
-            if (Object.values(state.icons.byId).find((item) => item.icon_name == icon.icon_name)) {
-                throw new TodoStoreError(`Нарушение уникальности имени иконки в  icons!`, icon);
-            }
-
-            const newIcon = getIconFomObject(icon);
-            state.icons.byId = { ...state.icons.byId, [icon.icon_id]: newIcon };
-            state.icons.ids = [...state.icons.ids, newIcon.icon_id];
-            return { ...state };
+            throw new TodoStoreError('Ошибка валидации объекта icon', { icon, error });
         });
     },
 
     // Status
     _createStatus: (status: Status) => {
         return set((state) => {
-            const { isValid, error } = validateStatus(status);
+            const { entity, error } = validateStatus(status);
 
-            if (isValid === false) {
+            if (error) {
                 throw new TodoStoreError('Ошибка валидации объекта Status', { status, error });
             }
 
@@ -120,7 +111,7 @@ const todoStore = create<State & Actions>((set) => ({
                 throw new TodoStoreError(`Нарушение уникальности имени статуса в statuses!`, status);
             }
 
-            const newStatus = getStatusFomObject(status);
+            const newStatus = getStatusFomObject(entity);
             state.statuses.byId = { ...state.statuses.byId, [status.status_id]: newStatus };
             state.statuses.ids = [...state.statuses.ids, newStatus.status_id];
             return { ...state };
@@ -130,9 +121,9 @@ const todoStore = create<State & Actions>((set) => ({
     // Category
     _createCategory: (category: Category) => {
         return set((state) => {
-            const { isValid, error } = validateCategory(category);
+            const { entity, error } = validateCategory(category);
 
-            if (isValid === false) {
+            if (error) {
                 throw new TodoStoreError('Ошибка валидации объекта category', { category, error });
             }
 
@@ -151,7 +142,7 @@ const todoStore = create<State & Actions>((set) => ({
                 );
             }
 
-            const newCategory = getCategoryFomObject(category);
+            const newCategory = getCategoryFomObject(entity);
             state.categories.byId = { ...state.categories.byId, [category.category_id]: newCategory };
             state.categories.ids = [...state.categories.ids, newCategory.category_id];
             return { ...state };
@@ -162,9 +153,9 @@ const todoStore = create<State & Actions>((set) => ({
 
     _updateCategory: (category: Category) => {
         return set((state) => {
-            const { isValid, error } = validateCategory(category);
+            const { entity, error } = validateCategory(category);
 
-            if (isValid === false) {
+            if (error) {
                 throw new TodoStoreError('Ошибка валидации объекта category', { category, error });
             }
 
@@ -183,7 +174,7 @@ const todoStore = create<State & Actions>((set) => ({
                 );
             }
 
-            const newCategory = getCategoryFomObject(category);
+            const newCategory = getCategoryFomObject(entity);
             state.categories.byId[newCategory.category_id] = {
                 ...state.categories.byId[newCategory.category_id],
                 ...newCategory,

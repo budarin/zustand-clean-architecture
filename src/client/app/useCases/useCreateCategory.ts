@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useTodoStore } from '../domain/store';
 import { delay } from '../../../common/promises/delay';
 import { notifyError } from '../../services/notification';
-import { validateNewCategory } from '../domain/category/validation';
+import { validateNewCategory } from '../../../common/domain/category/validation';
 
 type UseCreateCategory = [inProgress: boolean, createTodo: Dispatch<SetStateAction<NewCategory | undefined>>];
 
@@ -19,9 +19,9 @@ export function useCreateCategory(): UseCreateCategory {
 
             try {
                 setInProgress(true);
-                const { isValid, error } = validateNewCategory(category);
+                const { entity, error } = validateNewCategory(category);
 
-                if (isValid === false) {
+                if (error) {
                     notifyError(`Упс! Ошибка в объекте ${category.category}: ${error}`, {
                         toastId: 'create_todo_error' + category.category,
                     });

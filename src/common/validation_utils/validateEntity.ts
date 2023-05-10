@@ -1,6 +1,10 @@
-type CheckEntityValidation = { isValid: boolean; error?: string };
+type CheckEntityValidation = { entity: UnknownObject; error?: never } | { entity?: never; error: string };
 
-export function validateEntity(entity: object, rules: ValidationRules, errorPrefix: string): CheckEntityValidation {
+export function validateRawEntity(
+    entity: UnknownObject,
+    rules: ValidationRules,
+    errorPrefix: string,
+): CheckEntityValidation {
     const keys = Object.keys(rules);
 
     for (let i = 0; i < keys.length; i++) {
@@ -11,13 +15,12 @@ export function validateEntity(entity: object, rules: ValidationRules, errorPref
 
         if (validator(entity) === false) {
             return {
-                isValid: false,
                 error: `${errorPrefix}: ${errorMessage}`,
             };
         }
     }
 
     return {
-        isValid: true,
+        entity,
     };
 }

@@ -4,13 +4,13 @@ import './index.css';
 import CreateCategoryForm from '../CreateCategoryForm';
 
 type CategoryHeader = {
+    isOpen: boolean;
+    handleIsOpen: MouseEventHandler<HTMLButtonElement>;
     inProgress: boolean;
     onCreateCategory: MouseEventHandler<HTMLButtonElement>;
 };
 
-const CategoryHeader = memo(({ inProgress, onCreateCategory }: CategoryHeader): JSX.Element => {
-    const [isOpen, setOpen] = useState<boolean>(false);
-
+const CategoryHeader = memo(({ isOpen, handleIsOpen, inProgress, onCreateCategory }: CategoryHeader): JSX.Element => {
     return (
         <div className="category-header">
             <div className="category-header-container">
@@ -19,7 +19,7 @@ const CategoryHeader = memo(({ inProgress, onCreateCategory }: CategoryHeader): 
                     key="collapse"
                     className="category-header-button"
                     title={isOpen ? "Свернуть форму 'Добавить категорию'" : 'Добавить категорию'}
-                    onClick={() => setOpen((state) => !state)}
+                    onClick={handleIsOpen}
                 >
                     {isOpen ? (
                         <svg className="category-header-button-icon" width="20" height="20" viewBox="0 0 24 24">
