@@ -16,10 +16,6 @@ export const serverInitialState: EntitiesPayload = {
             icon_id: 4,
             icon_name: 'sport.png',
         },
-        {
-            icon_id: 4,
-            icon_name: 'sport.png',
-        },
     ],
     statuses: [
         {

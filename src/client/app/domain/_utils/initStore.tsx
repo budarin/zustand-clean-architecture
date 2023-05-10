@@ -6,18 +6,18 @@ import { notifyError } from '../../../services/notification/index.ts';
 import { serverInitialState } from '../../../../server/serverInitialState.ts';
 
 export function initStore() {
+    let hasError = false;
+
+    const {
+        _createIcon: createIcon,
+        _createStatus: createStatus,
+        _createCategory: createCategory,
+        _createTodo: createTodo,
+    } = useTodoStore.getState();
+
+    const { icons, statuses, categories, todos } = serverInitialState;
+
     unstable_batchedUpdates(() => {
-        const {
-            _createIcon: createIcon,
-            _createStatus: createStatus,
-            _createCategory: createCategory,
-            _createTodo: createTodo,
-        } = useTodoStore.getState();
-
-        const { icons, statuses, categories, todos } = serverInitialState;
-
-        let hasError = false;
-
         icons?.forEach((icon) => {
             try {
                 createIcon(icon);
@@ -52,13 +52,14 @@ export function initStore() {
         });
     });
 
-    notifyError(
-        <span>
-            Во время получения данных обнаружены ошибки - возможно часть данных будет отображена не корректно.
-            <br />
-            Мы уже работаем над проблемой.
-            <br />
-            Попробуйте обновить данные позже.
-        </span>,
-    );
+    hasError &&
+        notifyError(
+            <span>
+                Во время получения данных обнаружены ошибки - возможно часть данных будет отображена не корректно.
+                <br />
+                Мы уже работаем над проблемой.
+                <br />
+                Попробуйте обновить данные позже.
+            </span>,
+        );
 }
