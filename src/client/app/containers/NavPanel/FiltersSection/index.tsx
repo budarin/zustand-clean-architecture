@@ -1,24 +1,20 @@
 import React from 'react';
 
-import {
-    inboxKey,
-    navigationFilterTypes,
-    nextKey,
-    todayKey,
-} from '../../../../../common/domain/navigationFilter';
+import { inboxKey, navigationFilterTypes, nextKey, todayKey } from '../../../../../common/domain/navigationFilter';
+
 import NavigationPanelItemContainer from '../PanelItem';
+import FiltersSection from '../../../../ui/NavPanel/FiltersSection';
 
 const topFilters = [todayKey, nextKey, inboxKey];
 
-function FiltersSection() {
+function FiltersSectionContainer() {
     return (
-        <>
-            <h4>Фильтры</h4>
+        <FiltersSection>
             {topFilters.map((key) => (
                 <NavigationPanelItemContainer key={key} id={key} navigationType={navigationFilterTypes.filter} />
             ))}
-        </>
+        </FiltersSection>
     );
 }
 
-export default FiltersSection;
+export default FiltersSectionContainer;

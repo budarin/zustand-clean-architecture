@@ -6,7 +6,11 @@ type ListProps = {
 };
 
 function NavigationPanel({ children }: ListProps) {
-    return <nav className="navPanel">{children}</nav>;
+    return (
+        <nav className="navPanel">
+            <ul>{children}</ul>
+        </nav>
+    );
 }
 
 export default NavigationPanel;

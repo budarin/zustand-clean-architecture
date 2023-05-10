@@ -1,7 +1,7 @@
 import React, { FormEventHandler, useEffect, useRef } from 'react';
 
 import './index.css';
-import { MAX_CATEGOTY_LENGTH, MIN_CATEGOTY_LENGTH } from '../../../../../common/domain/category/validation';
+import { MAX_CATEGOTY_LENGTH, MIN_CATEGOTY_LENGTH } from '../../../../common/domain/category/validation';
 
 type CreatecategoryForm = {
     isResetForm: boolean;

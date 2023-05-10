@@ -1,5 +1,5 @@
 import { shallow } from 'zustand/shallow';
-import React, { memo, useCallback } from 'react';
+import React, { MouseEventHandler, memo, useCallback } from 'react';
 
 import { useTodoStore } from '../../../domain/store.tsx';
 import {
@@ -47,9 +47,10 @@ const selector = (id: NavigationFilterKey, navigationType: NavigationFilterType)
 const NavigationPanelItemContainer = memo(({ id, navigationType }: NavigationPanelItemContainerProps): JSX.Element => {
     const { isCategory, title, checked } = useTodoStore(selector(id, navigationType), shallow);
 
-    const handleChange = React.useCallback(
-        (e: React.ChangeEvent<HTMLInputElement>): void => {
-            const containerTitle = e.target.value;
+    const handleClick = React.useCallback<MouseEventHandler<HTMLLIElement>>(
+        (event) => {
+            const liElement = event.currentTarget as HTMLLIElement;
+            const containerTitle = (liElement.children[0] as HTMLAnchorElement).textContent!;
 
             useTodoStore.getState()._setNavigationFilter({
                 key: isCategory ? Number(id) : id,
@@ -61,7 +62,7 @@ const NavigationPanelItemContainer = memo(({ id, navigationType }: NavigationPan
     );
 
     return (
-        <NavigationIPanelIem title={title} checked={checked} handleChange={handleChange}>
+        <NavigationIPanelIem title={title} checked={checked} handleClick={handleClick}>
             <TodosCountBadge id={id} navigationType={navigationType} />
         </NavigationIPanelIem>
     );

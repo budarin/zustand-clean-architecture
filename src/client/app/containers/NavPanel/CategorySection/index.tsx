@@ -4,7 +4,7 @@ import { useTodoStore } from '../../../domain/store';
 import { navigationFilterTypes } from '../../../../../common/domain/navigationFilter';
 
 import NavigationPanelItemContainer from '../PanelItem';
-import CategoryHeadersContainer from './CategoryHeader';
+import CategoryHeadersContainer from '../CategoryHeader';
 
 // selectors
 const getCategoryIds = (state: State) => state.categories.ids;
@@ -13,13 +13,15 @@ function CategorySectionContainer() {
     const categoryIds = useTodoStore(getCategoryIds);
 
     return (
-        <>
+        <li>
             <CategoryHeadersContainer />
 
-            {categoryIds.map((key) => (
-                <NavigationPanelItemContainer key={key} id={key} navigationType={navigationFilterTypes.category} />
-            ))}
-        </>
+            <ul>
+                {categoryIds.map((key) => (
+                    <NavigationPanelItemContainer key={key} id={key} navigationType={navigationFilterTypes.category} />
+                ))}
+            </ul>
+        </li>
     );
 }
 

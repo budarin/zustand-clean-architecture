@@ -1,22 +1,18 @@
 .navPanel-item {
     line-height: 2;
     border-bottom: 1px solid #e8e8e8;
-    overflow: hidden;
-}
 
-.navPanel-item_selected {
-    background-color: rgb(207, 255, 159);
-}
-
-.navPanel-item__radio {
-    visibility: hidden;
-}
-
-.navPanel-item label {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 
     cursor: pointer;
-    margin-right: 1ch;
+}
+
+.navPanel-item[data-selected='true'] {
+    background-color: rgb(207, 255, 159);
+}
+
+.navPanel-item a {
+    text-decoration: none;
 }

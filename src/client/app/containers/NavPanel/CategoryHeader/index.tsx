@@ -1,9 +1,9 @@
 import React, { FormEventHandler, MouseEventHandler, useEffect, useState } from 'react';
 
-import { useCreateCategory } from '../../../../useCases/useCreateCategory';
+import { useCreateCategory } from '../../../useCases/useCreateCategory';
 
 // components
-import CategoryHeader from '../../../../../ui/NavPanel/CategoryHeader';
+import CategoryHeader from '../../../../ui/NavPanel/CategoryHeader';
 
 function CategoryHeadersContainer() {
     const [isOpen, setOpen] = useState<boolean>(false);

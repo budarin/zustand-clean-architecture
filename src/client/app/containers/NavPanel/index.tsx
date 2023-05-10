@@ -1,19 +1,17 @@
 import React from 'react';
 
 // components
-import FiltersSection from './FiltersSection';
-import UtilitySection from './UtilitySection';
 import NavigationPanel from '../../../ui/NavPanel';
+import UtilitySectionContainer from './UtilitySection';
+import FiltersSectionContainer from './FiltersSection';
 import CategorySectionContainer from './CategorySection';
-
-import './index.css';
 
 function NavigationPanelContainer() {
     return (
         <NavigationPanel>
-            <FiltersSection />
+            <FiltersSectionContainer />
             <CategorySectionContainer />
-            <UtilitySection />
+            <UtilitySectionContainer />
         </NavigationPanel>
     );
 }

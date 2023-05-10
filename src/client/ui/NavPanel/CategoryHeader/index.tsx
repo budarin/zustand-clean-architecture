@@ -1,7 +1,7 @@
 import React, { FormEventHandler, MouseEventHandler, memo } from 'react';
 
 import './index.css';
-import CreateCategoryForm from './CreateCategoryForm';
+import CreateCategoryForm from '../CreateCategoryForm';
 
 type CategoryHeader = {
     isOpen: boolean;
@@ -16,7 +16,7 @@ const CategoryHeader = memo(
         return (
             <div className="category-header">
                 <div className="category-header-container">
-                    <h4>Категории</h4>
+                    <h2>Категории</h2>
                     <button
                         key="collapse"
                         className="category-header-button"

@@ -7,7 +7,7 @@ type AppProps = { navigationPanel: JSX.Element; todos: JSX.Element };
 function App({ navigationPanel, todos }: AppProps) {
     return (
         <main className="app">
-            <h3>Todo App</h3>
+            <h1>Todo App</h1>
             {navigationPanel}
             {todos}
         </main>
