@@ -50,13 +50,18 @@ const NavigationPanelItemContainer = memo(({ id, navigationType }: NavigationPan
     const handleClick = React.useCallback<MouseEventHandler<HTMLLIElement>>(
         (event) => {
             const liElement = event.currentTarget as HTMLLIElement;
-            const containerTitle = (liElement.children[0] as HTMLAnchorElement).textContent!;
 
-            useTodoStore.getState()._setNavigationFilter({
-                key: isCategory ? Number(id) : id,
-                title: containerTitle,
-                type: navigationType as NavigationFilterType,
-            });
+            if ((event.target as HTMLElement).tagName === 'A' || event.target === liElement) {
+                const containerTitle = (liElement.children[0] as HTMLAnchorElement).textContent!;
+
+                event.preventDefault();
+
+                useTodoStore.getState()._setNavigationFilter({
+                    key: isCategory ? Number(id) : id,
+                    title: containerTitle,
+                    type: navigationType as NavigationFilterType,
+                });
+            }
         },
         [id, navigationType, isCategory],
     );
