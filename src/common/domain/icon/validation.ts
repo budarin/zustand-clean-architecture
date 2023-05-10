@@ -26,14 +26,18 @@ export const iconValidationRules: ValidationRules = {
     name: [validate_name, 'обязательное icon_name должно быть строкой'],
 };
 
-export function validateIcon(icon: Icon) {
-    return validateRawEntity(icon, iconValidationRules, 'Icon');
+export function validateIcon(icon: UnknownObject): ValidateEntity<Icon> {
+    const iconCopy = getIconFomObject(icon);
+
+    return validateRawEntity(iconCopy, iconValidationRules, 'Icon');
 }
 
 // Category getter
 export function getIconFomObject(input: UnknownObject = {}): Icon {
+    const { icon_id, icon_name } = input as Icon;
+
     return {
-        icon_id: input['icon_id'],
-        icon_name: input['name'],
-    } as Icon;
+        icon_id,
+        icon_name,
+    };
 }

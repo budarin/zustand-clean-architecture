@@ -33,15 +33,17 @@ export const statusValidationRules: ValidationRules = {
     color: [validate_color, 'обязательное поле color должно быть строкой из 7 символов'],
 };
 
-export function validateStatus(status: Status) {
+export function validateStatus(status: Status): ValidateEntity<Status> {
     return validateRawEntity(status, statusValidationRules, 'Status');
 }
 
 // Category getter
 export function getStatusFomObject(input: UnknownObject = {}): Status {
+    const { status_id, status, color } = input as Status;
+
     return {
-        status_id: input['status_id'],
-        status: input['status'],
-        color: input['color'],
-    } as Status;
+        status_id,
+        status,
+        color,
+    };
 }

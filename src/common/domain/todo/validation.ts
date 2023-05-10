@@ -9,7 +9,8 @@ import { isNotExists } from '../../validation_utils/isNotExists.ts';
 import { validateRawEntity } from '../../validation_utils/validateEntity.ts';
 import { toDefaultBoolean } from '../../validation_utils/toDefaultBoolean.ts';
 
-import type { TypeConverters } from '../../validation_utils/getEntity.ts';
+import type { TypeConverters } from '../../validation_utils/applyEntityConverters.ts';
+import { capitalizeFirstLetter } from '../../capitalizeFirstLetter.ts';
 
 export const MIN_TODO_LENGTH = 5;
 export const MAX_TODO_LENGTH = 100;
@@ -68,9 +69,7 @@ export const validateCategoryIdRelation = (category_id: number, categoryIdsSores
     !!categoryIdsSores.find((idsStore) => Boolean(idsStore[category_id]));
 
 // coverters
-export const todoConverters: TypeConverters = {
-    completed: toDefaultBoolean(false),
-};
+const todoBeFalse = toDefaultBoolean(false);
 
 // validation rules
 const todo_id: ValidationRule = [validate_id, 'обязательное поле todo_id должно быть целым числом'];
@@ -118,14 +117,16 @@ export function validateNewTodo(todo: NewTodo) {
 
 // Todo getter
 export function getTodoFomObject(input: UnknownObject): Todo {
+    const { todo_id, todo, status_id, category_id, description, due_date, deleted, completed } = input as Todo;
+
     return {
-        todo_id: input['todo_id'],
-        todo: input['todo'],
-        status_id: input['status_id'],
-        category_id: input['category_id'],
-        description: input['description'],
-        due_date: input['due_date'],
-        deleted: input['deleted'] ?? false,
-        completed: input['completed'] ?? false,
-    } as Todo;
+        todo_id,
+        todo: capitalizeFirstLetter(todo),
+        status_id,
+        category_id,
+        description,
+        due_date,
+        deleted: todoBeFalse(deleted),
+        completed: todoBeFalse(completed),
+    };
 }

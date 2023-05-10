@@ -2,7 +2,7 @@ import { toInt } from '../toInt.ts';
 import { toBoolean } from '../toBoolean.ts';
 import { toTimeStamp } from '../toTimeStamp.ts';
 import { toDefaultBoolean } from '../toDefaultBoolean.ts';
-import { TypeConverters, applyEntityConverters } from '../getEntity.ts';
+import { TypeConverters, applyEntityConverters } from '../applyEntityConverters.ts';
 
 describe('getEntity', () => {
     interface Entity {

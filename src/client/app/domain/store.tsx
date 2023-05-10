@@ -25,7 +25,7 @@ export class TodoStoreError extends Error {
 
 type Actions = {
     // Icon
-    _createIcon: (icon: Icon) => void;
+    _createIcon: (icon: UnknownObject) => void;
 
     // Status
     _createStatus: (status: Status) => void;
@@ -79,12 +79,12 @@ const todoStore = create<State & Actions>((set) => ({
     },
 
     // Icon
-    _createIcon: (icon: Icon) => {
+    _createIcon: (icon: UnknownObject) => {
         return set((state) => {
             const { entity, error } = validateIconEntity(icon, state);
 
             if (entity) {
-                state.icons.byId = { ...state.icons.byId, [icon.icon_id]: entity };
+                state.icons.byId = { ...state.icons.byId, [entity.icon_id]: entity };
                 state.icons.ids = [...state.icons.ids, entity.icon_id];
 
                 return { ...state };

@@ -1,10 +1,8 @@
-type CheckEntityValidation = { entity: UnknownObject; error?: never } | { entity?: never; error: string };
-
-export function validateRawEntity(
+export function validateRawEntity<T>(
     entity: UnknownObject,
     rules: ValidationRules,
     errorPrefix: string,
-): CheckEntityValidation {
+): ValidateEntity<T> {
     const keys = Object.keys(rules);
 
     for (let i = 0; i < keys.length; i++) {
@@ -21,6 +19,6 @@ export function validateRawEntity(
     }
 
     return {
-        entity,
+        entity: entity as T,
     };
 }
