@@ -15,7 +15,11 @@ export function validateIconEntity(icon: UnknownObject, state: State): ValidateE
         };
     }
 
-    if (Object.values(state.icons.byId).find((item) => item.icon_name == entity.icon_name)) {
+    if (
+        Object.values(state.icons.byId).find(
+            (item) => item.icon_name === entity.icon_name && item.icon_id !== entity.icon_id,
+        )
+    ) {
         return {
             error: `Нарушение уникальности имени иконки в  icons!`,
         };

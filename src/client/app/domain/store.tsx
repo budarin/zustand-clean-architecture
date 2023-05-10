@@ -1,13 +1,12 @@
 import { create } from 'zustand';
 
 import { createSelectors } from './_utils/createSelectors.ts';
-import { validateStatusEntity } from './status/validation.ts';
+import { validateStatusEntity } from './status/validateStatusEntity.ts';
 import { validateTodoEntity } from './todo/validateTodoEntity.ts';
 import { validateIconEntity } from './icon/validateIconEntity.ts';
 import { validateCategoryEntity } from './category/validateCategoryEntity.ts';
 import { updateFilterCounters } from './_utils/navFilter/updateFilterCounters.ts';
 import { updateICategoryCounters } from './_utils/navFilter/updateICategoryCounters.ts';
-import { getCategoryFomObject, validateCategory } from '../../../common/domain/category/validation.ts';
 
 import {
     inboxKey,
@@ -142,10 +141,6 @@ const todoStore = create<State & Actions>((set) => ({
             const { entity, error } = validateCategoryEntity(category, state);
 
             if (entity) {
-                if (state.categories.ids.includes(entity.category_id) === true) {
-                    throw new TodoStoreError('Нарушение уникальности ключа categories', category);
-                }
-
                 state.categories.byId[entity.category_id] = {
                     ...state.categories.byId[entity.category_id],
                     ...entity,
@@ -186,7 +181,7 @@ const todoStore = create<State & Actions>((set) => ({
 
             if (entity) {
                 if (state.todos.ids.includes(entity.todo_id) === true) {
-                    throw new TodoStoreError('Нарушение уникальности ключа todos.todo_id!', { todo });
+                    throw new TodoStoreError('Нарушение уникальности ключа todos!', { todo });
                 }
 
                 state.todos.byId = { ...state.todos.byId, [entity.todo_id]: entity };

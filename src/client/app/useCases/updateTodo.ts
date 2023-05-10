@@ -23,7 +23,7 @@ export async function updateTodo(todo: Todo) {
 
     await delay(3000);
 
-    notifyError(`${todo.todo_id}: Упс! вышла ошибочка - восстанавливаем`, {
+    notifyError(`Ошибка: не удалось обновить задачу "${oldValue.todo.slice(15)}..." - восстанавливаем`, {
         toastId: 'server_error_todo' + todo.todo_id,
     });
 

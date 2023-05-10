@@ -9,7 +9,11 @@ export function validateStatusEntity(status: UnknownObject, state: State): Valid
 
     const { entity } = result;
 
-    if (Object.values(state.statuses.byId).find((item) => item.status == status.status)) {
+    if (
+        Object.values(state.statuses.byId).find(
+            (item) => item.status === status.status && item.status_id !== status.status_id,
+        )
+    ) {
         return {
             error: 'Нарушение уникальности ключа statuses!',
         };

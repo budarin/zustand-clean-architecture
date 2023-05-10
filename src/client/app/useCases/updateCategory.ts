@@ -12,7 +12,7 @@ export async function updateCategory(category: Category) {
 
     await delay(3000);
 
-    notifyError('Упс! вышла ошибочка - восстанавливаем', { autoClose: 2000 });
+    notifyError(`Ошибка: не удалось удалить категорию ${oldValue.category} - восстанавливаем`, { autoClose: 2000 });
 
     store._updateCategory(oldValue);
 }

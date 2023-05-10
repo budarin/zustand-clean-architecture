@@ -12,9 +12,9 @@ type TodoState = {
     idsByFilterId: TodoIdsByFilterId;
 };
 
-type CategoriyById = Record<Id, Categoriy>;
-type CategoriyState = {
-    byId: CategoriyById;
+type CategoryById = Record<Id, Category>;
+type CategoryState = {
+    byId: CategoryById;
     ids: Id[];
 };
 
@@ -33,7 +33,7 @@ type IconState = {
 type State = {
     icons: IconState;
     statuses: StatusState;
-    categories: CategoriyState;
+    categories: CategoryState;
     todos: TodoState;
     navigationFilter: NavigationFilter;
 };

@@ -5,22 +5,19 @@ import { notifyError } from '../../services/notification';
 
 export async function deleteCategory(id: Category['category_id']) {
     const store = useTodoStore.getState();
-    const oldValue = store.categories.byId[id];
+    const value = store.categories.byId[id];
 
-    if (!oldValue) {
+    if (!value) {
         notifyError('Запись отсутствует в базе данных!', { autoClose: 2000 });
-
         return;
     }
 
     try {
         store._deleteCategory(id);
-
         await delay(3000);
+        notifyError(`Ошибка: не удалось удалить категорию "${value.category}" - восстанавливаем`, { autoClose: 2000 });
 
-        notifyError('Упс! вышла ошибочка - восстанавливаем', { autoClose: 2000 });
-
-        store._createCategory(oldValue);
+        store._createCategory(value);
     } catch (err) {
         if (err instanceof TodoStoreError) {
             notifyError(err.message);

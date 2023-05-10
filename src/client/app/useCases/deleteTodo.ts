@@ -12,13 +12,9 @@ export async function deleteTodo(todo: Todo) {
 
     await delay(3000);
 
-    notifyError(
-        `${todo.todo_id}: Упс! Не удалось удалить "${todo.todo.slice(10)}..."
-    вышла ошибочка - восстанавливаем`,
-        {
-            toastId: 'delete_todo' + todo.todo_id,
-        },
-    );
+    notifyError(`Ошибка: не удалось удалить "${todo.todo.slice(10)}..." - восстанавливаем`, {
+        toastId: 'delete_todo' + todo.todo_id,
+    });
 
     store._updateTodo(oldValue);
 }
