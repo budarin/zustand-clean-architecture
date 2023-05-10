@@ -1,4 +1,4 @@
-import { getIconFomObject, validateIcon } from '../../../../common/domain/icon/validation';
+import { validateIcon } from '../../../../common/domain/icon/validation';
 
 export function validateIconEntity(icon: UnknownObject, state: State): ValidateEntity<Icon> {
     const result = validateIcon(icon);

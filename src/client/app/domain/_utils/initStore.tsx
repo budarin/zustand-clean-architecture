@@ -62,4 +62,6 @@ export function initStore() {
                 Попробуйте обновить данные позже.
             </span>,
         );
+
+    // console.log(JSON.stringify(useTodoStore.getState(), null, 2));
 }

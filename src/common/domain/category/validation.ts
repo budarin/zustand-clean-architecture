@@ -41,7 +41,7 @@ export const newCategoryValidationRules: ValidationRules = {
     icon_id,
 };
 
-export function validateCategory(category: Category): ValidateEntity<Category> {
+export function validateCategory(category: UnknownObject): ValidateEntity<Category> {
     return validateRawEntity(category, categoryValidationRules, 'Category');
 }
 

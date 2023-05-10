@@ -108,8 +108,8 @@ export const newTodoValidationRules: ValidationRules = {
     deleted,
 };
 
-export function validateTodo(todo: Todo) {
-    return validateRawEntity(todo, todoValidationRules, 'Todo');
+export function validateTodo(todo: UnknownObject): ValidateEntity<Todo> {
+    return validateRawEntity(getTodoFomObject(todo), todoValidationRules, 'Todo');
 }
 export function validateNewTodo(todo: NewTodo) {
     return validateRawEntity(todo, newTodoValidationRules, 'Todo');
