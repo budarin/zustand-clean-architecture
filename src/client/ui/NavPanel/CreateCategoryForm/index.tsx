@@ -11,8 +11,15 @@ type CreatecategoryForm = {
 };
 
 function CreateCategoryForm(props: CreatecategoryForm) {
-    const { inProgress, isResetForm, isOpen, onCreateCategory } = props;
     const formRef = useRef<HTMLFormElement>(null);
+    const catrgoryRef = useRef<HTMLInputElement>(null);
+    const { inProgress, isResetForm, isOpen, onCreateCategory } = props;
+
+    useEffect(() => {
+        if (isOpen && catrgoryRef.current) {
+            catrgoryRef.current.focus();
+        }
+    }, [isOpen]);
 
     useEffect(() => {
         if (isResetForm) {
@@ -25,6 +32,7 @@ function CreateCategoryForm(props: CreatecategoryForm) {
             <form className="create-category-form" ref={formRef} onSubmit={onCreateCategory}>
                 <input
                     type="text"
+                    ref={catrgoryRef}
                     className="create-category-form-input"
                     title="Название категории задач"
                     minLength={MIN_CATEGOTY_LENGTH}
