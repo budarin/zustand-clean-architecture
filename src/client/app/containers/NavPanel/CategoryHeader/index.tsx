@@ -22,12 +22,12 @@ function CategoryHeadersContainer() {
     const onCreateCategory: FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault();
 
-        event.target[1].disabled = inProgress;
+        (event.currentTarget[1] as HTMLInputElement).disabled = inProgress;
 
         if (!inProgress) {
             try {
                 createcategory({
-                    category: event.target[0].value,
+                    category: (event.currentTarget[0] as HTMLInputElement).value,
                     icon_id: 1,
                 });
             } catch (error) {
