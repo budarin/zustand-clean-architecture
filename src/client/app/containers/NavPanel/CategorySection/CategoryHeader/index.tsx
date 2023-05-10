@@ -10,7 +10,7 @@ function CategoryHeadersContainer() {
     const [success, inProgress, createcategory] = useCreateCategory();
 
     useEffect(() => {
-        if (success) {
+        if (success && isOpen) {
             setOpen(false);
         }
     }, [success]);
