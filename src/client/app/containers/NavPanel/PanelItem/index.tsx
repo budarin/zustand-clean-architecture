@@ -50,8 +50,9 @@ const NavigationPanelItemContainer = memo(({ id, navigationType }: NavigationPan
     const handleClick = React.useCallback<MouseEventHandler<HTMLLIElement>>(
         (event) => {
             const liElement = event.currentTarget as HTMLLIElement;
+            const tagName = (event.target as HTMLElement).tagName;
 
-            if ((event.target as HTMLElement).tagName === 'A' || event.target === liElement) {
+            if (tagName === 'A' || tagName === 'SPAN' || event.target === liElement) {
                 const containerTitle = (liElement.children[0] as HTMLAnchorElement).textContent!;
 
                 event.preventDefault();
