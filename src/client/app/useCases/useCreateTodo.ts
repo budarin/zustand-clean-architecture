@@ -16,9 +16,12 @@ export function useUCreateTodo(): UseCreateTodo {
                 return;
             }
 
+            setInProgress(true);
+
+            const store = useTodoStore.getState();
+
             try {
-                setInProgress(true);
-                const store = useTodoStore.getState();
+                // fetch
                 await delay(3000);
 
                 const numbers = Object.keys(store.todos.byId).map(Number);

@@ -22,18 +22,20 @@ export function useCreateCategory(): UseCreateCategory {
                 return;
             }
 
+            setSuccess(false);
+            setInProgress(true);
+
+            const store = useTodoStore.getState();
+            const { entity, error } = validateNewCategory(category);
+
             try {
-                setInProgress(true);
-                setSuccess(false);
-                const { entity, error } = validateNewCategory(category);
-
                 if (entity) {
-                    const store = useTodoStore.getState();
-
+                    // fetch
                     await delay(3000);
 
                     const numbers = Object.keys(store.categories.byId).map(Number);
                     const newCategoryId = Math.max(...numbers) + 1;
+
                     store._createCategory({ ...category, category_id: newCategoryId });
 
                     setSuccess(true);
