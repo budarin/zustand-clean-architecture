@@ -1,7 +1,11 @@
-.todoListItem-checkbox {
+.todoList-list-item {
+    list-style: none;
+}
+
+.todoList-list-item-checkbox {
     cursor: pointer;
 }
 
-.todoListItem--label {
+.todoList-list-item-label {
     cursor: pointer;
 }

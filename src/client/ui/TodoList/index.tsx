@@ -14,10 +14,11 @@ function TodoList(props: ListProps) {
 
     return (
         <div className="todoList">
-            <h3>
-                <img src={icon} /> {category} <span>{count ? `(${count})` : null}</span>
+            <h3 className="todoList-header">
+                <img src={icon} className="todoList-header-icon" /> {category}{' '}
+                <span className="todoList-header-conter">{count ? `(${count})` : null}</span>
             </h3>
-            <ul>{children}</ul>
+            <ul className="todoList-list">{children}</ul>
         </div>
     );
 }
