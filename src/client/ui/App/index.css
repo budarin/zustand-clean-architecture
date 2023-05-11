@@ -43,8 +43,4 @@ h1 {
     .app {
         font-size: initial;
     }
-
-    .app-container {
-        gap: 24px;
-    }
 }

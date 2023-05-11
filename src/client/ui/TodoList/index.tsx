@@ -4,15 +4,19 @@ import './index.css';
 
 type ListProps = {
     category: string;
+    icon: string;
+    count: number;
     children: ReactNode;
 };
 
 function TodoList(props: ListProps) {
-    const { category, children } = props;
+    const { category, icon, count, children } = props;
 
     return (
         <div className="todoList">
-            <h3>{category}</h3>
+            <h3>
+                <img src={icon} /> {category} <span>{count ? `(${count})` : null}</span>
+            </h3>
             <ul>{children}</ul>
         </div>
     );

@@ -1,4 +1,4 @@
-import React, { FormEventHandler, forwardRef, useEffect, useRef } from 'react';
+import React, { FormEventHandler, useEffect, useRef } from 'react';
 
 import { MAX_CATEGOTY_LENGTH, MIN_CATEGOTY_LENGTH } from '../../../../common/domain/category/validation';
 
@@ -48,4 +48,4 @@ function CreateCategoryForm(props: CreatecategoryForm) {
     );
 }
 
-export default forwardRef(CreateCategoryForm);
+export default CreateCategoryForm;

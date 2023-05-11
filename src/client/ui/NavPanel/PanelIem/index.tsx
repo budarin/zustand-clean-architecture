@@ -16,11 +16,15 @@ const navItem = cn('navPanel-item');
 const NavigationIPanelIem = (props: NavigationIPanelIemProps) => {
     const { title, icon, checked, handleClick, children } = props;
     const itemClass = navItem({ selected: checked });
+    const imgClass = navItem('image');
+    const linkClass = navItem('link');
 
     return (
-        <li className={itemClass} onClick={handleClick} data-selected={checked}>
-            <img src={icon} />
-            <a href="#">{title}</a>
+        <li className={itemClass} onClick={handleClick}>
+            <img src={icon} className={imgClass} />
+            <a href="#" className={linkClass}>
+                {title}
+            </a>
             {children}
         </li>
     );

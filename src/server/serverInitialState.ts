@@ -51,12 +51,12 @@ export const serverInitialState: EntitiesPayload = {
         },
         {
             category_id: 3,
-            icon_id: 4,
+            icon_id: 6,
             category: 'Здоровье',
         },
         {
             category_id: 4,
-            icon_id: 4,
+            icon_id: 7,
             category: 'Фуфло',
         },
     ],

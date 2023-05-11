@@ -10,7 +10,7 @@ import {
 } from '../../../../../common/domain/navigationFilter/index.ts';
 
 // components
-import TodosCountBadge from '../../TodoList/CountBadge/index.tsx';
+import TodosCountBadgeContainer from '../CountBadge/index.tsx';
 import NavigationIPanelIem from '../../../../ui/NavPanel/PanelIem/index.tsx';
 
 type NavigationPanelItemContainerProps = {
@@ -30,9 +30,11 @@ const selector = (id: NavigationFilterKey, navigationType: NavigationFilterType)
             const isCategory = navigationFilterTypes.category === navigationType;
 
             if (isCategory) {
-                title = state.categories.byId[id as Id].category;
+                const category = state.categories.byId[id as Id];
+
+                title = category.category;
                 checked = title === filter.title;
-                icon = state.icons.byId[id as Id].icon_name;
+                icon = state.icons.byId[category.icon_id].icon_name;
             } else {
                 title = navigationFilters[id as NavigationFiltersKey];
                 checked = id === filter.key;
@@ -49,6 +51,8 @@ const selector = (id: NavigationFilterKey, navigationType: NavigationFilterType)
         [id, navigationType],
     );
 
+const clickableTagNames = ['A', 'SPAN', 'IMG'];
+
 const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainerProps): JSX.Element => {
     const { id, navigationType } = props;
     const { icon, isCategory, title, checked } = useTodoStore(selector(id, navigationType), shallow);
@@ -58,8 +62,8 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainerPr
             const liElement = event.currentTarget as HTMLLIElement;
             const tagName = (event.target as HTMLElement).tagName;
 
-            if (tagName === 'A' || tagName === 'SPAN' || event.target === liElement) {
-                const containerTitle = (liElement.children[0] as HTMLAnchorElement).textContent!;
+            if (clickableTagNames.includes(tagName) || event.target === liElement) {
+                const containerTitle = (liElement.children[1] as HTMLAnchorElement).textContent!;
 
                 event.preventDefault();
 
@@ -75,7 +79,7 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainerPr
 
     return (
         <NavigationIPanelIem title={title} icon={icon} checked={checked} handleClick={handleClick}>
-            <TodosCountBadge id={id} navigationType={navigationType} />
+            <TodosCountBadgeContainer id={id} navigationType={navigationType} />
         </NavigationIPanelIem>
     );
 });
