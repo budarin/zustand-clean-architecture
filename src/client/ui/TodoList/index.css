@@ -20,7 +20,7 @@
     margin-right: 4px;
 }
 
-.todoList-header-conter {
+.todoList-header-count {
     font-weight: 400;
     font-size: smaller;
     margin-left: 4px;
@@ -29,4 +29,5 @@
 .todoList-list {
     padding: 0;
     margin: 8px;
+    margin-top: 0;
 }

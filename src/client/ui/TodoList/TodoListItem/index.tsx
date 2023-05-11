@@ -12,17 +12,19 @@ const TodoListItem = (props: TodoListItemProps) => {
     const { todo, status, handleChange } = props;
 
     return (
-        <li className="todoList-list-item">
-            <label className="todoList-list-item-label">
-                <input
-                    name="completed"
-                    type="checkbox"
-                    checked={Boolean(todo.completed)}
-                    onChange={handleChange}
-                    className="todoList-list-item-checkbox"
-                ></input>{' '}
-                <span style={{ color: status.color }}>{todo.todo}</span>
-            </label>
+        <li className="todoListItem">
+            <div className="todoListItem-container">
+                <label className="todoListItem-label">
+                    <input
+                        name="completed"
+                        type="checkbox"
+                        checked={Boolean(todo.completed)}
+                        onChange={handleChange}
+                        className="todoListItem-checkbox"
+                    ></input>{' '}
+                    <span style={{ color: status.color }}>{todo.todo}</span>
+                </label>
+            </div>
         </li>
     );
 };

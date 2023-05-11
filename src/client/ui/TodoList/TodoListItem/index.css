@@ -1,15 +1,22 @@
-.todoList-list-item {
+.todoListItem {
     list-style: none;
 }
 
-.todoList-list-item:hover {
+.todoListItem:hover {
     background-color: #ffffcc;
 }
 
-.todoList-list-item-checkbox {
-    cursor: pointer;
+.todoListItem-container {
+    padding: 4px 0;
+    border-bottom: 1px solid #e8e8e8;
 }
 
-.todoList-list-item-label {
+.todoListItem-checkbox {
+    cursor: pointer;
+    margin: 6px 0;
+    margin-right: 4px;
+}
+
+.todoListItem-label {
     cursor: pointer;
 }

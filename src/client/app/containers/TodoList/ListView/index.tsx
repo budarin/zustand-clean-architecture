@@ -13,8 +13,8 @@ import {
     navigationFilters,
 } from '../../../../../common/domain/navigationFilter/index.ts';
 
-const selector = () =>
-    useCallback((state: State) => {
+function TodoListViewContainer(): JSX.Element {
+    const selector = useCallback((state: State) => {
         let title = '';
         let icon = '';
         let count = 0;
@@ -41,8 +41,7 @@ const selector = () =>
         };
     }, []);
 
-function TodoListViewContainer(): JSX.Element {
-    const { icon, title, count } = useTodoStore(selector(), shallow);
+    const { icon, title, count } = useTodoStore(selector, shallow);
 
     return (
         <TodoList category={title} icon={icon} count={count}>
