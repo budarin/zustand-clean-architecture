@@ -4,6 +4,7 @@ import React, { MouseEventHandler, memo, useCallback } from 'react';
 import { useTodoStore } from '../../../domain/store.tsx';
 import {
     NavigationFiltersKey,
+    navigationFilterIcons,
     navigationFilterTypes,
     navigationFilters,
 } from '../../../../../common/domain/navigationFilter/index.ts';
@@ -23,6 +24,7 @@ const selector = (id: NavigationFilterKey, navigationType: NavigationFilterType)
         (state: State) => {
             let checked = false;
             let title = '';
+            let icon = '';
 
             const filter = state.navigationFilter;
             const isCategory = navigationFilterTypes.category === navigationType;
@@ -30,15 +32,18 @@ const selector = (id: NavigationFilterKey, navigationType: NavigationFilterType)
             if (isCategory) {
                 title = state.categories.byId[id as Id].category;
                 checked = title === filter.title;
+                icon = state.icons.byId[id as Id].icon_name;
             } else {
                 title = navigationFilters[id as NavigationFiltersKey];
                 checked = id === filter.key;
+                icon = navigationFilterIcons[id as NavigationFiltersKey];
             }
 
             return {
                 isCategory,
                 title,
                 checked,
+                icon,
             };
         },
         [id, navigationType],
@@ -46,7 +51,7 @@ const selector = (id: NavigationFilterKey, navigationType: NavigationFilterType)
 
 const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainerProps): JSX.Element => {
     const { id, navigationType } = props;
-    const { isCategory, title, checked } = useTodoStore(selector(id, navigationType), shallow);
+    const { icon, isCategory, title, checked } = useTodoStore(selector(id, navigationType), shallow);
 
     const handleClick = React.useCallback<MouseEventHandler<HTMLLIElement>>(
         (event) => {
@@ -69,7 +74,7 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainerPr
     );
 
     return (
-        <NavigationIPanelIem title={title} checked={checked} handleClick={handleClick}>
+        <NavigationIPanelIem title={title} icon={icon} checked={checked} handleClick={handleClick}>
             <TodosCountBadge id={id} navigationType={navigationType} />
         </NavigationIPanelIem>
     );

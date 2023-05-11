@@ -5,6 +5,7 @@ import './index.css';
 
 type NavigationIPanelIemProps = {
     title: string;
+    icon: string;
     checked: boolean;
     handleClick: MouseEventHandler<HTMLLIElement>;
     children: ReactNode;
@@ -13,11 +14,12 @@ type NavigationIPanelIemProps = {
 const navItem = cn('navPanel-item');
 
 const NavigationIPanelIem = (props: NavigationIPanelIemProps) => {
-    const { title, checked, handleClick, children } = props;
+    const { title, icon, checked, handleClick, children } = props;
     const itemClass = navItem({ selected: checked });
 
     return (
         <li className={itemClass} onClick={handleClick} data-selected={checked}>
+            <img src={icon} />
             <a href="#">{title}</a>
             {children}
         </li>

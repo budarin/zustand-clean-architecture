@@ -14,4 +14,12 @@ export const navigationFilters = {
     [inboxKey]: 'Черновики',
     [recycleBinKey]: 'Корзина',
 };
+
 export type NavigationFiltersKey = keyof typeof navigationFilters;
+
+export const navigationFilterIcons = {
+    [todayKey]: 'today.png',
+    [nextKey]: 'next.png',
+    [inboxKey]: 'inbox.png',
+    [recycleBinKey]: 'trash.gif',
+};

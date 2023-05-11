@@ -21,12 +21,15 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(gif|jpg|png|mp3|aac|ogg)$/,
+                test: /\.(jpg|png|mp3|aac|ogg)$/,
                 type: 'asset/resource',
             },
             {
-                test: /\.(svg|png)$/,
+                test: /\.(gif|svg|png)$/,
                 type: 'asset/resource',
+                generator: {
+                    filename: '[name][ext]',
+                },
             },
             {
                 test: /\.(ts|tsx|js|jsx|json)$/,
