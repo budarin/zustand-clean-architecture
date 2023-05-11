@@ -1,7 +1,8 @@
 import React from 'react';
 
-import './index.css';
 import icon from '../../../../assets/todolist.svg';
+
+import './index.css';
 
 type AppProps = { navigationPanel: JSX.Element; todos: JSX.Element };
 
