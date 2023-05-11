@@ -17,6 +17,13 @@
     height: 20px;
     width: 20px;
     vertical-align: text-bottom;
+    margin-right: 4px;
+}
+
+.todoList-header-conter {
+    font-weight: 400;
+    font-size: smaller;
+    margin-left: 4px;
 }
 
 .todoList-list {

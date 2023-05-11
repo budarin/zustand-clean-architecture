@@ -14,10 +14,9 @@ html,
 .app {
     height: 100%;
     overflow: auto;
-    /* padding: 0 4px; */
+    padding: 0 4px;
     block-size: 100%;
     max-width: 1280px;
-    margin: 0 auto;
 }
 
 .app-header-title {
@@ -52,5 +51,12 @@ html,
 @media only screen and (min-width: 800px) {
     .app {
         font-size: initial;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    .app {
+        padding: 0;
+        margin: 0 auto;
     }
 }
