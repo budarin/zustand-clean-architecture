@@ -9,7 +9,12 @@
     cursor: pointer;
 }
 
-.navPanel-item_selected {
+.navPanel-item:hover {
+    background-color: #ffffcc;
+}
+
+.navPanel-item_selected,
+.navPanel-item_selected:hover {
     background-color: rgb(207, 255, 159);
 }
 

@@ -2,6 +2,10 @@
     list-style: none;
 }
 
+.todoList-list-item:hover {
+    background-color: #ffffcc;
+}
+
 .todoList-list-item-checkbox {
     cursor: pointer;
 }

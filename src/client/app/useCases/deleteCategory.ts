@@ -1,4 +1,5 @@
-import { TodoStoreError, useTodoStore } from '../domain/store';
+import { useTodoStore } from '../domain/store';
+import { TodoStoreError } from '../domain/_utils/TodoStoreError';
 import { delay } from '../../../common/promises/delay';
 
 import { notifyError } from '../../services/notification';

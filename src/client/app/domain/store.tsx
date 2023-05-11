@@ -1,9 +1,10 @@
 import { create } from 'zustand';
 
+import { TodoStoreError } from './_utils/TodoStoreError.tsx';
 import { createSelectors } from './_utils/createSelectors.ts';
-import { validateStatusEntity } from './status/validateStatusEntity.ts';
 import { validateTodoEntity } from './todo/validateTodoEntity.ts';
 import { validateIconEntity } from './icon/validateIconEntity.ts';
+import { validateStatusEntity } from './status/validateStatusEntity.ts';
 import { validateCategoryEntity } from './category/validateCategoryEntity.ts';
 import { updateFilterCounters } from './_utils/navFilter/updateFilterCounters.ts';
 import { updateICategoryCounters } from './_utils/navFilter/updateICategoryCounters.ts';
@@ -16,16 +17,6 @@ import {
     recycleBinKey,
     todayKey,
 } from '../../../common/domain/navigationFilter/index.ts';
-
-export class TodoStoreError extends Error {
-    data;
-
-    constructor(message: string, data?: Record<string | number, unknown>) {
-        super(message);
-        this.name = 'TodoStoreError';
-        this.data = data;
-    }
-}
 
 type Actions = {
     // Icon
