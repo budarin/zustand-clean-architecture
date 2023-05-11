@@ -13,7 +13,7 @@ function App(props: AppProps) {
         <main className="app">
             <div className="app-header">
                 <img className="app-header-icon" src={icon} width={32} height={32} />
-                <h1 className="app-header-title">Todo App</h1>
+                <h1 className="app-header-title">Мои Задачи</h1>
             </div>
 
             <div className="app-container">

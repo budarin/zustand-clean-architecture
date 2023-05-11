@@ -15,6 +15,7 @@
     cursor: pointer;
     margin: 6px 0;
     margin-right: 4px;
+    margin-left: 12px;
 }
 
 .todoListItem-label {
