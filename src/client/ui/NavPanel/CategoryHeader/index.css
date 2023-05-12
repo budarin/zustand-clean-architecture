@@ -30,7 +30,8 @@
     fill: #cee3ff;
 }
 .category-header-button-icon:hover {
-    fill: rgb(207, 255, 159);
+    fill: #2e88ff;
+    color: white;
 }
 
 .category-header-form-container {

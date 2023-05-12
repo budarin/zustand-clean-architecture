@@ -58,7 +58,7 @@ function CreateCategoryForm(props: CreatecategoryForm) {
                 </div>
             </div>
             <button type="submit" className="create-category-form-button" disabled={Boolean(inProgress)}>
-                Добавить
+                Создать
             </button>
         </form>
     );

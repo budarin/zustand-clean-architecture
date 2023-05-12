@@ -16,7 +16,10 @@
 .create-category-form-button {
     height: 29px;
     margin-left: 8px;
-    background-color: rgb(207, 255, 159);
+    padding: 0 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #2e88ff;
     cursor: pointer;
     border-width: 1px;
     border-style: solid;
@@ -45,7 +48,7 @@
 }
 
 .create-category-form-icon-cb:checked + img {
-    border: 2px solid rgb(57, 139, 247);
+    border: 2px solid #2e88ff;
 }
 
 @media only screen and (min-width: 640px) {
