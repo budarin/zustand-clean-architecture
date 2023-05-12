@@ -1,7 +1,7 @@
 import React, { FormEventHandler, MouseEventHandler, memo } from 'react';
 
 //components
-import CreateCategoryFormContainer from '../../../app/containers/NavPanel/CreateCategoryForm';
+import CreateCategoryFormContainer from '../../../adapters/containers/NavPanel/CreateCategoryForm';
 
 import './index.css';
 
