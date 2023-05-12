@@ -13,6 +13,7 @@ import TodoListViewContainer from '../TodoList/ListView/index.tsx';
 
 import 'react-toastify/dist/ReactToastify.css';
 
+// говорим webpack подготовить иконки как ресурсы
 import '../../../../../assets/alert.png';
 import '../../../../../assets/ball.png';
 import '../../../../../assets/bug.png';
@@ -52,6 +53,7 @@ function AppContainer() {
     }, []);
 
     useEffect(() => {
+        // если маленький экран - прячем навигацию
         if (matches) {
             isNavPaneOpen && setNavPaneOpen(false);
         } else {

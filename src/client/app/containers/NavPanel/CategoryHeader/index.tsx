@@ -1,4 +1,4 @@
-import React, { FormEventHandler, MouseEventHandler, useEffect, useState } from 'react';
+import React, { FormEventHandler, MouseEventHandler, useCallback, useEffect, useState } from 'react';
 
 import { useCreateCategory } from '../../../useCases/useCreateCategory';
 
@@ -15,35 +15,38 @@ function CategoryHeadersContainer() {
         }
     }, [success]);
 
-    const onHandleIsOpen: MouseEventHandler<HTMLButtonElement> = () => {
+    const onHandleIsOpen: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
         setOpen((state) => !state);
-    };
+    }, []);
 
-    const onCreateCategory: FormEventHandler<HTMLFormElement> = (event) => {
-        event.preventDefault();
+    const onCreateCategory: FormEventHandler<HTMLFormElement> = useCallback(
+        (event) => {
+            event.preventDefault();
 
-        (event.currentTarget[1] as HTMLInputElement).disabled = inProgress;
+            (event.currentTarget[1] as HTMLInputElement).disabled = inProgress;
 
-        if (!inProgress) {
-            const formData = new FormData(event.currentTarget);
-            const category = formData.get('category') as string;
+            if (!inProgress) {
+                const formData = new FormData(event.currentTarget);
+                const category = formData.get('category') as string;
 
-            if (!category) {
-                return;
+                if (!category) {
+                    return;
+                }
+
+                const categoryObject = {
+                    category,
+                    icon_id: Number(formData.get('icon_id')),
+                };
+
+                try {
+                    createcategory(categoryObject);
+                } catch (error) {
+                    console.log(error);
+                }
             }
-
-            const categoryObject = {
-                category,
-                icon_id: Number(formData.get('icon_id')),
-            };
-
-            try {
-                createcategory(categoryObject);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-    };
+        },
+        [inProgress],
+    );
 
     return (
         <CategoryHeader
