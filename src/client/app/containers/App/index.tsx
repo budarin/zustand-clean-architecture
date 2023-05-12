@@ -3,6 +3,8 @@ import { ToastContainer } from 'react-toastify';
 import React, { useEffect, useState } from 'react';
 
 import { useTodoStore } from '../../domain/store.tsx';
+import { delay } from '../../../../common/promises/delay.ts';
+import { deleteCategory } from '../../useCases/deleteCategory.ts';
 
 // components
 import App from '../../../ui/App/index.tsx';
@@ -36,6 +38,18 @@ function AppContainer() {
     const { key } = useTodoStore.use.navigationFilter();
     const [isNavPaneOpen, setNavPaneOpen] = useState(false);
     const matches = useMediaQuery('(max-width: 640px)');
+
+    useEffect(() => {
+        let mounted = true;
+
+        delay(1000).then(() => {
+            mounted && deleteCategory(4);
+        });
+
+        return () => {
+            mounted = false;
+        };
+    });
 
     useEffect(() => {
         if (matches) {
