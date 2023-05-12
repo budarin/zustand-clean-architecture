@@ -68,8 +68,8 @@ const todoStore = create<State & Actions>((set) => ({
     },
 
     navigationFilter: {
-        key: inboxKey,
-        title: navigationFilters[inboxKey],
+        key: todayKey,
+        title: navigationFilters[todayKey],
         type: navigationFilterTypes.filter,
     },
 

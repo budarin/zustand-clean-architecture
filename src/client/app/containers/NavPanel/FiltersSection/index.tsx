@@ -6,7 +6,7 @@ import { inboxKey, navigationFilterTypes, nextKey, todayKey } from '../../../dom
 import NavigationPanelItemContainer from '../PanelItem';
 import FiltersSection from '../../../../ui/NavPanel/FiltersSection';
 
-const topFilters = [inboxKey, todayKey, nextKey];
+const topFilters = [todayKey, nextKey, inboxKey];
 
 function FiltersSectionContainer() {
     return (
