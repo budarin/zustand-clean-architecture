@@ -49,7 +49,7 @@ function AppContainer() {
         return () => {
             mounted = false;
         };
-    });
+    }, []);
 
     useEffect(() => {
         if (matches) {
