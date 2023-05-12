@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import { useTodoStore } from '../domain/store';
 import { delay } from '../../common/promises/delay';
-import { notifyError } from '../adapters/services/notification';
+import { notifyError } from '../services/notification';
 import { validateNewCategory } from '../../common/domain/category/validation';
 
 type UseCreateCategory = [

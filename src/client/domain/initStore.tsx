@@ -2,7 +2,7 @@ import React from 'react';
 import { unstable_batchedUpdates } from 'react-dom';
 
 import { useTodoStore } from './store';
-import { notifyError } from '../adapters/services/notification';
+import { notifyError } from '../services/notification';
 import { serverInitialState } from '../../server/serverInitialState';
 
 export function initStore() {

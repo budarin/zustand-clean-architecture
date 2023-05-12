@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { initStore } from './domain/initStore.tsx';
 
 // components
-import AppContainer from './adapters/containers/App/index.tsx';
+import AppContainer from './containers/App/index.tsx';
 
 initStore();
 

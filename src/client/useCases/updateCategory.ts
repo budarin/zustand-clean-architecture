@@ -1,6 +1,6 @@
 import { useTodoStore } from '../domain/store';
 import { delay } from '../../common/promises/delay';
-import { notifyError } from '../adapters/services/notification';
+import { notifyError } from '../services/notification';
 
 export async function updateCategory(category: Category) {
     const store = useTodoStore.getState();
