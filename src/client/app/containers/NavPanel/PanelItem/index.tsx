@@ -7,7 +7,7 @@ import {
     navigationFilterIcons,
     navigationFilterTypes,
     navigationFilters,
-} from '../../../../../common/domain/navigationFilter/index.ts';
+} from '../../../domain/navigationFilter/index.ts';
 
 // components
 import TodosCountBadgeContainer from '../CountBadge/index.tsx';

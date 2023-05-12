@@ -1,13 +1,13 @@
 import { create } from 'zustand';
 
-import { TodoStoreError } from './_utils/TodoStoreError.tsx';
-import { createSelectors } from './_utils/createSelectors.ts';
+import { TodoStoreError } from './TodoStoreError.tsx';
+import { createSelectors } from './createSelectors.ts';
 import { validateTodoEntity } from './todo/validateTodoEntity.ts';
 import { validateIconEntity } from './icon/validateIconEntity.ts';
+import { updateFilterCounters } from './todo/updateFilterCounters.ts';
 import { validateStatusEntity } from './status/validateStatusEntity.ts';
+import { updateICategoryCounters } from './todo/updateICategoryCounters.ts';
 import { validateCategoryEntity } from './category/validateCategoryEntity.ts';
-import { updateFilterCounters } from './_utils/navFilter/updateFilterCounters.ts';
-import { updateICategoryCounters } from './_utils/navFilter/updateICategoryCounters.ts';
 
 import {
     inboxKey,
@@ -16,7 +16,7 @@ import {
     nextKey,
     recycleBinKey,
     todayKey,
-} from '../../../common/domain/navigationFilter/index.ts';
+} from './navigationFilter/index.ts';
 
 type Actions = {
     // Icon
@@ -225,8 +225,11 @@ const todoStore = create<State & Actions>((set) => ({
     // NavigationFilter
     _setNavigationFilter: (filter: NavigationFilter) => {
         return set((state) => {
-            state.navigationFilter = filter;
+            if (state.navigationFilter.key === filter.key) {
+                return state;
+            }
 
+            state.navigationFilter = filter;
             return { ...state };
         });
     },

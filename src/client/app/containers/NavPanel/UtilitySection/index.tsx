@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { navigationFilterTypes, recycleBinKey } from '../../../../../common/domain/navigationFilter';
+import { navigationFilterTypes, recycleBinKey } from '../../../domain/navigationFilter';
 
 // components
 import NavigationPanelItemContainer from '../PanelItem';

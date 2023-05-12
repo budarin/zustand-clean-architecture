@@ -1,5 +1,5 @@
 import { isEmptyArrayOrUndefined } from './isEmptyArrayOrUndefined';
 
-export function everyIsEmptyArrayOrUndefined(x: UnknownObject): boolean {
+export function everyPropIsEmptyArrayOrUndefined(x: UnknownObject): boolean {
     return Object.values(x).every(isEmptyArrayOrUndefined);
 }

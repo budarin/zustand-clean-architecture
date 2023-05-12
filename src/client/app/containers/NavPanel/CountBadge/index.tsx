@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 
 import { useTodoStore } from '../../../domain/store.tsx';
-import { navigationFilterTypes } from '../../../../../common/domain/navigationFilter/index.ts';
+import { navigationFilterTypes } from '../../../domain/navigationFilter/index.ts';
 
 // components
 import Badge from '../../../../ui/NavPanel/Badge/index.tsx';

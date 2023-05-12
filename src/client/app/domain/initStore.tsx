@@ -1,9 +1,9 @@
 import React from 'react';
 import { unstable_batchedUpdates } from 'react-dom';
 
-import { useTodoStore } from '../store.tsx';
-import { notifyError } from '../../../services/notification/index.ts';
-import { serverInitialState } from '../../../../server/serverInitialState.ts';
+import { useTodoStore } from './store';
+import { notifyError } from '../../services/notification';
+import { serverInitialState } from '../../../server/serverInitialState';
 
 export function initStore() {
     let hasError = false;
