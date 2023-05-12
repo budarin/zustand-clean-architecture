@@ -9,7 +9,6 @@
 
 .create-category-form-input {
     height: 22px;
-    border-radius: 2px;
     width: 180px;
 }
 
@@ -24,6 +23,11 @@
     border-width: 1px;
     border-style: solid;
     border-radius: 2px;
+}
+
+.create-category-form-button:disabled {
+    color: lightgray;
+    filter: grayscale(0.6);
 }
 
 /* icon group */
