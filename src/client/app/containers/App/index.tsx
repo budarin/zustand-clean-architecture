@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import { useMediaQuery } from 'usehooks-ts';
 import { ToastContainer } from 'react-toastify';
+import React, { useEffect, useState } from 'react';
 
-import { delay } from '../../../../common/promises/delay.ts';
-import { deleteCategory } from '../../useCases/deleteCategory.ts';
+import { useTodoStore } from '../../domain/store.tsx';
 
 // components
 import App from '../../../ui/App/index.tsx';
@@ -33,15 +33,28 @@ import '../../../../../assets/refresh.png';
 import '../../../../../assets/trash.gif';
 
 function AppContainer() {
+    const { key } = useTodoStore.use.navigationFilter();
+    const [isNavPaneOpen, setNavPaneOpen] = useState(false);
+    const matches = useMediaQuery('(max-width: 640px)');
+
     useEffect(() => {
-        delay(1000).then(() => {
-            deleteCategory(4);
-        });
-    });
+        if (matches) {
+            isNavPaneOpen && setNavPaneOpen(false);
+        } else {
+            setNavPaneOpen(true);
+        }
+    }, [key, matches]);
+
+    const onToggleNavPan = () => setNavPaneOpen((s) => !s);
 
     return (
         <>
-            <App navigationPanel={<NavigationPanelContainer />} todos={<TodoListViewContainer />} />
+            <App
+                isSmallScreen={matches}
+                toggleNavPane={onToggleNavPan}
+                navigationPanel={<NavigationPanelContainer isOpen={isNavPaneOpen} />}
+                todos={<TodoListViewContainer isOpen={!(matches && isNavPaneOpen)} />}
+            />
             <ToastContainer hideProgressBar={true} />
         </>
     );

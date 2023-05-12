@@ -2,10 +2,6 @@ import React, { useCallback } from 'react';
 import { shallow } from 'zustand/shallow';
 
 import { useTodoStore } from '../../../domain/store.tsx';
-
-// components
-import TodoListContainer from '../index.tsx';
-import TodoList from '../../../../ui/TodoList/index.tsx';
 import {
     NavigationFiltersKey,
     navigationFilterIcons,
@@ -13,7 +9,17 @@ import {
     navigationFilters,
 } from '../../../../../common/domain/navigationFilter/index.ts';
 
-function TodoListViewContainer(): JSX.Element {
+// components
+import TodoListContainer from '../index.tsx';
+import TodoList from '../../../../ui/TodoList/index.tsx';
+
+type TodoListViewContainer = {
+    isOpen: boolean;
+};
+
+function TodoListViewContainer(props: TodoListViewContainer): JSX.Element {
+    const { isOpen } = props;
+
     const selector = useCallback((state: State) => {
         let title = '';
         let icon = '';
@@ -44,7 +50,7 @@ function TodoListViewContainer(): JSX.Element {
     const { icon, title, count } = useTodoStore(selector, shallow);
 
     return (
-        <TodoList category={title} icon={icon} count={count}>
+        <TodoList isOpen={isOpen} category={title} icon={icon} count={count}>
             <TodoListContainer />
         </TodoList>
     );

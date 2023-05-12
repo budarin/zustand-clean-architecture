@@ -6,9 +6,15 @@ import UtilitySectionContainer from './UtilitySection';
 import FiltersSectionContainer from './FiltersSection';
 import CategorySectionContainer from './CategorySection';
 
-function NavigationPanelContainer() {
+type NavigationPanelContainer = {
+    isOpen: boolean;
+};
+
+function NavigationPanelContainer(props: NavigationPanelContainer) {
+    const { isOpen } = props;
+
     return (
-        <NavigationPanel>
+        <NavigationPanel isOpen={isOpen}>
             <FiltersSectionContainer />
             <CategorySectionContainer />
             <UtilitySectionContainer />
