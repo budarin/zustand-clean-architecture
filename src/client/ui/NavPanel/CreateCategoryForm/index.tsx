@@ -5,6 +5,7 @@ import { MAX_CATEGOTY_LENGTH, MIN_CATEGOTY_LENGTH } from '../../../../common/dom
 import './index.css';
 
 type CreatecategoryForm = {
+    icons: Icon[];
     isResetForm: boolean;
     isOpen: boolean;
     inProgress: boolean;
@@ -14,7 +15,7 @@ type CreatecategoryForm = {
 function CreateCategoryForm(props: CreatecategoryForm) {
     const formRef = useRef<HTMLFormElement>(null);
     const catrgoryRef = useRef<HTMLInputElement>(null);
-    const { inProgress, isResetForm, isOpen, onCreateCategory } = props;
+    const { icons, inProgress, isResetForm, isOpen, onCreateCategory } = props;
 
     useEffect(() => {
         if (isOpen && catrgoryRef.current) {
@@ -29,10 +30,11 @@ function CreateCategoryForm(props: CreatecategoryForm) {
     }, [isResetForm]);
 
     return (
-        <div style={{ display: isOpen ? 'block' : 'none' }}>
-            <form className="create-category-form" ref={formRef} onSubmit={onCreateCategory}>
+        <form className="create-category-form" ref={formRef} onSubmit={onCreateCategory}>
+            <div>
                 <input
                     type="text"
+                    name="category"
                     ref={catrgoryRef}
                     className="create-category-form-input"
                     title="Название категории задач"
@@ -40,11 +42,25 @@ function CreateCategoryForm(props: CreatecategoryForm) {
                     maxLength={MAX_CATEGOTY_LENGTH}
                     disabled={Boolean(inProgress)}
                 />
-                <button type="submit" className="create-category-form-button" disabled={Boolean(inProgress)}>
-                    Добавить
-                </button>
-            </form>
-        </div>
+                <div className="create-category-form-icons">
+                    {icons.map((icon, idx) => (
+                        <label key={icon.icon_id} className="create-category-form-icon-label">
+                            <input
+                                className="create-category-form-icon-cb"
+                                type="radio"
+                                name="icon_id"
+                                value={icon.icon_id}
+                                defaultChecked={idx === 0}
+                            />
+                            <img src={icon.icon_name} width={18} height={18} />
+                        </label>
+                    ))}
+                </div>
+            </div>
+            <button type="submit" className="create-category-form-button" disabled={Boolean(inProgress)}>
+                Добавить
+            </button>
+        </form>
     );
 }
 

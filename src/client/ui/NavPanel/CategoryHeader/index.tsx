@@ -1,7 +1,7 @@
 import React, { FormEventHandler, MouseEventHandler, memo } from 'react';
 
 //components
-import CreateCategoryForm from '../CreateCategoryForm';
+import CreateCategoryFormContainer from '../../../app/containers/NavPanel/CreateCategoryForm';
 
 import './index.css';
 
@@ -78,12 +78,14 @@ const CategoryHeader = memo((props: CategoryHeader): JSX.Element => {
                 </button>
             </div>
 
-            <CreateCategoryForm
-                inProgress={inProgress}
-                isResetForm={isResetForm}
-                isOpen={isOpen}
-                onCreateCategory={onCreateCategory}
-            />
+            <div style={{ display: isOpen ? 'flex' : 'none' }} className="category-header-form-container">
+                <CreateCategoryFormContainer
+                    inProgress={inProgress}
+                    isResetForm={isResetForm}
+                    isOpen={isOpen}
+                    onCreateCategory={onCreateCategory}
+                />
+            </div>
         </div>
     );
 });

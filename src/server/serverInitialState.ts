@@ -9,12 +9,11 @@ export const serverInitialState: EntitiesPayload = {
         { icon_id: 7, icon_name: 'bug.png' },
         { icon_id: 8, icon_name: 'cart.png' },
         { icon_id: 9, icon_name: 'favorite.png' },
-        { icon_id: 10, icon_name: 'film.png' },
-        { icon_id: 11, icon_name: 'inbox.png' },
-        { icon_id: 12, icon_name: 'life.png' },
-        { icon_id: 13, icon_name: 'mail.png' },
-        { icon_id: 14, icon_name: 'twitter.png' },
-        { icon_id: 15, icon_name: 'note.png' },
+        { icon_id: 10, icon_name: 'inbox.png' },
+        { icon_id: 11, icon_name: 'life.png' },
+        { icon_id: 12, icon_name: 'mail.png' },
+        { icon_id: 13, icon_name: 'twitter.png' },
+        { icon_id: 14, icon_name: 'note.png' },
     ],
     statuses: [
         {

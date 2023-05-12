@@ -25,11 +25,20 @@ function CategoryHeadersContainer() {
         (event.currentTarget[1] as HTMLInputElement).disabled = inProgress;
 
         if (!inProgress) {
+            const formData = new FormData(event.currentTarget);
+            const category = formData.get('category') as string;
+
+            if (!category) {
+                return;
+            }
+
+            const categoryObject = {
+                category,
+                icon_id: Number(formData.get('icon_id')),
+            };
+
             try {
-                createcategory({
-                    category: (event.currentTarget[0] as HTMLInputElement).value,
-                    icon_id: 1,
-                });
+                createcategory(categoryObject);
             } catch (error) {
                 console.log(error);
             }

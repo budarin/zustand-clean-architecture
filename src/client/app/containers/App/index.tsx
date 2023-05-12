@@ -16,7 +16,6 @@ import '../../../../../assets/ball.png';
 import '../../../../../assets/bug.png';
 import '../../../../../assets/cart.png';
 import '../../../../../assets/favorite.png';
-import '../../../../../assets/film.png';
 import '../../../../../assets/home.png';
 import '../../../../../assets/inbox.png';
 import '../../../../../assets/life.png';
