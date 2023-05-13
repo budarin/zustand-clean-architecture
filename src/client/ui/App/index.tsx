@@ -1,6 +1,6 @@
 import React from 'react';
 
-import icon from '../../../../assets/todolist.svg';
+import icon from '../../../../assets/todolist_.svg';
 
 import './index.css';
 
