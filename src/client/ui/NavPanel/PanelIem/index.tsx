@@ -18,6 +18,7 @@ const NavigationIPanelIem = (props: NavigationIPanelIemProps) => {
     const itemClass = navItem({ selected: checked });
     const imgClass = navItem('image');
     const linkClass = navItem('link');
+    const badgeClass = navItem('badge');
 
     return (
         <li className={itemClass} onClick={handleClick}>
@@ -25,7 +26,7 @@ const NavigationIPanelIem = (props: NavigationIPanelIemProps) => {
             <a href="#" className={linkClass}>
                 {title}
             </a>
-            {children}
+            <span className={badgeClass}>{children}</span>
         </li>
     );
 };

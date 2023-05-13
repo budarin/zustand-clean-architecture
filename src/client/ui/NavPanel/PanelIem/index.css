@@ -2,10 +2,8 @@
     line-height: 2;
     border-bottom: 1px solid #e8e8e8;
 
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-
+    display: flex;
+    align-items: center;
     cursor: pointer;
 }
 
@@ -21,6 +19,12 @@
 .navPanel-item-link {
     text-decoration: none;
     color: black;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    flex: 1;
 }
 
 .navPanel-item-image {
@@ -28,4 +32,8 @@
     height: 18px;
     width: 18px;
     vertical-align: text-bottom;
+}
+
+.navPanel-item-badge {
+    margin-right: 8px;
 }
