@@ -66,6 +66,7 @@ function AppContainer() {
     return (
         <>
             <App
+                isOpen={isNavPaneOpen}
                 isSmallScreen={matches}
                 toggleNavPane={onToggleNavPan}
                 navigationPanel={<NavigationPanelContainer isOpen={isNavPaneOpen} />}
