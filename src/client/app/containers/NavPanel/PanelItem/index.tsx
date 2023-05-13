@@ -12,6 +12,7 @@ import {
 // components
 import TodosCountBadgeContainer from '../CountBadge/index.tsx';
 import NavigationIPanelIem from '../../../../ui/NavPanel/PanelIem/index.tsx';
+import { IconsByNameKey, iconsByName } from '../../iconsByName.ts';
 
 type NavigationPanelItemContainerProps = {
     id: NavigationFilterKey;
@@ -56,6 +57,7 @@ const clickableTagNames = ['A', 'SPAN', 'IMG'];
 const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainerProps): JSX.Element => {
     const { id, navigationType } = props;
     const { icon, isCategory, title, checked } = useTodoStore(selector(id, navigationType), shallow);
+    const iconName = iconsByName[icon as IconsByNameKey];
 
     const handleClick = React.useCallback<MouseEventHandler<HTMLLIElement>>(
         (event) => {
@@ -78,7 +80,7 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainerPr
     );
 
     return (
-        <NavigationIPanelIem title={title} icon={icon} checked={checked} handleClick={handleClick}>
+        <NavigationIPanelIem title={title} icon={iconName} checked={checked} handleClick={handleClick}>
             <TodosCountBadgeContainer id={id} navigationType={navigationType} />
         </NavigationIPanelIem>
     );

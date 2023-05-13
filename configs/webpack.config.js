@@ -15,7 +15,7 @@ module.exports = {
         }),
     ],
     resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.jsx', '.jsm', '.json', '.css', '.mp3', '.svg', '.png'],
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.jsm', '.json', '.css', '.mp3', '.svg', '.png', '.gif'],
         modules: ['node_modules', 'src'],
     },
     module: {
@@ -27,9 +27,6 @@ module.exports = {
             {
                 test: /\.(gif|svg|png)$/,
                 type: 'asset/resource',
-                generator: {
-                    filename: '[name][ext]',
-                },
             },
             {
                 test: /\.(ts|tsx|js|jsx|json)$/,

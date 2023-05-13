@@ -3,6 +3,7 @@ declare module '*.mp3';
 declare module '*.wav';
 declare module '*.svg';
 declare module '*.png';
+declare module '*.gif';
 
 type Optional<T> = T | undefined;
 type List<T> = T[];

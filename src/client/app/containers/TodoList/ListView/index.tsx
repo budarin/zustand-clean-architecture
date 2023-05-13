@@ -12,6 +12,7 @@ import {
 // components
 import TodoListContainer from '../index.tsx';
 import TodoList from '../../../../ui/TodoList/index.tsx';
+import { IconsByNameKey, iconsByName } from '../../iconsByName.ts';
 
 type TodoListViewContainer = {
     isOpen: boolean;
@@ -48,9 +49,10 @@ function TodoListViewContainer(props: TodoListViewContainer): JSX.Element {
     }, []);
 
     const { icon, title, count } = useTodoStore(selector, shallow);
+    const iconName = iconsByName[icon as IconsByNameKey];
 
     return (
-        <TodoList isOpen={isOpen} category={title} icon={icon} count={count}>
+        <TodoList isOpen={isOpen} category={title} icon={iconName} count={count}>
             <TodoListContainer />
         </TodoList>
     );

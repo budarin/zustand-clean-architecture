@@ -3,6 +3,7 @@ import React, { FormEventHandler, useEffect, useRef } from 'react';
 import { MAX_CATEGOTY_LENGTH, MIN_CATEGOTY_LENGTH } from '../../../../common/domain/category/validation';
 
 import './index.css';
+import { IconsByNameKey, iconsByName } from '../../../app/containers/iconsByName';
 
 type CreatecategoryForm = {
     icons: Icon[];
@@ -43,18 +44,22 @@ function CreateCategoryForm(props: CreatecategoryForm) {
                     disabled={Boolean(inProgress)}
                 />
                 <div className="create-category-form-icons">
-                    {icons.map((icon, idx) => (
-                        <label key={icon.icon_id} className="create-category-form-icon-label">
-                            <input
-                                className="create-category-form-icon-cb"
-                                type="radio"
-                                name="icon_id"
-                                value={icon.icon_id}
-                                defaultChecked={idx === 0}
-                            />
-                            <img src={icon.icon_name} width={18} height={18} />
-                        </label>
-                    ))}
+                    {icons.map((icon, idx) => {
+                        const iconName = iconsByName[icon.icon_name as IconsByNameKey];
+
+                        return (
+                            <label key={icon.icon_id} className="create-category-form-icon-label">
+                                <input
+                                    className="create-category-form-icon-cb"
+                                    type="radio"
+                                    name="icon_id"
+                                    value={icon.icon_id}
+                                    defaultChecked={idx === 0}
+                                />
+                                <img src={iconName} width={18} height={18} />
+                            </label>
+                        );
+                    })}
                 </div>
             </div>
             <button type="submit" className="create-category-form-button" disabled={Boolean(inProgress)}>
