@@ -20,6 +20,7 @@
 -   нотификацию сделать сервисом как и localStorage
 -   векторные иконки https://www.svgrepo.com/vectors/add/
 -   проверка на уникальность справочных сущностей (category, status, icon_name)
+-   in small screen touch areas should be minimum 24x24
 
 <!--  -->
 
