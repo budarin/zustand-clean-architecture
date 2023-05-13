@@ -1,5 +1,4 @@
 import { useMediaQuery } from 'usehooks-ts';
-import { ToastContainer } from 'react-toastify';
 import React, { useEffect, useState } from 'react';
 
 import { useTodoStore } from '../../domain/store.tsx';
@@ -64,16 +63,13 @@ function AppContainer() {
     const onToggleNavPan = () => setNavPaneOpen((s) => !s);
 
     return (
-        <>
-            <App
-                isOpen={isNavPaneOpen}
-                isSmallScreen={matches}
-                toggleNavPane={onToggleNavPan}
-                navigationPanel={<NavigationPanelContainer isOpen={isNavPaneOpen} />}
-                todos={<TodoListViewContainer isOpen={!(matches && isNavPaneOpen)} />}
-            />
-            <ToastContainer hideProgressBar={true} />
-        </>
+        <App
+            isOpen={isNavPaneOpen}
+            isSmallScreen={matches}
+            toggleNavPane={onToggleNavPan}
+            navigationPanel={<NavigationPanelContainer isOpen={isNavPaneOpen} />}
+            todos={<TodoListViewContainer isOpen={!(matches && isNavPaneOpen)} />}
+        />
     );
 }
 

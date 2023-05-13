@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
 
 import { useTodoStore } from '../../../domain/store.tsx';
 import { updateTodo } from '../../../useCases/updateTodo.ts';
@@ -13,7 +13,7 @@ const getTodoById = (id: Id) => useCallback((state: State) => state.todos.byId[i
 const getTodoStatus = (status_id: TodoStatusId) =>
     useCallback((state: State) => state.statuses.byId[status_id as Id], [status_id]);
 
-const TodoListItemContainer = (props: TodoListItemContainerProps): JSX.Element => {
+const TodoListItemContainer = memo((props: TodoListItemContainerProps): JSX.Element => {
     const { id } = props;
     const todo = useTodoStore(getTodoById(id));
     const status = useTodoStore(getTodoStatus(todo.status_id));
@@ -35,6 +35,8 @@ const TodoListItemContainer = (props: TodoListItemContainerProps): JSX.Element =
     );
 
     return <TodoListItem todo={todo} status={status} handleChange={handleChangeCheckBox} />;
-};
+});
+
+TodoListItemContainer.displayName = 'TodoListItemContainer';
 
 export default TodoListItemContainer;
