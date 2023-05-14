@@ -21,13 +21,13 @@
     background-color: rgb(206, 227, 255);
 }
 
-@media only screen and (min-width: 640px) {
+@media only screen and (min-width: 641px) {
     .navPanel {
         width: 210px;
     }
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 801px) {
     .navPanel {
         width: 250px;
     }
