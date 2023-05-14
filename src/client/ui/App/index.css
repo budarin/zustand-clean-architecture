@@ -91,3 +91,14 @@ html,
         margin: 0 auto;
     }
 }
+
+@media (pointer: coarse) {
+    /* input[type='checkbox'],
+    input[type='radio'] {
+        min-width: 24px;
+        min-height: 24px;
+        background: transparent;
+    } */
+
+    /* меняем глобально шрифт и размеры для мобил и десктопа */
+}
