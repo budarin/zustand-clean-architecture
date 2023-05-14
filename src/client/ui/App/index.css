@@ -92,6 +92,7 @@ html,
     }
 }
 
+/* меняем глобально шрифт и размеры для мобил и десктопа */
 @media (pointer: coarse) {
     input[type='checkbox'],
     input[type='radio'] {
@@ -100,6 +101,4 @@ html,
         background: transparent;
         margin: 8px;
     }
-
-    /* меняем глобально шрифт и размеры для мобил и десктопа */
 }
