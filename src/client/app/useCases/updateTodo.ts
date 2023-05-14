@@ -19,20 +19,12 @@ export async function updateTodo(todo: Todo) {
 
     store._updateTodo(todo);
 
-    // toast.info('Тодо обновлен', { autoClose: 1000 });
-
     await delay(3000);
 
-    console.log(oldValue);
-
-    notifyError(
-        `Ошибка: не удалось обновить задачу "${
-            oldValue.todo.length <= 15 ? oldValue.todo : oldValue.todo.slice(0, 15) + '...'
-        }" - восстанавливаем`,
-        {
-            toastId: 'server_error_todo' + todo.todo_id,
-        },
-    );
+    const todoTitle = oldValue.todo.length <= 15 ? oldValue.todo : oldValue.todo.slice(0, 15) + '...';
+    notifyError(`Ошибка: не удалось обновить задачу "${todoTitle}" - восстанавливаем`, {
+        toastId: 'server_error_todo' + todo.todo_id,
+    });
 
     store._updateTodo(oldValue);
 

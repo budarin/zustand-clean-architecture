@@ -19,6 +19,8 @@
     margin: 0;
     padding-left: 8px;
     background-color: rgb(206, 227, 255);
+    border-top: 1px solid rgb(206, 227, 255);
+    border-bottom: 1px solid rgb(206, 227, 255);
 }
 
 @media only screen and (min-width: 641px) {
