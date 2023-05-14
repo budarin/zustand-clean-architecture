@@ -8,11 +8,11 @@ import {
     navigationFilterTypes,
     navigationFilters,
 } from '../../../domain/navigationFilter/index.ts';
+import { IconsByNameKey, iconsByName } from '../../iconsByName.ts';
 
 // components
 import TodoListContainer from '../index.tsx';
 import TodoList from '../../../../ui/TodoList/index.tsx';
-import { IconsByNameKey, iconsByName } from '../../iconsByName.ts';
 
 type TodoListViewContainer = {
     isOpen: boolean;

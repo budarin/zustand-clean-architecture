@@ -1,19 +1,19 @@
 import { shallow } from 'zustand/shallow';
 import React, { MouseEventHandler, memo, useCallback, useState } from 'react';
 
-import { useTodoStore } from '../../../domain/store.tsx';
 import {
     NavigationFiltersKey,
     navigationFilterIcons,
     navigationFilterTypes,
     navigationFilters,
 } from '../../../domain/navigationFilter/index.ts';
+import { useTodoStore } from '../../../domain/store.tsx';
+import { IconsByNameKey, iconsByName } from '../../iconsByName.ts';
 
 // components
 import TodosCountBadgeContainer from '../CountBadge/index.tsx';
-import NavigationIPanelIem from '../../../../ui/NavPanel/PanelIem/index.tsx';
-import { IconsByNameKey, iconsByName } from '../../iconsByName.ts';
 import ExpandButton from '../../../../ui/ExpandButton/index.tsx';
+import NavigationIPanelIem from '../../../../ui/NavPanel/PanelIem/index.tsx';
 
 type NavigationPanelItemContainerProps = {
     id: NavigationFilterKey;

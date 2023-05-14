@@ -1,8 +1,9 @@
-import { shallow } from 'zustand/shallow';
 import React, { FormEventHandler } from 'react';
 
-import CreateCategoryForm from '../../../../ui/NavPanel/CreateCategoryForm';
 import { useTodoStore } from '../../../domain/store';
+
+// components
+import CreateCategoryForm from '../../../../ui/NavPanel/CreateCategoryForm';
 
 type CreatecategoryForm = {
     isResetForm: boolean;
@@ -14,7 +15,7 @@ type CreatecategoryForm = {
 const iconsSelector = (state: State) => Object.values(state.icons.byId);
 
 function CreateCategoryFormContainer(props: CreatecategoryForm) {
-    const icons = useTodoStore(iconsSelector, shallow);
+    const icons = useTodoStore(iconsSelector);
     const { inProgress, isResetForm, isOpen, onCreateCategory } = props;
 
     return (
