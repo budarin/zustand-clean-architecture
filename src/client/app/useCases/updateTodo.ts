@@ -23,9 +23,16 @@ export async function updateTodo(todo: Todo) {
 
     await delay(3000);
 
-    notifyError(`Ошибка: не удалось обновить задачу "${oldValue.todo.slice(15)}..." - восстанавливаем`, {
-        toastId: 'server_error_todo' + todo.todo_id,
-    });
+    console.log(oldValue);
+
+    notifyError(
+        `Ошибка: не удалось обновить задачу "${
+            oldValue.todo.length <= 15 ? oldValue.todo : oldValue.todo.slice(0, 15) + '...'
+        }" - восстанавливаем`,
+        {
+            toastId: 'server_error_todo' + todo.todo_id,
+        },
+    );
 
     store._updateTodo(oldValue);
 
