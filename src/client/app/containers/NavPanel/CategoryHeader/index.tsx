@@ -16,7 +16,7 @@ function CategoryHeadersContainer() {
         }
     }, [success]);
 
-    const onHandleIsOpen: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
+    const toggleOpen: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
         setOpen((state) => !state);
     }, []);
 
@@ -50,7 +50,7 @@ function CategoryHeadersContainer() {
     );
 
     return (
-        <CategoryHeader isOpen={isOpen} handleIsOpen={onHandleIsOpen}>
+        <CategoryHeader isOpen={isOpen} toggleOpen={toggleOpen}>
             <CreateCategoryFormContainer
                 inProgress={inProgress}
                 isResetForm={success}

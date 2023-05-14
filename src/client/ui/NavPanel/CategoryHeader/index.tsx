@@ -10,11 +10,11 @@ import './index.css';
 type CategoryHeader = {
     children: ReactNode;
     isOpen: boolean;
-    handleIsOpen: MouseEventHandler<HTMLButtonElement>;
+    toggleOpen: MouseEventHandler<HTMLButtonElement>;
 };
 
 const CategoryHeader = memo((props: CategoryHeader): JSX.Element => {
-    const { children, isOpen, handleIsOpen } = props;
+    const { children, isOpen, toggleOpen } = props;
 
     return (
         <div className="category-header">
@@ -22,7 +22,7 @@ const CategoryHeader = memo((props: CategoryHeader): JSX.Element => {
                 <h2>Категории</h2>
                 <CheckButton
                     checked={isOpen}
-                    onClick={handleIsOpen}
+                    onClick={toggleOpen}
                     unCheckedIcon={<AddIcon className="category-header-button-icon" />}
                     checkedIcon={<CollapseIcon className="category-header-button-icon" />}
                     title={isOpen ? "Свернуть форму 'Добавить категорию'" : 'Добавить категорию'}
