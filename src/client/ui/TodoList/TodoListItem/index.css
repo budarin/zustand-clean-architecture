@@ -1,16 +1,17 @@
 .todoListItem {
     list-style: none;
+
+    display: flex;
+    align-items: center;
+
+    padding: 4px 0;
+    border-bottom: 1px solid #e8e8e8;
 }
 
 @media (hover: hover) {
     .todoListItem:hover {
         background-color: #ffffcc;
     }
-}
-
-.todoListItem-container {
-    padding: 4px 0;
-    border-bottom: 1px solid #e8e8e8;
 }
 
 .todoListItem-checkbox {
@@ -20,5 +21,6 @@
 }
 
 .todoListItem-label {
+    flex: 1;
     cursor: pointer;
 }
