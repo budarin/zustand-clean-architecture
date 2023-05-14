@@ -8,8 +8,9 @@
 }
 
 .create-category-form-input {
-    height: 22px;
+    padding: 4px;
     width: 186px;
+    font-size: 1rem;
 }
 
 .create-category-form-button {
