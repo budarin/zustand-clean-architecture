@@ -1,6 +1,9 @@
 import React, { FormEventHandler, MouseEventHandler, memo } from 'react';
 
 //components
+import AddIcon from '../../Icons/AddIcon';
+import CheckButton from '../../CheckButton';
+import CollapseIcon from '../../Icons/CollapseIcon';
 import CreateCategoryFormContainer from '../../../app/containers/NavPanel/CreateCategoryForm';
 
 import './index.css';
@@ -20,62 +23,13 @@ const CategoryHeader = memo((props: CategoryHeader): JSX.Element => {
         <div className="category-header">
             <div className="category-header-container">
                 <h2>Категории</h2>
-                <button
-                    aria-expanded={isOpen}
-                    className="category-header-button"
-                    title={isOpen ? "Свернуть форму 'Добавить категорию'" : 'Добавить категорию'}
+                <CheckButton
+                    checked={isOpen}
                     onClick={handleIsOpen}
-                >
-                    {isOpen ? (
-                        <svg className="category-header-button-icon" width="24" height="24" viewBox="0 0 24 24">
-                            <path
-                                d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                            <path
-                                d="M 8 14 L 11.962 10.002"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                            <path
-                                d="M 12 10.002 L 15.962 14"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
-                    ) : (
-                        <svg className="category-header-button-icon" width="24" height="24" viewBox="0 0 24 24">
-                            <path
-                                d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                            <path
-                                d="M8 12H16"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                            <path
-                                d="M12 16V8"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
-                    )}
-                </button>
+                    unCheckedIcon={<AddIcon className="category-header-button-icon" />}
+                    checkedIcon={<CollapseIcon className="category-header-button-icon" />}
+                    title={isOpen ? "Свернуть форму 'Добавить категорию'" : 'Добавить категорию'}
+                />
             </div>
 
             <div style={{ display: isOpen ? 'flex' : 'none' }} className="category-header-form-container">

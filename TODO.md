@@ -38,3 +38,4 @@ Unit tests:
 -   на мобилах делать все побольше и не px а rem и em
 
 -   вынести CustomCheckBox в отдельный компонент - collapseable кнопки
+-   удалить из CategoryHeader ->> CreateCategoryFormContainer !!!!

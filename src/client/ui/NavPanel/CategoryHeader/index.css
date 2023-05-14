@@ -14,13 +14,7 @@
     flex: 1;
 }
 
-.category-header-button {
-    padding: 2px;
-    margin: 0 8px;
-    height: 24px;
-    width: 24px;
-    border: 0;
-    cursor: pointer;
+.category-header .checkButton {
     background-color: #cee3ff;
     color: rgb(107, 107, 107);
 }
