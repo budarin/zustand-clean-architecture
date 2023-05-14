@@ -45,7 +45,6 @@
 }
 
 .navPanel-item .expandButton {
-    margin-inline-end: 2px;
     background-color: rgb(207, 255, 159);
     fill: rgb(207, 255, 159);
 }
