@@ -4,6 +4,7 @@ import { useCreateCategory } from '../../../useCases/useCreateCategory';
 
 // components
 import CategoryHeader from '../../../../ui/NavPanel/CategoryHeader';
+import CreateCategoryFormContainer from '../CreateCategoryForm';
 
 function CategoryHeadersContainer() {
     const [isOpen, setOpen] = useState<boolean>(false);
@@ -49,13 +50,14 @@ function CategoryHeadersContainer() {
     );
 
     return (
-        <CategoryHeader
-            isOpen={isOpen}
-            isResetForm={success}
-            handleIsOpen={onHandleIsOpen}
-            inProgress={inProgress}
-            onCreateCategory={onCreateCategory}
-        />
+        <CategoryHeader isOpen={isOpen} handleIsOpen={onHandleIsOpen}>
+            <CreateCategoryFormContainer
+                inProgress={inProgress}
+                isResetForm={success}
+                isOpen={isOpen}
+                onCreateCategory={onCreateCategory}
+            />
+        </CategoryHeader>
     );
 }
 

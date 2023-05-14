@@ -1,23 +1,20 @@
-import React, { FormEventHandler, MouseEventHandler, memo } from 'react';
+import React, { MouseEventHandler, ReactNode, memo } from 'react';
 
 //components
 import AddIcon from '../../Icons/AddIcon';
 import CheckButton from '../../CheckButton';
 import CollapseIcon from '../../Icons/CollapseIcon';
-import CreateCategoryFormContainer from '../../../app/containers/NavPanel/CreateCategoryForm';
 
 import './index.css';
 
 type CategoryHeader = {
+    children: ReactNode;
     isOpen: boolean;
-    isResetForm: boolean;
     handleIsOpen: MouseEventHandler<HTMLButtonElement>;
-    inProgress: boolean;
-    onCreateCategory: FormEventHandler<HTMLFormElement>;
 };
 
 const CategoryHeader = memo((props: CategoryHeader): JSX.Element => {
-    const { isOpen, isResetForm, handleIsOpen, inProgress, onCreateCategory } = props;
+    const { children, isOpen, handleIsOpen } = props;
 
     return (
         <div className="category-header">
@@ -33,12 +30,7 @@ const CategoryHeader = memo((props: CategoryHeader): JSX.Element => {
             </div>
 
             <div style={{ display: isOpen ? 'flex' : 'none' }} className="category-header-form-container">
-                <CreateCategoryFormContainer
-                    inProgress={inProgress}
-                    isResetForm={isResetForm}
-                    isOpen={isOpen}
-                    onCreateCategory={onCreateCategory}
-                />
+                {children}
             </div>
         </div>
     );
