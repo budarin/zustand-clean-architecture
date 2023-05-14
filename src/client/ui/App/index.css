@@ -41,11 +41,9 @@ html,
 }
 
 .app-header-menu-button {
-    padding: 0;
-    margin-left: 8px;
-    margin-right: 4px;
-    height: 24px;
-    width: 24px;
+    padding: 8px;
+    height: 40px;
+    width: 40px;
     border: 0;
     cursor: pointer;
     background-color: white;
