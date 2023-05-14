@@ -31,7 +31,7 @@ function App(props: AppProps) {
                         checkedIcon={<CloseIcon />}
                         onClick={toggleNavPane}
                         className="app-header-menu-button"
-                        title={`${isOpen ? 'Скрыть' : 'Открыть'} панель навигации`}
+                        title={`${isOpen ? 'Скрыть' : 'Показать'} панель навигации`}
                     />
                 ) : null}
             </div>

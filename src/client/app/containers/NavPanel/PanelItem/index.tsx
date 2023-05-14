@@ -90,7 +90,7 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainerPr
             {checked && isCategory ? (
                 <ExpandButton
                     isToggled={expanded}
-                    title={`${expanded ? 'Свернуть' : 'Открыть'} меню`}
+                    title={`${expanded ? 'Свернуть' : 'Показать'} меню`}
                     onClick={handleExpan}
                 />
             ) : (
