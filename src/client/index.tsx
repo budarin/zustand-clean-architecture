@@ -4,8 +4,8 @@ import { createRoot } from 'react-dom/client';
 import { initStore } from './app/domain/initStore.tsx';
 
 // components
-import AppContainer from './app/containers/App/index.tsx';
 import { ToastContainer } from 'react-toastify';
+import AppContainer from './app/containers/App/index.tsx';
 
 initStore();
 
@@ -21,8 +21,9 @@ let rootElement = document.getElementById('root') || createRootElement();
 
 createRoot(rootElement).render(
     <>
-        {/* <StrictMode> */}
-        <AppContainer />,{/* </StrictMode> */}
+        <StrictMode>
+            <AppContainer />,
+        </StrictMode>
         ,
         <ToastContainer hideProgressBar={true} />
     </>,

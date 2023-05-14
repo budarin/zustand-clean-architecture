@@ -1,4 +1,5 @@
-import React, { FormEventHandler } from 'react';
+import { useOnClickOutside } from 'usehooks-ts';
+import React, { FormEventHandler, useRef } from 'react';
 
 import { useTodoStore } from '../../../domain/store';
 
@@ -9,17 +10,24 @@ type CreatecategoryForm = {
     isResetForm: boolean;
     isOpen: boolean;
     inProgress: boolean;
+    toggleOpen: () => void;
     onCreateCategory: FormEventHandler<HTMLFormElement>;
 };
 
 const iconsSelector = (state: State) => Object.values(state.icons.byId);
 
 function CreateCategoryFormContainer(props: CreatecategoryForm) {
+    const formRef = useRef<HTMLFormElement | null>(null);
     const icons = useTodoStore(iconsSelector);
-    const { inProgress, isResetForm, isOpen, onCreateCategory } = props;
+    const { toggleOpen, inProgress, isResetForm, isOpen, onCreateCategory } = props;
+
+    useOnClickOutside(formRef, () => {
+        isOpen && toggleOpen();
+    });
 
     return (
         <CreateCategoryForm
+            ref={formRef}
             icons={icons}
             inProgress={inProgress}
             isResetForm={isResetForm}

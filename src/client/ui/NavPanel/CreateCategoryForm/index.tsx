@@ -1,9 +1,9 @@
-import React, { FormEventHandler, useEffect, useRef } from 'react';
+import React, { FormEventHandler, ForwardedRef, MutableRefObject, Ref, forwardRef, useEffect, useRef } from 'react';
 
+import { IconsByNameKey, iconsByName } from '../../../app/containers/iconsByName';
 import { MAX_CATEGOTY_LENGTH, MIN_CATEGOTY_LENGTH } from '../../../../common/domain/category/validation';
 
 import './index.css';
-import { IconsByNameKey, iconsByName } from '../../../app/containers/iconsByName';
 
 type CreatecategoryForm = {
     icons: Icon[];
@@ -13,26 +13,25 @@ type CreatecategoryForm = {
     onCreateCategory: FormEventHandler<HTMLFormElement>;
 };
 
-function CreateCategoryForm(props: CreatecategoryForm) {
-    const formRef = useRef<HTMLFormElement>(null);
+const CreateCategoryForm = forwardRef((props: CreatecategoryForm, ref: React.ForwardedRef<HTMLFormElement | null>) => {
     const catrgoryRef = useRef<HTMLInputElement>(null);
     const { icons, inProgress, isResetForm, isOpen, onCreateCategory } = props;
     const disabled = Boolean(inProgress);
 
     useEffect(() => {
-        if (isOpen && catrgoryRef.current) {
-            catrgoryRef.current.focus();
+        if (isOpen) {
+            catrgoryRef.current?.focus();
         }
     }, [isOpen]);
 
     useEffect(() => {
-        if (isResetForm) {
-            formRef.current?.reset();
+        if (isResetForm && ref && 'current' in ref) {
+            ref.current?.reset();
         }
     }, [isResetForm]);
 
     return (
-        <form className="create-category-form" ref={formRef} onSubmit={onCreateCategory}>
+        <form ref={ref} className="create-category-form" onSubmit={onCreateCategory}>
             <div>
                 <input
                     type="text"
@@ -69,6 +68,6 @@ function CreateCategoryForm(props: CreatecategoryForm) {
             </button>
         </form>
     );
-}
+});
 
 export default CreateCategoryForm;

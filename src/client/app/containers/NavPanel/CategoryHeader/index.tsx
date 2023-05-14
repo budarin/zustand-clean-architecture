@@ -55,6 +55,7 @@ function CategoryHeadersContainer() {
                 inProgress={inProgress}
                 isResetForm={success}
                 isOpen={isOpen}
+                toggleOpen={toggleOpen as () => void}
                 onCreateCategory={onCreateCategory}
             />
         </CategoryHeader>
