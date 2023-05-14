@@ -27,6 +27,8 @@
 
 .category-header-button-icon {
     fill: #cee3ff;
+    height: 100%;
+    width: 100%;
 }
 
 @media (hover: hover) {

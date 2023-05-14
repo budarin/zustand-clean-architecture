@@ -23,7 +23,7 @@ const NavigationIPanelIem = (props: NavigationIPanelIemProps) => {
             <a href="#" className="navPanel-item-link">
                 {title}
             </a>
-            <span className="navPanel-item-badge">{children}</span>
+            {children}
         </li>
     );
 };

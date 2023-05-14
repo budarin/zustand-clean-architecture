@@ -1,5 +1,4 @@
 .navPanel-item {
-    line-height: 2;
     border-bottom: 1px solid #e8e8e8;
 
     display: flex;
@@ -35,12 +34,25 @@
 }
 
 .navPanel-item-image {
-    margin: 0 8px;
-    height: 18px;
-    width: 18px;
+    margin: 8px;
+    height: 20px;
+    width: 20px;
     vertical-align: text-bottom;
 }
 
 .navPanel-item-badge {
     margin-right: 8px;
+}
+
+.navPanel-item .expandButton {
+    margin-inline-end: 2px;
+    background-color: rgb(207, 255, 159);
+    fill: rgb(207, 255, 159);
+}
+
+@media (hover: hover) {
+    .navPanel-item .expandButton > svg:hover {
+        fill: rgb(88, 177, 0);
+        color: white;
+    }
 }
