@@ -93,12 +93,13 @@ html,
 }
 
 @media (pointer: coarse) {
-    /* input[type='checkbox'],
+    input[type='checkbox'],
     input[type='radio'] {
-        min-width: 24px;
-        min-height: 24px;
+        min-width: 20px;
+        min-height: 20px;
         background: transparent;
-    } */
+        margin: 8px;
+    }
 
     /* меняем глобально шрифт и размеры для мобил и десктопа */
 }

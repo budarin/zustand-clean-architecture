@@ -10,8 +10,15 @@ export const notifyError: typeof toast.error = (content, options?) => {
     return toast.error(content, {
         ...options,
         onOpen: () => {
-            delay(300).then(() => {
-                au.play();
+            delay(250).then(() => {
+                if (
+                    window.matchMedia('(hover: none) and (pointer: coarse)').matches === true &&
+                    'vibrate' in navigator
+                ) {
+                    window.navigator.vibrate(10);
+                } else {
+                    au.play();
+                }
             });
         },
         onClose: () => {

@@ -15,8 +15,7 @@
 
 .todoListItem-checkbox {
     cursor: pointer;
-    margin: 6px 0;
-    margin-right: 4px;
+    margin: 8px;
     margin-left: 12px;
 }
 

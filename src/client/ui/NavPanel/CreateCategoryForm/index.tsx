@@ -17,6 +17,7 @@ function CreateCategoryForm(props: CreatecategoryForm) {
     const formRef = useRef<HTMLFormElement>(null);
     const catrgoryRef = useRef<HTMLInputElement>(null);
     const { icons, inProgress, isResetForm, isOpen, onCreateCategory } = props;
+    const disabled = Boolean(inProgress);
 
     useEffect(() => {
         if (isOpen && catrgoryRef.current) {
@@ -41,7 +42,7 @@ function CreateCategoryForm(props: CreatecategoryForm) {
                     title="Название категории задач"
                     minLength={MIN_CATEGOTY_LENGTH}
                     maxLength={MAX_CATEGOTY_LENGTH}
-                    disabled={Boolean(inProgress)}
+                    disabled={disabled}
                 />
                 <div className="create-category-form-icons">
                     {icons.map((icon, idx) => {
@@ -55,6 +56,7 @@ function CreateCategoryForm(props: CreatecategoryForm) {
                                     name="icon_id"
                                     value={icon.icon_id}
                                     defaultChecked={idx === 0}
+                                    disabled={disabled}
                                 />
                                 <img src={iconName} width={18} height={18} />
                             </label>
@@ -62,7 +64,7 @@ function CreateCategoryForm(props: CreatecategoryForm) {
                     })}
                 </div>
             </div>
-            <button type="submit" className="create-category-form-button" disabled={Boolean(inProgress)}>
+            <button type="submit" className="create-category-form-button" disabled={disabled}>
                 Создать
             </button>
         </form>
