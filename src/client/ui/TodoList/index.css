@@ -10,6 +10,8 @@
     line-height: 2;
     margin: 0;
     background-color: #cfff9f;
+    border-top: 1px solid #cfff9f;
+    border-bottom: 1px solid #cfff9f;
 }
 
 .todoList-header-icon {
