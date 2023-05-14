@@ -61,9 +61,9 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainerPr
     const iconName = iconsByName[icon as IconsByNameKey];
     const [expanded, setExpanded] = useState(false);
 
-    const handleExpan = () => {
+    const handleExpan = useCallback(() => {
         setExpanded((state) => !state);
-    };
+    }, []);
 
     const handleClick = React.useCallback<MouseEventHandler<HTMLLIElement>>(
         (event) => {
@@ -101,6 +101,7 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainerPr
         </NavigationIPanelIem>
     );
 });
+
 NavigationPanelItemContainer.displayName = 'NavigationPanelItemContainer';
 
 export default NavigationPanelItemContainer;

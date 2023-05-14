@@ -1,5 +1,5 @@
 import { useMediaQuery } from 'usehooks-ts';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { useTodoStore } from '../../domain/store.tsx';
 import { delay } from '../../../../common/promises/delay.ts';
@@ -38,7 +38,7 @@ function AppContainer() {
         }
     }, [key, matches]);
 
-    const onToggleNavPan = () => setNavPaneOpen((s) => !s);
+    const onToggleNavPan = useCallback(() => setNavPaneOpen((s) => !s), []);
 
     return (
         <App
