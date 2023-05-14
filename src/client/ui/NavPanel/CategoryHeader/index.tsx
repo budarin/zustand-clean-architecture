@@ -21,7 +21,7 @@ const CategoryHeader = memo((props: CategoryHeader): JSX.Element => {
             <div className="category-header-container">
                 <h2>Категории</h2>
                 <button
-                    key="collapse"
+                    aria-checked={isOpen}
                     className="category-header-button"
                     title={isOpen ? "Свернуть форму 'Добавить категорию'" : 'Добавить категорию'}
                     onClick={handleIsOpen}

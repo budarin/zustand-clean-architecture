@@ -22,6 +22,7 @@ function App(props: AppProps) {
                 <h1 className="app-header-title">Мои Задачи</h1>
                 {isSmallScreen ? (
                     <button
+                        aria-checked={isOpen}
                         onClick={toggleNavPane}
                         className="app-header-menu-button"
                         title={`${isOpen ? 'Скрыть' : 'Открыть'} панель навигации`}
