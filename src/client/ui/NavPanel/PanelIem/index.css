@@ -7,13 +7,20 @@
     cursor: pointer;
 }
 
-.navPanel-item:hover {
-    background-color: #ffffcc;
+@media (hover: hover) {
+    .navPanel-item:hover {
+        background-color: #ffffcc;
+    }
 }
 
-.navPanel-item_selected,
-.navPanel-item_selected:hover {
+.navPanel-item_selected {
     background-color: rgb(207, 255, 159);
+}
+
+@media (hover: hover) {
+    .navPanel-item_selected:hover {
+        background-color: rgb(207, 255, 159);
+    }
 }
 
 .navPanel-item-link {

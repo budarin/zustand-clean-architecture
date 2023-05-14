@@ -2,8 +2,10 @@
     list-style: none;
 }
 
-.todoListItem:hover {
-    background-color: #ffffcc;
+@media (hover: hover) {
+    .todoListItem:hover {
+        background-color: #ffffcc;
+    }
 }
 
 .todoListItem-container {

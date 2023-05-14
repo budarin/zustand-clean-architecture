@@ -22,6 +22,7 @@
 -   проверка на уникальность справочных сущностей (category, status, icon_name)
 -   in small screen touch areas should be minimum 24x24
 -   use https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-restricted-paths.md для ограничения направления использования кода
+-   hover делать только если устройство поддерживает его - @suppots in css
 
 <!--  -->
 

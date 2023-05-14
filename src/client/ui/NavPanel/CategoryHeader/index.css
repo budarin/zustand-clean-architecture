@@ -29,9 +29,12 @@
 .category-header-button-icon {
     fill: #cee3ff;
 }
-.category-header-button-icon:hover {
-    fill: #2e88ff;
-    color: white;
+
+@media (hover: hover) {
+    .category-header-button-icon:hover {
+        fill: #2e88ff;
+        color: white;
+    }
 }
 
 .category-header-form-container {
