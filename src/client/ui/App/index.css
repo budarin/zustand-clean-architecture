@@ -11,6 +11,17 @@ html,
     overflow: hidden;
 }
 
+.visuallyHidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1;
+    width: 1;
+    margin: -1;
+    padding: 0;
+    overflow: hidden;
+    position: absolute;
+}
+
 /* app */
 
 .app {
