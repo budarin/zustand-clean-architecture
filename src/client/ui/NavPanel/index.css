@@ -25,12 +25,18 @@
 
 @media only screen and (min-width: 641px) {
     .navPanel {
-        width: 214px;
+        width: 242px;
     }
 }
 
 @media only screen and (min-width: 801px) {
     .navPanel {
-        width: 250px;
+        width: 300px;
+    }
+}
+
+@media (pointer: coarse) {
+    .navPanel h2 {
+        line-height: 46px;
     }
 }

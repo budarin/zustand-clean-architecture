@@ -22,9 +22,9 @@ let rootElement = document.getElementById('root') || createRootElement();
 createRoot(rootElement).render(
     <>
         <StrictMode>
-            <AppContainer />,
+            <AppContainer />
         </StrictMode>
-        ,
+
         <ToastContainer hideProgressBar={true} />
     </>,
 );

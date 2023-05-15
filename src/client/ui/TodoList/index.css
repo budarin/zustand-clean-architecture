@@ -6,6 +6,9 @@
 }
 
 .todoList-header {
+    display: flex;
+    align-items: center;
+
     font-size: 1.1rem;
     line-height: 2;
     margin: 0;
@@ -17,7 +20,7 @@
 .todoList-header-icon {
     height: 20px;
     width: 20px;
-    margin: 8px;
+    margin: var(--touchAreaPadding, 8px);
     vertical-align: bottom;
 }
 

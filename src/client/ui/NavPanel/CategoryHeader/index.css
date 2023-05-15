@@ -8,12 +8,6 @@
     background-color: rgb(206, 227, 255);
 }
 
-.category-header h4 {
-    line-height: 2;
-    margin: 0;
-    flex: 1;
-}
-
 .category-header .checkButton {
     background-color: #cee3ff;
     color: rgb(107, 107, 107);
@@ -21,8 +15,6 @@
 
 .category-header-button-icon {
     fill: #cee3ff;
-    height: 100%;
-    width: 100%;
 }
 
 @media (hover: hover) {
