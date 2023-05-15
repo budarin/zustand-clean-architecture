@@ -16,16 +16,46 @@ type CreatecategoryForm = {
 
 const iconsSelector = (state: State) => Object.values(state.icons.byId);
 
+let timer: NodeJS.Timeout;
+
+function isNotify(el: HTMLElement): boolean {
+    let parent = el.parentElement;
+
+    while (parent) {
+        if (parent.className === 'Toastify__toast-body') {
+            return true;
+        }
+
+        parent = parent.parentElement;
+    }
+
+    return false;
+}
+
 function CreateCategoryFormContainer(props: CreatecategoryForm) {
-    const formRef = useRef<HTMLFormElement | null>(null);
-    const icons = useTodoStore(iconsSelector);
     const { toggleOpen, inProgress, isResetForm, isOpen, onCreateCategory } = props;
 
-    useOnClickOutside(formRef, () => {
-        setTimeout(() => {
-            isOpen && toggleOpen();
-        }, 200);
-    });
+    const icons = useTodoStore(iconsSelector);
+    const formRef = useRef<HTMLFormElement | null>(null);
+
+    const onClickOutside = (event: Event) => {
+        if (isNotify(event.target as HTMLElement)) {
+            return;
+        }
+
+        if (timer) {
+            clearTimeout(timer);
+        }
+
+        timer = setTimeout(() => {
+            if (isOpen) {
+                toggleOpen();
+                console.log(event);
+            }
+        }, 150);
+    };
+
+    useOnClickOutside(formRef, onClickOutside);
 
     return (
         <CreateCategoryForm
