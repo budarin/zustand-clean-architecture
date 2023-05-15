@@ -2,7 +2,6 @@ import { useMediaQuery } from 'usehooks-ts';
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { useTodoStore } from '../../domain/store.tsx';
-import { waitForServiceWorkerInstallation } from './waitForServiceWorkerInstallation.ts';
 
 // components
 import App from '../../../ui/App/index.tsx';
@@ -21,7 +20,7 @@ function AppContainer() {
     useEffect(() => {
         let mounted = true;
 
-        waitForServiceWorkerInstallation()
+        navigator.serviceWorker.ready
             .then(() => {
                 // Service Worker полностью установлен
                 mounted && console.log('Service Worker установлен.');
