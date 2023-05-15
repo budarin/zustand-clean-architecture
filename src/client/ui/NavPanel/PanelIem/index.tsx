@@ -19,8 +19,8 @@ const NavigationIPanelIem = (props: NavigationIPanelIemProps) => {
 
     return (
         <li className={itemClass} onClick={handleClick}>
-            <img src={icon} className="navPanel-item-icon" />
-            <a href="#" className="navPanel-item-link">
+            <img className="navPanel-item-icon" src={icon} alt="" />
+            <a className="navPanel-item-link" href="#">
                 {title}
             </a>
             {children}

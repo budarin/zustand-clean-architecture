@@ -35,10 +35,10 @@ const CreateCategoryForm = forwardRef((props: CreatecategoryForm, ref: React.For
         <form ref={ref} className="create-category-form" onSubmit={onCreateCategory}>
             <div>
                 <input
+                    className="create-category-form-input"
                     type="text"
                     name="category"
                     ref={catrgoryRef}
-                    className="create-category-form-input"
                     title="Название категории задач"
                     minLength={MIN_CATEGOTY_LENGTH}
                     maxLength={MAX_CATEGOTY_LENGTH}
@@ -58,7 +58,7 @@ const CreateCategoryForm = forwardRef((props: CreatecategoryForm, ref: React.For
                                     defaultChecked={idx === 0}
                                     disabled={disabled}
                                 />
-                                <img src={iconName} width={18} height={18} />
+                                <img src={iconName} width={18} height={18} alt="" />
                             </label>
                         );
                     })}

@@ -29,7 +29,7 @@ const CategoryHeader = memo((props: CategoryHeader): JSX.Element => {
                 />
             </div>
 
-            <div style={{ display: isOpen ? 'flex' : 'none' }} className="category-header-form-container">
+            <div className="category-header-form-container" style={{ display: isOpen ? 'flex' : 'none' }}>
                 {children}
             </div>
         </div>

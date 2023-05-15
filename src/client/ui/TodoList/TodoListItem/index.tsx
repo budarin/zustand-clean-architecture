@@ -14,11 +14,12 @@ const TodoListItem = (props: TodoListItemProps) => {
     return (
         <li className="todoListItem">
             <input
+                className="todoListItem-checkbox"
                 name="completed"
                 type="checkbox"
                 checked={Boolean(todo.completed)}
                 onChange={handleChange}
-                className="todoListItem-checkbox"
+                aria-label="Задача выполнена"
             ></input>
             <span className="todoListItem-label" style={{ color: status.color }}>
                 {todo.todo}

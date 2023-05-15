@@ -14,10 +14,12 @@ function TodoList(props: ListProps) {
     const { isOpen, category, icon, count, children } = props;
 
     return (
-        <div className="todoList" style={{ display: isOpen ? 'block' : 'none' }}>
+        <div className="todoList" style={{ display: isOpen ? 'flex' : 'none' }}>
             <h3 className="todoList-header">
-                <img src={icon} className="todoList-header-icon" /> {category}{' '}
-                <span className="todoList-header-count">{count ? `(${count})` : null}</span>
+                <img className="todoList-header-icon" src={icon} alt="" /> {category}{' '}
+                <span className="todoList-header-count" aria-label="Количество задач в разделе">
+                    {count ? `(${count})` : null}
+                </span>
             </h3>
             <ul className="todoList-list">{children}</ul>
         </div>

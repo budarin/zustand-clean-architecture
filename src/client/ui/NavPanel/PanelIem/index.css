@@ -3,7 +3,8 @@
     align-items: center;
     cursor: pointer;
 
-    border-bottom: 1px solid var(--borderColor);
+    border: 1px solid var(--borderColor);
+    border-top: 0;
 }
 
 @media (hover: hover) {

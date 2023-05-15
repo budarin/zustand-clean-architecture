@@ -1,8 +1,11 @@
 .todoList {
+    display: flex;
+    flex-direction: column;
     flex: 1;
     list-style-type: none;
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 .todoList-header {
@@ -33,4 +36,6 @@
 .todoList-list {
     padding: 0;
     margin: 0;
+    flex: 1;
+    overflow-y: auto;
 }
