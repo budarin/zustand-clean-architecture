@@ -41,7 +41,6 @@ self.addEventListener('fetch', function (event: FetchEvent) {
 
 async function handlePostRequest(request: Request, method: string): Promise<Response> {
     const data = await request.json();
-    console.log('POST', method, data);
 
     switch (method) {
         case 'create_category': {
@@ -58,15 +57,15 @@ async function handlePostRequest(request: Request, method: string): Promise<Resp
         case 'log': {
             switch (data.type) {
                 case 'info': {
-                    log('[INFO]', data);
+                    log('%c[INFO]', 'color: blue; font-weight: bold;', data);
                     break;
                 }
-                case 'warning': {
-                    log('[WARN]', data);
+                case 'warn': {
+                    log('%c[WARN]', 'color: #ff9905; font-weight: bold;', data);
                     break;
                 }
                 case 'error': {
-                    log('[ERROR]', data);
+                    log('%c[ERROR]', 'color: red; font-weight: bold;', data);
                     break;
                 }
                 default:

@@ -39,6 +39,7 @@
   },
   "scripts": {
     "start-client": "webpack-dev-server -c ./webpack.config.js",
+    "build": "set NODE_ENV=production webpack",
     "test": "jest",
     "tsc": "tsc",
     "upgrade deps": "yarn upgrade-interactive --latest;"

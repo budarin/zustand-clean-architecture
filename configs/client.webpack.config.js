@@ -1,9 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const mode = process.env['NODE_ENV'] || 'development';
+const isDev = mode === 'development';
+
 module.exports = {
-    mode: 'development',
-    devtool: 'inline-source-map',
+    mode,
+    devtool: isDev ? 'inline-source-map' : isDev,
     entry: './src/client/index.tsx',
     output: {
         path: path.resolve('./dist'),

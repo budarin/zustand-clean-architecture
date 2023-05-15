@@ -1,7 +1,7 @@
 import { log } from '../api/api';
 import { isString } from '../../../common/validation_utils/isString';
 
-type LogMethods = 'info' | 'warning' | 'error';
+type LogMethods = 'info' | 'warn' | 'error';
 
 function logObject(data: string | UnknownObject, type: LogMethods) {
     const logObj = isString(data)
@@ -18,8 +18,8 @@ function info(data: string | UnknownObject) {
     logObject(data, 'info');
 }
 
-function warning(data: string | UnknownObject) {
-    logObject(data, 'warning');
+function warn(data: string | UnknownObject) {
+    logObject(data, 'warn');
 }
 
 function error(data: string | UnknownObject) {
@@ -28,7 +28,7 @@ function error(data: string | UnknownObject) {
 
 const logger = {
     info,
-    warning,
+    warn,
     error,
 };
 
