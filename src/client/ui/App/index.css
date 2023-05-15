@@ -18,7 +18,7 @@
     --x11: 44px;
 
     /* colors */
-    --primaryColor: hsl(214.29deg 100% 90%);
+    --primaryColor: hsl(214deg 100% 90%);
     --primaryLightColor: hsl(214deg 100% 97%);
     --primaryDarkColor: hsl(214deg 100% 60%);
     --primaryGrayColor: hsl(214deg 34.3% 59.41%);
@@ -29,6 +29,8 @@
     --itemHoverColor: hsl(60deg 100% 90%);
 
     --borderColor: hsl(0deg 0% 90.98%);
+
+    --primaryTextColor: hsl(214.29deg 100% 3%);
 }
 
 body,
@@ -66,6 +68,7 @@ html,
     max-width: 1280px;
     display: flex;
     flex-direction: column;
+    color: var(--primaryTextColor);
 }
 
 .app-header {
