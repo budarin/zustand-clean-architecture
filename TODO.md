@@ -52,3 +52,4 @@ https://mui.com/material-ui/customization/color/
 
 -   создать переменные для CSS
 -   на мобиле когда тело скроллится вниз вверху под линией добавлять тень как в MUI для визуального отделения заголовка от тела
+-   переделать имена классов в сллтветсвии с БЭМ https://ru.bem.info/methodology/naming-convention/#стиль-react

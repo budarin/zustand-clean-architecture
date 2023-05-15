@@ -59,6 +59,11 @@
 }
 
 @media (pointer: coarse) {
+    .nav-item-icon {
+        height: var(--x6);
+        width: var(--x6);
+    }
+
     .nav-item .badge {
         /* fix badge small initial size */
         margin: calc(var(--touchAreaPadding, 8px) + 1px);
