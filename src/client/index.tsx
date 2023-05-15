@@ -6,6 +6,8 @@ import { initStore } from './app/domain/initStore.tsx';
 // components
 import { ToastContainer } from 'react-toastify';
 import AppContainer from './app/containers/App/index.tsx';
+import AnimatedAppIcon from './ui/Icons/LoadingAppIcon/index.tsx';
+import { delay } from '../common/promises/delay.ts';
 
 initStore();
 
@@ -19,24 +21,24 @@ function createRootElement() {
 
 let rootElement = document.getElementById('root') || createRootElement();
 
+createRoot(rootElement).render(
+    <>
+        <StrictMode>
+            <AppContainer />
+        </StrictMode>
+
+        <ToastContainer hideProgressBar={true} />
+    </>,
+);
+
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker
             .register('/sw.js')
-            .then((registration) => {
+            .then(() => {
                 return navigator.serviceWorker.ready;
             })
-            .then(() => {
-                createRoot(rootElement).render(
-                    <>
-                        <StrictMode>
-                            <AppContainer />
-                        </StrictMode>
-
-                        <ToastContainer hideProgressBar={true} />
-                    </>,
-                );
-            })
+            .then(() => {})
             .catch((error) => {
                 console.error('Ошибка при регистрации Service Worker:', error);
             });
