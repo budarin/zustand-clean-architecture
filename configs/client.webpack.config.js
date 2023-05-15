@@ -21,7 +21,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(jpg|png|mp3|aac|ogg)$/,
+                test: /\.(mp3|aac|ogg)$/,
                 type: 'asset/resource',
             },
             {

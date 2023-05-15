@@ -19,12 +19,26 @@ function createRootElement() {
 
 let rootElement = document.getElementById('root') || createRootElement();
 
-createRoot(rootElement).render(
-    <>
-        <StrictMode>
-            <AppContainer />
-        </StrictMode>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {
+                return navigator.serviceWorker.ready;
+            })
+            .then(() => {
+                createRoot(rootElement).render(
+                    <>
+                        <StrictMode>
+                            <AppContainer />
+                        </StrictMode>
 
-        <ToastContainer hideProgressBar={true} />
-    </>,
-);
+                        <ToastContainer hideProgressBar={true} />
+                    </>,
+                );
+            })
+            .catch((error) => {
+                console.error('Ошибка при регистрации Service Worker:', error);
+            });
+    });
+}

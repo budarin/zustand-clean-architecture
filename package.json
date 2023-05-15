@@ -25,6 +25,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.1",
+    "@types/serviceworker": "^0.0.67",
     "babel-jest": "^29.5.0",
     "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.1",
@@ -37,7 +38,7 @@
     "webpack-dev-server": "^4.13.3"
   },
   "scripts": {
-    "start-client": "webpack-dev-server -c ./configs/webpack.config.js",
+    "start-client": "webpack-dev-server -c ./webpack.config.js",
     "test": "jest",
     "tsc": "tsc",
     "upgrade deps": "yarn upgrade-interactive --latest;"
