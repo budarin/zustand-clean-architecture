@@ -36,8 +36,8 @@
 
 .nav-item-icon {
     margin: var(--touchAreaPadding, 8px);
-    height: var(--x5);
-    width: var(--x5);
+    height: var(--x6);
+    width: var(--x6);
     vertical-align: text-bottom;
 }
 

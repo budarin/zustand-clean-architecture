@@ -105,7 +105,7 @@ html,
     width: 100%;
     flex: 1;
     align-items: flex-start;
-    overflow: hidden;
+    overflow: auto;
 }
 
 /* media queries */
