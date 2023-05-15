@@ -8,7 +8,7 @@ import CheckButton from '../CheckButton';
 import './index.css';
 import icon from '../../../../assets/todolist_.svg';
 
-type AppProps = {
+type App = {
     isOpen: boolean;
     isSmallScreen: boolean;
     toggleNavPane: () => void;
@@ -16,7 +16,7 @@ type AppProps = {
     todos: JSX.Element;
 };
 
-function App(props: AppProps) {
+function App(props: App) {
     const { isOpen, isSmallScreen, toggleNavPane, navigationPanel, todos } = props;
 
     return (

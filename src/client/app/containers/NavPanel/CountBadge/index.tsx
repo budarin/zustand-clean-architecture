@@ -6,7 +6,7 @@ import { navigationFilterTypes } from '../../../domain/navigationFilter/index.ts
 // components
 import Badge from '../../../../ui/NavPanel/Badge/index.tsx';
 
-type TodosCountBadgeProps = {
+type TodosCountBadgeContainer = {
     id: NavigationFilterKey;
     navigationType: NavigationFilterType;
 };
@@ -22,7 +22,7 @@ const getTodoCount = (id: NavigationFilterKey, isCategory: boolean) =>
         [id, isCategory],
     );
 
-function TodosCountBadgeContainer(props: TodosCountBadgeProps): JSX.Element {
+function TodosCountBadgeContainer(props: TodosCountBadgeContainer): JSX.Element {
     const { id, navigationType } = props;
     const isCategory = navigationFilterTypes.category === navigationType;
     const count = useTodoStore(getTodoCount(id, isCategory));

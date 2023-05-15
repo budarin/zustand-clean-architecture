@@ -3,7 +3,7 @@ import { cn } from '@bem-react/classname';
 
 import './index.css';
 
-type NavigationIPanelIemProps = {
+type NavigationIPanelIem = {
     title: string;
     icon: string;
     checked: boolean;
@@ -13,7 +13,7 @@ type NavigationIPanelIemProps = {
 
 const navItem = cn('navPanel-item');
 
-const NavigationIPanelIem = (props: NavigationIPanelIemProps) => {
+const NavigationIPanelIem = (props: NavigationIPanelIem) => {
     const { title, icon, checked, handleClick, children } = props;
     const itemClass = navItem({ selected: checked });
 

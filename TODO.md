@@ -11,6 +11,10 @@ Unit tests:
 
 -   svg editor https://boxy-svg.com/app
 
+## color palete
+
+https://mui.com/material-ui/customization/color/
+
 ## todos
 
 -   разобраться как отличать 1й моунт от ремоунта в StrictMode

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 
 import './index.css';
 
-type ListProps = {
+type TodoList = {
     isOpen: boolean;
     category: string;
     icon: string;
@@ -10,7 +10,7 @@ type ListProps = {
     children: ReactNode;
 };
 
-function TodoList(props: ListProps) {
+function TodoList(props: TodoList) {
     const { isOpen, category, icon, count, children } = props;
 
     return (

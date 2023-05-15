@@ -3,12 +3,12 @@ import { useOnClickOutside } from 'usehooks-ts';
 
 import './index.css';
 
-type ListProps = {
+type NavigationPanel = {
     isOpen: boolean;
     children: ReactNode;
 };
 
-function NavigationPanel(props: ListProps) {
+function NavigationPanel(props: NavigationPanel) {
     const { isOpen, children } = props;
 
     return (

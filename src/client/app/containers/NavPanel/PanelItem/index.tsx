@@ -15,7 +15,7 @@ import TodosCountBadgeContainer from '../CountBadge/index.tsx';
 import ExpandButton from '../../../../ui/ExpandButton/index.tsx';
 import NavigationIPanelIem from '../../../../ui/NavPanel/PanelIem/index.tsx';
 
-type NavigationPanelItemContainerProps = {
+type NavigationPanelItemContainer = {
     id: NavigationFilterKey;
     navigationType: NavigationFilterType;
 };
@@ -55,7 +55,7 @@ const selector = (id: NavigationFilterKey, navigationType: NavigationFilterType)
 
 const clickableTagNames = ['A', 'SPAN', 'IMG'];
 
-const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainerProps): JSX.Element => {
+const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainer): JSX.Element => {
     const { id, navigationType } = props;
     const { icon, isCategory, title, checked } = useTodoStore(selector(id, navigationType), shallow);
     const iconName = iconsByName[icon as IconsByNameKey];

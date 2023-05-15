@@ -9,7 +9,6 @@ import { isNotExists } from '../../validation_utils/isNotExists.ts';
 import { validateRawEntity } from '../../validation_utils/validateEntity.ts';
 import { toDefaultBoolean } from '../../validation_utils/toDefaultBoolean.ts';
 
-import type { TypeConverters } from '../../validation_utils/applyEntityConverters.ts';
 import { capitalizeFirstLetter } from '../../capitalizeFirstLetter.ts';
 
 export const MIN_TODO_LENGTH = 5;

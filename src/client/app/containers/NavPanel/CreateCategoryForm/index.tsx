@@ -5,7 +5,7 @@ import { useTodoStore } from '../../../domain/store';
 // components
 import CreateCategoryForm from '../../../../ui/NavPanel/CreateCategoryForm';
 
-type CreatecategoryForm = {
+type CreateCategoryFormContainer = {
     isResetForm: boolean;
     isOpen: boolean;
     inProgress: boolean;
@@ -15,7 +15,7 @@ type CreatecategoryForm = {
 const iconsSelector = (state: State) => Object.values(state.icons.byId);
 
 const CreateCategoryFormContainer = forwardRef(
-    (props: CreatecategoryForm, ref: React.ForwardedRef<HTMLFormElement | null>) => {
+    (props: CreateCategoryFormContainer, ref: React.ForwardedRef<HTMLFormElement | null>) => {
         const { inProgress, isResetForm, isOpen, onCreateCategory } = props;
 
         const icons = useTodoStore(iconsSelector);

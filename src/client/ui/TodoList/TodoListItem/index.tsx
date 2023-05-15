@@ -2,13 +2,13 @@ import React from 'react';
 
 import './index.css';
 
-type TodoListItemProps = {
+type TodoListItem = {
     todo: Todo;
     status: Status;
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const TodoListItem = (props: TodoListItemProps) => {
+const TodoListItem = (props: TodoListItem) => {
     const { todo, status, handleChange } = props;
 
     return (
