@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import { useTodoStore } from '../domain/store';
-import { delay } from '../../../common/promises/delay';
+import { createCategory } from '../../services/api/api';
 import { notifyError } from '../../services/notification';
 import { validateNewCategory } from '../../../common/domain/category/validation';
 
@@ -30,8 +30,7 @@ export function useCreateCategory(): UseCreateCategory {
 
             try {
                 if (entity) {
-                    // fetch
-                    await delay(3000);
+                    await createCategory(entity);
 
                     const numbers = Object.keys(store.categories.byId).map(Number);
                     const newCategoryId = Math.max(...numbers) + 1;

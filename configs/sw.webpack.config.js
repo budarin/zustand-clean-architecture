@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    mode: 'production', //'development',
+    mode: 'development', // 'production'
     devtool: false,
     entry: './src/server/index.ts',
     output: {
