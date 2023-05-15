@@ -1,4 +1,4 @@
-import React, { FormEventHandler, ForwardedRef, MutableRefObject, Ref, forwardRef, useEffect, useRef } from 'react';
+import React, { FormEventHandler, forwardRef, useEffect, useRef } from 'react';
 
 import { IconsByNameKey, iconsByName } from '../../../app/containers/iconsByName';
 import { MAX_CATEGOTY_LENGTH, MIN_CATEGOTY_LENGTH } from '../../../../common/domain/category/validation';
@@ -14,9 +14,10 @@ type CreatecategoryForm = {
 };
 
 const CreateCategoryForm = forwardRef((props: CreatecategoryForm, ref: React.ForwardedRef<HTMLFormElement | null>) => {
-    const catrgoryRef = useRef<HTMLInputElement>(null);
     const { icons, inProgress, isResetForm, isOpen, onCreateCategory } = props;
+
     const disabled = Boolean(inProgress);
+    const catrgoryRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         if (isOpen) {

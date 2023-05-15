@@ -1,13 +1,31 @@
-import React, { FormEventHandler, MouseEventHandler, useCallback, useEffect, useState } from 'react';
+import React, { FormEventHandler, MouseEventHandler, useCallback, useEffect, useRef, useState } from 'react';
 
 import { useCreateCategory } from '../../../useCases/useCreateCategory';
 
 // components
 import CreateCategoryFormContainer from '../CreateCategoryForm';
 import CategoryHeader from '../../../../ui/NavPanel/CategoryHeader';
+import { useOnClickOutside } from 'usehooks-ts';
+
+function isNotify(el: HTMLElement): boolean {
+    let parent = el.parentElement;
+
+    while (parent) {
+        if (parent.className === 'Toastify__toast-body') {
+            return true;
+        }
+
+        parent = parent.parentElement;
+    }
+
+    return false;
+}
+
+let timer: NodeJS.Timeout;
 
 function CategoryHeadersContainer() {
     const [isOpen, setOpen] = useState<boolean>(false);
+    const formRef = useRef<HTMLFormElement | null>(null);
     const [success, inProgress, createcategory] = useCreateCategory();
 
     useEffect(() => {
@@ -19,6 +37,25 @@ function CategoryHeadersContainer() {
     const toggleOpen: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
         setOpen((state) => !state);
     }, []);
+
+    const onClickOutside = (event: Event) => {
+        if (isNotify(event.target as HTMLElement)) {
+            return;
+        }
+
+        if (timer) {
+            clearTimeout(timer);
+        }
+
+        timer = setTimeout(() => {
+            if (isOpen) {
+                setOpen(false);
+                console.log(event);
+            }
+        }, 150);
+    };
+
+    useOnClickOutside(formRef, onClickOutside);
 
     const onCreateCategory: FormEventHandler<HTMLFormElement> = useCallback(
         (event) => {
@@ -52,10 +89,10 @@ function CategoryHeadersContainer() {
     return (
         <CategoryHeader isOpen={isOpen} toggleOpen={toggleOpen}>
             <CreateCategoryFormContainer
+                ref={formRef}
                 inProgress={inProgress}
                 isResetForm={success}
                 isOpen={isOpen}
-                toggleOpen={toggleOpen as () => void}
                 onCreateCategory={onCreateCategory}
             />
         </CategoryHeader>
