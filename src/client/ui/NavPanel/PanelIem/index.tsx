@@ -1,5 +1,6 @@
 import React, { MouseEventHandler, ReactNode } from 'react';
-import { cn } from '@bem-react/classname';
+
+import { cn } from '../../classNames.ts';
 
 import './index.css';
 
