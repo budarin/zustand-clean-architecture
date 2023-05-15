@@ -8,7 +8,9 @@ import { ToastContainer } from 'react-toastify';
 import AppContainer from './app/containers/App/index.tsx';
 
 function loadTodoStore() {
-    fetch('/api/getTodos')
+    fetch('/api/get_todos', {
+        method: 'GET',
+    })
         .then((resp) => {
             return resp.json();
         })
