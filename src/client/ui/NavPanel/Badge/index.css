@@ -4,10 +4,10 @@
     padding: 3px 7px;
     min-width: var(--x5);
 
-    background-color: var(--badgeBgColor);
+    background-color: var(--primaryLightColor);
 
     border-radius: 6px;
-    border: 1px solid var(--borderColor);
+    border: 1px solid var(--primaryColor);
 
     cursor: default;
 }
