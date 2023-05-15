@@ -1,11 +1,11 @@
 import React, { FormEventHandler, MouseEventHandler, useCallback, useEffect, useRef, useState } from 'react';
 
+import { useOnClickOutside } from 'usehooks-ts';
 import { useCreateCategory } from '../../../useCases/useCreateCategory';
 
 // components
 import CreateCategoryFormContainer from '../CreateCategoryForm';
 import CategoryHeader from '../../../../ui/NavPanel/CategoryHeader';
-import { useOnClickOutside } from 'usehooks-ts';
 
 function isNotify(el: HTMLElement): boolean {
     let parent = el.parentElement;

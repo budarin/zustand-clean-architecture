@@ -5,7 +5,11 @@ import './index.css';
 function Badge(props: { count: string | number }) {
     const { count } = props;
 
-    return <span className="badge">{count}</span>;
+    return (
+        <div className="badge">
+            <span>{count}</span>
+        </div>
+    );
 }
 
 export default Badge;

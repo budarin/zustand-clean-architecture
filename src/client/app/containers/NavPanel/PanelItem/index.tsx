@@ -94,9 +94,7 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainer):
                     onClick={handleExpan}
                 />
             ) : (
-                <span className="navPanel-item-badge">
-                    <TodosCountBadgeContainer id={id} navigationType={navigationType} />
-                </span>
+                <TodosCountBadgeContainer id={id} navigationType={navigationType} />
             )}
         </NavigationIPanelIem>
     );

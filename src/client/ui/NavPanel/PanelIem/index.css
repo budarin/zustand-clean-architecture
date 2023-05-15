@@ -1,4 +1,4 @@
-.navPanel-item {
+.nav-item {
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -8,22 +8,22 @@
 }
 
 @media (hover: hover) {
-    .navPanel-item:hover {
+    .nav-item:hover {
         background-color: var(--itemHoverColor);
     }
 }
 
-.navPanel-item_selected {
+.nav-item_selected {
     background-color: var(--secondaryColor);
 }
 
 @media (hover: hover) {
-    .navPanel-item_selected:hover {
+    .nav-item_selected:hover {
         background-color: var(--secondaryColor);
     }
 }
 
-.navPanel-item-link {
+.nav-item-link {
     text-decoration: none;
     color: black;
 
@@ -34,26 +34,25 @@
     flex: 1;
 }
 
-.navPanel-item-icon {
+.nav-item-icon {
     margin: var(--touchAreaPadding, 8px);
     height: var(--x5);
     width: var(--x5);
     vertical-align: text-bottom;
 }
 
-.navPanel-item-badge {
-    height: var(--x6);
+.nav-item .badge {
     margin: var(--touchAreaPadding, 8px);
 }
 
-.navPanel-item .expandButton {
+.nav-item .expandButton {
     background-color: var(--secondaryColor);
     fill: var(--secondaryColor);
     color: gray;
 }
 
 @media (hover: hover) {
-    .navPanel-item .expandButton > svg:hover {
+    .nav-item .expandButton > svg:hover {
         fill: var(--secondaryDarkColor);
         color: white;
     }

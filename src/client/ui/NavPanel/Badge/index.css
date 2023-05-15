@@ -2,12 +2,10 @@
     font-size: var(--x3);
 
     padding: 3px 7px;
-    min-width: var(--x5);
-
-    background-color: var(--primaryLightColor);
 
     border-radius: 6px;
     border: 1px solid var(--primaryColor);
 
+    background-color: var(--primaryLightColor);
     cursor: default;
 }
