@@ -41,7 +41,7 @@
 }
 
 .navPanel-item-badge {
-    height: 20px;
+    height: 24px;
     margin: var(--touchAreaPadding, 8px);
 }
 
