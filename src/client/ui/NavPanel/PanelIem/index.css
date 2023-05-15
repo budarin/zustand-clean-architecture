@@ -57,3 +57,10 @@
         color: white;
     }
 }
+
+@media (pointer: coarse) {
+    .nav-item .badge {
+        /* fix badge small initial size */
+        margin: calc(var(--touchAreaPadding, 8px) + 1px);
+    }
+}
