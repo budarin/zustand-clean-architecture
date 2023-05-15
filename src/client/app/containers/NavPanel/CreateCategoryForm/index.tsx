@@ -22,7 +22,9 @@ function CreateCategoryFormContainer(props: CreatecategoryForm) {
     const { toggleOpen, inProgress, isResetForm, isOpen, onCreateCategory } = props;
 
     useOnClickOutside(formRef, () => {
-        isOpen && toggleOpen();
+        setTimeout(() => {
+            isOpen && toggleOpen();
+        }, 200);
     });
 
     return (
