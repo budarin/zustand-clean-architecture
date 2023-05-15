@@ -3,9 +3,8 @@ import { unstable_batchedUpdates } from 'react-dom';
 
 import { useTodoStore } from './store';
 import { notifyError } from '../../services/notification';
-import { serverInitialState } from '../../../server/serverInitialState';
 
-export function initStore() {
+export function initStore(data: EntitiesPayload) {
     let hasError = false;
 
     const {
@@ -15,7 +14,7 @@ export function initStore() {
         _createTodo: createTodo,
     } = useTodoStore.getState();
 
-    const { icons, statuses, categories, todos } = serverInitialState;
+    const { icons, statuses, categories, todos } = data;
 
     unstable_batchedUpdates(() => {
         icons?.forEach((icon) => {

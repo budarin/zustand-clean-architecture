@@ -6,10 +6,32 @@ import { initStore } from './app/domain/initStore.tsx';
 // components
 import { ToastContainer } from 'react-toastify';
 import AppContainer from './app/containers/App/index.tsx';
-import AnimatedAppIcon from './ui/Icons/LoadingAppIcon/index.tsx';
-import { delay } from '../common/promises/delay.ts';
 
-initStore();
+function loadTodoStore() {
+    fetch('/api/getTodos')
+        .then((resp) => {
+            return resp.json();
+        })
+        .then((data) => {
+            initStore(data);
+        });
+}
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.ready.then((registration) => {
+        if (!registration) {
+            return;
+        }
+
+        if (registration.active?.state === 'activated') {
+            loadTodoStore();
+        } else {
+            registration.active?.addEventListener('statechange', () => {
+                loadTodoStore();
+            });
+        }
+    });
+}
 
 function createRootElement() {
     const root = document.createElement('div');
@@ -30,17 +52,3 @@ createRoot(rootElement).render(
         <ToastContainer hideProgressBar={true} />
     </>,
 );
-
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker
-            .register('/sw.js')
-            .then(() => {
-                return navigator.serviceWorker.ready;
-            })
-            .then(() => {})
-            .catch((error) => {
-                console.error('Ошибка при регистрации Service Worker:', error);
-            });
-    });
-}
