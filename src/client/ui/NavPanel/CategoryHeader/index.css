@@ -3,28 +3,28 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 8px;
+    gap: var(--x2);
 
-    background-color: rgb(206, 227, 255);
+    background-color: var(--primaryColor);
 }
 
 .category-header .checkButton {
-    background-color: #cee3ff;
-    color: rgb(107, 107, 107);
+    background-color: var(--primaryColor);
+    color: gray;
 }
 
 .category-header-button-icon {
-    fill: #cee3ff;
+    fill: var(--primaryColor);
 }
 
 @media (hover: hover) {
     .category-header-button-icon:hover {
-        fill: #2e88ff;
+        fill: var(--primaryDarkColor);
         color: white;
     }
 }
 
 .category-header-form-container {
-    border: 1px solid #e8e8e8;
-    background-color: #f3f8ff;
+    border: 1px solid var(--borderColor);
+    background-color: var(--primaryLightColor);
 }

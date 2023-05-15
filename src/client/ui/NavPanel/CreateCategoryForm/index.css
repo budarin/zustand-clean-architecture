@@ -1,25 +1,25 @@
 /* form */
 
 .create-category-form {
-    padding: 8px;
+    padding: var(--x2);
     text-align: right;
     width: 196px;
     margin-left: auto;
 }
 
 .create-category-form-input {
-    padding: 4px;
+    padding: var(--x);
     width: 186px;
     font-size: 1rem;
 }
 
 .create-category-form-button {
-    padding: 8px 16px;
-    margin-left: 8px;
+    padding: var(--x2) var(--x4);
+    margin-left: var(--x2);
 
     font-weight: bold;
     color: white;
-    background-color: #2e88ff;
+    background-color: var(--primaryDarkColor);
     cursor: pointer;
     border-width: 1px;
     border-style: solid;
@@ -27,15 +27,15 @@
 }
 
 .create-category-form-button:disabled {
-    color: lightgray;
-    background-color: #7493bb;
+    color: var(--borderColor);
+    background-color: var(--primaryGrayColor);
 }
 
 /* icon group */
 .create-category-form-icons {
     text-align: end;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin-top: var(--x2);
+    margin-bottom: var(--x2);
 }
 
 .create-category-form-icon-cb {
@@ -48,27 +48,27 @@
 
 .create-category-form-icon-cb + img {
     padding: 2px;
-    border: 2px solid #f3f8ff;
+    border: 2px solid var(--borderColor);
     cursor: pointer;
 }
 
 .create-category-form-icon-cb:checked + img {
-    border: 2px solid #2e88ff;
+    border: 2px solid var(--primaryDarkColor);
 }
 
 @media only screen and (min-width: 641px) {
     .create-category-form {
-        padding: 8px;
+        padding: var(--x2);
     }
 }
 
 @media (pointer: coarse) {
     .create-category-form-button {
-        padding: var(--touchAreaPadding, 8px) 16px;
+        padding: var(--touchAreaPadding, 8px) var(--x4);
     }
 
     .create-category-form-icon-cb + img {
-        padding: 4px;
+        padding: var(--x);
     }
 
     .create-category-form {

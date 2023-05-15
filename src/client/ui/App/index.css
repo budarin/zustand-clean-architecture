@@ -4,6 +4,32 @@
 
     /* app */
     --touchAreaPadding: 8px;
+
+    --x: 4px;
+    --x2: 8px;
+    --X3: 12px;
+    --x4: 16px;
+    --x5: 20px;
+    --x6: 24px;
+    --x7: 28px;
+    --x8: 32px;
+    --x9: 36px;
+    --x10: 40px;
+    --x11: 44px;
+
+    /* colors */
+    --primaryColor: hsl(214.29deg 100% 90%);
+    --primaryLightColor: hsl(214deg 100% 97%);
+    --primaryDarkColor: hsl(214deg 100% 60%);
+    --primaryGrayColor: hsl(214deg 34.3% 59.41%);
+
+    --secondaryColor: hsl(90deg 100% 80%);
+    --secondaryDarkColor: hsl(90.17deg 100% 35%);
+
+    --itemHoverColor: hsl(60deg 100% 90%);
+
+    --borderColor: hsl(0deg 0% 90.98%);
+    --badgeBgColor: hsl(0deg 0% 96.08%);
 }
 
 body,
@@ -36,7 +62,7 @@ html,
 .app {
     height: 100%;
     overflow: auto;
-    padding: 0 4px;
+    padding: 0 var(--x);
     block-size: 100%;
     max-width: 1280px;
     display: flex;
@@ -44,15 +70,15 @@ html,
 }
 
 .app-header {
-    border-bottom: 1px solid #e8e8e8;
+    border-bottom: 1px solid var(--borderColor);
     display: flex;
     align-items: center;
 }
 
 .app-header-menu-button {
     margin: var(--touchAreaPadding, 8px);
-    height: 40px;
-    width: 40px;
+    height: var(--x10);
+    width: var(--x10);
     border: 0;
     cursor: pointer;
     background-color: white;
@@ -60,11 +86,11 @@ html,
 }
 
 .app-header-icon {
-    height: 32px;
-    width: 32px;
+    height: var(--x8);
+    width: var(--x8);
     vertical-align: text-bottom;
-    margin-right: 8px;
-    margin-left: 4px;
+    margin-right: var(--x2);
+    margin-left: var(--x2);
 }
 
 .app-header-title {
@@ -85,13 +111,13 @@ html,
 
 @media only screen and (min-width: 641px) {
     .app {
-        padding: 0 8px;
+        padding: 0 var(--x2);
     }
 
     .app-container {
         display: flex;
         flex-direction: row;
-        gap: 16px;
+        gap: var(--x4);
     }
 
     .app-header {
@@ -114,8 +140,8 @@ html,
 @media (pointer: coarse) {
     input[type='checkbox'],
     input[type='radio'] {
-        min-width: 20px;
-        min-height: 20px;
+        min-width: var(--x5);
+        min-height: var(--x5);
         background: transparent;
         margin: var(--touchAreaPadding, 8px);
     }

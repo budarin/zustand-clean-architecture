@@ -1,10 +1,10 @@
 .navPanel {
     width: 100%;
 
-    border-top: 1px solid #e8e8e8;
-    border-left: 1px solid #e8e8e8;
-    border-right: 1px solid #e8e8e8;
-    margin-bottom: 32px;
+    border: 1px solid var(--borderColor);
+    border-bottom: 0;
+
+    margin-bottom: var(--x8);
 }
 
 .navPanel ul {
@@ -17,21 +17,15 @@
     font-size: 1.1rem;
     line-height: 2;
     margin: 0;
-    padding-left: 8px;
-    background-color: rgb(206, 227, 255);
-    border-top: 1px solid rgb(206, 227, 255);
-    border-bottom: 1px solid rgb(206, 227, 255);
+    padding-left: var(--x2);
+    background-color: var(--primaryColor);
+    border-top: 1px solid var(--primaryColor);
+    border-bottom: 1px solid var(--primaryColor);
 }
 
 @media only screen and (min-width: 641px) {
     .navPanel {
         width: 242px;
-    }
-}
-
-@media only screen and (min-width: 801px) {
-    .navPanel {
-        width: 300px;
     }
 }
 
