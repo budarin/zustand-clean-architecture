@@ -56,7 +56,6 @@ jobs:
             - name: build
               run: |
                   yarn build
-                  cp -R dist/. docs/
 
             - name: Commit and push changes
               run: |
