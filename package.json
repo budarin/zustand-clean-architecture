@@ -39,9 +39,10 @@
     },
     "scripts": {
         "start-client": "webpack-dev-server -c ./webpack.config.js",
-        "build": "sh ./build.sh",
+        "build": "sh ./scripts/build.sh",
         "test": "jest",
         "tsc": "tsc",
+        "branche-refresh": "sh ./scripts/branch-refresh.sh",
         "upgrade deps": "yarn upgrade-interactive --latest;"
     }
 }
