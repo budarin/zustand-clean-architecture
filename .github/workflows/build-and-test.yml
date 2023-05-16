@@ -62,7 +62,9 @@ jobs:
                   if [[ -n $(git status --porcelain) ]]; then
                     echo "Changes detected"
                     
-                    git config --local user.email "github-actions[bot]@github.com"
+                    export GIT_AUTHOR_NAME="github-actions[bot]"
+                    export GIT_AUTHOR_EMAIL=""
+                    
                     git add .
                     git commit -m "ci changes"
                     git push origin HEAD:refs/heads/${{ github.head_ref }} -f
