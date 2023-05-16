@@ -56,7 +56,6 @@ jobs:
             - name: build
               run: |
                   yarn build
-                  yarn postbuild
 
             - name: Check for changes in dist folder
               id: check_changes
