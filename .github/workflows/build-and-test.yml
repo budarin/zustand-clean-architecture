@@ -61,7 +61,7 @@ jobs:
             - name: Check for changes in dist folder
               id: check_changes
               run: |
-                  git diff --quiet --exit-code -- dist/
+                  git diff --quiet --exit-code -- docs/
                   echo "::set-output name=has_changes::$(if [ $? -eq 1 ]; then echo 'true'; else echo 'false'; fi)"
 
             - name: Commit and push changes
