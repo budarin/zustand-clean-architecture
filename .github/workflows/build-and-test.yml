@@ -20,10 +20,9 @@ on:
             - '.dockerignore'
             - '.editorconfig'
             - '.env.*'
-            - 'scripts/benchmark-code/**'
 
 permissions:
-    contents: read # to fetch code (actions/checkout)
+    contents: write # to fetch code (actions/checkout)
 
 jobs:
     build:
@@ -61,6 +60,6 @@ jobs:
               run: |
                   git config --local user.email "github-actions[bot]@github.com"
                   git config --local user.name "github-actions[bot]"
-                  git add build/.
-                  git commit -m "build"
-                  git push origin master
+                  git add dist/.
+                  git commit -m "dist"
+                  git push origin HEAD:refs/heads/${{ github.head_ref }} -f
