@@ -57,10 +57,8 @@ jobs:
               run: |
                   yarn build
                   cp -R dist/. docs/
-                  ls
 
             - name: Commit and push changes
-              if: ${{ steps.check_changes.outputs.has_changes == 'true' }}
               run: |
                   if [[ -n $(git status --porcelain) ]]; then
                     echo "Changes detected"
