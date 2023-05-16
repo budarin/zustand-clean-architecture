@@ -63,7 +63,7 @@ jobs:
               id: check_changes
               run: |
                   git fetch
-                  if [ -n $(git diff --name-only HEAD) ]; then
+                  if [[ -n $(git status --porcelain) ]]; then
                     echo "Changes detected"
                     echo "has_changes=true" >> $GITHUB_ENV
                   else
