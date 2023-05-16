@@ -1,4 +1,4 @@
-import React, { FormEventHandler, MouseEventHandler, useCallback, useEffect, useRef, useState } from 'react';
+import React, { FormEventHandler, MouseEventHandler, memo, useCallback, useEffect, useRef, useState } from 'react';
 
 import { useOnClickOutside } from 'usehooks-ts';
 import { logger } from '../../../../services/logger';
@@ -24,7 +24,7 @@ function isNotify(el: HTMLElement): boolean {
 
 let timer: NodeJS.Timeout;
 
-function CategoryHeadersContainer() {
+const CategoryHeadersContainer = memo(function () {
     const [isOpen, setOpen] = useState<boolean>(false);
     const formRef = useRef<HTMLFormElement | null>(null);
     const [success, inProgress, createcategory] = useCreateCategory();
@@ -97,6 +97,8 @@ function CategoryHeadersContainer() {
             />
         </CategoryHeader>
     );
-}
+});
+
+CategoryHeadersContainer.displayName = 'CategoryHeadersContainer';
 
 export default CategoryHeadersContainer;

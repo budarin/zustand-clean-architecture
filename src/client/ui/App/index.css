@@ -30,7 +30,7 @@
 
     --borderColor: hsl(0deg 0% 90.98%);
 
-    --primaryTextColor: hsl(214.29deg 100% 5%);
+    --primaryTextColor: hsl(214.29deg 100% 10%);
 }
 
 body,
@@ -134,6 +134,12 @@ html,
     .app {
         padding: 0;
         margin: 0 auto;
+    }
+}
+
+@media only screen and (min-width: 800px) and (min-height: 640px) {
+    .app-header {
+        height: 80px;
     }
 }
 

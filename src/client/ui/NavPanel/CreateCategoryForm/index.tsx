@@ -71,4 +71,6 @@ const CreateCategoryForm = forwardRef((props: CreatecategoryForm, ref: React.For
     );
 });
 
+CreateCategoryForm.displayName = 'CreateCategoryForm';
+
 export default CreateCategoryForm;
