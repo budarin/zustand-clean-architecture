@@ -42,6 +42,7 @@
         "build": "sh ./scripts/build.sh",
         "test": "jest",
         "tsc": "tsc",
+        "postinstall": "sh ./scripts/postinstall.sh",
         "branche-refresh": "sh ./scripts/branch-refresh.sh",
         "upgrade deps": "yarn upgrade-interactive --latest;"
     }
