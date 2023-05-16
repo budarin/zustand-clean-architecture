@@ -1,3 +1,9 @@
+export declare global {
+    interface Window {
+        loading: Promise<void>;
+    }
+}
+
 declare module '*.module.css';
 declare module '*.mp3';
 declare module '*.wav';

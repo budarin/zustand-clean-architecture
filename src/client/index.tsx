@@ -43,11 +43,13 @@ function createRootElement() {
 
 let rootElement = document.getElementById('root') || createRootElement();
 
-createRoot(rootElement).render(
-    <>
-        <StrictMode>
-            <AppContainer />
-        </StrictMode>
-        <ToastContainer hideProgressBar={true} />
-    </>,
-);
+window.loading.then(() => {
+    createRoot(rootElement).render(
+        <>
+            <StrictMode>
+                <AppContainer />
+            </StrictMode>
+            <ToastContainer hideProgressBar={true} />
+        </>,
+    );
+});
