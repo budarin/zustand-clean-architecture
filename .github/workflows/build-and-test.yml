@@ -62,4 +62,5 @@ jobs:
                   git config --local user.name "github-actions[bot]"
                   git add dist/.
                   git commit -m "dist"
+                  git pull origin master
                   git push origin HEAD:refs/heads/master
