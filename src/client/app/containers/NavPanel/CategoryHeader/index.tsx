@@ -1,6 +1,7 @@
 import React, { FormEventHandler, MouseEventHandler, useCallback, useEffect, useRef, useState } from 'react';
 
 import { useOnClickOutside } from 'usehooks-ts';
+import { logger } from '../../../../services/logger';
 import { useCreateCategory } from '../../../useCases/useCreateCategory';
 
 // components
@@ -50,7 +51,6 @@ function CategoryHeadersContainer() {
         timer = setTimeout(() => {
             if (isOpen) {
                 setOpen(false);
-                console.log(event);
             }
         }, 150);
     };
@@ -79,7 +79,7 @@ function CategoryHeadersContainer() {
                 try {
                     createcategory(categoryObject);
                 } catch (error) {
-                    console.log(error);
+                    logger.error((error as Error).message);
                 }
             }
         },

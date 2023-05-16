@@ -26,10 +26,8 @@ function error(data: string | UnknownObject) {
     logObject(data, 'error');
 }
 
-const logger = {
+export const logger = {
     info,
     warn,
     error,
 };
-
-export default logger;

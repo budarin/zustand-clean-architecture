@@ -3,7 +3,7 @@ import { serverInitialState } from './serverInitialState';
 const apiPattern = '/api/';
 const jsonHeader = { 'Content-Type': 'application/json; charset=utf-8' };
 
-const { log, warn, error } = console;
+const { log } = console;
 
 self.addEventListener('fetch', function (event: FetchEvent) {
     var requestUrl = new URL(event.request.url);
@@ -41,6 +41,7 @@ self.addEventListener('fetch', function (event: FetchEvent) {
 
 async function handlePostRequest(request: Request, method: string): Promise<Response> {
     const data = await request.json();
+    // console.log('POST', method, data);
 
     switch (method) {
         case 'create_category': {
@@ -86,7 +87,7 @@ async function handlePostRequest(request: Request, method: string): Promise<Resp
 
 async function handlePatchRequest(request: Request, method: string): Promise<Response> {
     const data = await request.json();
-    console.log('PATCH', method, data);
+    // console.log('PATCH', method, data);
 
     switch (method) {
         case 'update_category': {
@@ -108,7 +109,7 @@ async function handlePatchRequest(request: Request, method: string): Promise<Res
 
 async function handleDeleteRequest(request: Request, method: string): Promise<Response> {
     const data = await request.json();
-    console.log('DELETE', method, data);
+    // console.log('DELETE', method, data);
 
     switch (method) {
         case 'delete_category': {

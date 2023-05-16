@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
+import { logger } from '../../services/logger';
 import { useTodoStore } from '../domain/store';
 import { createCategory } from '../../services/api/api';
 import { notifyError } from '../../services/notification';
@@ -48,7 +49,7 @@ export function useCreateCategory(): UseCreateCategory {
                     toastId: 'create_todo_error' + category.category,
                 });
 
-                console.log(error);
+                logger.error((error as Error).message);
             } finally {
                 setInProgress(false);
             }

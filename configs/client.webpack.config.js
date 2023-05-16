@@ -51,6 +51,7 @@ module.exports = {
     },
 
     devServer: {
+        port: 3000,
         client: {
             overlay: false,
         },
@@ -58,10 +59,9 @@ module.exports = {
             publicPath: '/dist',
             directory: './dist',
         },
-        open: false,
-        port: 3000,
-        compress: true,
         hot: true,
+        open: false,
+        compress: true,
         historyApiFallback: true,
     },
 };
