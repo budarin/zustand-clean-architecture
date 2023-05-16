@@ -1,4 +1,4 @@
-import React, { FormEventHandler, forwardRef } from 'react';
+import React, { FormEventHandler, forwardRef, memo } from 'react';
 
 import { useTodoStore } from '../../../domain/store';
 
@@ -14,8 +14,8 @@ type CreateCategoryFormContainer = {
 
 const iconsSelector = (state: State) => Object.values(state.icons.byId);
 
-const CreateCategoryFormContainer = forwardRef(
-    (props: CreateCategoryFormContainer, ref: React.ForwardedRef<HTMLFormElement | null>) => {
+const CreateCategoryFormContainer = memo(
+    forwardRef(function (props: CreateCategoryFormContainer, ref: React.ForwardedRef<HTMLFormElement | null>) {
         const { inProgress, isResetForm, isOpen, onCreateCategory } = props;
 
         const icons = useTodoStore(iconsSelector);
@@ -30,7 +30,9 @@ const CreateCategoryFormContainer = forwardRef(
                 onCreateCategory={onCreateCategory}
             />
         );
-    },
+    }),
 );
+
+CreateCategoryFormContainer.displayName = 'CreateCategoryFormContainer';
 
 export default CreateCategoryFormContainer;
