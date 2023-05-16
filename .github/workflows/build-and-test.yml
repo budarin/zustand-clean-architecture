@@ -57,6 +57,7 @@ jobs:
               run: |
                   yarn build
                   cp -R dist/. docs/
+                  ls
 
             - name: Check for changes
               id: check_changes
