@@ -9,6 +9,8 @@
 }
 
 .category-header .checkButton {
+    height: var(--x5);
+    width: var(--x5);
     background-color: var(--primaryColor);
     color: gray;
 }
@@ -27,4 +29,11 @@
 .category-header-form-container {
     border: 1px solid var(--borderColor);
     background-color: var(--primaryLightColor);
+}
+
+@media (pointer: coarse) {
+    .category-header .checkButton {
+        height: var(--x6);
+        width: var(--x6);
+    }
 }
