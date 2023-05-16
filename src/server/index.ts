@@ -1,5 +1,6 @@
 import { serverInitialState } from './serverInitialState';
 
+const VERSION = '1.0.0';
 const apiPattern = '/api/';
 const jsonHeader = { 'Content-Type': 'application/json; charset=utf-8' };
 
