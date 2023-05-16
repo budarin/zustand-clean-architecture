@@ -56,6 +56,7 @@ jobs:
             - name: build
               run: |
                   yarn build
+                  cp -R dist/. docs/
 
             - name: Check for changes in dist folder
               id: check_changes
