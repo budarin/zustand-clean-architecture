@@ -58,11 +58,11 @@ jobs:
                   yarn build
                   cp -R dist/. docs/
 
-            - name: Check for changes in dist folder
+            - name: Check for changes
               id: check_changes
               run: |
                   git fetch
-                  if [[ -n $(git status --porcelain) ]]; then
+                  if [ -n $(git diff --name-only HEAD) ]; then
                     echo "Changes detected"
                     echo "has_changes=true" >> $GITHUB_ENV
                   else
