@@ -62,4 +62,4 @@ jobs:
                   git config --local user.name "github-actions[bot]"
                   git add dist/.
                   git commit -m "dist"
-                  git push origin ${{ github.ref_name }}
+                  git push origin master
