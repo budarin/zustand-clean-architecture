@@ -6,7 +6,7 @@ module.exports = {
             {
                 useBuiltIns: true,
                 runtime: 'automatic',
-                development: true,
+                development: process.env['NODE_ENV'] !== 'production',
             },
         ],
         '@babel/preset-typescript',
