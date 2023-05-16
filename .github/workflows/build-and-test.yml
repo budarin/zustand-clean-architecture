@@ -1,4 +1,4 @@
-name: Raketa service
+name: My todos
 
 on:
     pull_request:
