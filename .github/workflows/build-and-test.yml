@@ -62,7 +62,6 @@ jobs:
             - name: Check for changes
               id: check_changes
               run: |
-                  git pull origin ${{ env.GITHUB_REF }}
                   if [[ -n $(git status --porcelain) ]]; then
                     echo "Changes detected"
                     echo "has_changes=true" >> $GITHUB_ENV
