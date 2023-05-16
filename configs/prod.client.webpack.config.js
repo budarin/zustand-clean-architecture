@@ -1,12 +1,23 @@
 const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
-    devtool: 'inline-source-map',
+    mode: 'production',
+    devtool: false,
     entry: './src/client/index.tsx',
+    cache: {
+        type: 'filesystem',
+    },
     output: {
         path: path.resolve('./dist'),
+        filename: '[name].[contenthash].js',
+        compareBeforeEmit: true,
+    },
+    optimization: {
+        minimize: true,
+        minimizer: [new TerserPlugin()],
+        concatenateModules: true,
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -45,20 +56,5 @@ module.exports = {
                 use: ['style-loader', 'css-loader'],
             },
         ],
-    },
-
-    devServer: {
-        port: 3000,
-        client: {
-            overlay: false,
-        },
-        static: {
-            publicPath: '/dist',
-            directory: './dist',
-        },
-        hot: true,
-        open: false,
-        compress: true,
-        historyApiFallback: true,
     },
 };

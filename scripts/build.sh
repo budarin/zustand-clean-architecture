@@ -2,6 +2,4 @@
 
 set -e
 
-export "NODE_ENV"="production";
-
-webpack;
+NODE_ENV=production webpack -c ./configs/prod.client.webpack.config.js;
