@@ -63,7 +63,7 @@ jobs:
                   echo "::set-output name=has_changes::$(if [ $? -eq 1 ]; then echo 'true'; else echo 'false'; fi)"
 
             - name: Commit and push changes
-              if: steps.check_changes.outputs.has_changes == 'true'
+              # if: steps.check_changes.outputs.has_changes == 'true'
               run: |
                   git config --local user.email "github-actions[bot]@github.com"
                   git config --local user.name "github-actions[bot]"
