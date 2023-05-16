@@ -137,6 +137,12 @@ html,
     }
 }
 
+@media only screen and (min-width: 800px) and (min-height: 500px) {
+    .app-header {
+        height: 80px;
+    }
+}
+
 /* меняем глобально шрифт и размеры для мобил и десктопа */
 @media (pointer: coarse) {
     input[type='checkbox'],
