@@ -33,48 +33,48 @@
 
             .icon-container {
                 position: relative;
-                width: 80px;
-                height: 80px;
+                width: 100px;
+                height: 100px;
             }
 
             .icon {
                 position: absolute;
                 top: 0;
                 left: 0;
-                animation: heartbeat 1s infinite;
-            }
-
-            .loading-text {
-                margin-top: 40px;
-                margin-bottom: 80px;
+                animation: beat 1s infinite;
             }
 
             @keyframes beat {
-                0% {
+                from {
                     transform: scale(1);
+                    transform-origin: center center;
+                    animation-timing-function: ease-out;
                 }
 
-                50% {
-                    transform: scale(1.2);
+                10% {
+                    transform: scale(1.1);
+                    animation-timing-function: ease-in;
                 }
 
-                100% {
+                15% {
                     transform: scale(1);
+                    animation-timing-function: ease-out;
+                }
+
+                25% {
+                    transform: scale(1.05);
+                    animation-timing-function: ease-in;
+                }
+
+                35% {
+                    transform: scale(1);
+                    animation-timing-function: ease-out;
                 }
             }
 
-            @keyframes heartbeat {
-                0% {
-                    transform: scale(1);
-                }
-
-                20% {
-                    transform: scale(1.25) translateX(5%) translateY(5%);
-                }
-
-                40% {
-                    transform: scale(1.5) translateX(9%) translateY(10%);
-                }
+            .loading-text {
+                margin-top: 20px;
+                margin-bottom: 80px;
             }
         </style>
         <div class="icon-container"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" class="icon"
