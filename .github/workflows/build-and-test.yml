@@ -20,7 +20,6 @@ on:
             - '.dockerignore'
             - '.editorconfig'
             - '.env.*'
-            - 'scripts/benchmark-code/**'
 
 permissions:
     contents: read # to fetch code (actions/checkout)
