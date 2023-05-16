@@ -36,4 +36,6 @@ const CategoryHeader = memo((props: CategoryHeader): JSX.Element => {
     );
 });
 
+CategoryHeader.displayName = 'CategoryHeader';
+
 export default CategoryHeader;
