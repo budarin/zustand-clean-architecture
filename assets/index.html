@@ -6,19 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Document</title>
-    <script>
-        navigator.serviceWorker.register('/sw.js');
-    </script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/react-render-tracker"></script> -->
 </head>
 
 <body>
     <div id="root">
+        <script>
+            navigator.serviceWorker.register('/sw.js');
+        </script>
         <style>
+            html,
+            body,
+            #root {
+                margin: 0;
+                height: 100%;
+                overflow: hidden;
+                background-color: hsl(214deg 100% 97%);
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            #root {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
             .icon-container {
                 position: relative;
-                width: 100px;
-                height: 100px;
+                width: 80px;
+                height: 80px;
             }
 
             .icon {
@@ -26,6 +43,10 @@
                 top: 0;
                 left: 0;
                 animation: bounce 1s ease-in-out infinite;
+            }
+
+            .loading-text {
+                margin-top: 20px;
             }
 
             @keyframes bounce {
@@ -101,7 +122,11 @@
                 <circle cx="359.264" cy="450.849" r="5.381" style="fill: rgb(58, 85, 106);"></circle>
                 <circle cx="450.568" cy="359.883" r="5.381" style="fill: rgb(58, 85, 106);"></circle>
                 <circle cx="268.306" cy="359.545" r="5.381" style="fill: rgb(58, 85, 106);"></circle>
-            </svg></div>
+            </svg>
+        </div>
+        <div class="loading-text">
+            <span>Загрузка приложения...</span>
+        </div>
     </div>
 </body>
 
