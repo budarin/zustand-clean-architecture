@@ -115,7 +115,10 @@ const todoStore = create<State & Actions>((set) => ({
 
             if (entity) {
                 if (state.categories.ids.includes(entity.category_id) === true) {
-                    throw new TodoStoreError('Нарушение уникальности ключа categories!', category);
+                    throw new TodoStoreError(
+                        'Категория с названием ${category} уже существует! Название категории должно быть уникальным.',
+                        category,
+                    );
                 }
 
                 state.categories.byId = { ...state.categories.byId, [entity.category_id]: entity };
