@@ -22,7 +22,7 @@ on:
             - '.env.*'
 
 permissions:
-    contents: read # to fetch code (actions/checkout)
+    contents: write # to fetch code (actions/checkout)
 
 jobs:
     build:
