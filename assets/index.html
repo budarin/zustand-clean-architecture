@@ -42,23 +42,24 @@
                 position: absolute;
                 top: 0;
                 left: 0;
-                animation: bounce 1s ease-in-out infinite;
+                animation: heartbeat 1s infinite;
             }
 
             .loading-text {
-                margin-top: 20px;
+                margin-top: 40px;
             }
 
-            @keyframes bounce {
-
-                0%,
-                100% {
-                    transform: translateY(0) scale(1);
-                    transform: translateX(0) scale(1);
+            @keyframes heartbeat {
+                0% {
+                    transform: scale(1);
                 }
 
-                50% {
-                    transform: translateY(20px) scale(0.8);
+                20% {
+                    transform: scale(1.25) translateX(5%) translateY(5%);
+                }
+
+                40% {
+                    transform: scale(1.5) translateX(9%) translateY(10%);
                 }
             }
         </style>
