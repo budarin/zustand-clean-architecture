@@ -32,17 +32,18 @@
         "jest": "^29.5.0",
         "jest-environment-jsdom": "^29.5.0",
         "style-loader": "^3.3.2",
+        "terser-webpack-plugin": "^5.3.8",
         "typescript": "^5.0.4",
         "webpack": "^5.81.0",
         "webpack-cli": "^5.0.2",
         "webpack-dev-server": "^4.13.3"
     },
     "scripts": {
-        "start-client": "webpack-dev-server -c ./webpack.config.js",
+        "start-client": "webpack-dev-server -c ./configs/webpack.config.js",
         "build": "sh ./scripts/build.sh",
         "test": "jest",
         "tsc": "tsc",
-        "postbuild": "cp -R dist/. docs/",
+        "postbuild": "[ -n \"$CI\" ] && cp -R dist/. docs/",
         "postinstall": "sh ./scripts/postinstall.sh",
         "branche-refresh": "sh ./scripts/branch-refresh.sh",
         "upgrade deps": "yarn upgrade-interactive --latest;"
