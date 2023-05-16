@@ -60,8 +60,14 @@ jobs:
             - name: Check for changes in dist folder
               id: check_changes
               run: |
-                  git diff HEAD
-                  echo "::set-output name=has_changes::$(if [ $? -eq 0 ]; then echo 'true'; else echo 'false'; fi)"
+                  git fetch
+                  if [[ -n $(git status --porcelain) ]]; then
+                    echo "Changes detected"
+                    echo "has_changes=true" >> $GITHUB_ENV
+                  else
+                    echo "No changes"
+                    echo "has_changes=false" >> $GITHUB_ENV
+                  fi
 
             - name: Commit and push changes
               if: steps.check_changes.outputs.has_changes == 'true'
