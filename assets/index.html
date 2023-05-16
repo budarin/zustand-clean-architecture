@@ -14,21 +14,9 @@
     <body>
         <div id="root">
             <script>
-                setTimeout(() => {
-                    const loadingText = document.querySelector('.loading-text');
-                    if (loadingText) {
-                        loadingText.style.visibility = 'visible';
-                    }
-
-                    const icon = document.querySelector('.icon');
-                    if (icon) {
-                        icon.style.visibility = 'visible';
-                    }
-
-                    window.loading = new Promise((r) => {
-                        setTimeout(r, 1500);
-                    });
-                }, 200);
+                window.loading = new Promise((r) => {
+                    setTimeout(r, 1500);
+                });
             </script>
             <style>
                 html,
@@ -59,7 +47,6 @@
                     top: 0;
                     left: 0;
                     animation: beat 1s infinite;
-                    visibility: hidden;
                 }
 
                 @keyframes beat {
@@ -93,7 +80,6 @@
                 .loading-text {
                     margin-top: 20px;
                     margin-bottom: 80px;
-                    visibility: hidden;
                 }
             </style>
             <div class="icon-container">
