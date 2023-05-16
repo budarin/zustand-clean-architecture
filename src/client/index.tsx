@@ -2,8 +2,8 @@ import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { logger } from './services/logger';
-import { initStore } from './app/domain/initStore.tsx';
 import { getTodoStore } from './services/api/api.ts';
+import { initStore } from './app/domain/initStore.tsx';
 
 // components
 import { ToastContainer } from 'react-toastify';
