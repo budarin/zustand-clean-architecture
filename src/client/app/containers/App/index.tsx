@@ -10,16 +10,21 @@ import TodoListViewContainer from '../TodoList/ListView/index.tsx';
 
 import 'react-toastify/dist/ReactToastify.css';
 
+let showNavePaneAtStart = true;
+
+if (window) {
+    showNavePaneAtStart = window.innerWidth > 640;
+}
+
 function AppContainer() {
     const { key } = useTodoStore.use.navigationFilter();
-    const [isNavPaneOpen, setNavPaneOpen] = useState(false);
     const matches = useMediaQuery('(max-width: 640px)');
+    const [isNavPaneOpen, setNavPaneOpen] = useState(showNavePaneAtStart);
 
     useEffect(() => {
         let mounted = true;
 
         if (mounted) {
-            // если маленький экран - прячем навигацию
             if (matches) {
                 isNavPaneOpen && setNavPaneOpen(false);
             } else {
