@@ -48,7 +48,7 @@
 
 .create-category-form-icon-cb + img {
     padding: 2px;
-    border: 2px solid var(--borderColor);
+    border: 2px solid var(--primaryLightColor);
     cursor: pointer;
 }
 
