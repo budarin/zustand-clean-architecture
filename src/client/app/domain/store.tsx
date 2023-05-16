@@ -145,21 +145,25 @@ const todoStore = create<State & Actions>((set) => ({
 
     _deleteCategory: (id: Category['category_id']) => {
         return set((state) => {
-            const { [id]: deleted, ...rest } = state.categories.byId;
+            const { [id]: deleted, ...restById } = state.categories.byId;
 
-            if (Object.values(state.todos.byId).find((todo) => todo.category_id === id)) {
+            if (Object.keys(state.todos.idsByCategoryId).includes(String(id))) {
                 throw new TodoStoreError(
                     `Нельзя удалить категорию "${deleted.category}": в этой категории есть задачи!`,
                 );
             }
 
-            state.categories.byId = rest;
+            state.categories.byId = restById;
 
             const ids = state.categories.ids;
             const idx = ids.indexOf(id);
             if (idx > -1) {
                 state.categories.ids = ids.filter((item) => item !== id);
             }
+
+            // удалить в todos idsByCategoryId так как там нет todos
+            const { [id]: del, ...restIdsByCategoryId } = state.todos.idsByCategoryId;
+            state.todos.idsByCategoryId = restIdsByCategoryId;
 
             return { ...state };
         });

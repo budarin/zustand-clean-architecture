@@ -9,6 +9,12 @@ import { getTodoStore } from './services/api/api.ts';
 import { ToastContainer } from 'react-toastify';
 import AppContainer from './app/containers/App/index.tsx';
 
+declare global {
+    interface Window {
+        loading: Promise<void>;
+    }
+}
+
 function loadTodoStore() {
     getTodoStore()
         .then((data) => {
