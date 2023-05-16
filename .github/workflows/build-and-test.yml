@@ -1,0 +1,58 @@
+name: Raketa service
+
+on:
+    pull_request:
+        types:
+            - opened
+            - synchronize
+        branches:
+            - master
+        paths-ignore:
+            - 'docs/**'
+            - '**.md'
+            - '.vscode/**'
+            - '.eslint*.*'
+            - '.gitignore'
+            - '.huskyrc.js'
+            - '.prettier*.*'
+            - 'docker-stack.yml'
+            - 'backups/**'
+            - '.dockerignore'
+            - '.editorconfig'
+            - '.env.*'
+            - 'scripts/benchmark-code/**'
+
+permissions:
+    contents: read # to fetch code (actions/checkout)
+
+jobs:
+    build:
+        name: build
+        runs-on: ubuntu-latest
+        timeout-minutes: 5
+
+        steps:
+            - name: Git Checkout
+              uses: actions/checkout@v3
+
+            - name: Setup Node
+              id: setup_node_step
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 'latest'
+
+            - name: Enable Cache
+              id: cache_step
+              uses: actions/cache@v3
+              with:
+                  key: ${{ hashFiles('yarn.lock') }}
+                  path: node_modules
+
+            - if: ${{ steps.cache_step.outputs.cache-hit != 'true' }}
+              run: yarn install --frozen-lockfile
+
+            - name: lint
+              run: yarn tsc
+
+            - name: build
+              run: yarn build
