@@ -15,10 +15,33 @@ declare global {
     }
 }
 
+function createRootElement() {
+    const root = document.createElement('div');
+    root.id = 'root';
+    document.body.appendChild(root);
+
+    return root;
+}
+
 function loadTodoStore() {
     getTodoStore()
         .then((data) => {
             initStore(data);
+        })
+        .then(() => {
+            let rootElement = document.getElementById('root') || createRootElement();
+
+            window.loading.then(() => {
+                createRoot(rootElement).render(
+                    <>
+                        <StrictMode>
+                            <AppContainer />
+                        </StrictMode>
+
+                        <ToastContainer limit={3} hideProgressBar={true} />
+                    </>,
+                );
+            });
         })
         .catch((error) => logger.error(error));
 }
@@ -38,25 +61,3 @@ if ('serviceWorker' in navigator) {
         }
     });
 }
-
-function createRootElement() {
-    const root = document.createElement('div');
-    root.id = 'root';
-    document.body.appendChild(root);
-
-    return root;
-}
-
-let rootElement = document.getElementById('root') || createRootElement();
-
-window.loading.then(() => {
-    createRoot(rootElement).render(
-        <>
-            <StrictMode>
-                <AppContainer />
-            </StrictMode>
-
-            <ToastContainer limit={3} hideProgressBar={true} />
-        </>,
-    );
-});
