@@ -17,6 +17,7 @@ declare global {
 
 function createRootElement() {
     const root = document.createElement('div');
+
     root.id = 'root';
     document.body.appendChild(root);
 
