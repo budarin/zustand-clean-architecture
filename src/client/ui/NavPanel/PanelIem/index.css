@@ -35,9 +35,9 @@
 }
 
 .nav-item-icon {
-    margin: var(--touchAreaPadding, 8px);
-    height: var(--x5);
-    width: var(--x5);
+    height: var(--x9);
+    width: var(--x9);
+    padding: var(--touchAreaPadding, 8px);
     vertical-align: text-bottom;
 }
 
@@ -46,9 +46,6 @@
 }
 
 .nav-item .expandButton {
-    height: var(--x5);
-    width: var(--x5);
-
     fill: var(--secondaryColor);
     color: gray;
 
@@ -64,12 +61,7 @@
 
 @media (pointer: coarse) {
     .nav-item-icon {
-        height: var(--x6);
-        width: var(--x6);
-    }
-
-    .nav-item .expandButton {
-        height: var(--x6);
-        width: var(--x6);
+        height: var(--x11);
+        width: var(--x11);
     }
 }

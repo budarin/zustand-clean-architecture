@@ -33,14 +33,22 @@
     --primaryTextColor: hsl(214.29deg 100% 10%);
 }
 
-body,
+html {
+    box-sizing: border-box;
+}
+
 html,
+body,
 #root {
     height: 100%;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     overflow: hidden;
     color: var(--primaryTextColor);
+}
+
+img {
+    box-sizing: border-box;
 }
 
 .visuallyhidden:not(:focus):not(:active) {
@@ -154,6 +162,6 @@ html,
     }
 
     :root {
-        --touchAreaPadding: 12px;
+        --touchAreaPadding: 8px;
     }
 }

@@ -53,3 +53,5 @@ https://mui.com/material-ui/customization/color/
 -   создать переменные для CSS
 -   на мобиле когда тело скроллится вниз вверху под линией добавлять тень как в MUI для визуального отделения заголовка от тела
 -   переделать имена классов в сллтветсвии с БЭМ https://ru.bem.info/methodology/naming-convention/#стиль-react
+-   на мобилах увеличить line height для текста и для нотификатора
+-   раскрасить нотификацию как в статье https://www.smashingmagazine.com/2022/08/error-messages-ux-design/

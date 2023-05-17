@@ -11,7 +11,7 @@
 
 .nav h2 {
     font-size: 1.1rem;
-    line-height: 2;
+    line-height: var(--x9);
     margin: 0;
     padding-left: var(--x2);
     background-color: var(--primaryColor);
@@ -21,12 +21,12 @@
 
 @media only screen and (min-width: 641px) {
     .nav {
-        width: 242px;
+        width: 248px;
     }
 }
 
 @media (pointer: coarse) {
     .nav h2 {
-        line-height: 46px;
+        line-height: var(--x11);
     }
 }

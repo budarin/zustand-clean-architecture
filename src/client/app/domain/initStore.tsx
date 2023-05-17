@@ -2,7 +2,7 @@ import React from 'react';
 import { unstable_batchedUpdates } from 'react-dom';
 
 import { useTodoStore } from './store';
-import { notifyError } from '../../services/notification';
+import { notifyError, notifyWarning } from '../../services/notification';
 
 export function initStore(data: EntitiesPayload) {
     let hasError = false;
@@ -52,7 +52,7 @@ export function initStore(data: EntitiesPayload) {
     });
 
     hasError &&
-        notifyError(
+        notifyWarning(
             <span>
                 Во время получения данных обнаружены ошибки - возможно часть данных будет отображена не корректно.
                 <br />

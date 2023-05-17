@@ -55,7 +55,8 @@ window.loading.then(() => {
             <StrictMode>
                 <AppContainer />
             </StrictMode>
-            <ToastContainer hideProgressBar={true} />
+
+            <ToastContainer limit={3} hideProgressBar={true} />
         </>,
     );
 });
