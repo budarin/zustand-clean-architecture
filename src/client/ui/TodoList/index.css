@@ -23,7 +23,7 @@
 .todoList-header-icon {
     height: var(--x5);
     width: var(--x5);
-    margin: var(--touchAreaPadding, 8px);
+    padding: var(--touchAreaPadding, 8px);
     vertical-align: bottom;
 }
 
@@ -42,11 +42,7 @@
 
 @media (pointer: coarse) {
     .todoList-header-icon {
-        height: var(--x6);
-        width: var(--x6);
-    }
-    .todoList-header {
-        border-top: 0;
-        border-bottom: 0;
+        height: var(--x7);
+        width: var(--x7);
     }
 }

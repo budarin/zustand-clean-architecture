@@ -26,6 +26,6 @@
 
 @media (pointer: coarse) {
     .todoListItem {
-        min-height: 48px;
+        min-height: var(--x11);
     }
 }

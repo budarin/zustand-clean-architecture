@@ -152,8 +152,4 @@ html,
         background: transparent;
         margin: var(--touchAreaPadding, 8px);
     }
-
-    :root {
-        --touchAreaPadding: 12px;
-    }
 }
