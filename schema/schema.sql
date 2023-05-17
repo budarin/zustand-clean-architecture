@@ -36,7 +36,7 @@ CREATE TABLE public.categories (
   icon_id SMALLINT NOT NULL,
   CONSTRAINT categories_category_key UNIQUE(category),
   CONSTRAINT categories_pkey PRIMARY KEY(category_id),
-  CONSTRAINT categories_category_chk CHECK ((length(category) >= 3) AND (length(category) <= 15)),
+  CONSTRAINT categories_category_chk CHECK ((length(category) >= 3) AND (length(category) <= 20)),
   CONSTRAINT categories_fk FOREIGN KEY (icon_id)
     REFERENCES public.icons(icon_id)
     ON DELETE NO ACTION
