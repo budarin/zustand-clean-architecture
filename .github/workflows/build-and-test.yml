@@ -58,18 +58,15 @@ jobs:
                   yarn build
 
             - name: Commit and push changes
-              env:
-                  GITHUB_ACTIONS_BOT_EMAIL: github-actions[bot]@users.noreply.github.com
               run: |
                   if [[ -n $(git status --porcelain) ]]; then
                     echo "Changes detected"
                     
+                    git config --local user.email "github-actions[bot]@github.com"
                     git config --local user.name "github-actions[bot]"
-                    git config --local user.email "${GITHUB_ACTIONS_BOT_EMAIL}"
-
                     git add .
                     git commit -m "ci changes"
-                    git -c advice.pushNonFastForward=false push origin HEAD:refs/heads/${{ github.head_ref }} -f
+                    git push origin HEAD:refs/heads/${{ github.head_ref }} -f
                   else
                     echo "No changes"
                   fi
