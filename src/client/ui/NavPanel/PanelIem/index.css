@@ -35,8 +35,8 @@
 }
 
 .nav-item-icon {
-    height: var(--x5);
-    width: var(--x5);
+    height: var(--x9);
+    width: var(--x9);
     padding: var(--touchAreaPadding, 8px);
     vertical-align: text-bottom;
 }
@@ -61,11 +61,7 @@
 
 @media (pointer: coarse) {
     .nav-item-icon {
-        height: var(--x7);
-        width: var(--x7);
-    }
-
-    .nav-item .badge {
-        margin: calc(var(--touchAreaPadding) + var(--x));
+        height: var(--x11);
+        width: var(--x11);
     }
 }

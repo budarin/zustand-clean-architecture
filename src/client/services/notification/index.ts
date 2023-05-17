@@ -29,9 +29,9 @@ export const notifyError: typeof toast.error = (content, options?) => {
 };
 
 export const notifyInfo: typeof toast.info = (content, options?) => {
-    return toast.error(content, options);
+    return toast.info(content, options);
 };
 
 export const notifyWarning: typeof toast.warning = (content, options?) => {
-    return toast.error(content, options);
+    return toast.warning(content, options);
 };
