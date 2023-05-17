@@ -1,7 +1,7 @@
 import { validateCategory } from '../../../../common/domain/category/validation';
 
-export function validateCategoryEntity(icon: UnknownObject, state: State): ValidateEntity<Category> {
-    const result = validateCategory(icon);
+export function validateCategoryEntity(category: UnknownObject, state: State): ValidateEntity<Category> {
+    const result = validateCategory(category);
 
     if (!result.entity) {
         return result;
@@ -21,7 +21,7 @@ export function validateCategoryEntity(icon: UnknownObject, state: State): Valid
         )
     ) {
         return {
-            error: `Нарушение уникальности имени категории`,
+            error: `Категория с названием ${entity.category} уже существует! Название категории должно быть уникальным.`,
         };
     }
 
