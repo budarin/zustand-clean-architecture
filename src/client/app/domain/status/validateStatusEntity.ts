@@ -15,7 +15,7 @@ export function validateStatusEntity(status: UnknownObject, state: State): Valid
         )
     ) {
         return {
-            error: 'Нарушение уникальности ключа statuses!',
+            error: `Статус с названием ${entity.status} уже существует! Название статуса должно быть уникальным.`,
         };
     }
 
