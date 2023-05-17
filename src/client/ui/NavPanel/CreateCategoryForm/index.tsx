@@ -58,7 +58,7 @@ const CreateCategoryForm = forwardRef((props: CreatecategoryForm, ref: React.For
                                     defaultChecked={idx === 0}
                                     disabled={disabled}
                                 />
-                                <img src={iconName} width={18} height={18} alt="" />
+                                <img src={iconName} width={18} height={18} tabIndex={0} alt="" />
                             </label>
                         );
                     })}
