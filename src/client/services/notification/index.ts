@@ -9,6 +9,7 @@ au.volume = 0.25;
 export const notifyError: typeof toast.error = (content, options?) => {
     return toast.error(content, {
         ...options,
+        autoClose: false,
         onOpen: () => {
             delay(250).then(() => {
                 if (
