@@ -1,15 +1,11 @@
-/* form */
-
 .create-category-form {
     padding: var(--x2);
     text-align: right;
     margin-left: auto;
-    max-width: 266px;
 }
 
 .create-category-form-input {
     padding: var(--x);
-    max-width: 252px;
     font-size: 1rem;
     display: flex;
     flex: 1;
@@ -67,10 +63,6 @@
 }
 
 @media (pointer: coarse) {
-    .create-category-form {
-        max-width: 322px;
-    }
-
     .create-category-form-button {
         padding: var(--touchAreaPadding, 8px) var(--x4);
     }
@@ -78,9 +70,5 @@
     .create-category-form-icon-cb + img {
         height: var(--x11);
         width: var(--x11);
-    }
-
-    .create-category-form-input {
-        max-width: 308px;
     }
 }
