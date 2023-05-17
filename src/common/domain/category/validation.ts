@@ -5,7 +5,7 @@ import { isString } from '../../validation_utils/isString.ts';
 import { validateRawEntity } from '../../validation_utils/validateEntity.ts';
 
 export const MIN_CATEGOTY_LENGTH = 3;
-export const MAX_CATEGOTY_LENGTH = 15;
+export const MAX_CATEGOTY_LENGTH = 20;
 
 //  Идентификатор (id) должен быть целочисленного типа.
 export const validate_id = (x: UnknownObject): boolean => exists(x.category_id) && isInt(x.category_id);
