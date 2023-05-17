@@ -21,7 +21,7 @@ export function validateCategoryEntity(category: UnknownObject, state: State): V
         )
     ) {
         return {
-            error: `Категория с названием ${entity.category} уже существует! Название категории должно быть уникальным.`,
+            error: `Категория с названием ${entity.category} уже существует! Название должно быть уникальным.`,
         };
     }
 

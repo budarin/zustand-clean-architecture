@@ -15,7 +15,7 @@ export function validateStatusEntity(status: UnknownObject, state: State): Valid
         )
     ) {
         return {
-            error: `Статус с названием ${entity.status} уже существует! Название статуса должно быть уникальным.`,
+            error: `Статус с названием ${entity.status} уже существует! Название должно быть уникальным.`,
         };
     }
 
