@@ -11,7 +11,7 @@ import AppContainer from './app/containers/App/index.tsx';
 
 declare global {
     interface Window {
-        loading: Promise<void>;
+        loading: Promise<boolean>;
     }
 }
 
@@ -31,11 +31,11 @@ function loadTodoStore() {
         .then(() => {
             let rootElement = document.getElementById('root') || createRootElement();
 
-            window.loading.then(() => {
+            window.loading.then((doWait) => {
                 createRoot(rootElement).render(
                     <>
                         <StrictMode>
-                            <AppContainer />
+                            <AppContainer waitForLoadingAnimation={doWait} />
                         </StrictMode>
 
                         <ToastContainer limit={3} hideProgressBar={true} />

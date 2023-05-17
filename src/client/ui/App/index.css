@@ -42,13 +42,23 @@ body,
 #root {
     height: 100%;
     margin: 0;
+}
+
+#root {
+    height: 100%;
+    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     overflow: hidden;
     color: var(--primaryTextColor);
+    transition: opacity 1s ease;
 }
 
 img {
     box-sizing: border-box;
+}
+
+.hidden {
+    opacity: 0;
 }
 
 .visuallyhidden:not(:focus):not(:active) {
