@@ -1,5 +1,5 @@
 import { useMediaQuery } from 'usehooks-ts';
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { useTodoStore } from '../../domain/store.tsx';
 
@@ -22,8 +22,9 @@ type AppContainer = {
 
 function AppContainer(props: AppContainer) {
     const { waitForLoadingAnimation } = props;
-    const { key } = useTodoStore.use.navigationFilter();
+
     const matches = useMediaQuery('(max-width: 640px)');
+    const { key } = useTodoStore.use.navigationFilter();
     const [isNavPaneOpen, setNavPaneOpen] = useState(showNavePaneAtStart);
 
     useEffect(() => {
@@ -69,7 +70,8 @@ function AppContainer(props: AppContainer) {
         };
     }, []);
 
-    const onToggleNavPan = useCallback(() => setNavPaneOpen((s) => !s), []);
+    const toggleNavPane = () => setNavPaneOpen((s) => !s);
+    const onToggleNavPan = useCallback(toggleNavPane, []);
 
     return (
         <App

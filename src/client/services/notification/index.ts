@@ -3,31 +3,31 @@ import { toast } from 'react-toastify';
 import sound from '../../../../assets/error.mp3';
 import { delay } from '../../../common/promises/delay';
 
+const lineHeight = 1.45;
+
 const au = new Audio(sound);
 au.volume = 0.25;
 
-const lineHeight = 1.45;
+function onClose() {
+    au.pause();
+}
+function onOpen() {
+    delay(250).then(() => {
+        if (window.matchMedia('(hover: none) and (pointer: coarse)').matches === true && 'vibrate' in navigator) {
+            window.navigator.vibrate(10);
+        } else {
+            au.play();
+        }
+    });
+}
 
 export const notifyError: typeof toast.error = (content, options?) => {
     return toast.error(content, {
         ...options,
+        onOpen,
+        onClose,
         autoClose: false,
         style: { border: '2px solid var(--toastify-color-error)', lineHeight },
-        onOpen: () => {
-            delay(250).then(() => {
-                if (
-                    window.matchMedia('(hover: none) and (pointer: coarse)').matches === true &&
-                    'vibrate' in navigator
-                ) {
-                    window.navigator.vibrate(10);
-                } else {
-                    au.play();
-                }
-            });
-        },
-        onClose: () => {
-            au.pause();
-        },
     });
 };
 
