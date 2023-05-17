@@ -33,7 +33,7 @@ const CreateCategoryForm = forwardRef((props: CreatecategoryForm, ref: React.For
 
     return (
         <form ref={ref} className="create-category-form" onSubmit={onCreateCategory}>
-            <div>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <input
                     className="create-category-form-input"
                     type="text"
