@@ -16,7 +16,6 @@ function isNotify(el: HTMLElement): boolean {
         if (isString(parent?.className) && parent?.className.startsWith('Toastify')) {
             return true;
         }
-
         parent = parent.parentElement;
     }
 
@@ -59,7 +58,6 @@ const CategoryHeadersContainer = memo(function () {
             }
         }, 150);
     };
-
     useOnClickOutside(formRef, onClickOutside);
 
     const onCreateCategory: FormEventHandler<HTMLFormElement> = useCallback(
