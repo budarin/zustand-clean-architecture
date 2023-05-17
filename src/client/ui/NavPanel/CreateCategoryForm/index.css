@@ -3,14 +3,16 @@
 .create-category-form {
     padding: var(--x2);
     text-align: right;
-    width: 230px;
     margin-left: auto;
+    max-width: 266px;
 }
 
 .create-category-form-input {
     padding: var(--x);
-    width: 215px;
+    max-width: 252px;
     font-size: 1rem;
+    display: flex;
+    flex: 1;
 }
 
 .create-category-form-button {
@@ -49,7 +51,7 @@
 .create-category-form-icon-cb + img {
     height: var(--x9);
     width: var(--x9);
-    padding: var(--x);
+    padding: calc(var(--x) + 2px);
     border: 2px solid var(--primaryLightColor);
     cursor: pointer;
 }
@@ -65,6 +67,10 @@
 }
 
 @media (pointer: coarse) {
+    .create-category-form {
+        max-width: 322px;
+    }
+
     .create-category-form-button {
         padding: var(--touchAreaPadding, 8px) var(--x4);
     }
@@ -75,6 +81,6 @@
     }
 
     .create-category-form-input {
-        width: 216px;
+        max-width: 308px;
     }
 }
