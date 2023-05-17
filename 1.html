@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            #loading-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #ffffff;
+                opacity: 1;
+                transition: opacity 0.5s ease;
+                z-index: 9999;
+            }
+
+            .loading-text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            #content {
+                opacity: 0;
+                transition: opacity 0.5s ease;
+            }
+        </style>
+        <script>
+            window.addEventListener('load', function () {
+                var loadingOverlay = document.getElementById('loading-overlay');
+                var content = document.getElementById('content');
+
+                // Плавное изменение прозрачности
+                setTimeout(function () {
+                    loadingOverlay.style.opacity = 0;
+                    content.style.opacity = 1;
+                }, 500); // Измените значение 2000 на необходимое вам время задержки в миллисекундах
+            });
+        </script>
+    </head>
+    <body>
+        <div id="loading-overlay">
+            <div class="loading-text">Loading...</div>
+        </div>
+
+        <div id="content">
+            <div>Ваш контент страницы</div>
+        </div>
+    </body>
+</html>
