@@ -3,6 +3,7 @@ import React, { FormEventHandler, MouseEventHandler, memo, useCallback, useEffec
 import { useOnClickOutside } from 'usehooks-ts';
 import { logger } from '../../../../services/logger';
 import { useCreateCategory } from '../../../useCases/useCreateCategory';
+import { isString } from '../../../../../common/validation_utils/isString.ts';
 
 // components
 import CreateCategoryFormContainer from '../CreateCategoryForm';
@@ -12,10 +13,9 @@ function isNotify(el: HTMLElement): boolean {
     let parent = el.parentElement;
 
     while (parent) {
-        if (parent.className === 'Toastify__toast-body') {
+        if (isString(parent?.className) && parent?.className.startsWith('Toastify')) {
             return true;
         }
-
         parent = parent.parentElement;
     }
 
@@ -40,6 +40,10 @@ const CategoryHeadersContainer = memo(function () {
     }, []);
 
     const onClickOutside = (event: Event) => {
+        if (isOpen === false) {
+            return;
+        }
+
         if (isNotify(event.target as HTMLElement)) {
             return;
         }
@@ -54,7 +58,6 @@ const CategoryHeadersContainer = memo(function () {
             }
         }, 150);
     };
-
     useOnClickOutside(formRef, onClickOutside);
 
     const onCreateCategory: FormEventHandler<HTMLFormElement> = useCallback(
