@@ -14,6 +14,7 @@ export const serverInitialState: EntitiesPayload = {
         { icon_id: 12, icon_name: 'mail.png' },
         { icon_id: 13, icon_name: 'twitter.png' },
         { icon_id: 14, icon_name: 'note.png' },
+        { icon_id: 14, icon_name: 'note.png' },
     ],
     statuses: [
         {

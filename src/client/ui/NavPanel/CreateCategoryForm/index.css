@@ -3,13 +3,13 @@
 .create-category-form {
     padding: var(--x2);
     text-align: right;
-    width: 196px;
+    width: 230px;
     margin-left: auto;
 }
 
 .create-category-form-input {
     padding: var(--x);
-    width: 186px;
+    width: 215px;
     font-size: 1rem;
 }
 
@@ -47,7 +47,9 @@
 }
 
 .create-category-form-icon-cb + img {
-    padding: 2px;
+    height: var(--x9);
+    width: var(--x9);
+    padding: var(--x);
     border: 2px solid var(--primaryLightColor);
     cursor: pointer;
 }
@@ -68,14 +70,11 @@
     }
 
     .create-category-form-icon-cb + img {
-        padding: var(--x);
-    }
-
-    .create-category-form {
-        width: 224px;
+        height: var(--x11);
+        width: var(--x11);
     }
 
     .create-category-form-input {
-        width: 210px;
+        width: 216px;
     }
 }

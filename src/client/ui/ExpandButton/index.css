@@ -1,7 +1,14 @@
 .expandButton {
-    padding: 0;
-    margin: var(--touchAreaPadding, 8px);
-    height: 24px;
+    height: var(--x9);
+    padding: var(--touchAreaPadding, 8px);
+    margin: 0;
     border: 0;
     cursor: pointer;
+}
+
+@media (pointer: coarse) {
+    .expandButton {
+        height: var(--x11);
+        width: var(--x11);
+    }
 }

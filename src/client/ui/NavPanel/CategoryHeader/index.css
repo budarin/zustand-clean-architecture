@@ -9,8 +9,8 @@
 }
 
 .category-header .checkButton {
-    height: var(--x5);
-    width: var(--x5);
+    height: var(--x9);
+    width: var(--x9);
     background-color: var(--primaryColor);
     color: gray;
 }
@@ -33,7 +33,7 @@
 
 @media (pointer: coarse) {
     .category-header .checkButton {
-        height: var(--x6);
-        width: var(--x6);
+        height: var(--x11);
+        width: var(--x11);
     }
 }
