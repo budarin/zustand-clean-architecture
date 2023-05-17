@@ -27,7 +27,6 @@ function AppContainer(props: AppContainer) {
     const [isNavPaneOpen, setNavPaneOpen] = useState(showNavePaneAtStart);
 
     useEffect(() => {
-        let timer: NodeJS.Timeout;
         let mounted = true;
 
         if (mounted) {
@@ -36,28 +35,39 @@ function AppContainer(props: AppContainer) {
             } else {
                 setNavPaneOpen(true);
             }
+        }
 
+        return () => {
+            mounted = false;
+        };
+    }, [key, matches]);
+
+    useEffect(() => {
+        let timer: NodeJS.Timeout;
+        let mounted = true;
+
+        if (mounted) {
             const loading = document.querySelector('#loading') as HTMLElement;
 
             if (waitForLoadingAnimation) {
-                loading.classList.add('hidden');
+                loading && loading.classList.add('hidden');
             } else {
-                loading.style.position = 'relative';
+                loading && (loading.style.position = 'relative');
             }
 
             timer = setTimeout(() => {
-                loading.remove();
+                loading && loading.remove();
             }, 1500);
 
             const root = document.querySelector('#root') as HTMLElement;
-            root.classList.remove('hidden');
+            root && root.classList.remove('hidden');
         }
 
         return () => {
             mounted = false;
             timer && clearTimeout(timer);
         };
-    }, [key, matches, waitForLoadingAnimation]);
+    }, []);
 
     const onToggleNavPan = useCallback(() => setNavPaneOpen((s) => !s), []);
 

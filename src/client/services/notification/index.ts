@@ -6,11 +6,13 @@ import { delay } from '../../../common/promises/delay';
 const au = new Audio(sound);
 au.volume = 0.25;
 
+const lineHeight = 1.45;
+
 export const notifyError: typeof toast.error = (content, options?) => {
     return toast.error(content, {
         ...options,
         autoClose: false,
-        style: { border: '2px solid var(--toastify-color-error)' },
+        style: { border: '2px solid var(--toastify-color-error)', lineHeight },
         onOpen: () => {
             delay(250).then(() => {
                 if (
@@ -30,9 +32,15 @@ export const notifyError: typeof toast.error = (content, options?) => {
 };
 
 export const notifyInfo: typeof toast.info = (content, options?) => {
-    return toast.info(content, { ...options, style: { border: '2px solid var(--toastify-color-info)' } });
+    return toast.info(content, {
+        ...options,
+        style: { border: '2px solid var(--toastify-color-info)', lineHeight },
+    });
 };
 
 export const notifyWarning: typeof toast.warning = (content, options?) => {
-    return toast.warning(content, { ...options, style: { border: '2px solid var(--toastify-color-warning)' } });
+    return toast.warning(content, {
+        ...options,
+        style: { border: '2px solid var(--toastify-color-warning)', lineHeight },
+    });
 };
