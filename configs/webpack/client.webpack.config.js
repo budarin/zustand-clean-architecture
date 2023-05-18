@@ -15,17 +15,51 @@ module.exports = {
         }),
     ],
     resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.jsx', '.jsm', '.json', '.css', '.mp3', '.svg', '.png', '.gif'],
+        extensions: [
+            '.ts',
+            '.tsx',
+            '.js',
+            '.jsx',
+            '.jsm',
+            '.json',
+            '.css',
+            '.mp3',
+            '.svg',
+            '.png',
+            '.gif',
+            'ico',
+            'xml',
+            'webmanifest',
+        ],
         modules: ['node_modules', 'src'],
     },
     module: {
         rules: [
             {
+                test: /\.(ico|xml|webmanifest)$/,
+                include: [path.resolve('./assets/site_icons/')],
+                type: 'asset/resource',
+                generator: {
+                    filename: '[name][ext]',
+                },
+            },
+            {
+                test: /\.(gif|svg|png)$/,
+                include: [path.resolve('./assets/site_icons/')],
+                type: 'asset/resource',
+                generator: {
+                    filename: '[name][ext]',
+                },
+            },
+
+            {
                 test: /\.(mp3|aac|ogg)$/,
+                exclude: [path.resolve('./assets/site_icons/')],
                 type: 'asset/resource',
             },
             {
                 test: /\.(gif|svg|png)$/,
+                exclude: [path.resolve('./assets/site_icons/')],
                 type: 'asset/resource',
             },
             {
