@@ -60,17 +60,12 @@ function AppContainer(props: AppContainer) {
     }, [key, matches]);
 
     useEffect(() => {
-        let timer: NodeJS.Timeout;
         let mounted = true;
 
         if (mounted) {
             const loading = document.querySelector('#loading') as HTMLElement;
 
-            loading.classList.add('hidden');
-
-            timer = setTimeout(() => {
-                loading && loading.remove();
-            }, 1500);
+            loading && loading.remove();
 
             const root = document.querySelector('#root') as HTMLElement;
             root && root.classList.remove('hidden');
@@ -78,7 +73,6 @@ function AppContainer(props: AppContainer) {
 
         return () => {
             mounted = false;
-            timer && clearTimeout(timer);
         };
     }, []);
 
