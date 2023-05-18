@@ -66,11 +66,7 @@ function AppContainer(props: AppContainer) {
         if (mounted) {
             const loading = document.querySelector('#loading') as HTMLElement;
 
-            if (waitForLoadingAnimation) {
-                loading && loading.classList.add('hidden');
-            } else {
-                loading && (loading.style.position = 'relative');
-            }
+            loading.classList.add('hidden');
 
             timer = setTimeout(() => {
                 loading && loading.remove();
