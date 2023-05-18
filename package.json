@@ -43,7 +43,7 @@
         "build": "sh ./scripts/build.sh",
         "test": "jest",
         "tsc": "tsc",
-        "postbuild": "[ -n \"$CI\" ] && rm -rf docs && cp -R dist/. docs/",
+        "postbuild": "sh ./scripts/postbuild.sh",
         "postinstall": "sh ./scripts/postinstall.sh",
         "branche-refresh": "sh ./scripts/branch-refresh.sh",
         "upgrade deps": "yarn upgrade-interactive --latest;"

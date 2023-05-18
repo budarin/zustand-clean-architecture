@@ -5,7 +5,6 @@
 }
 
 .create-category-form-input {
-    padding: var(--x);
     font-size: 1rem;
     display: flex;
     flex: 1;
