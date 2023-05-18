@@ -1,13 +1,13 @@
-type TodoIdsByCategoryId = Record<Id, Id[]>;
+type TodoIdsByCategoryId = Record<Id, Readonly<Id[]>>;
 type TodoIdsByCategoryIdKey = keyof TodoIdsByCategoryId;
 
-type TodoIdsByFilterId = Record<NavigationFilterKey, Id[]>;
+type TodoIdsByFilterId = Record<NavigationFilterKey, Readonly<Id[]>>;
 type TodoIdsByFilterIdKey = keyof TodoIdsByFilterId;
 
 type TodoById = Record<Id, Todo>;
 type TodoState = {
     byId: TodoById;
-    ids: Id[];
+    ids: Readonly<Id[]>;
     idsByCategoryId: TodoIdsByCategoryId;
     idsByFilterId: TodoIdsByFilterId;
 };
@@ -15,19 +15,19 @@ type TodoState = {
 type CategoryById = Record<Id, Category>;
 type CategoryState = {
     byId: CategoryById;
-    ids: Id[];
+    ids: Readonly<Id[]>;
 };
 
 type StatusById = Record<Id, Status>;
 type StatusState = {
     byId: StatusById;
-    ids: Id[];
+    ids: Readonly<Id[]>;
 };
 
 type IconById = Record<Id, Icon>;
 type IconState = {
     byId: IconById;
-    ids: Id[];
+    ids: Readonly<Id[]>;
 };
 
 type State = {
@@ -35,7 +35,7 @@ type State = {
     statuses: StatusState;
     categories: CategoryState;
     todos: TodoState;
-    navigationFilter: NavigationFilter;
+    navigationFilter: Readonly<NavigationFilter>;
 };
 
 type Action = {

@@ -79,10 +79,12 @@ const todoStore = create<State & Actions>((set) => ({
             const { entity, error } = validateIconEntity(icon, state);
 
             if (entity) {
-                state.icons.byId = { ...state.icons.byId, [entity.icon_id]: entity };
-                state.icons.ids = [...state.icons.ids, entity.icon_id];
+                const newState = { ...state };
 
-                return { ...state };
+                newState.icons.byId = { ...state.icons.byId, [entity.icon_id]: entity };
+                newState.icons.ids = [...state.icons.ids, entity.icon_id];
+
+                return newState;
             }
 
             throw new TodoStoreError(error, icon);
@@ -99,9 +101,12 @@ const todoStore = create<State & Actions>((set) => ({
                     throw new TodoStoreError(`Нарушение уникальности ключа statuses.status_id!`, status);
                 }
 
-                state.statuses.byId = { ...state.statuses.byId, [entity.status_id]: entity };
-                state.statuses.ids = [...state.statuses.ids, entity.status_id];
-                return { ...state };
+                const newState = { ...state };
+
+                newState.statuses.byId = { ...state.statuses.byId, [entity.status_id]: entity };
+                newState.statuses.ids = [...state.statuses.ids, entity.status_id];
+
+                return newState;
             }
 
             throw new TodoStoreError(error, status);
@@ -114,9 +119,12 @@ const todoStore = create<State & Actions>((set) => ({
             const { entity, error } = validateCategoryEntity(category, state);
 
             if (entity) {
-                state.categories.byId = { ...state.categories.byId, [entity.category_id]: entity };
-                state.categories.ids = [...state.categories.ids, entity.category_id];
-                return { ...state };
+                const newState = { ...state };
+
+                newState.categories.byId = { ...state.categories.byId, [entity.category_id]: entity };
+                newState.categories.ids = [...state.categories.ids, entity.category_id];
+
+                return newState;
             }
 
             throw new TodoStoreError(error, category);
@@ -128,11 +136,13 @@ const todoStore = create<State & Actions>((set) => ({
             const { entity, error } = validateCategoryEntity(category, state);
 
             if (entity) {
-                state.categories.byId[entity.category_id] = {
+                const newState = { ...state };
+
+                newState.categories.byId[entity.category_id] = {
                     ...state.categories.byId[entity.category_id],
                     ...entity,
                 };
-                return { ...state };
+                return newState;
             }
 
             throw new TodoStoreError(error, category);
@@ -149,19 +159,22 @@ const todoStore = create<State & Actions>((set) => ({
                 );
             }
 
-            state.categories.byId = restById;
+            const newState = { ...state };
+
+            newState.categories.byId = restById;
 
             const ids = state.categories.ids;
             const idx = ids.indexOf(id);
+
             if (idx > -1) {
-                state.categories.ids = ids.filter((item) => item !== id);
+                newState.categories.ids = ids.filter((item) => item !== id);
             }
 
             // удалить в todos idsByCategoryId так как там нет todos
             const { [id]: del, ...restIdsByCategoryId } = state.todos.idsByCategoryId;
-            state.todos.idsByCategoryId = restIdsByCategoryId;
+            newState.todos.idsByCategoryId = restIdsByCategoryId;
 
-            return { ...state };
+            return newState;
         });
     },
 
@@ -175,13 +188,15 @@ const todoStore = create<State & Actions>((set) => ({
                     throw new TodoStoreError('Нарушение уникальности ключа todos!', { todo });
                 }
 
-                state.todos.byId = { ...state.todos.byId, [entity.todo_id]: entity };
-                state.todos.ids = [...state.todos.ids, entity.todo_id];
+                const newState = { ...state };
 
-                updateICategoryCounters(entity, state.todos);
-                updateFilterCounters(entity, state.todos);
+                newState.todos.byId = { ...state.todos.byId, [entity.todo_id]: entity };
+                newState.todos.ids = [...state.todos.ids, entity.todo_id];
 
-                return { ...state };
+                updateICategoryCounters(entity, newState.todos);
+                updateFilterCounters(entity, newState.todos);
+
+                return newState;
             }
 
             throw new TodoStoreError(error, todo);
@@ -193,13 +208,14 @@ const todoStore = create<State & Actions>((set) => ({
             const { entity, error } = validateTodoEntity(todo, state);
 
             if (entity) {
+                const newState = { ...state };
                 const newTodo = { ...state.todos.byId[entity.todo_id], ...entity };
 
-                state.todos.byId[entity.todo_id] = newTodo;
-                updateICategoryCounters(newTodo, state.todos);
-                updateFilterCounters(newTodo, state.todos);
+                newState.todos.byId[entity.todo_id] = newTodo;
+                updateICategoryCounters(newTodo, newState.todos);
+                updateFilterCounters(newTodo, newState.todos);
 
-                return { ...state };
+                return newState;
             }
 
             throw new TodoStoreError(error, todo);
@@ -208,17 +224,19 @@ const todoStore = create<State & Actions>((set) => ({
 
     _deleteTodo: (id: Todo['todo_id']) => {
         return set((state) => {
+            const newState = { ...state };
             const { [id]: del, ...rest } = state.todos.byId;
-            state.todos.byId = rest;
+
+            newState.todos.byId = rest;
 
             const ids = state.todos.ids;
             let idx = ids.indexOf(id);
 
             if (idx > -1) {
-                state.todos.ids = ids.filter((item) => item !== id);
+                newState.todos.ids = ids.filter((item) => item !== id);
             }
 
-            return { ...state };
+            return newState;
         });
     },
 
@@ -229,8 +247,11 @@ const todoStore = create<State & Actions>((set) => ({
                 return state;
             }
 
-            state.navigationFilter = filter;
-            return { ...state };
+            const newState = { ...state };
+
+            newState.navigationFilter = filter;
+
+            return newState;
         });
     },
 }));
