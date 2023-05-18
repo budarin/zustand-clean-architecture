@@ -51,7 +51,7 @@
     color: gray;
 
     background-color: var(--secondaryColor);
-    margin-right: var(--x);
+    margin-right: 2px;
 }
 
 @media (hover: hover) {

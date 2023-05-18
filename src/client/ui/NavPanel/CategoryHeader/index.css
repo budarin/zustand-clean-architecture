@@ -13,7 +13,7 @@
     width: var(--x9);
     background-color: var(--primaryColor);
     color: gray;
-    margin-right: var(--x);
+    margin-right: 2px;
 }
 
 .category-header-button-icon {

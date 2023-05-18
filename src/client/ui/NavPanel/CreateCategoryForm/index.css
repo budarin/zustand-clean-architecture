@@ -21,6 +21,7 @@
     border-width: 1px;
     border-style: solid;
     border-radius: 2px;
+    border-color: var(--primaryDarkColor);
 }
 
 .create-category-form-button:disabled {
