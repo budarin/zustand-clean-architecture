@@ -13,6 +13,7 @@
     width: var(--x9);
     background-color: var(--primaryColor);
     color: gray;
+    margin-right: var(--x);
 }
 
 .category-header-button-icon {
@@ -35,5 +36,6 @@
     .category-header .checkButton {
         height: var(--x11);
         width: var(--x11);
+        margin-right: 0;
     }
 }

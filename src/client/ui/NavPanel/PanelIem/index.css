@@ -51,6 +51,7 @@
     color: gray;
 
     background-color: var(--secondaryColor);
+    margin-right: var(--x);
 }
 
 @media (hover: hover) {
@@ -61,6 +62,10 @@
 }
 
 @media (pointer: coarse) {
+    .nav-item .expandButton {
+        margin-right: 0;
+    }
+
     .nav-item-icon {
         height: var(--x11);
         width: var(--x11);
