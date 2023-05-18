@@ -24,8 +24,9 @@ export function updateICategoryCounters(todo: Todo, state: TodoState) {
                 const idx = ids[id].indexOf(todo.todo_id);
 
                 if (idx > -1) {
-                    ids[id] = [...ids[id]];
-                    ids[id].splice(idx, 1);
+                    const newIds = [...ids[id]];
+                    newIds.splice(idx, 1);
+                    ids[id] = newIds;
                 }
             }
         });
@@ -37,8 +38,9 @@ export function updateICategoryCounters(todo: Todo, state: TodoState) {
             const idx = ids[id].indexOf(todo.todo_id);
 
             if (idx > -1) {
-                ids[id] = [...ids[id]];
-                ids[id].splice(idx, 1);
+                const newIds = [...ids[id]];
+                newIds.splice(idx, 1);
+                ids[id] = newIds;
             }
         });
     }

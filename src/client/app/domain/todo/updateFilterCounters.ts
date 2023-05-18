@@ -10,6 +10,7 @@ export function updateFilterCounters(todo: Todo, state: TodoState): void {
     // проверяем принадлежит ли todo фильтру inbox
     const inbox = byId[inboxKey];
     let idx = inbox.indexOf(todo.todo_id);
+
     if (isInboxItem(todo)) {
         if (idx === -1) {
             byId[inboxKey] = [...inbox, todo.todo_id];
@@ -17,8 +18,9 @@ export function updateFilterCounters(todo: Todo, state: TodoState): void {
         return;
     } else {
         if (idx > -1) {
-            byId[inboxKey] = [...inbox];
-            byId[inboxKey].splice(idx, 1);
+            const newInbox = [...inbox];
+            newInbox.splice(idx, 1);
+            byId[inboxKey] = newInbox;
         }
     }
 
@@ -37,8 +39,9 @@ export function updateFilterCounters(todo: Todo, state: TodoState): void {
         return;
     } else {
         if (idx > -1) {
+            const newToday = [...today];
+            newToday.splice(idx, 1);
             byId[todayKey] = [...today];
-            byId[todayKey].splice(idx, 1);
         }
     }
 
@@ -53,8 +56,9 @@ export function updateFilterCounters(todo: Todo, state: TodoState): void {
         return;
     } else {
         if (idx > -1) {
-            byId[nextKey] = [...next];
-            byId[nextKey].splice(idx, 1);
+            const newNext = [...next];
+            newNext.splice(idx, 1);
+            byId[nextKey] = newNext;
         }
     }
 
@@ -65,15 +69,17 @@ export function updateFilterCounters(todo: Todo, state: TodoState): void {
         if (idx === -1) {
             byId[recycleBinKey] = [...recycleBin, todo.todo_id];
         } else {
-            byId[recycleBinKey] = [...recycleBin];
-            byId[recycleBinKey].splice(idx, 1);
+            const newRecycleBin = [...recycleBin];
+            newRecycleBin.splice(idx, 1);
+            byId[recycleBinKey] = newRecycleBin;
         }
     } else {
         const idx = recycleBin.indexOf(todo.todo_id);
 
         if (idx > -1) {
-            byId[recycleBinKey] = [...recycleBin];
-            byId[recycleBinKey].splice(idx, 1);
+            const newRecycleBin = [...recycleBin];
+            newRecycleBin.splice(idx, 1);
+            byId[recycleBinKey] = newRecycleBin;
         }
     }
 }
