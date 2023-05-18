@@ -16,10 +16,10 @@
 
 .todoListItem-checkbox {
     cursor: pointer;
+    margin: 0 var(--x3);
 }
 
 .todoListItem-label {
     flex: 1;
     cursor: pointer;
-    /* margin-left: ; */
 }
