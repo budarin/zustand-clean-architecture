@@ -42,7 +42,6 @@ body,
 #root {
     height: 100%;
     margin: 0;
-    overflow: hidden;
 }
 
 #root {
@@ -53,6 +52,7 @@ body,
     overflow: hidden;
     color: var(--primaryTextColor);
     transition: opacity 1s ease;
+    overflow: hidden;
 }
 
 img {
