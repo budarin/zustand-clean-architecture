@@ -15,17 +15,11 @@
 }
 
 .todoListItem-checkbox {
-    margin: var(--x2);
     cursor: pointer;
 }
 
 .todoListItem-label {
     flex: 1;
     cursor: pointer;
-}
-
-@media (pointer: coarse) {
-    .todoListItem {
-        min-height: var(--x11);
-    }
+    /* margin-left: ; */
 }

@@ -37,6 +37,10 @@ html {
     box-sizing: border-box;
 }
 
+* {
+    outline-color: var(--primaryDarkColor);
+}
+
 html,
 body,
 #root {
@@ -55,6 +59,7 @@ body,
     overflow: hidden;
 }
 
+input,
 img {
     box-sizing: border-box;
 }
@@ -167,10 +172,10 @@ img {
 @media (pointer: coarse) {
     input[type='checkbox'],
     input[type='radio'] {
-        min-width: var(--x5);
-        min-height: var(--x5);
+        height: var(--x5);
+        width: var(--x5);
         background: transparent;
-        margin: var(--touchAreaPadding, 8px);
+        margin: var(--x3, 8px);
     }
     input {
         padding: var(--x2);
