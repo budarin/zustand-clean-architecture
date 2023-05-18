@@ -1,0 +1,24 @@
+{
+    "name": "Мои Задачи",
+    "short_name": "Мои Задачи",
+    "start_url": ".",
+    "theme_color": "#cce2ff",
+    "background_color": "#f0f6ff",
+    "display": "standalone",
+    "description": "Приложение для управления задачами на каждый день.",
+    "categories": [
+        "приложения на каждый день"
+    ],
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
