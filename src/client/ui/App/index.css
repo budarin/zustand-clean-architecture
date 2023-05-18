@@ -37,6 +37,10 @@ html {
     box-sizing: border-box;
 }
 
+* {
+    outline-color: var(--primaryDarkColor);
+}
+
 html,
 body,
 #root {
