@@ -7,7 +7,7 @@ function Badge(props: { count: string | number }) {
 
     return (
         <div className="badge">
-            <span>{count}</span>
+            <span title={`Количество задач: ${count} шт.`}>{count}</span>
         </div>
     );
 }

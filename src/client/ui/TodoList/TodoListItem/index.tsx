@@ -20,6 +20,7 @@ const TodoListItem = (props: TodoListItem) => {
                 checked={Boolean(todo.completed)}
                 onChange={handleChange}
                 aria-label="Задача выполнена"
+                title="Отметить задачу как выполненную"
             ></input>
             <span className="todoListItem-label" style={{ color: status.color }}>
                 {todo.todo}
