@@ -1,7 +1,7 @@
 .badge {
     font-size: var(--x3);
 
-    padding: 2px 7px;
+    padding: 1px 7px;
 
     border-radius: 6px;
     border: 1px solid var(--primaryColor);
