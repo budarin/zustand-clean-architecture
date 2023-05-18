@@ -50,6 +50,7 @@
     border: 2px solid var(--primaryLightColor);
     border-radius: 4px;
     cursor: pointer;
+    outline-color: var(--primaryDarkColor);
 }
 
 .create-category-form-icon-cb:checked + img {
