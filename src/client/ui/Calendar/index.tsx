@@ -66,7 +66,10 @@ function Calendar() {
     };
 
     function dateIsEqual(d1: Date, d2: Date): boolean {
-        return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth();
+        const yearsAreEqual = d1.getFullYear() === d2.getFullYear();
+        const monthsAreEqual = d1.getMonth() === d2.getMonth();
+
+        return yearsAreEqual && monthsAreEqual;
     }
 
     return (

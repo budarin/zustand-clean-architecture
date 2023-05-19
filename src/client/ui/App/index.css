@@ -38,6 +38,15 @@
     outline-color: var(--primaryDarkColor);
 }
 
+button {
+    color: var(--primaryTextColor);
+}
+
+button:disabled {
+    color: revert;
+    cursor: not-allowed;
+}
+
 html,
 body,
 #root {
