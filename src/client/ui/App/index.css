@@ -33,11 +33,8 @@
     --primaryTextColor: hsl(214.29deg 100% 10%);
 }
 
-html {
-    box-sizing: border-box;
-}
-
 * {
+    box-sizing: border-box;
     outline-color: var(--primaryDarkColor);
 }
 
@@ -59,10 +56,6 @@ body,
     overflow: hidden;
 }
 
-input,
-img {
-    box-sizing: border-box;
-}
 
 .hidden {
     opacity: 0;
