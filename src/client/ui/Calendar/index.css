@@ -18,8 +18,8 @@
 
 .Calendar-PrevMonth,
 .Calendar-NextMonth {
-    height: var(--x9);
-    width: var(--x9);
+    height: var(--x6);
+    width: var(--x6);
 }
 
 .Calendar-TodayButton {
@@ -49,8 +49,8 @@
 }
 
 .Calendar-Day {
-    min-height: var(--x9);
-    min-width: var(--x9);
+    min-height: var(--x8);
+    min-width: var(--x8);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -59,13 +59,13 @@
 
 @media (pointer: coarse) {
     .Calendar-Day {
-        min-height: var(--x11);
-        min-width: var(--x11);
+        min-height: var(--x10);
+        min-width: var(--x10);
     }
 
     .Calendar-PrevMonth,
     .Calendar-NextMonth {
-        height: var(--x11);
-        width: var(--x11);
+        height: var(--x8);
+        width: var(--x8);
     }
 }
