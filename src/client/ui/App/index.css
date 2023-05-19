@@ -22,14 +22,10 @@
     --primaryLightColor: hsl(214deg 100% 97%);
     --primaryDarkColor: hsl(214deg 100% 60%);
     --primaryGrayColor: hsl(214deg 34.3% 59.41%);
-
     --secondaryColor: hsl(90deg 100% 80%);
     --secondaryDarkColor: hsl(90.17deg 100% 35%);
-
     --itemHoverColor: hsl(60deg 100% 95%);
-
     --borderColor: hsl(0deg 0% 90.98%);
-
     --primaryTextColor: hsl(214.29deg 100% 30%);
 }
 
