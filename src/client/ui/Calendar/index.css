@@ -46,7 +46,6 @@
 .Calendar-WeekNames {
     font-size: 0.8rem;
     line-height: 0.9rem;
-    padding-bottom: 2px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;

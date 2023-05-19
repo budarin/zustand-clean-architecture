@@ -1,38 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+
+import { getNewState } from './utils/getNewState.tsx';
+import { getLastDate } from './utils/getLastDate.tsx';
+import { getFirstDate } from './utils/getFirstDate.tsx';
+import { getCalendarTitle } from './utils/getCalendarTitle.tsx';
+import { getFirstMonthDate } from './utils/getFirstMonthDate.tsx';
+import { getCalendarDaysCount } from './utils/getCalendarDaysCount.tsx';
 
 import './index.css';
-import { getFirstMonthDate } from './getFirstMonthDate.tsx';
-import { getCalendarTitle } from './getCalendarTitle.tsx';
-import { getFirstDate } from './getFirstDate.tsx';
-import { getLastDate } from './getLastDate.tsx';
-import { getCalendarDaysCount } from './getCalendarDaysCount.tsx';
-
-type State = {
-    date: Date;
-    title: string;
-    startDate: Date;
-    endDate: Date;
-    daysCount: number;
-};
 
 const weekDayNames = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
-
-function getNewState(newDate: Date) {
-    return function (): State {
-        const today = newDate;
-        const title = getCalendarTitle(today);
-        const startDate = getFirstDate(today);
-        const endDate = getLastDate(today);
-
-        return {
-            date: today,
-            title,
-            startDate,
-            endDate,
-            daysCount: getCalendarDaysCount(startDate, endDate),
-        };
-    };
-}
 
 function Calendar() {
     const [state, setState] = useState(() => {
