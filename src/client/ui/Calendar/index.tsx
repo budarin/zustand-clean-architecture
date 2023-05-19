@@ -48,45 +48,76 @@ function getLastDate(date: Date): Date {
     return lastDate;
 }
 
-function getWeeksCount(date1: Date, date2: Date): number {
-    return getDateDiffInDays(date1, date2) / 7;
+function getCalendarDaysCount(date1: Date, date2: Date): number {
+    return getDateDiffInDays(date1, date2);
 }
+
+function getNewState(newDate: Date) {
+    return function (): State {
+        const today = newDate;
+        const title = getCalendarTitle(today);
+        const startDate = getFirstDate(today);
+        const endDate = getLastDate(today);
+
+        return {
+            date: today,
+            title,
+            startDate,
+            endDate,
+            daysCount: getCalendarDaysCount(startDate, endDate),
+        };
+    };
+}
+
+type State = {
+    date: Date;
+    title: string;
+    startDate: Date;
+    endDate: Date;
+    daysCount: number;
+};
 
 function Calendar() {
     const today = new Date();
-    const [date, setDate] = useState(getFirstMonthDate(today));
-    const [title, setTitle] = useState(getCalendarTitle(date));
-    const [startDate, setStartDate] = useState(getFirstDate(date));
-    const [endDate, setEndDate] = useState(getLastDate(date));
-    const [weeks, setWeeks] = useState(getWeeksCount(startDate, endDate));
+    const [state, setState] = useState(() => {
+        const title = getCalendarTitle(today);
+        const startDate = getFirstDate(today);
+        const endDate = getLastDate(today);
 
-    useEffect(() => {
-        let mounted = true;
-
-        if (mounted) {
-            setTitle(getCalendarTitle(date));
-            setStartDate(getFirstDate(date));
-            setEndDate(getLastDate(date));
-            setWeeks(getWeeksCount(startDate, endDate));
-        }
-
-        return () => {
-            mounted = false;
+        return {
+            date: today,
+            title,
+            startDate,
+            endDate,
+            daysCount: getCalendarDaysCount(startDate, endDate),
         };
-    }, [date]);
+    });
 
     const setPrevMonth = () => {
-        const newDate = new Date(date.getFullYear(), date.getMonth() - 1, 1);
-        setDate(newDate);
+        const today = new Date(state.date.getFullYear(), state.date.getMonth() - 1, 1);
+        setState(getNewState(today));
     };
 
     const setNextMonth = () => {
-        const newDate = new Date(date.getFullYear(), date.getMonth() + 1, 1);
-        setDate(newDate);
+        setState(({ date }) => {
+            const today = new Date(date.getFullYear(), date.getMonth() + 1, 1);
+            const title = getCalendarTitle(today);
+            const startDate = getFirstDate(today);
+            const endDate = getLastDate(today);
+
+            return {
+                date: today,
+                title,
+                startDate,
+                endDate,
+                daysCount: getCalendarDaysCount(startDate, endDate),
+            };
+        });
     };
 
     const setToday = () => {
-        setDate(new Date());
+        const today = new Date();
+        setState(getNewState(today));
     };
 
     function dateIsEqual(d1: Date, d2: Date): boolean {
@@ -95,16 +126,17 @@ function Calendar() {
         );
     }
 
+    console.log('render');
+
     return (
         <div className="Calendar">
             <div className="Calendar-Header">
-                <span className="Calendar-MonthNavigation">
-                    <button onClick={setPrevMonth}>{'<'}</button>
-                    <span className="Calendar-Title">{title}</span>
-                    <button onClick={setNextMonth}>{'>'}</button>
-                </span>
-                <button className="Calendar-TodayButton" onClick={setToday} disabled={dateIsEqual(today, date)}>
-                    Сегодня
+                <button className="Calendar-PrevMonth" onClick={setPrevMonth}>
+                    {'<'}
+                </button>
+                <span className="Calendar-Title">{state.title}</span>
+                <button className="Calendar-NextMonth" onClick={setNextMonth}>
+                    {'>'}
                 </button>
             </div>
             <div className="Calendar-WeekNames">
@@ -116,7 +148,20 @@ function Calendar() {
                     );
                 })}
             </div>
-            <div></div>
+            <div className="Calendar-Body">
+                {Array.from({ length: state.daysCount }, (_, index) => {
+                    // startDate.setDate(startDate.getDate() + index);
+
+                    return (
+                        <div className="Calendar-Day" key={index} tabIndex={0}>
+                            {index}
+                        </div>
+                    );
+                })}
+            </div>
+            <button className="Calendar-TodayButton" onClick={setToday} disabled={dateIsEqual(today, state.date)}>
+                Сегодня
+            </button>
         </div>
     );
 }
