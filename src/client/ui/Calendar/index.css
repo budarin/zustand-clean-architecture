@@ -81,6 +81,12 @@
     padding: 2px;
 }
 
+@media (hover: hover) {
+    .Calendar-Day:hover {
+        background-color: var(--itemHoverColor);
+    }
+}
+
 @media (pointer: coarse) {
     .Calendar-Day {
         min-height: var(--x9);
