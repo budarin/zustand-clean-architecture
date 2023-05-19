@@ -36,7 +36,8 @@
         "typescript": "^5.0.4",
         "webpack": "^5.81.0",
         "webpack-cli": "^5.0.2",
-        "webpack-dev-server": "^4.13.3"
+        "webpack-dev-server": "^4.13.3",
+        "zx": "^7.2.2"
     },
     "scripts": {
         "start-client": "webpack-dev-server -c ./configs/webpack/webpack.config.js",
@@ -45,7 +46,7 @@
         "tsc": "tsc",
         "postbuild": "sh ./scripts/postbuild.sh",
         "postinstall": "sh ./scripts/postinstall.sh",
-        "branche-refresh": "sh ./scripts/branch-refresh.sh",
+        "branche-refresh": "node ./scripts/branch-refresh.mjs",
         "upgrade deps": "yarn upgrade-interactive --latest;"
     }
 }

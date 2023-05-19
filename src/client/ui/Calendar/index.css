@@ -1,0 +1,33 @@
+.Calendar {
+}
+
+.Calendar-Header {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid var(--borderColor);
+    border-right: 0;
+}
+
+.Calendar-MonthNavigation {
+    flex: 1;
+}
+
+.Calendar-Title {
+    display: inline-block;
+    width: 135px;
+}
+
+.Calendar-TodayButton {
+}
+
+.Calendar-WeekNames {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.Calendar-WeekName {
+    border-right: 1px solid var(--borderColor);
+    flex: 1;
+    text-align: center;
+}
