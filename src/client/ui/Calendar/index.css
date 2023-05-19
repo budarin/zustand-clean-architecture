@@ -66,8 +66,7 @@
     display: grid;
     grid-gap: 1px;
     grid-template-columns: repeat(7, 1fr);
-    font-size: smaller;
-    font-weight: 500;
+    font-size: 0.9rem;
     background-color: var(--primaryLightColor);
 }
 

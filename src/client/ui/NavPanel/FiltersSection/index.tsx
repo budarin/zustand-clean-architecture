@@ -9,7 +9,7 @@ function FiltersSection(props: FilterSection) {
 
     return (
         <li>
-            <h2>Календарь</h2>
+            <h2>Фильтры</h2>
             <ul>{children}</ul>
         </li>
     );
