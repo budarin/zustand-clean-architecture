@@ -1,56 +1,21 @@
 import { useEffect, useState } from 'react';
 
-import { getDaysInMoth } from './getDaysInMoth.tsx';
-import { getDateDiffInDays } from './getDateDiffInDays.tsx';
-import { capitalizeFirstLetter } from '../../../common/capitalizeFirstLetter.ts';
-
 import './index.css';
+import { getFirstMonthDate } from './getFirstMonthDate.tsx';
+import { getCalendarTitle } from './getCalendarTitle.tsx';
+import { getFirstDate } from './getFirstDate.tsx';
+import { getLastDate } from './getLastDate.tsx';
+import { getCalendarDaysCount } from './getCalendarDaysCount.tsx';
 
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDay
-const intl = new Intl.DateTimeFormat('ru-RU', { weekday: 'long' });
+type State = {
+    date: Date;
+    title: string;
+    startDate: Date;
+    endDate: Date;
+    daysCount: number;
+};
 
 const weekDayNames = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
-
-function getFirstMonthDate(date: Date): Date {
-    return new Date(date.getFullYear(), date.getMonth(), 1);
-}
-
-function getCalendarTitle(date: Date): string {
-    const currentMonthName = capitalizeFirstLetter(new Intl.DateTimeFormat('ru-RU', { month: 'long' }).format(date));
-    const currentYear = date.getFullYear();
-
-    return `${currentMonthName}, ${currentYear}`;
-}
-
-function getFirstDate(date: Date): Date {
-    const currentYear = date.getFullYear();
-    const currenMonthNo = date.getMonth();
-
-    const firstMonthDateWeekNo = date.getDay();
-
-    if (firstMonthDateWeekNo === 1) {
-        return date;
-    } else {
-        const lastDayOfPrevMonth = getDaysInMoth(currentYear, currenMonthNo);
-        return new Date(currentYear, currenMonthNo - 1, lastDayOfPrevMonth - firstMonthDateWeekNo + 2);
-    }
-}
-
-function getLastDate(date: Date): Date {
-    const currentYear = date.getFullYear();
-    const currenMonthNo = date.getMonth();
-
-    const lastCurrentMonthDay = getDaysInMoth(currentYear, currenMonthNo - 1);
-    const lastMonthDate = new Date(currentYear, currenMonthNo, lastCurrentMonthDay);
-    const lastDateWeekDay = lastMonthDate.getDay();
-    const lastDate = new Date(currentYear, currenMonthNo, lastCurrentMonthDay + (7 - lastDateWeekDay));
-
-    return lastDate;
-}
-
-function getCalendarDaysCount(date1: Date, date2: Date): number {
-    return getDateDiffInDays(date1, date2);
-}
 
 function getNewState(newDate: Date) {
     return function (): State {
@@ -69,17 +34,7 @@ function getNewState(newDate: Date) {
     };
 }
 
-type State = {
-    date: Date;
-    title: string;
-    startDate: Date;
-    endDate: Date;
-    daysCount: number;
-};
-
 function Calendar() {
-    const today = new Date();
-
     const [state, setState] = useState(() => {
         const today = getFirstMonthDate(new Date());
         const title = getCalendarTitle(today);
@@ -107,13 +62,11 @@ function Calendar() {
     };
 
     const setToday = () => {
-        setState(getNewState(getFirstMonthDate(today)));
+        setState(getNewState(getFirstMonthDate(new Date())));
     };
 
     function dateIsEqual(d1: Date, d2: Date): boolean {
-        return (
-            d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate()
-        );
+        return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth();
     }
 
     console.log('render');
@@ -122,11 +75,13 @@ function Calendar() {
     return (
         <div className="Calendar">
             <div className="Calendar-Header">
-                <button className="Calendar-PrevMonth" onClick={setPrevMonth}>
+                <button className="Calendar-PrevMonth Calendar-Button" onClick={setPrevMonth} title="Предыдущий месяц">
                     {'<'}
                 </button>
-                <span className="Calendar-Title">{state.title}</span>
-                <button className="Calendar-NextMonth" onClick={setNextMonth}>
+                <span className="Calendar-Title" title="Выбранный месяц">
+                    {state.title}
+                </span>
+                <button className="Calendar-NextMonth Calendar-Button" onClick={setNextMonth} title="Следующий месяц">
                     {'>'}
                 </button>
             </div>
@@ -150,7 +105,12 @@ function Calendar() {
                     );
                 })}
             </div>
-            <button className="Calendar-TodayButton" onClick={setToday} disabled={dateIsEqual(today, state.date)}>
+            <button
+                className="Calendar-TodayButton Calendar-Button"
+                onClick={setToday}
+                disabled={dateIsEqual(new Date(), state.date)}
+                title="Установить сегодняшнюю дату"
+            >
                 Сегодня
             </button>
         </div>
