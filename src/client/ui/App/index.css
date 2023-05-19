@@ -30,7 +30,7 @@
 
     --borderColor: hsl(0deg 0% 90.98%);
 
-    --primaryTextColor: hsl(214.29deg 100% 10%);
+    --primaryTextColor: hsl(214.29deg 100% 30%);
 }
 
 * {
@@ -55,7 +55,6 @@ body,
     transition: opacity 1s ease;
     overflow: hidden;
 }
-
 
 .hidden {
     opacity: 0;
