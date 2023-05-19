@@ -21,7 +21,13 @@
 
 @media only screen and (min-width: 641px) {
     .nav {
-        width: 248px;
+        width: 246px;
+    }
+
+    @media (pointer: coarse) {
+        .nav {
+            width: 294px;
+        }
     }
 }
 

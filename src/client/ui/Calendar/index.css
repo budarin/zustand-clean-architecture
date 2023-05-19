@@ -1,0 +1,93 @@
+.Calendar {
+    border-left: 1px solid var(--borderColor);
+    border-right: 1px solid var(--borderColor);
+}
+
+.Calendar-Button {
+    background-color: var(--primaryLightColor);
+    border: 1px solid var(--primaryColor);
+    cursor: pointer;
+}
+
+.Calendar-Button:active:not(:disabled) {
+    border: 1px solid var(--primaryDarkColor);
+}
+
+.Calendar-Header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-right: 0;
+    background-color: var(--primaryLightColor);
+    border-bottom: 1px solid var(--primaryColor);
+}
+
+.Calendar-Title {
+    flex: 1;
+    display: inline-block;
+    text-align: center;
+}
+
+.Calendar-PrevMonth,
+.Calendar-NextMonth {
+    font-weight: bold;
+    height: var(--x6);
+    width: var(--x11);
+}
+
+.Calendar-TodayButton {
+    height: var(--x9);
+    width: 100%;
+    font-weight: bold;
+}
+
+.Calendar-WeekNames {
+    font-size: 0.8rem;
+    line-height: 0.9rem;
+    padding-bottom: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: var(--primaryLightColor);
+    border-bottom: 1px solid var(--primaryColor);
+}
+
+.Calendar-WeekName {
+    flex: 1;
+    text-align: center;
+}
+
+.Calendar-WeekName + .Calendar-WeekName {
+    border-left: 1px solid var(--primaryColor);
+}
+
+.Calendar-Body {
+    display: grid;
+    grid-gap: 1px;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: var(--primaryLightColor);
+}
+
+.Calendar-Day {
+    min-height: var(--x6);
+    min-width: var(--x8);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 2px;
+}
+
+@media (pointer: coarse) {
+    .Calendar-Day {
+        min-height: var(--x9);
+        min-width: var(--x10);
+    }
+
+    .Calendar-PrevMonth,
+    .Calendar-NextMonth {
+        height: var(--x8);
+        width: var(--x11);
+    }
+}
