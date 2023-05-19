@@ -69,9 +69,6 @@ function Calendar() {
         return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth();
     }
 
-    console.log('render');
-    console.table(state);
-
     return (
         <div className="Calendar">
             <div className="Calendar-Header">
