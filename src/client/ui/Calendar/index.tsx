@@ -109,9 +109,9 @@ function Calendar() {
                 className="Calendar-TodayButton Calendar-Button"
                 onClick={setToday}
                 disabled={dateIsEqual(new Date(), state.date)}
-                title="Установить сегодняшнюю дату"
+                title="Вернуться к выбранной дате"
             >
-                Сегодня
+                Вернуться к выбору
             </button>
         </div>
     );
