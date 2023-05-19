@@ -13,9 +13,9 @@ function FiltersSectionContainer() {
     return (
         <FiltersSection>
             <Calendar />
-            {topFilters.map((key) => (
+            {/* {topFilters.map((key) => (
                 <NavigationPanelItemContainer key={key} id={key} navigationType={navigationFilterTypes.filter} />
-            ))}
+            ))} */}
         </FiltersSection>
     );
 }

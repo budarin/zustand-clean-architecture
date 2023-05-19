@@ -21,15 +21,17 @@
 
 @media only screen and (min-width: 641px) {
     .nav {
-        width: 256px;
+        width: 226px;
+    }
+
+    @media (pointer: coarse) {
+        .nav {
+            width: 282px;
+        }
     }
 }
 
 @media (pointer: coarse) {
-    .nav {
-        width: 310px;
-    }
-
     .nav h2 {
         line-height: var(--x11);
     }

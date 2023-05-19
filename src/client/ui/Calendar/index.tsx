@@ -79,17 +79,20 @@ type State = {
 
 function Calendar() {
     const today = new Date();
+
     const [state, setState] = useState(() => {
+        const today = getFirstMonthDate(new Date());
         const title = getCalendarTitle(today);
         const startDate = getFirstDate(today);
         const endDate = getLastDate(today);
+        const daysCount = getCalendarDaysCount(startDate, endDate);
 
         return {
             date: today,
             title,
             startDate,
             endDate,
-            daysCount: getCalendarDaysCount(startDate, endDate),
+            daysCount,
         };
     });
 
@@ -99,25 +102,12 @@ function Calendar() {
     };
 
     const setNextMonth = () => {
-        setState(({ date }) => {
-            const today = new Date(date.getFullYear(), date.getMonth() + 1, 1);
-            const title = getCalendarTitle(today);
-            const startDate = getFirstDate(today);
-            const endDate = getLastDate(today);
-
-            return {
-                date: today,
-                title,
-                startDate,
-                endDate,
-                daysCount: getCalendarDaysCount(startDate, endDate),
-            };
-        });
+        const today = new Date(state.date.getFullYear(), state.date.getMonth() + 1, 1);
+        setState(getNewState(today));
     };
 
     const setToday = () => {
-        const today = new Date();
-        setState(getNewState(today));
+        setState(getNewState(getFirstMonthDate(today)));
     };
 
     function dateIsEqual(d1: Date, d2: Date): boolean {
@@ -127,6 +117,7 @@ function Calendar() {
     }
 
     console.log('render');
+    console.table(state);
 
     return (
         <div className="Calendar">
