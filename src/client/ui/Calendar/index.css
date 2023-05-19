@@ -14,6 +14,7 @@
 }
 
 .Calendar-Header {
+    padding: 1px 0;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -34,12 +35,12 @@
     font-weight: bold;
     height: var(--x6);
     width: var(--x11);
+    border: 1px solid var(--primaryLightColor);
 }
 
 .Calendar-TodayButton {
     height: var(--x9);
     width: 100%;
-    font-weight: bold;
 }
 
 .Calendar-WeekNames {
