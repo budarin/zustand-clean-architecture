@@ -34,7 +34,7 @@ export const serverInitialState: EntitiesPayload = {
         {
             status_id: 4,
             status: 'высокий',
-            color: '#ff0000',
+            color: '#E56353',
         },
     ],
     categories: [

@@ -1,38 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+
+import { getNewState } from './utils/getNewState.tsx';
+import { getLastDate } from './utils/getLastDate.tsx';
+import { getFirstDate } from './utils/getFirstDate.tsx';
+import { getCalendarTitle } from './utils/getCalendarTitle.tsx';
+import { getFirstMonthDate } from './utils/getFirstMonthDate.tsx';
+import { getCalendarDaysCount } from './utils/getCalendarDaysCount.tsx';
 
 import './index.css';
-import { getFirstMonthDate } from './getFirstMonthDate.tsx';
-import { getCalendarTitle } from './getCalendarTitle.tsx';
-import { getFirstDate } from './getFirstDate.tsx';
-import { getLastDate } from './getLastDate.tsx';
-import { getCalendarDaysCount } from './getCalendarDaysCount.tsx';
-
-type State = {
-    date: Date;
-    title: string;
-    startDate: Date;
-    endDate: Date;
-    daysCount: number;
-};
 
 const weekDayNames = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
-
-function getNewState(newDate: Date) {
-    return function (): State {
-        const today = newDate;
-        const title = getCalendarTitle(today);
-        const startDate = getFirstDate(today);
-        const endDate = getLastDate(today);
-
-        return {
-            date: today,
-            title,
-            startDate,
-            endDate,
-            daysCount: getCalendarDaysCount(startDate, endDate),
-        };
-    };
-}
 
 function Calendar() {
     const [state, setState] = useState(() => {
@@ -44,6 +21,7 @@ function Calendar() {
 
         return {
             date: today,
+            month: today.getMonth(),
             title,
             startDate,
             endDate,
@@ -66,7 +44,10 @@ function Calendar() {
     };
 
     function dateIsEqual(d1: Date, d2: Date): boolean {
-        return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth();
+        const yearsAreEqual = d1.getFullYear() === d2.getFullYear();
+        const monthsAreEqual = d1.getMonth() === d2.getMonth();
+
+        return yearsAreEqual && monthsAreEqual;
     }
 
     return (
@@ -93,11 +74,15 @@ function Calendar() {
             </div>
             <div className="Calendar-Body">
                 {Array.from({ length: state.daysCount }, (_, index) => {
-                    // startDate.setDate(startDate.getDate() + index);
+                    const { startDate, month } = state;
+
+                    const date = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + index);
+                    const color = date.getMonth() === month ? 'currentColor' : '#adaeb6';
+                    const day = date.getDate();
 
                     return (
-                        <div className="Calendar-Day" key={index} tabIndex={0}>
-                            {index}
+                        <div className="Calendar-Day" key={index} tabIndex={0} style={{ color }}>
+                            {day}
                         </div>
                     );
                 })}
@@ -106,9 +91,9 @@ function Calendar() {
                 className="Calendar-TodayButton Calendar-Button"
                 onClick={setToday}
                 disabled={dateIsEqual(new Date(), state.date)}
-                title="Установить сегодняшнюю дату"
+                title="Вернуться к выбранной дате"
             >
-                Сегодня
+                Вернуться к выбору
             </button>
         </div>
     );
