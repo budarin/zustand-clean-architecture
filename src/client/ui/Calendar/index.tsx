@@ -21,6 +21,7 @@ function Calendar() {
 
         return {
             date: today,
+            month: today.getMonth(),
             title,
             startDate,
             endDate,
@@ -73,11 +74,15 @@ function Calendar() {
             </div>
             <div className="Calendar-Body">
                 {Array.from({ length: state.daysCount }, (_, index) => {
-                    // startDate.setDate(startDate.getDate() + index);
+                    const { startDate, month } = state;
+
+                    const date = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + index);
+                    const color = date.getMonth() === month ? 'currentColor' : '#adaeb6';
+                    const day = date.getDate();
 
                     return (
-                        <div className="Calendar-Day" key={index} tabIndex={0}>
-                            {index}
+                        <div className="Calendar-Day" key={index} tabIndex={0} style={{ color }}>
+                            {day}
                         </div>
                     );
                 })}

@@ -5,6 +5,7 @@ import { getCalendarDaysCount } from './getCalendarDaysCount.tsx';
 
 export type State = {
     date: Date;
+    month: number;
     title: string;
     startDate: Date;
     endDate: Date;
@@ -20,6 +21,7 @@ export function getNewState(newDate: Date): () => State {
 
         return {
             date: today,
+            month: today.getMonth(),
             title,
             startDate,
             endDate,
