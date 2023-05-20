@@ -88,7 +88,7 @@ function Calendar() {
                             key={date.valueOf()}
                             tabIndex={0}
                             style={{
-                                opacity: isCurrrentMonth ? 1 : 0.4,
+                                opacity: isCurrrentMonth ? 1 : 0.3,
                             }}
                         >
                             {day}
