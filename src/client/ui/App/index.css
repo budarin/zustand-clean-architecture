@@ -88,11 +88,11 @@ body,
 .app {
     height: 100%;
     overflow: hidden;
-    padding: 0 var(--x);
     block-size: 100%;
     max-width: 1100px;
     display: flex;
     flex-direction: column;
+    padding: 0 var(--x);
 }
 
 .app-header {
