@@ -11,6 +11,8 @@ import './index.css';
 
 const weekDayNames = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
 
+const emptyStyle = {};
+
 function Calendar() {
     const [state, setState] = useState(() => {
         const today = getFirstMonthDate(new Date());
@@ -77,11 +79,18 @@ function Calendar() {
                     const { startDate, month } = state;
 
                     const date = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + index);
-                    const color = date.getMonth() === month ? 'currentColor' : '#adaeb6';
+                    const isCurrrentMonth = date.getMonth() === month;
                     const day = date.getDate();
 
                     return (
-                        <div className="Calendar-Day" key={index} tabIndex={0} style={{ color }}>
+                        <div
+                            className="Calendar-Day"
+                            key={date.valueOf()}
+                            tabIndex={0}
+                            style={{
+                                opacity: isCurrrentMonth ? 1 : 0.4,
+                            }}
+                        >
                             {day}
                         </div>
                     );
@@ -93,7 +102,7 @@ function Calendar() {
                 disabled={dateIsEqual(new Date(), state.date)}
                 title="Вернуться к выбранной дате"
             >
-                Вернуться к выбору
+                К выбранной дате
             </button>
         </div>
     );
