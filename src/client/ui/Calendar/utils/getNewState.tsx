@@ -1,27 +1,32 @@
 import { getLastDate } from './getLastDate.tsx';
 import { getFirstDate } from './getFirstDate.tsx';
 import { getCalendarTitle } from './getCalendarTitle.tsx';
+import { getFirstMonthDate } from './getFirstMonthDate.tsx';
 import { getCalendarDaysCount } from './getCalendarDaysCount.tsx';
 
 export type State = {
-    date: Date;
+    selected: Date;
+    currentDate: Date;
     month: number;
+    year: number;
     title: string;
     startDate: Date;
     endDate: Date;
     daysCount: number;
 };
 
-export function getNewState(newDate: Date): () => State {
-    return function (): State {
-        const today = newDate;
-        const title = getCalendarTitle(today);
-        const startDate = getFirstDate(today);
-        const endDate = getLastDate(today);
+export function getStateForPrevOrNextMonth(newDate: Date) {
+    return function (state: State): State {
+        const date = getFirstMonthDate(newDate);
+        const title = getCalendarTitle(date);
+        const startDate = getFirstDate(date);
+        const endDate = getLastDate(date);
 
         return {
-            date: today,
-            month: today.getMonth(),
+            selected: state.selected,
+            currentDate: date,
+            month: date.getMonth(),
+            year: date.getFullYear(),
             title,
             startDate,
             endDate,

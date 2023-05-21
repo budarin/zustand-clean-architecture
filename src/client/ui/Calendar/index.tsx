@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { cn } from '../classNames.ts';
 
-import { getNewState } from './utils/getNewState.tsx';
+import { getStateForPrevOrNextMonth } from './utils/getNewState.tsx';
 import { getLastDate } from './utils/getLastDate.tsx';
 import { getFirstDate } from './utils/getFirstDate.tsx';
 import { getCalendarTitle } from './utils/getCalendarTitle.tsx';
@@ -17,15 +17,18 @@ const currentDayCN = cn('Calendar-Day');
 
 function Calendar() {
     const [state, setState] = useState(() => {
-        const today = getFirstMonthDate(new Date());
-        const title = getCalendarTitle(today);
-        const startDate = getFirstDate(today);
-        const endDate = getLastDate(today);
+        const today = new Date();
+        const date = getFirstMonthDate(new Date());
+        const title = getCalendarTitle(date);
+        const startDate = getFirstDate(date);
+        const endDate = getLastDate(date);
         const daysCount = getCalendarDaysCount(startDate, endDate);
 
         return {
-            date: today,
+            selected: today,
+            currentDate: date,
             month: today.getMonth(),
+            year: today.getFullYear(),
             title,
             startDate,
             endDate,
@@ -34,17 +37,17 @@ function Calendar() {
     });
 
     const setPrevMonth = () => {
-        const today = new Date(state.date.getFullYear(), state.date.getMonth() - 1, 1);
-        setState(getNewState(today));
+        const prevMonthDate = new Date(state.year, state.month - 1, 1);
+        setState(getStateForPrevOrNextMonth(prevMonthDate));
     };
 
     const setNextMonth = () => {
-        const today = new Date(state.date.getFullYear(), state.date.getMonth() + 1, 1);
-        setState(getNewState(today));
+        const nextMonthDate = new Date(state.year, state.month + 1, 1);
+        setState(getStateForPrevOrNextMonth(nextMonthDate));
     };
 
     const setToday = () => {
-        setState(getNewState(getFirstMonthDate(new Date())));
+        setState(getStateForPrevOrNextMonth(new Date()));
     };
 
     function dateIsEqual(d1: Date, d2: Date): boolean {
@@ -78,7 +81,7 @@ function Calendar() {
             </div>
             <div className="Calendar-Body">
                 {Array.from({ length: state.daysCount }, (_, index) => {
-                    const { startDate, month } = state;
+                    const { selected, startDate, month } = state;
 
                     const date = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + index);
                     const day = date.getDate();
@@ -96,7 +99,7 @@ function Calendar() {
             <button
                 className="Calendar-TodayButton Calendar-Button"
                 onClick={setToday}
-                disabled={dateIsEqual(new Date(), state.date)}
+                disabled={dateIsEqual(new Date(), state.currentDate)}
                 title="Вернуться к выбранной дате"
             >
                 К выбранной дате
