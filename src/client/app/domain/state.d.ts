@@ -30,6 +30,16 @@ type IconState = {
     ids: Readonly<Id[]>;
 };
 
+type NavigationFilterTitle = string;
+type NavigationFilterKey = NavigationFilterTitle | Id;
+type NavigationFilterType = 'filter' | 'category';
+
+type NavigationFilter = {
+    key: NavigationFilterKey;
+    title: NavigationFilterTitle;
+    type: NavigationFilterType;
+};
+
 type State = {
     icons: IconState;
     statuses: StatusState;

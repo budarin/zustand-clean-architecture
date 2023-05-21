@@ -1,7 +1,7 @@
 import { MouseEventHandler, useState } from 'react';
 
 import { cn } from '../classNames.ts';
-import { getStateForPrevOrNextMonth } from './utils/getNewState.tsx';
+import { getStateForPrevOrNextMonth } from './utils/getStateForPrevOrNextMonth.tsx';
 import { getStateForNewSelectedDate } from './utils/getStateForNewSelectedDate.tsx';
 
 import './index.css';
