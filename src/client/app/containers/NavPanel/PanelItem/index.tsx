@@ -57,6 +57,7 @@ const clickableTagNames = ['A', 'SPAN', 'IMG'];
 
 const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainer): JSX.Element => {
     const { id, navigationType } = props;
+
     const { icon, isCategory, title, checked } = useTodoStore(selector(id, navigationType), shallow);
     const iconName = iconsByName[icon as IconsByNameKey];
     const [expanded, setExpanded] = useState(false);
@@ -75,11 +76,19 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainer):
 
                 event.preventDefault();
 
-                useTodoStore.getState()._setNavigationFilter({
-                    key: isCategory ? Number(id) : id,
-                    title: containerTitle,
-                    type: navigationType as NavigationFilterType,
-                });
+                const filter = isCategory
+                    ? ({
+                          key: Number(id),
+                          title: containerTitle,
+                          type: navigationType,
+                      } as CategoryNavigationFilter)
+                    : ({
+                          key: id,
+                          title: containerTitle,
+                          type: navigationType,
+                      } as FilterNavigationFilter);
+
+                useTodoStore.getState()._setNavigationFilter(filter);
             }
         },
         [id, navigationType, isCategory],
@@ -99,7 +108,5 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainer):
         </NavigationIPanelIem>
     );
 });
-
-NavigationPanelItemContainer.displayName = 'NavigationPanelItemContainer';
 
 export default NavigationPanelItemContainer;

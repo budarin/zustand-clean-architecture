@@ -30,15 +30,28 @@ type IconState = {
     ids: Readonly<Id[]>;
 };
 
-type NavigationFilterTitle = string;
-type NavigationFilterKey = NavigationFilterTitle | Id;
-type NavigationFilterType = 'filter' | 'category';
+type Timestamp = number;
 
-type NavigationFilter = {
-    key: NavigationFilterKey;
-    title: NavigationFilterTitle;
-    type: NavigationFilterType;
+type FilterNavigationFilter = {
+    type: 'filter';
+    title: string;
+    key: string;
 };
+type CategoryNavigationFilter = {
+    type: 'category';
+    title: string;
+    key: Id;
+};
+type CalendarNavigationFilter = {
+    type: 'calendar';
+    title: string;
+    key: Timestamp;
+};
+
+type NavigationFilter = FilterNavigationFilter | CategoryNavigationFilter | CalendarNavigationFilter;
+
+type NavigationFilterType = NavigationFilter['type'];
+type NavigationFilterKey = NavigationFilter['key'];
 
 type State = {
     icons: IconState;
