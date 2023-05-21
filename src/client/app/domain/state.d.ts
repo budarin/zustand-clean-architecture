@@ -49,7 +49,6 @@ type CalendarNavigationFilter = {
 };
 
 type NavigationFilter = FilterNavigationFilter | CategoryNavigationFilter | CalendarNavigationFilter;
-
 type NavigationFilterType = NavigationFilter['type'];
 type NavigationFilterKey = NavigationFilter['key'];
 
