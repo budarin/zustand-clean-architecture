@@ -24,6 +24,10 @@
     border-bottom: 1px solid var(--primaryColor);
 }
 
+.Calendar-Header_selected {
+    background-color: var(--secondaryColor);
+}
+
 .Calendar-Title {
     flex: 1;
     display: inline-block;
@@ -36,6 +40,11 @@
     height: var(--x6);
     width: var(--x11);
     border: 1px solid var(--primaryLightColor);
+}
+
+.Calendar-Header_selected .Calendar-PrevMonth,
+.Calendar-Header_selected .Calendar-NextMonth {
+    background-color: var(--secondaryColor);
 }
 
 .Calendar-TodayButton {

@@ -7,10 +7,18 @@ import { getStateForNewSelectedDate } from './utils/getStateForNewSelectedDate.t
 import './index.css';
 
 let todayDate = new Date();
-const currentDayCN = cn('Calendar-Day');
 const weekDayNames = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
 
-function Calendar() {
+const currentDayCN = cn('Calendar-Day');
+const headerCN = cn('Calendar-Header');
+
+type Calendar = {
+    selected: boolean;
+};
+
+function Calendar(props: Calendar) {
+    const { selected } = props;
+
     const [state, setState] = useState(getStateForNewSelectedDate(todayDate));
 
     const setPrevMonth = () => {
@@ -38,9 +46,11 @@ function Calendar() {
         setState(getStateForNewSelectedDate(new Date(Number((event.target as HTMLElement).dataset.date))));
     };
 
+    const headerSelectedCN = headerCN({ selected });
+
     return (
         <div className="Calendar">
-            <div className="Calendar-Header">
+            <div className={headerSelectedCN}>
                 <button className="Calendar-PrevMonth Calendar-Button" onClick={setPrevMonth} title="Предыдущий месяц">
                     {'<'}
                 </button>

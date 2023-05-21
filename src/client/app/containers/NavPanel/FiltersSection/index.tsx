@@ -12,7 +12,7 @@ const topFilters = [todayKey, nextKey, inboxKey];
 function FiltersSectionContainer() {
     return (
         <FiltersSection>
-            <Calendar />
+            <Calendar selected={false} />
             {/* {topFilters.map((key) => (
                 <NavigationPanelItemContainer key={key} id={key} navigationType={navigationFilterTypes.filter} />
             ))} */}
