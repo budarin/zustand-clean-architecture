@@ -67,11 +67,18 @@ function Calendar() {
                     const date = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + index);
                     const date_day = date.getDate();
                     const date_month = date.getMonth();
-                    const isToday = date_month === todayDate.getMonth() && date_day === todayDate.getDate();
+                    const date_year = date.getFullYear();
+                    const isToday =
+                        date_month === todayDate.getMonth() &&
+                        date_day === todayDate.getDate() &&
+                        date_year === todayDate.getFullYear();
 
                     const className = currentDayCN({
                         other_month: date_month !== month,
-                        selected: date_month === selected.getMonth() && date_day === selected.getDate(),
+                        selected:
+                            date_month === selected.getMonth() &&
+                            date_day === selected.getDate() &&
+                            date_year === selected.getFullYear(),
                         today: isToday,
                     });
 
