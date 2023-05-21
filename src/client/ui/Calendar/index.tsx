@@ -5,12 +5,12 @@ import { getStateForPrevOrNextMonth } from './utils/getStateForPrevOrNextMonth.t
 import { getStateForNewSelectedDate } from './utils/getStateForNewSelectedDate.tsx';
 
 import './index.css';
+import { CalendarWeekNamesRow } from './CalendarWeekNamesRow.tsx';
+import { CalendarHeader } from './CalendarHeader.tsx';
 
 let todayDate = new Date();
-const weekDayNames = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
 
 const currentDayCN = cn('Calendar-Day');
-const headerCN = cn('Calendar-Header');
 
 type Calendar = {
     selected: boolean;
@@ -46,30 +46,17 @@ function Calendar(props: Calendar) {
         setState(getStateForNewSelectedDate(new Date(Number((event.target as HTMLElement).dataset.date))));
     };
 
-    const headerSelectedCN = headerCN({ selected });
-
     return (
         <div className="Calendar">
-            <div className={headerSelectedCN}>
-                <button className="Calendar-PrevMonth Calendar-Button" onClick={setPrevMonth} title="Предыдущий месяц">
-                    {'<'}
-                </button>
-                <span className="Calendar-Title" title="Выбранный месяц">
-                    {state.title}
-                </span>
-                <button className="Calendar-NextMonth Calendar-Button" onClick={setNextMonth} title="Следующий месяц">
-                    {'>'}
-                </button>
-            </div>
-            <div className="Calendar-WeekNames">
-                {weekDayNames.map((name) => {
-                    return (
-                        <span className="Calendar-WeekName" key={name}>
-                            {name}
-                        </span>
-                    );
-                })}
-            </div>
+            <CalendarHeader
+                selected={selected}
+                title={state.title}
+                handlePrevMonth={setPrevMonth}
+                handleNextMonth={setNextMonth}
+            />
+
+            <CalendarWeekNamesRow />
+
             <div className="Calendar-Body">
                 {Array.from({ length: state.daysCount }, (_, index) => {
                     const { selected, startDate, month } = state;
