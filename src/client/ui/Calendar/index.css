@@ -71,9 +71,6 @@
 }
 
 .Calendar-Day {
-    position: relative;
-    z-index: 1;
-
     min-height: var(--x8);
     min-width: var(--x8);
     cursor: pointer;
