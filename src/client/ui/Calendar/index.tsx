@@ -36,7 +36,7 @@ function setNewState(newDate: Date) {
 }
 
 function Calendar() {
-    const [state, setState] = useState(setNewState(new Date()));
+    const [state, setState] = useState(setNewState(todayDate));
 
     const setPrevMonth = () => {
         const prevMonthDate = new Date(state.year, state.month - 1, 1);
