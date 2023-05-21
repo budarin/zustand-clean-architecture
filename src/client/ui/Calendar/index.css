@@ -71,7 +71,7 @@
 }
 
 .Calendar-Day {
-    min-height: var(--x6);
+    min-height: var(--x8);
     min-width: var(--x8);
     cursor: pointer;
     display: flex;
@@ -86,15 +86,26 @@
     opacity: 0.3;
 }
 
+.Calendar-Day_today {
+    border: 2px solid var(--accentColor);
+    border-radius: var(--x);
+}
+.Calendar-Day_selected {
+    background-color: var(--secondaryColor);
+}
+
 @media (hover: hover) {
     .Calendar-Day:hover {
         background-color: var(--itemHoverColor);
+    }
+    .Calendar-Day_selected:hover {
+        background-color: var(--secondaryColor);
     }
 }
 
 @media (pointer: coarse) {
     .Calendar-Day {
-        min-height: var(--x9);
+        min-height: var(--x10);
         min-width: var(--x10);
     }
 
