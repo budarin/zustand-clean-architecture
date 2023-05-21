@@ -71,6 +71,7 @@
 }
 
 .Calendar-Day {
+    line-height: 0.9;
     min-height: var(--x8);
     min-width: var(--x8);
     cursor: pointer;
@@ -78,7 +79,6 @@
     align-items: center;
     justify-content: center;
     background-color: white;
-    padding: 2px;
     opacity: 1;
 }
 
