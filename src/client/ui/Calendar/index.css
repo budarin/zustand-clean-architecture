@@ -71,6 +71,9 @@
 }
 
 .Calendar-Day {
+    position: relative;
+    z-index: 1;
+
     min-height: var(--x8);
     min-width: var(--x8);
     cursor: pointer;
@@ -86,10 +89,12 @@
     opacity: 0.3;
 }
 
+.Calendar-Day_today {
+    border: 2px solid var(--accentColor);
+    border-radius: var(--x);
+}
 .Calendar-Day_selected {
-    color: var(--accentColor);
     background-color: var(--secondaryColor);
-    font-weight: bold;
 }
 
 @media (hover: hover) {

@@ -13,6 +13,7 @@ import './index.css';
 
 const weekDayNames = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
 
+let todayDate = new Date();
 const currentDayCN = cn('Calendar-Day');
 
 function Calendar() {
@@ -93,6 +94,7 @@ function Calendar() {
                     const className = currentDayCN({
                         other_month: date_month !== month,
                         selected: date_month === selected.getMonth() && date_day === selected.getDate(),
+                        today: date_month === todayDate.getMonth() && date_day === todayDate.getDate(),
                     });
 
                     return (
