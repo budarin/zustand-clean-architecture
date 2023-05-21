@@ -4,19 +4,8 @@ import { getCalendarTitle } from './getCalendarTitle.tsx';
 import { getFirstMonthDate } from './getFirstMonthDate.tsx';
 import { getCalendarDaysCount } from './getCalendarDaysCount.tsx';
 
-export type State = {
-    selected: Date;
-    currentDate: Date;
-    month: number;
-    year: number;
-    title: string;
-    startDate: Date;
-    endDate: Date;
-    daysCount: number;
-};
-
 export function getStateForPrevOrNextMonth(newDate: Date) {
-    return function (state: State): State {
+    return function (state: CalendarState): CalendarState {
         const date = getFirstMonthDate(newDate);
         const title = getCalendarTitle(date);
         const startDate = getFirstDate(date);

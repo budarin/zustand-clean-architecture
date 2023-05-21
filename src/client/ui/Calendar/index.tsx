@@ -1,42 +1,17 @@
-import { MouseEvent, MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useState } from 'react';
 
 import { cn } from '../classNames.ts';
-
-import { getLastDate } from './utils/getLastDate.tsx';
-import { getFirstDate } from './utils/getFirstDate.tsx';
-import { getCalendarTitle } from './utils/getCalendarTitle.tsx';
-import { getFirstMonthDate } from './utils/getFirstMonthDate.tsx';
 import { getStateForPrevOrNextMonth } from './utils/getNewState.tsx';
-import { getCalendarDaysCount } from './utils/getCalendarDaysCount.tsx';
+import { getStateForNewSelectedDate } from './utils/getStateForNewSelectedDate.tsx';
 
 import './index.css';
 
-const weekDayNames = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
-
 let todayDate = new Date();
 const currentDayCN = cn('Calendar-Day');
-
-function setNewState(newDate: Date) {
-    const date = getFirstMonthDate(newDate);
-    const title = getCalendarTitle(date);
-    const startDate = getFirstDate(date);
-    const endDate = getLastDate(date);
-    const daysCount = getCalendarDaysCount(startDate, endDate);
-
-    return {
-        selected: newDate,
-        currentDate: date,
-        month: date.getMonth(),
-        year: date.getFullYear(),
-        title,
-        startDate,
-        endDate,
-        daysCount,
-    };
-}
+const weekDayNames = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
 
 function Calendar() {
-    const [state, setState] = useState(setNewState(todayDate));
+    const [state, setState] = useState(getStateForNewSelectedDate(todayDate));
 
     const setPrevMonth = () => {
         const prevMonthDate = new Date(state.year, state.month - 1, 1);
@@ -60,7 +35,7 @@ function Calendar() {
     }
 
     const onSelectDate: MouseEventHandler<HTMLDivElement> = (event) => {
-        setState(setNewState(new Date(Number((event.target as HTMLElement).dataset.date))));
+        setState(getStateForNewSelectedDate(new Date(Number((event.target as HTMLElement).dataset.date))));
     };
 
     return (
