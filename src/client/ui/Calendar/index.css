@@ -98,6 +98,9 @@
     .Calendar-Day:hover {
         background-color: var(--itemHoverColor);
     }
+    .Calendar-Day_selected:hover {
+        background-color: var(--secondaryColor);
+    }
 }
 
 @media (pointer: coarse) {

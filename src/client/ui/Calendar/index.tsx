@@ -16,26 +16,27 @@ const weekDayNames = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
 let todayDate = new Date();
 const currentDayCN = cn('Calendar-Day');
 
-function Calendar() {
-    const [state, setState] = useState(() => {
-        const today = new Date();
-        const date = getFirstMonthDate(new Date());
-        const title = getCalendarTitle(date);
-        const startDate = getFirstDate(date);
-        const endDate = getLastDate(date);
-        const daysCount = getCalendarDaysCount(startDate, endDate);
+function setNewState(newDate: Date) {
+    const date = getFirstMonthDate(newDate);
+    const title = getCalendarTitle(date);
+    const startDate = getFirstDate(date);
+    const endDate = getLastDate(date);
+    const daysCount = getCalendarDaysCount(startDate, endDate);
 
-        return {
-            selected: today,
-            currentDate: date,
-            month: today.getMonth(),
-            year: today.getFullYear(),
-            title,
-            startDate,
-            endDate,
-            daysCount,
-        };
-    });
+    return {
+        selected: newDate,
+        currentDate: date,
+        month: date.getMonth(),
+        year: date.getFullYear(),
+        title,
+        startDate,
+        endDate,
+        daysCount,
+    };
+}
+
+function Calendar() {
+    const [state, setState] = useState(setNewState(new Date()));
 
     const setPrevMonth = () => {
         const prevMonthDate = new Date(state.year, state.month - 1, 1);
@@ -48,7 +49,7 @@ function Calendar() {
     };
 
     const setToday = () => {
-        setState(getStateForPrevOrNextMonth(new Date()));
+        setState(getStateForPrevOrNextMonth(todayDate));
     };
 
     function dateIsEqual(d1: Date, d2: Date): boolean {
@@ -59,7 +60,7 @@ function Calendar() {
     }
 
     const onSelectDate: MouseEventHandler<HTMLDivElement> = (event) => {
-        //
+        setState(setNewState(new Date(Number((event.target as HTMLElement).dataset.date))));
     };
 
     return (
@@ -91,14 +92,25 @@ function Calendar() {
                     const date = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + index);
                     const date_day = date.getDate();
                     const date_month = date.getMonth();
+                    const isToday = date_month === todayDate.getMonth() && date_day === todayDate.getDate();
+
                     const className = currentDayCN({
                         other_month: date_month !== month,
                         selected: date_month === selected.getMonth() && date_day === selected.getDate(),
-                        today: date_month === todayDate.getMonth() && date_day === todayDate.getDate(),
+                        today: isToday,
                     });
 
+                    const key = date.valueOf();
+
                     return (
-                        <div className={className} key={date.valueOf()} tabIndex={0} onClick={onSelectDate}>
+                        <div
+                            className={className}
+                            key={key}
+                            tabIndex={0}
+                            data-date={key}
+                            onClick={onSelectDate}
+                            title={isToday ? 'Сегодня' : ''}
+                        >
                             {date_day}
                         </div>
                     );
@@ -107,10 +119,9 @@ function Calendar() {
             <button
                 className="Calendar-TodayButton Calendar-Button"
                 onClick={setToday}
-                disabled={dateIsEqual(new Date(), state.currentDate)}
-                title="Вернуться к выбранной дате"
+                disabled={dateIsEqual(todayDate, state.currentDate)}
             >
-                К выбранной дате
+                Вернуться к сегодня
             </button>
         </div>
     );
