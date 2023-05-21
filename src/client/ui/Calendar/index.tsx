@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { cn } from '../classNames.ts';
+
 import { getNewState } from './utils/getNewState.tsx';
 import { getLastDate } from './utils/getLastDate.tsx';
 import { getFirstDate } from './utils/getFirstDate.tsx';
@@ -11,7 +13,7 @@ import './index.css';
 
 const weekDayNames = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
 
-const emptyStyle = {};
+const currentDayCN = cn('Calendar-Day');
 
 function Calendar() {
     const [state, setState] = useState(() => {
@@ -79,18 +81,13 @@ function Calendar() {
                     const { startDate, month } = state;
 
                     const date = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + index);
-                    const isCurrrentMonth = date.getMonth() === month;
                     const day = date.getDate();
+                    const className = currentDayCN({
+                        other_month: date.getMonth() !== month,
+                    });
 
                     return (
-                        <div
-                            className="Calendar-Day"
-                            key={date.valueOf()}
-                            tabIndex={0}
-                            style={{
-                                opacity: isCurrrentMonth ? 1 : 0.3,
-                            }}
-                        >
+                        <div className={className} key={date.valueOf()} tabIndex={0}>
                             {day}
                         </div>
                     );
