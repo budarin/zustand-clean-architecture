@@ -1,6 +1,7 @@
 export const navigationFilterTypes = {
     filter: 'filter',
     category: 'category',
+    calendar: 'calendar',
 } as const;
 
 export const inboxKey = 'inbox';
