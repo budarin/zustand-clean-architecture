@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { MouseEvent, MouseEventHandler, useState } from 'react';
 
 import { cn } from '../classNames.ts';
 
-import { getStateForPrevOrNextMonth } from './utils/getNewState.tsx';
 import { getLastDate } from './utils/getLastDate.tsx';
 import { getFirstDate } from './utils/getFirstDate.tsx';
 import { getCalendarTitle } from './utils/getCalendarTitle.tsx';
 import { getFirstMonthDate } from './utils/getFirstMonthDate.tsx';
+import { getStateForPrevOrNextMonth } from './utils/getNewState.tsx';
 import { getCalendarDaysCount } from './utils/getCalendarDaysCount.tsx';
 
 import './index.css';
@@ -57,6 +57,10 @@ function Calendar() {
         return yearsAreEqual && monthsAreEqual;
     }
 
+    const onSelectDate: MouseEventHandler<HTMLDivElement> = (event) => {
+        //
+    };
+
     return (
         <div className="Calendar">
             <div className="Calendar-Header">
@@ -84,14 +88,16 @@ function Calendar() {
                     const { selected, startDate, month } = state;
 
                     const date = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + index);
-                    const day = date.getDate();
+                    const date_day = date.getDate();
+                    const date_month = date.getMonth();
                     const className = currentDayCN({
-                        other_month: date.getMonth() !== month,
+                        other_month: date_month !== month,
+                        selected: date_month === selected.getMonth() && date_day === selected.getDate(),
                     });
 
                     return (
-                        <div className={className} key={date.valueOf()} tabIndex={0}>
-                            {day}
+                        <div className={className} key={date.valueOf()} tabIndex={0} onClick={onSelectDate}>
+                            {date_day}
                         </div>
                     );
                 })}
