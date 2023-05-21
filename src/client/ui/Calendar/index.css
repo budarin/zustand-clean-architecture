@@ -79,6 +79,11 @@
     justify-content: center;
     background-color: white;
     padding: 2px;
+    opacity: 1;
+}
+
+.Calendar-Day_other_month {
+    opacity: 0.3;
 }
 
 @media (hover: hover) {
