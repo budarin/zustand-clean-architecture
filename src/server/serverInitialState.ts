@@ -4,6 +4,16 @@ function getDateOverToday(day: number) {
     return new Date(today.getFullYear(), today.getMonth(), today.getDate() + day).valueOf();
 }
 
+function getTodayInMinutes(minutes: number) {
+    return new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate(),
+        today.getHours(),
+        today.getMinutes() + minutes,
+    ).valueOf();
+}
+
 export const serverInitialState: EntitiesPayload = {
     icons: [
         { icon_id: 1, icon_name: 'page.png' },
@@ -85,7 +95,7 @@ export const serverInitialState: EntitiesPayload = {
             status_id: 3,
             category_id: 3,
             todo: 'Todo3',
-            due_date: today.valueOf(),
+            due_date: getTodayInMinutes(1),
             completed: true,
             deleted: false,
         },

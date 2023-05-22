@@ -5,9 +5,6 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    height: 100%;
-    border: 1px solid var(--borderColor);
-    border-top: 0;
 }
 
 .todoList-header {

@@ -28,6 +28,7 @@ type Actions = {
     _addTodo: (todo: UnknownObject) => void;
     _updateTodo: (todo: UnknownObject) => void;
     _deleteTodo: (id: Todo['todo_id']) => void;
+    _addToOverduedTodos: (id: Todo['todo_id']) => void;
 
     // NavigationFilter
     setNavigationFilter: (filter: NavigationFilter) => void;
@@ -191,6 +192,15 @@ const todoStore = create<State & Actions>((set) => ({
             }
 
             throw new TodoStoreError(error, todo);
+        });
+    },
+
+    _addToOverduedTodos: (id: Category['category_id']) => {
+        return set((state) => {
+            const newState = { ...state };
+            newState.todos.idsByFilterId[overdueKey] = [...newState.todos.idsByFilterId[overdueKey], id];
+
+            return newState;
         });
     },
 
