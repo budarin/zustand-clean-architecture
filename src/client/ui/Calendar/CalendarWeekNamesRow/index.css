@@ -1,0 +1,22 @@
+.Calendar-WeekNames {
+    font-size: 0.8rem;
+    line-height: 0.9rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: var(--primaryLightColor);
+    border-bottom: 1px solid var(--primaryColor);
+}
+
+.Calendar-WeekName {
+    flex: 1;
+    text-align: center;
+}
+
+.Calendar-WeekName_weekend {
+    color: var(--accentColor);
+}
+
+.Calendar-WeekName + .Calendar-WeekName {
+    border-left: 1px solid var(--primaryColor);
+}

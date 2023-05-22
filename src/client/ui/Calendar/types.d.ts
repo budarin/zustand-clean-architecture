@@ -1,10 +1,13 @@
-type CalendarState = {
-    selected: Date;
-    currentDate: Date;
-    month: number;
+type ParsedDate = {
     year: number;
+    month: number;
+    day: number;
+};
+
+type CalendarState = {
+    currentDay: ParsedDate;
     title: string;
-    startDate: Date;
-    endDate: Date;
+    selectedDay: ParsedDate;
+    startDay: ParsedDate;
     daysCount: number;
 };

@@ -12,13 +12,22 @@ export function getStateForNewSelectedDate(newDate: Date): CalendarState {
     const daysCount = getCalendarDaysCount(startDate, endDate);
 
     return {
-        selected: newDate,
-        currentDate: date,
-        month: date.getMonth(),
-        year: date.getFullYear(),
+        currentDay: {
+            day: date.getDate(),
+            month: date.getMonth(),
+            year: date.getFullYear(),
+        },
         title,
-        startDate,
-        endDate,
+        startDay: {
+            day: startDate.getDate(),
+            month: startDate.getMonth(),
+            year: startDate.getFullYear(),
+        },
+        selectedDay: {
+            day: newDate.getDate(),
+            month: newDate.getMonth(),
+            year: newDate.getFullYear(),
+        },
         daysCount,
     };
 }

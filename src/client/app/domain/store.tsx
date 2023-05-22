@@ -18,6 +18,7 @@ import {
     recycleBinKey,
     todayKey,
 } from './navigationFilter/index.ts';
+import { updateTodoOverdue } from './todo/updateTodoOverdue.ts';
 
 type Actions = {
     // Icon
@@ -195,6 +196,8 @@ const todoStore = create<State & Actions>((set) => ({
 
                 updateTodoFilters(newState.todos, entity);
                 updateTodoCategories(newState.todos, entity);
+                updateTodoOverdue(newState.todos, entity);
+
                 newState.todos.byId = { ...state.todos.byId, [entity.todo_id]: entity };
                 newState.todos.ids = [...state.todos.ids, entity.todo_id];
 
@@ -216,6 +219,7 @@ const todoStore = create<State & Actions>((set) => ({
 
                 updateTodoFilters(newState.todos, newTodo, oldTodo);
                 updateTodoCategories(newState.todos, newTodo, oldTodo);
+                updateTodoOverdue(newState.todos, newTodo, oldTodo);
                 newState.todos.byId[entity.todo_id] = newTodo;
 
                 return newState;

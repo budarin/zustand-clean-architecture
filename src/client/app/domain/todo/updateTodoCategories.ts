@@ -12,7 +12,7 @@ export function updateTodoCategories(state: TodoState, newTodo: Todo, oldTodo?: 
     // - изменилась категория
     // - или задача удалена
     // - или у задачи удалена категория
-    // удаляем задачу из старой категории
+    // удаляем задачу из категории в которой она была
     if (oldTodo && oldTodo.category_id) {
         if (oldTodo.category_id !== newTodo.category_id || newTodo.deleted || isNotExists(newTodo.category_id)) {
             const newCategory = [...byCategoryId[oldTodo.category_id]];

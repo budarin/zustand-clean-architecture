@@ -1,4 +1,6 @@
-import { cn } from '../classNames.ts';
+import { cn } from '../../classNames.ts';
+
+import './index.css';
 
 const headerCN = cn('Calendar-Header');
 
