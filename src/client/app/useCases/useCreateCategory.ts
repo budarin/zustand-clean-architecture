@@ -36,7 +36,7 @@ export function useCreateCategory(): UseCreateCategory {
                     const numbers = Object.keys(store.categories.byId).map(Number);
                     const newCategoryId = Math.max(...numbers) + 1;
 
-                    store._createCategory({ ...category, category_id: newCategoryId });
+                    store._addCategory({ ...category, category_id: newCategoryId });
 
                     setSuccess(true);
                 } else {

@@ -88,7 +88,7 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainer):
                           type: navigationType,
                       } as FilterNavigationFilter);
 
-                useTodoStore.getState()._setNavigationFilter(filter);
+                useTodoStore.getState().setNavigationFilter(filter);
             }
         },
         [id, navigationType, isCategory],

@@ -17,7 +17,7 @@ export async function deleteCategory(id: Category['category_id']) {
         await delay(3000);
         notifyError(`Ошибка: не удалось удалить категорию "${value.category}" - восстанавливаем`, { autoClose: 2000 });
 
-        store._createCategory(value);
+        store._addCategory(value);
     } catch (err) {
         if (err instanceof TodoStoreError) {
             notifyError(err.message);

@@ -1,25 +1,17 @@
-import React from 'react';
 import { unstable_batchedUpdates } from 'react-dom';
 
 import { useTodoStore } from './store';
-import { notifyError, notifyWarning } from '../../services/notification';
+import { notifyWarning } from '../../services/notification';
 
 export function initStore(data: EntitiesPayload) {
     let hasError = false;
-
-    const {
-        _createIcon: createIcon,
-        _createStatus: createStatus,
-        _createCategory: createCategory,
-        _createTodo: createTodo,
-    } = useTodoStore.getState();
-
     const { icons, statuses, categories, todos } = data;
+    const { _addIcon, _addStatus, _addCategory, _addTodo } = useTodoStore.getState();
 
     unstable_batchedUpdates(() => {
         icons?.forEach((icon) => {
             try {
-                createIcon(icon);
+                _addIcon(icon);
             } catch (error) {
                 console.error(error);
                 hasError = true;
@@ -27,7 +19,7 @@ export function initStore(data: EntitiesPayload) {
         });
         statuses?.forEach((status) => {
             try {
-                createStatus(status);
+                _addStatus(status);
             } catch (error) {
                 console.error(error);
                 hasError = true;
@@ -35,7 +27,7 @@ export function initStore(data: EntitiesPayload) {
         });
         categories?.forEach((category) => {
             try {
-                createCategory(category);
+                _addCategory(category);
             } catch (error) {
                 console.error(error);
                 hasError = true;
@@ -43,7 +35,7 @@ export function initStore(data: EntitiesPayload) {
         });
         todos?.forEach((todo) => {
             try {
-                createTodo(todo);
+                _addTodo(todo);
             } catch (error) {
                 console.error(error);
                 hasError = true;

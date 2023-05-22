@@ -21,23 +21,23 @@ import {
 
 type Actions = {
     // Icon
-    _createIcon: (icon: UnknownObject) => void;
+    _addIcon: (icon: UnknownObject) => void;
 
     // Status
-    _createStatus: (status: UnknownObject) => void;
+    _addStatus: (status: UnknownObject) => void;
 
     // Category
-    _createCategory: (category: UnknownObject) => void;
+    _addCategory: (category: UnknownObject) => void;
     _updateCategory: (category: UnknownObject) => void;
     _deleteCategory: (id: Category['category_id']) => void;
 
     // Todo
-    _createTodo: (todo: UnknownObject) => void;
+    _addTodo: (todo: UnknownObject) => void;
     _updateTodo: (todo: UnknownObject) => void;
     _deleteTodo: (id: Todo['todo_id']) => void;
 
     // NavigationFilter
-    _setNavigationFilter: (filter: NavigationFilter) => void;
+    setNavigationFilter: (filter: NavigationFilter) => void;
 };
 
 const todoStore = create<State & Actions>((set) => ({
@@ -77,7 +77,7 @@ const todoStore = create<State & Actions>((set) => ({
     },
 
     // Icon
-    _createIcon: (icon: UnknownObject) => {
+    _addIcon: (icon: UnknownObject) => {
         return set((state) => {
             const { entity, error } = validateIconEntity(icon, state);
 
@@ -95,7 +95,7 @@ const todoStore = create<State & Actions>((set) => ({
     },
 
     // Status
-    _createStatus: (status: UnknownObject) => {
+    _addStatus: (status: UnknownObject) => {
         return set((state) => {
             const { entity, error } = validateStatusEntity(status, state);
 
@@ -117,7 +117,7 @@ const todoStore = create<State & Actions>((set) => ({
     },
 
     // Category
-    _createCategory: (category: UnknownObject) => {
+    _addCategory: (category: UnknownObject) => {
         return set((state) => {
             const { entity, error } = validateCategoryEntity(category, state);
 
@@ -182,7 +182,7 @@ const todoStore = create<State & Actions>((set) => ({
     },
 
     // Todo
-    _createTodo: (todo: UnknownObject) => {
+    _addTodo: (todo: UnknownObject) => {
         return set((state) => {
             const { entity, error } = validateTodoEntity(todo, state);
 
@@ -214,7 +214,7 @@ const todoStore = create<State & Actions>((set) => ({
                 const oldTodo = state.todos.byId[entity.todo_id];
                 const newTodo = { ...state.todos.byId[entity.todo_id], ...entity };
 
-                updateIdsByFilterId(newState.todos, newTodo);
+                updateIdsByFilterId(newState.todos, newTodo, oldTodo);
                 updateIdsByCategoryId(newState.todos, newTodo, oldTodo);
                 newState.todos.byId[entity.todo_id] = newTodo;
 
@@ -244,7 +244,7 @@ const todoStore = create<State & Actions>((set) => ({
     },
 
     // NavigationFilter
-    _setNavigationFilter: (filter: NavigationFilter) => {
+    setNavigationFilter: (filter: NavigationFilter) => {
         return set((state) => {
             if (state.navigationFilter.key === filter.key) {
                 return state;
