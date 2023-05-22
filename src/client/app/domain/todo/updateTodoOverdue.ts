@@ -1,6 +1,6 @@
 import { isNotExists } from '../../../../common/validation_utils/isNotExists';
 
-export function updateIdsByDueDate(oldTodo: Todo, newTodo: Todo, state: TodoState) {
+export function updateTodoOverdue(oldTodo: Todo, newTodo: Todo, state: TodoState) {
     // обновляем todos.idsByByDueDate
 
     const due_date = new Date(todo.due_date);

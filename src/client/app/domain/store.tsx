@@ -4,9 +4,9 @@ import { TodoStoreError } from './TodoStoreError.tsx';
 import { createSelectors } from './createSelectors.ts';
 import { validateTodoEntity } from './todo/validateTodoEntity.ts';
 import { validateIconEntity } from './icon/validateIconEntity.ts';
-import { updateIdsByFilterId } from './todo/updateIdsByFilterId.ts';
+import { updateTodoFilters } from './todo/updateTodoFilters.ts';
 import { validateStatusEntity } from './status/validateStatusEntity.ts';
-import { updateIdsByCategoryId } from './todo/updateIdsByCategoryId.ts';
+import { updateTodoCategories } from './todo/updateTodoCategories.ts';
 import { validateCategoryEntity } from './category/validateCategoryEntity.ts';
 
 import {
@@ -193,8 +193,8 @@ const todoStore = create<State & Actions>((set) => ({
 
                 const newState = { ...state };
 
-                updateIdsByFilterId(newState.todos, entity);
-                updateIdsByCategoryId(newState.todos, entity);
+                updateTodoFilters(newState.todos, entity);
+                updateTodoCategories(newState.todos, entity);
                 newState.todos.byId = { ...state.todos.byId, [entity.todo_id]: entity };
                 newState.todos.ids = [...state.todos.ids, entity.todo_id];
 
@@ -214,8 +214,8 @@ const todoStore = create<State & Actions>((set) => ({
                 const oldTodo = state.todos.byId[entity.todo_id];
                 const newTodo = { ...state.todos.byId[entity.todo_id], ...entity };
 
-                updateIdsByFilterId(newState.todos, newTodo, oldTodo);
-                updateIdsByCategoryId(newState.todos, newTodo, oldTodo);
+                updateTodoFilters(newState.todos, newTodo, oldTodo);
+                updateTodoCategories(newState.todos, newTodo, oldTodo);
                 newState.todos.byId[entity.todo_id] = newTodo;
 
                 return newState;

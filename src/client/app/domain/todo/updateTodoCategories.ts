@@ -1,6 +1,6 @@
 import { isNotExists } from '../../../../common/validation_utils/isNotExists';
 
-export function updateIdsByCategoryId(state: TodoState, newTodo: Todo, oldTodo?: Todo) {
+export function updateTodoCategories(state: TodoState, newTodo: Todo, oldTodo?: Todo) {
     // если обновление задачи и категория не изменилась - выходим
     if (oldTodo && oldTodo.category_id === newTodo.category_id) {
         return;

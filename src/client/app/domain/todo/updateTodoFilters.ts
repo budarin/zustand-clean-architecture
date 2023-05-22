@@ -6,7 +6,7 @@ import { updateRecycleBin } from './filters/updateRecycleBin.ts';
 import { deleteTodoFromFilters } from './filters/deleteTodoFromFilters.ts';
 import { inboxKey, nextKey, overdueKey, todayKey } from '../navigationFilter/index.ts';
 
-export function updateIdsByFilterId(state: TodoState, newTodo: Todo, oldTodo?: Todo): void {
+export function updateTodoFilters(state: TodoState, newTodo: Todo, oldTodo?: Todo): void {
     // если задача удалена - удалить из всех фильтров и поместить в RecycleBin
     if (oldTodo && oldTodo.deleted == false && newTodo.deleted === true) {
         deleteTodoFromFilters(state, [overdueKey, inboxKey, todayKey, nextKey], oldTodo);
