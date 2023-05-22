@@ -10,14 +10,7 @@ import { updateTodoCategories } from './todo/updateTodoCategories.ts';
 import { validateStatusEntity } from './status/validateStatusEntity.ts';
 import { validateCategoryEntity } from './category/validateCategoryEntity.ts';
 
-import {
-    getNavigationFilterWithCalendarDate,
-    inboxKey,
-    nextKey,
-    overdueKey,
-    recycleBinKey,
-    todayKey,
-} from './navigationFilter/index.ts';
+import { getNavigationFilterWithCalendarDate, inboxKey, overdueKey, recycleBinKey } from './navigationFilter/index.ts';
 
 type Actions = {
     // Icon
@@ -63,8 +56,6 @@ const todoStore = create<State & Actions>((set) => ({
         idsByCategoryId: {},
         idsByFilterId: {
             [inboxKey]: [],
-            [todayKey]: [],
-            [nextKey]: [],
             [recycleBinKey]: [],
             [overdueKey]: [],
         },
