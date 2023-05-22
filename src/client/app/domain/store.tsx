@@ -206,6 +206,7 @@ const todoStore = create<State & Actions>((set) => ({
                 updateTodoFilters(newState.todos, newTodo, oldTodo);
                 updateTodoCategories(newState.todos, newTodo, oldTodo);
                 updateTodoOverdue(newState.todos, newTodo, oldTodo);
+
                 newState.todos.byId[entity.todo_id] = newTodo;
 
                 return newState;
