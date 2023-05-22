@@ -24,7 +24,12 @@ type Calendar = {
 function Calendar(props: Calendar) {
     const { selected } = props;
 
-    let todayDate = new Date();
+    const todayDate = new Date();
+    const todayDay = {
+        day: todayDate.getDate(),
+        month: todayDate.getMonth(),
+        year: todayDate.getFullYear(),
+    };
 
     const [{ title, currentDay, daysCount, startDay, selectedDay }, setState] = useState(
         getStateForNewSelectedDate(todayDate),
@@ -73,6 +78,7 @@ function Calendar(props: Calendar) {
                             value={key}
                             selectedDay={selectedDay}
                             calendarMonth={month}
+                            todayDay={todayDay}
                             onSelectDate={onSelectDate}
                         />
                     );
