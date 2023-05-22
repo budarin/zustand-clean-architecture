@@ -5,14 +5,6 @@ import { areDaysEqual } from '../utils/areDaysEqual';
 
 import './index.css';
 
-const todayDate = new Date();
-
-const todayDay = {
-    day: todayDate.getDate(),
-    month: todayDate.getMonth(),
-    year: todayDate.getFullYear(),
-};
-
 const currentDayCN = cn('Calendar-Day');
 
 const weekendDays = [0, 6];
@@ -22,11 +14,12 @@ type CalendarDay = {
     value: number;
     selectedDay: ParsedDate;
     calendarMonth: number;
+    todayDay: ParsedDate;
     onSelectDate: MouseEventHandler<HTMLDivElement>;
 };
 
 function CalendarDay(props: CalendarDay) {
-    const { date, value, selectedDay, calendarMonth, onSelectDate } = props;
+    const { date, value, selectedDay, calendarMonth, todayDay, onSelectDate } = props;
 
     const day = {
         day: date.getDate(),

@@ -1,13 +1,15 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { shallow } from 'zustand/shallow';
 
-import { useTodoStore } from '../../../domain/store.tsx';
 import {
     NavigationFiltersKey,
     navigationFilterIcons,
     navigationFilterTypes,
     navigationFilters,
+    todayKey,
 } from '../../../domain/navigationFilter/index.ts';
+
+import { useTodoStore } from '../../../domain/store.tsx';
 import { IconsByNameKey, iconsByName } from '../../iconsByName.ts';
 
 // components
@@ -26,19 +28,37 @@ function TodoListViewContainer(props: TodoListViewContainer): JSX.Element {
         let icon = '';
         let count = 0;
 
-        const { key, type: navType } = state.navigationFilter;
-        const isCategory = navigationFilterTypes.category === navType;
+        const { title: filterTitle, key, type: navType } = state.navigationFilter;
 
-        if (isCategory) {
-            const category = state.categories.byId[key as Id];
+        switch (navType) {
+            case navigationFilterTypes.category: {
+                const category = state.categories.byId[key as Id];
 
-            title = category.category;
-            icon = state.icons.byId[category.icon_id].icon_name;
-            count = state.todos.idsByCategoryId[category.category_id]?.length || 0;
-        } else {
-            title = navigationFilters[key as NavigationFiltersKey];
-            icon = navigationFilterIcons[key as NavigationFiltersKey];
-            count = state.todos.idsByFilterId[key].length;
+                title = category.category;
+                icon = state.icons.byId[category.icon_id].icon_name;
+                count = state.todos.idsByCategoryId[category.category_id]?.length || 0;
+
+                break;
+            }
+
+            case navigationFilterTypes.filter: {
+                title = navigationFilters[key as NavigationFiltersKey];
+                icon = navigationFilterIcons[key as NavigationFiltersKey];
+                count = state.todos.idsByFilterId[key].length;
+
+                break;
+            }
+
+            case navigationFilterTypes.calendar: {
+                title = filterTitle;
+                icon = navigationFilterIcons[todayKey];
+                count = 0;
+
+                break;
+            }
+
+            default:
+                break;
         }
 
         return {

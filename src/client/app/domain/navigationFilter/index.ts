@@ -1,3 +1,5 @@
+import { getDateKnownName } from '../../../../common/getDateKnownName';
+
 export const navigationFilterTypes = {
     filter: 'filter',
     category: 'category',
@@ -27,3 +29,14 @@ export const navigationFilterIcons = {
     [recycleBinKey]: 'trash.gif',
     [overdueKey]: 'overdue.svg',
 };
+
+export function getNavigationFilterWithCalendarDate(date: Date): CalendarNavigationFilter {
+    const dayName = getDateKnownName(date);
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+
+    return {
+        type: 'calendar',
+        title: `${dayName ? dayName + ': ' : ''}${date.toLocaleDateString('ru-Ru', options)}`,
+        key: date.valueOf(),
+    };
+}
