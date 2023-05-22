@@ -5,6 +5,7 @@ import NavigationPanel from '../../../ui/NavPanel';
 import UtilitySectionContainer from './UtilitySection';
 import FiltersSectionContainer from './FiltersSection';
 import CategorySectionContainer from './CategorySection';
+import CalendarSectionContainer from './CalendarSection';
 
 type NavigationPanelContainer = {
     isOpen: boolean;
@@ -15,6 +16,7 @@ function NavigationPanelContainer(props: NavigationPanelContainer) {
 
     return (
         <NavigationPanel isOpen={isOpen}>
+            <CalendarSectionContainer />
             <FiltersSectionContainer />
             <CategorySectionContainer />
             <UtilitySectionContainer />
