@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { inboxKey, navigationFilterTypes, nextKey, todayKey } from '../../../domain/navigationFilter';
+import { inboxKey, navigationFilterTypes, nextKey, todayKey } from '../../../domain/navigationFilter/index.ts';
 
 // components
 import NavigationPanelItemContainer from '../PanelItem';

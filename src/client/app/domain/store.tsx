@@ -2,23 +2,22 @@ import { create } from 'zustand';
 
 import { TodoStoreError } from './TodoStoreError.tsx';
 import { createSelectors } from './createSelectors.ts';
+import { updateTodoFilters } from './todo/updateTodoFilters.ts';
+import { updateTodoOverdue } from './todo/updateTodoOverdue.ts';
 import { validateTodoEntity } from './todo/validateTodoEntity.ts';
 import { validateIconEntity } from './icon/validateIconEntity.ts';
-import { updateTodoFilters } from './todo/updateTodoFilters.ts';
-import { validateStatusEntity } from './status/validateStatusEntity.ts';
 import { updateTodoCategories } from './todo/updateTodoCategories.ts';
+import { validateStatusEntity } from './status/validateStatusEntity.ts';
 import { validateCategoryEntity } from './category/validateCategoryEntity.ts';
 
 import {
+    getNavigationFilterWithCalendarDate,
     inboxKey,
-    navigationFilterTypes,
-    navigationFilters,
     nextKey,
     overdueKey,
     recycleBinKey,
     todayKey,
 } from './navigationFilter/index.ts';
-import { updateTodoOverdue } from './todo/updateTodoOverdue.ts';
 
 type Actions = {
     // Icon
@@ -71,11 +70,7 @@ const todoStore = create<State & Actions>((set) => ({
         },
     },
 
-    navigationFilter: {
-        key: todayKey,
-        title: navigationFilters[todayKey],
-        type: navigationFilterTypes.filter,
-    },
+    navigationFilter: getNavigationFilterWithCalendarDate(new Date()),
 
     // Icon
     _addIcon: (icon: UnknownObject) => {

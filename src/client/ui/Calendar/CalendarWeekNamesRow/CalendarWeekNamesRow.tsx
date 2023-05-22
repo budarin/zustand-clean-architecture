@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { cn } from '../../classNames';
 
 import './index.css';
@@ -7,7 +8,7 @@ const weekEnds = ['сб', 'вс'];
 
 const weekNameCN = cn('Calendar-WeekName');
 
-export function CalendarWeekNamesRow() {
+export const CalendarWeekNamesRow = memo(function () {
     return (
         <div className="Calendar-WeekNames">
             {weekDayNames.map((name) => {
@@ -24,4 +25,6 @@ export function CalendarWeekNamesRow() {
             })}
         </div>
     );
-}
+});
+
+CalendarWeekNamesRow.displayName = 'CalendarWeekNamesRow';

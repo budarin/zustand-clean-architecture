@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { cn } from '../../classNames.ts';
 
 import './index.css';
@@ -11,7 +12,7 @@ type CalendarHeader = {
     handleNextMonth: () => void;
 };
 
-export function CalendarHeader(props: CalendarHeader) {
+export const CalendarHeader = memo(function CalendarHeader(props: CalendarHeader) {
     const { selected, title, handlePrevMonth, handleNextMonth } = props;
 
     const headerSelectedCN = headerCN({ selected });
@@ -29,4 +30,6 @@ export function CalendarHeader(props: CalendarHeader) {
             </button>
         </div>
     );
-}
+});
+
+CalendarHeader.displayName = 'CalendarHeader';
