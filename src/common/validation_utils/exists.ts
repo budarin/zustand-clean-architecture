@@ -1,3 +1,3 @@
-export function exists(x: unknown): boolean {
-    return (x !== undefined && x !== null) || (typeof x === 'number' && !isNaN(x));
+export function exists<T>(x: T | undefined | null): x is T {
+    return x !== undefined && x !== null;
 }

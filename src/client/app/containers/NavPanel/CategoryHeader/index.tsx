@@ -9,7 +9,7 @@ import { isString } from '../../../../../common/validation_utils/isString.ts';
 import CreateCategoryFormContainer from '../CreateCategoryForm';
 import CategoryHeader from '../../../../ui/NavPanel/CategoryHeader';
 
-function isNotify(el: HTMLElement): boolean {
+function isNotificationElement(el: HTMLElement): boolean {
     let parent = el.parentElement;
 
     while (parent) {
@@ -44,7 +44,7 @@ const CategoryHeadersContainer = memo(function () {
             return;
         }
 
-        if (isNotify(event.target as HTMLElement)) {
+        if (isNotificationElement(event.target as HTMLElement)) {
             return;
         }
 

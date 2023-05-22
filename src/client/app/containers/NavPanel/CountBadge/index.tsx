@@ -12,7 +12,7 @@ type TodosCountBadgeContainer = {
 };
 
 // selectors
-const getTodoCount = (id: NavigationFilterKey, isCategory: boolean) =>
+const getTodoCountSelector = (id: NavigationFilterKey, isCategory: boolean) =>
     useCallback(
         (state: State) => {
             return isCategory
@@ -25,7 +25,7 @@ const getTodoCount = (id: NavigationFilterKey, isCategory: boolean) =>
 function TodosCountBadgeContainer(props: TodosCountBadgeContainer): JSX.Element {
     const { id, navigationType } = props;
     const isCategory = navigationFilterTypes.category === navigationType;
-    const count = useTodoStore(getTodoCount(id, isCategory));
+    const count = useTodoStore(getTodoCountSelector(id, isCategory));
 
     return <>{count ? <Badge count={count} /> : null}</>;
 }

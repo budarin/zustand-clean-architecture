@@ -12,13 +12,18 @@ export function getStateForPrevOrNextMonth(newDate: Date) {
         const endDate = getLastDate(date);
 
         return {
-            selected: state.selected,
-            currentDate: date,
-            month: date.getMonth(),
-            year: date.getFullYear(),
+            currentDay: {
+                day: date.getDate(),
+                month: date.getMonth(),
+                year: date.getFullYear(),
+            },
             title,
-            startDate,
-            endDate,
+            startDay: {
+                day: startDate.getDate(),
+                month: startDate.getMonth(),
+                year: startDate.getFullYear(),
+            },
+            selectedDay: state.selectedDay,
             daysCount: getCalendarDaysCount(startDate, endDate),
         };
     };

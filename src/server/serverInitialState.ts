@@ -1,3 +1,9 @@
+const today = new Date();
+
+function getDateOverToday(day: number) {
+    return new Date(today.getFullYear(), today.getMonth(), today.getDate() + day).valueOf();
+}
+
 export const serverInitialState: EntitiesPayload = {
     icons: [
         { icon_id: 1, icon_name: 'page.png' },
@@ -72,14 +78,14 @@ export const serverInitialState: EntitiesPayload = {
             status_id: 2,
             category_id: 2,
             todo: 'Hover your mouse over a project or item and click the icon on the right side of the item for more',
-            due_date: new Date('01/05/2023').valueOf(),
+            due_date: getDateOverToday(-1),
         },
         {
             todo_id: 3,
             status_id: 3,
             category_id: 3,
             todo: 'Todo3',
-            due_date: new Date('05/08/2023').valueOf(),
+            due_date: today.valueOf(),
             completed: true,
             deleted: false,
         },
@@ -88,7 +94,7 @@ export const serverInitialState: EntitiesPayload = {
             status_id: 4,
             category_id: 1,
             todo: 'Todo4',
-            due_date: new Date('02/02/2023').valueOf(),
+            due_date: getDateOverToday(1),
             completed: true,
             deleted: false,
         },

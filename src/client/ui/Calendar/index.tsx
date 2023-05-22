@@ -1,25 +1,43 @@
 import { MouseEventHandler, useState } from 'react';
 
-import { cn } from '../classNames.ts';
-import { getStateForPrevOrNextMonth } from './utils/getNewState.tsx';
+import { getStateForPrevOrNextMonth } from './utils/getStateForPrevOrNextMonth.tsx';
 import { getStateForNewSelectedDate } from './utils/getStateForNewSelectedDate.tsx';
+
+// components
+import CalendarDay from './CalendarDay/CalendarDay.tsx';
+import { CalendarHeader } from './CalendarHeader/CalendarHeader.tsx';
+import { CalendarWeekNamesRow } from './CalendarWeekNamesRow/CalendarWeekNamesRow.tsx';
 
 import './index.css';
 
-let todayDate = new Date();
-const currentDayCN = cn('Calendar-Day');
-const weekDayNames = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+function areDateEqualByMonthAndYear(d1: Date, d2: ParsedDate): boolean {
+    const yearsAreEqual = d1.getFullYear() === d2.year;
+    const monthsAreEqual = d1.getMonth() === d2.month;
 
-function Calendar() {
-    const [state, setState] = useState(getStateForNewSelectedDate(todayDate));
+    return yearsAreEqual && monthsAreEqual;
+}
+
+type Calendar = {
+    selected: boolean;
+};
+
+function Calendar(props: Calendar) {
+    const { selected } = props;
+
+    let todayDate = new Date();
+    const [{ title, currentDay, daysCount, startDay, selectedDay }, setState] = useState(
+        getStateForNewSelectedDate(todayDate),
+    );
+
+    const { month, year } = currentDay;
 
     const setPrevMonth = () => {
-        const prevMonthDate = new Date(state.year, state.month - 1, 1);
+        const prevMonthDate = new Date(year, month - 1, 1);
         setState(getStateForPrevOrNextMonth(prevMonthDate));
     };
 
     const setNextMonth = () => {
-        const nextMonthDate = new Date(state.year, state.month + 1, 1);
+        const nextMonthDate = new Date(year, month + 1, 1);
         setState(getStateForPrevOrNextMonth(nextMonthDate));
     };
 
@@ -27,81 +45,42 @@ function Calendar() {
         setState(getStateForPrevOrNextMonth(todayDate));
     };
 
-    function dateIsEqual(d1: Date, d2: Date): boolean {
-        const yearsAreEqual = d1.getFullYear() === d2.getFullYear();
-        const monthsAreEqual = d1.getMonth() === d2.getMonth();
-
-        return yearsAreEqual && monthsAreEqual;
-    }
-
     const onSelectDate: MouseEventHandler<HTMLDivElement> = (event) => {
         setState(getStateForNewSelectedDate(new Date(Number((event.target as HTMLElement).dataset.date))));
     };
 
     return (
         <div className="Calendar">
-            <div className="Calendar-Header">
-                <button className="Calendar-PrevMonth Calendar-Button" onClick={setPrevMonth} title="Предыдущий месяц">
-                    {'<'}
-                </button>
-                <span className="Calendar-Title" title="Выбранный месяц">
-                    {state.title}
-                </span>
-                <button className="Calendar-NextMonth Calendar-Button" onClick={setNextMonth} title="Следующий месяц">
-                    {'>'}
-                </button>
-            </div>
-            <div className="Calendar-WeekNames">
-                {weekDayNames.map((name) => {
-                    return (
-                        <span className="Calendar-WeekName" key={name}>
-                            {name}
-                        </span>
-                    );
-                })}
-            </div>
+            <CalendarHeader
+                selected={selected}
+                title={title}
+                handlePrevMonth={setPrevMonth}
+                handleNextMonth={setNextMonth}
+            />
+
+            <CalendarWeekNamesRow />
+
             <div className="Calendar-Body">
-                {Array.from({ length: state.daysCount }, (_, index) => {
-                    const { selected, startDate, month } = state;
-
-                    const date = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + index);
-                    const date_day = date.getDate();
-                    const date_month = date.getMonth();
-                    const date_year = date.getFullYear();
-                    const isToday =
-                        date_month === todayDate.getMonth() &&
-                        date_day === todayDate.getDate() &&
-                        date_year === todayDate.getFullYear();
-
-                    const className = currentDayCN({
-                        other_month: date_month !== month,
-                        selected:
-                            date_month === selected.getMonth() &&
-                            date_day === selected.getDate() &&
-                            date_year === selected.getFullYear(),
-                        today: isToday,
-                    });
-
+                {Array.from({ length: daysCount }, (_, index) => {
+                    const date = new Date(startDay.year, startDay.month, startDay.day + index);
                     const key = date.valueOf();
 
                     return (
-                        <div
-                            className={className}
+                        <CalendarDay
                             key={key}
-                            tabIndex={0}
-                            data-date={key}
-                            onClick={onSelectDate}
-                            title={isToday ? 'Сегодня' : ''}
-                        >
-                            {date_day}
-                        </div>
+                            date={date}
+                            value={key}
+                            selectedDay={selectedDay}
+                            calendarMonth={month}
+                            onSelectDate={onSelectDate}
+                        />
                     );
                 })}
             </div>
             <button
                 className="Calendar-TodayButton Calendar-Button"
                 onClick={setToday}
-                disabled={dateIsEqual(todayDate, state.currentDate)}
+                disabled={areDateEqualByMonthAndYear(todayDate, currentDay)}
             >
                 Вернуться к сегодня
             </button>

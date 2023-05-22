@@ -49,16 +49,6 @@ type Todo = {
 
 type NewTodo = Omit<Todo, 'todo_id'>;
 
-type NavigationFilterTitle = string;
-type NavigationFilterKey = NavigationFilterTitle | Id;
-type NavigationFilterType = 'filter' | 'category';
-
-type NavigationFilter = {
-    key: NavigationFilterKey;
-    title: NavigationFilterTitle;
-    type: NavigationFilterType;
-};
-
 type OneOfEntities = Category | Status | Category | Todo;
 
 type EntitiesPayload = {
