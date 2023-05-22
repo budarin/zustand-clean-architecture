@@ -4,9 +4,9 @@ import { TodoStoreError } from './TodoStoreError.tsx';
 import { createSelectors } from './createSelectors.ts';
 import { validateTodoEntity } from './todo/validateTodoEntity.ts';
 import { validateIconEntity } from './icon/validateIconEntity.ts';
-import { updateFilterCounters } from './todo/updateFilterCounters.ts';
+import { updateTodoFilters } from './todo/updateTodoFilters.ts';
 import { validateStatusEntity } from './status/validateStatusEntity.ts';
-import { updateICategoryCounters } from './todo/updateICategoryCounters.ts';
+import { updateTodoCategories } from './todo/updateTodoCategories.ts';
 import { validateCategoryEntity } from './category/validateCategoryEntity.ts';
 
 import {
@@ -14,29 +14,31 @@ import {
     navigationFilterTypes,
     navigationFilters,
     nextKey,
+    overdueKey,
     recycleBinKey,
     todayKey,
 } from './navigationFilter/index.ts';
+import { updateTodoOverdue } from './todo/updateTodoOverdue.ts';
 
 type Actions = {
     // Icon
-    _createIcon: (icon: UnknownObject) => void;
+    _addIcon: (icon: UnknownObject) => void;
 
     // Status
-    _createStatus: (status: UnknownObject) => void;
+    _addStatus: (status: UnknownObject) => void;
 
     // Category
-    _createCategory: (category: UnknownObject) => void;
+    _addCategory: (category: UnknownObject) => void;
     _updateCategory: (category: UnknownObject) => void;
     _deleteCategory: (id: Category['category_id']) => void;
 
     // Todo
-    _createTodo: (todo: UnknownObject) => void;
+    _addTodo: (todo: UnknownObject) => void;
     _updateTodo: (todo: UnknownObject) => void;
     _deleteTodo: (id: Todo['todo_id']) => void;
 
     // NavigationFilter
-    _setNavigationFilter: (filter: NavigationFilter) => void;
+    setNavigationFilter: (filter: NavigationFilter) => void;
 };
 
 const todoStore = create<State & Actions>((set) => ({
@@ -58,12 +60,14 @@ const todoStore = create<State & Actions>((set) => ({
     todos: {
         byId: {},
         ids: [],
+        idsByDueDate: {},
         idsByCategoryId: {},
         idsByFilterId: {
             [inboxKey]: [],
             [todayKey]: [],
             [nextKey]: [],
             [recycleBinKey]: [],
+            [overdueKey]: [],
         },
     },
 
@@ -74,7 +78,7 @@ const todoStore = create<State & Actions>((set) => ({
     },
 
     // Icon
-    _createIcon: (icon: UnknownObject) => {
+    _addIcon: (icon: UnknownObject) => {
         return set((state) => {
             const { entity, error } = validateIconEntity(icon, state);
 
@@ -92,7 +96,7 @@ const todoStore = create<State & Actions>((set) => ({
     },
 
     // Status
-    _createStatus: (status: UnknownObject) => {
+    _addStatus: (status: UnknownObject) => {
         return set((state) => {
             const { entity, error } = validateStatusEntity(status, state);
 
@@ -114,7 +118,7 @@ const todoStore = create<State & Actions>((set) => ({
     },
 
     // Category
-    _createCategory: (category: UnknownObject) => {
+    _addCategory: (category: UnknownObject) => {
         return set((state) => {
             const { entity, error } = validateCategoryEntity(category, state);
 
@@ -179,7 +183,7 @@ const todoStore = create<State & Actions>((set) => ({
     },
 
     // Todo
-    _createTodo: (todo: UnknownObject) => {
+    _addTodo: (todo: UnknownObject) => {
         return set((state) => {
             const { entity, error } = validateTodoEntity(todo, state);
 
@@ -190,11 +194,12 @@ const todoStore = create<State & Actions>((set) => ({
 
                 const newState = { ...state };
 
+                updateTodoFilters(newState.todos, entity);
+                updateTodoCategories(newState.todos, entity);
+                updateTodoOverdue(newState.todos, entity);
+
                 newState.todos.byId = { ...state.todos.byId, [entity.todo_id]: entity };
                 newState.todos.ids = [...state.todos.ids, entity.todo_id];
-
-                updateICategoryCounters(entity, newState.todos);
-                updateFilterCounters(entity, newState.todos);
 
                 return newState;
             }
@@ -209,11 +214,13 @@ const todoStore = create<State & Actions>((set) => ({
 
             if (entity) {
                 const newState = { ...state };
+                const oldTodo = state.todos.byId[entity.todo_id];
                 const newTodo = { ...state.todos.byId[entity.todo_id], ...entity };
 
+                updateTodoFilters(newState.todos, newTodo, oldTodo);
+                updateTodoCategories(newState.todos, newTodo, oldTodo);
+                updateTodoOverdue(newState.todos, newTodo, oldTodo);
                 newState.todos.byId[entity.todo_id] = newTodo;
-                updateICategoryCounters(newTodo, newState.todos);
-                updateFilterCounters(newTodo, newState.todos);
 
                 return newState;
             }
@@ -241,7 +248,7 @@ const todoStore = create<State & Actions>((set) => ({
     },
 
     // NavigationFilter
-    _setNavigationFilter: (filter: NavigationFilter) => {
+    setNavigationFilter: (filter: NavigationFilter) => {
         return set((state) => {
             if (state.navigationFilter.key === filter.key) {
                 return state;

@@ -1,18 +1,21 @@
 export const navigationFilterTypes = {
     filter: 'filter',
     category: 'category',
+    calendar: 'calendar',
 } as const;
 
 export const inboxKey = 'inbox';
 export const todayKey = 'today';
 export const nextKey = 'next';
 export const recycleBinKey = 'recycleBin';
+export const overdueKey = 'overdue';
 
 export const navigationFilters = {
     [todayKey]: 'Сегодня',
     [nextKey]: 'Завтра',
     [inboxKey]: 'Черновики',
     [recycleBinKey]: 'Корзина',
+    [overdueKey]: 'Просроченные',
 };
 
 export type NavigationFiltersKey = keyof typeof navigationFilters;
@@ -22,4 +25,5 @@ export const navigationFilterIcons = {
     [nextKey]: 'next.png',
     [inboxKey]: 'inbox.png',
     [recycleBinKey]: 'trash.gif',
+    [overdueKey]: 'overdue.svg',
 };

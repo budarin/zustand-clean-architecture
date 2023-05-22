@@ -1,0 +1,41 @@
+.Calendar-Header {
+    padding: 1px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-right: 0;
+    font-size: 0.9rem;
+    background-color: var(--primaryLightColor);
+    border-bottom: 1px solid var(--primaryColor);
+}
+
+.Calendar-Header_selected {
+    background-color: var(--secondaryColor);
+}
+
+.Calendar-Title {
+    flex: 1;
+    display: inline-block;
+    text-align: center;
+}
+
+.Calendar-PrevMonth,
+.Calendar-NextMonth {
+    font-weight: bold;
+    height: var(--x6);
+    width: var(--x11);
+    border: 1px solid var(--primaryLightColor);
+}
+
+.Calendar-Header_selected .Calendar-PrevMonth,
+.Calendar-Header_selected .Calendar-NextMonth {
+    background-color: var(--secondaryColor);
+}
+
+@media (pointer: coarse) {
+    .Calendar-PrevMonth,
+    .Calendar-NextMonth {
+        height: var(--x8);
+        width: var(--x11);
+    }
+}
