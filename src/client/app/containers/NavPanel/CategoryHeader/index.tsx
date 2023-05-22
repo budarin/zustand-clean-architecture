@@ -1,9 +1,9 @@
-import React, { FormEventHandler, MouseEventHandler, memo, useCallback, useEffect, useRef, useState } from 'react';
+import { FormEventHandler, MouseEventHandler, memo, useCallback, useEffect, useRef, useState } from 'react';
 
-import { useOnClickOutside } from 'usehooks-ts';
 import { logger } from '../../../../services/logger';
 import { useCreateCategory } from '../../../useCases/useCreateCategory';
 import { isString } from '../../../../../common/validation_utils/isString.ts';
+import { useClickOutside } from './useClickOutside.tsx';
 
 // components
 import CreateCategoryFormContainer from '../CreateCategoryForm';
@@ -29,12 +29,6 @@ const CategoryHeadersContainer = memo(function () {
     const formRef = useRef<HTMLFormElement | null>(null);
     const [success, inProgress, createcategory] = useCreateCategory();
 
-    useEffect(() => {
-        if (success && isOpen) {
-            setOpen(false);
-        }
-    }, [success]);
-
     const toggleOpen: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
         setOpen((state) => !state);
     }, []);
@@ -58,7 +52,24 @@ const CategoryHeadersContainer = memo(function () {
             }
         }, 150);
     };
-    useOnClickOutside(formRef, onClickOutside);
+
+    const clickOutside = useClickOutside(formRef, onClickOutside);
+
+    useEffect(() => {
+        let mounted = true;
+
+        if (mounted) {
+            if (success && isOpen) {
+                setOpen(false);
+            }
+
+            clickOutside.setEnabled(isOpen);
+        }
+
+        return () => {
+            mounted = false;
+        };
+    }, [success, isOpen]);
 
     const onCreateCategory: FormEventHandler<HTMLFormElement> = useCallback(
         (event) => {
