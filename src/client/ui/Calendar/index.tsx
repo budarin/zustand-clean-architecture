@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useCallback, useState } from 'react';
 
 import { getStateForPrevOrNextMonth } from './utils/getStateForPrevOrNextMonth.tsx';
 import { getStateForNewSelectedDate } from './utils/getStateForNewSelectedDate.tsx';
@@ -25,21 +25,22 @@ function Calendar(props: Calendar) {
     const { selected } = props;
 
     let todayDate = new Date();
+
     const [{ title, currentDay, daysCount, startDay, selectedDay }, setState] = useState(
         getStateForNewSelectedDate(todayDate),
     );
 
     const { month, year } = currentDay;
 
-    const setPrevMonth = () => {
+    const setPrevMonth = useCallback(() => {
         const prevMonthDate = new Date(year, month - 1, 1);
         setState(getStateForPrevOrNextMonth(prevMonthDate));
-    };
+    }, [year, month]);
 
-    const setNextMonth = () => {
+    const setNextMonth = useCallback(() => {
         const nextMonthDate = new Date(year, month + 1, 1);
         setState(getStateForPrevOrNextMonth(nextMonthDate));
-    };
+    }, [year, month]);
 
     const setToday = () => {
         setState(getStateForPrevOrNextMonth(todayDate));
