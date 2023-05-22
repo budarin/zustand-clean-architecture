@@ -39,7 +39,7 @@ const CategoryHeadersContainer = memo(function () {
         return () => {
             mounted = false;
         };
-    }, [success, isOpen]);
+    }, [success]);
 
     const toggleOpen: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
         setOpen((state) => !state);
