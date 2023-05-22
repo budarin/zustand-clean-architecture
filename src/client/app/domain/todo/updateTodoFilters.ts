@@ -1,9 +1,10 @@
-import { updateOverdue } from './filters/updateOverdue.ts';
+import { updateNext } from './filters/updateNext.ts';
 import { updateInbox } from './filters/updateInbox.ts';
 import { updateToday } from './filters/updateToday.ts';
-import { updateNext } from './filters/updateNext.ts';
+import { updateOverdue } from './filters/updateOverdue.ts';
 import { updateRecycleBin } from './filters/updateRecycleBin.ts';
 import { deleteTodoFromFilters } from './filters/deleteTodoFromFilters.ts';
+import { isNotExists } from '../../../../common/validation_utils/isNotExists.ts';
 import { inboxKey, nextKey, overdueKey, todayKey } from '../navigationFilter/index.ts';
 
 export function updateTodoFilters(state: TodoState, newTodo: Todo, oldTodo?: Todo): void {
@@ -14,9 +15,13 @@ export function updateTodoFilters(state: TodoState, newTodo: Todo, oldTodo?: Tod
         return;
     }
 
-    updateOverdue(state, newTodo);
+    // если новая задача или у задачи изменилась дата due_date
+    if (isNotExists(oldTodo) || oldTodo.due_date !== newTodo.due_date) {
+        updateOverdue(state, newTodo);
+        updateToday(state, newTodo);
+        updateNext(state, newTodo);
+    }
+
     updateInbox(state, newTodo);
-    updateToday(state, newTodo);
-    updateNext(state, newTodo);
     updateRecycleBin(state, newTodo);
 }
