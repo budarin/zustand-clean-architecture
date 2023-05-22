@@ -1,3 +1,5 @@
+type Timestamp = number;
+
 type TodoIdsByCategoryId = Record<Id, Readonly<Id[]>>;
 type TodoIdsByCategoryIdKey = keyof TodoIdsByCategoryId;
 
@@ -8,6 +10,7 @@ type TodoById = Record<Id, Todo>;
 type TodoState = {
     byId: TodoById;
     ids: Readonly<Id[]>;
+    idsByDueDate: Reacord<Timestamp, Readonly<Id[]>>;
     idsByCategoryId: TodoIdsByCategoryId;
     idsByFilterId: TodoIdsByFilterId;
 };
@@ -29,8 +32,6 @@ type IconState = {
     byId: IconById;
     ids: Readonly<Id[]>;
 };
-
-type Timestamp = number;
 
 type FilterNavigationFilter = {
     type: 'filter';

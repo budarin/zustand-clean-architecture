@@ -4,9 +4,9 @@ import { TodoStoreError } from './TodoStoreError.tsx';
 import { createSelectors } from './createSelectors.ts';
 import { validateTodoEntity } from './todo/validateTodoEntity.ts';
 import { validateIconEntity } from './icon/validateIconEntity.ts';
-import { updateFilterCounters } from './todo/updateFilterCounters.ts';
+import { updateIdsByFilterId } from './todo/updateIdsByFilterId.ts';
 import { validateStatusEntity } from './status/validateStatusEntity.ts';
-import { updateICategoryCounters } from './todo/updateICategoryCounters.ts';
+import { updateIdsByCategoryId } from './todo/updateIdsByCategoryId.ts';
 import { validateCategoryEntity } from './category/validateCategoryEntity.ts';
 
 import {
@@ -14,6 +14,7 @@ import {
     navigationFilterTypes,
     navigationFilters,
     nextKey,
+    overdueKey,
     recycleBinKey,
     todayKey,
 } from './navigationFilter/index.ts';
@@ -58,12 +59,14 @@ const todoStore = create<State & Actions>((set) => ({
     todos: {
         byId: {},
         ids: [],
+        idsByDueDate: {},
         idsByCategoryId: {},
         idsByFilterId: {
             [inboxKey]: [],
             [todayKey]: [],
             [nextKey]: [],
             [recycleBinKey]: [],
+            [overdueKey]: [],
         },
     },
 
@@ -190,11 +193,10 @@ const todoStore = create<State & Actions>((set) => ({
 
                 const newState = { ...state };
 
+                updateIdsByFilterId(newState.todos, entity);
+                updateIdsByCategoryId(newState.todos, entity);
                 newState.todos.byId = { ...state.todos.byId, [entity.todo_id]: entity };
                 newState.todos.ids = [...state.todos.ids, entity.todo_id];
-
-                updateICategoryCounters(entity, newState.todos);
-                updateFilterCounters(entity, newState.todos);
 
                 return newState;
             }
@@ -209,11 +211,12 @@ const todoStore = create<State & Actions>((set) => ({
 
             if (entity) {
                 const newState = { ...state };
+                const oldTodo = state.todos.byId[entity.todo_id];
                 const newTodo = { ...state.todos.byId[entity.todo_id], ...entity };
 
+                updateIdsByFilterId(newState.todos, newTodo);
+                updateIdsByCategoryId(newState.todos, newTodo, oldTodo);
                 newState.todos.byId[entity.todo_id] = newTodo;
-                updateICategoryCounters(newTodo, newState.todos);
-                updateFilterCounters(newTodo, newState.todos);
 
                 return newState;
             }

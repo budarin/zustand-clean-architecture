@@ -62,5 +62,5 @@ export function initStore(data: EntitiesPayload) {
             </span>,
         );
 
-    // console.log(JSON.stringify(useTodoStore.getState(), null, 2));
+    console.log(JSON.stringify(useTodoStore.getState(), null, 2));
 }
