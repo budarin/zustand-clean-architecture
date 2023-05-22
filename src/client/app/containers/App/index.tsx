@@ -2,6 +2,7 @@ import { useMediaQuery } from 'usehooks-ts';
 import { useCallback, useEffect, useState } from 'react';
 
 import { useTodoStore } from '../../domain/store.tsx';
+import { useCheckingDueDateOfTodos } from '../../useCases/useCheckingDueDateOfTodos.ts';
 
 // components
 import App from '../../../ui/App/index.tsx';
@@ -19,7 +20,6 @@ import '../../../../../assets/site_icons/mstile-310x150.png';
 import '../../../../../assets/site_icons/mstile-310x310.png';
 import '../../../../../assets/site_icons/mstile-70x70.png';
 import '../../../../../assets/site_icons/safari-pinned-tab.svg';
-
 import '../../../../../assets/site_icons/favicon.ico';
 import '../../../../../assets/site_icons/site.webmanifest';
 import '../../../../../assets/site_icons/browserconfig.xml';
@@ -38,6 +38,8 @@ type AppContainer = {
 
 function AppContainer(props: AppContainer) {
     const { waitForLoadingAnimation } = props;
+
+    useCheckingDueDateOfTodos();
 
     const matches = useMediaQuery('(max-width: 640px)');
     const { key } = useTodoStore.use.navigationFilter();

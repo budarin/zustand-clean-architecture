@@ -109,4 +109,6 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainer):
     );
 });
 
+NavigationPanelItemContainer.displayName = 'NavigationPanelItemContainer';
+
 export default NavigationPanelItemContainer;
