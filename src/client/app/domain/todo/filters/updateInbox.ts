@@ -2,8 +2,8 @@ import { isInboxItem } from '../../../../../common/domain/todo/isInboxItem';
 import { inboxKey } from '../../navigationFilter';
 
 export function updateInbox(state: TodoState, todo: Todo): void {
-    const inbox = state.idsByFilterId[inboxKey];
-    const idx = inbox.indexOf(todo.todo_id);
+    const inboxIds = state.idsByFilterId[inboxKey];
+    const idx = inboxIds.indexOf(todo.todo_id);
 
     if (isInboxItem(todo)) {
         // если задача есть в Inbox - выходим
@@ -11,12 +11,12 @@ export function updateInbox(state: TodoState, todo: Todo): void {
             return;
         } else {
             // добавляем задачу в Inbox
-            state.idsByFilterId[inboxKey] = [...inbox, todo.todo_id];
+            state.idsByFilterId[inboxKey] = [...inboxIds, todo.todo_id];
         }
     } else {
         // если задача была в inbox - удаляем ее
         if (idx > -1) {
-            const newInbox = [...inbox];
+            const newInbox = [...inboxIds];
 
             newInbox.splice(idx, 1);
             state.idsByFilterId[inboxKey] = newInbox;
