@@ -6,7 +6,6 @@ import {
     navigationFilterIcons,
     navigationFilterTypes,
     navigationFilters,
-    todayKey,
 } from '../../../domain/navigationFilter/index.ts';
 
 import { useTodoStore } from '../../../domain/store.tsx';
@@ -51,7 +50,7 @@ function TodoListViewContainer(props: TodoListViewContainer): JSX.Element {
 
             case navigationFilterTypes.calendar: {
                 title = filterTitle;
-                icon = navigationFilterIcons[todayKey];
+                icon = 'today.png';
                 count = 0;
 
                 break;

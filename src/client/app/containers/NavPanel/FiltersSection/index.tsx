@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { inboxKey, navigationFilterTypes, nextKey, todayKey } from '../../../domain/navigationFilter/index.ts';
+import { inboxKey, overdueKey } from '../../../domain/navigationFilter/index.ts';
 
 // components
 import NavigationPanelItemContainer from '../PanelItem';
@@ -8,7 +8,7 @@ import Calendar from '../../../../ui/Calendar/index.tsx';
 import FiltersSection from '../../../../ui/NavPanel/FiltersSection';
 import CalendarContainer from '../../Calendar/index.tsx';
 
-const topFilters = [todayKey, nextKey, inboxKey];
+const topFilters = [inboxKey, overdueKey];
 
 function FiltersSectionContainer() {
     return (
