@@ -60,15 +60,15 @@ async function handlePostRequest(request: Request, method: string): Promise<Resp
         case 'log': {
             switch (data.type) {
                 case 'info': {
-                    log('%c[INFO]', 'color: blue; font-weight: bold;', data);
+                    log('%c[INFO]', 'color: blue; font-weight: 600;', data);
                     break;
                 }
                 case 'warn': {
-                    log('%c[WARN]', 'color: #ff9905; font-weight: bold;', data);
+                    log('%c[WARN]', 'color: #ff9905; font-weight: 600;', data);
                     break;
                 }
                 case 'error': {
-                    log('%c[ERROR]', 'color: #E56353;; font-weight: bold;', data);
+                    log('%c[ERROR]', 'color: #E56353;; font-weight: 600;', data);
                     break;
                 }
                 default:
