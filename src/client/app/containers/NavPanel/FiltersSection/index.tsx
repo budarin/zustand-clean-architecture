@@ -1,10 +1,10 @@
-import { inboxKey, navigationFilterTypes, overdueKey } from '../../../domain/navigationFilter/index.ts';
+import { inboxKey, navigationFilterTypes, overdueKey, recycleBinKey } from '../../../domain/navigationFilter/index.ts';
 
 // components
 import NavigationPanelItemContainer from '../PanelItem';
 import FiltersSection from '../../../../ui/NavPanel/FiltersSection';
 
-const topFilters = [inboxKey, overdueKey];
+const topFilters = [inboxKey, overdueKey, recycleBinKey];
 
 function FiltersSectionContainer() {
     return (

@@ -2,7 +2,6 @@ import React from 'react';
 
 // components
 import NavigationPanel from '../../../ui/NavPanel';
-import UtilitySectionContainer from './UtilitySection';
 import FiltersSectionContainer from './FiltersSection';
 import CategorySectionContainer from './CategorySection';
 import CalendarSectionContainer from './CalendarSection';
@@ -17,9 +16,8 @@ function NavigationPanelContainer(props: NavigationPanelContainer) {
     return (
         <NavigationPanel isOpen={isOpen}>
             <CalendarSectionContainer />
-            <FiltersSectionContainer />
             <CategorySectionContainer />
-            <UtilitySectionContainer />
+            <FiltersSectionContainer />
         </NavigationPanel>
     );
 }
