@@ -53,4 +53,8 @@
         height: var(--x8);
         width: var(--x11);
     }
+
+    .Calendar-HeadNav {
+        min-width: 195px;
+    }
 }
