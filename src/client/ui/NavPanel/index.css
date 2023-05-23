@@ -11,7 +11,6 @@
 .nav h2 {
     font-size: 1.1rem;
     line-height: var(--x9);
-    font-weight: 600;
     margin: 0;
     padding-left: var(--x2);
     background-color: var(--primaryColor);
