@@ -1,17 +1,15 @@
-const today = new Date();
-
 function getDateOverToday(day: number) {
-    return new Date(today.getFullYear(), today.getMonth(), today.getDate() + day).valueOf();
+    const dt = new Date();
+    dt.setDate(dt.getDate() + day);
+
+    return dt.toISOString();
 }
 
 function getTodayInMinutes(minutes: number) {
-    return new Date(
-        today.getFullYear(),
-        today.getMonth(),
-        today.getDate(),
-        today.getHours(),
-        today.getMinutes() + minutes,
-    ).valueOf();
+    const dt = new Date();
+    dt.setMinutes(dt.getMinutes() + minutes);
+
+    return dt.toISOString();
 }
 
 export const serverInitialState: EntitiesPayload = {
@@ -96,8 +94,6 @@ export const serverInitialState: EntitiesPayload = {
             category_id: 3,
             todo: 'Todo3',
             due_date: getTodayInMinutes(1),
-            completed: true,
-            deleted: false,
         },
         {
             todo_id: 4,

@@ -13,11 +13,6 @@
     border: 1px solid var(--primaryDarkColor);
 }
 
-.Calendar-TodayButton {
-    height: var(--x9);
-    width: 100%;
-}
-
 .Calendar-Body {
     display: grid;
     grid-gap: 1px;

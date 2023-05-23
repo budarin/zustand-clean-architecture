@@ -1,4 +1,4 @@
-export function getTodaDateAsParsedDate(date: Date): ParsedDate {
+export function getDateAsParsedDate(date: Date): ParsedDate {
     return {
         day: date.getDate(),
         month: date.getMonth(),

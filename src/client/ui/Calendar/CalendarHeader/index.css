@@ -7,10 +7,17 @@
     font-size: 0.9rem;
     background-color: var(--primaryLightColor);
     border-bottom: 1px solid var(--primaryColor);
+    gap: 8px;
 }
 
 .Calendar-Header_selected {
     background-color: var(--secondaryColor);
+}
+
+.Calendar-HeadNav {
+    display: flex;
+    min-width: 170px;
+    align-items: center;
 }
 
 .Calendar-Title {
@@ -23,13 +30,21 @@
 .Calendar-NextMonth {
     font-weight: 600;
     height: var(--x6);
-    width: var(--x11);
+    width: var(--x8);
     border: 1px solid var(--primaryLightColor);
 }
 
 .Calendar-Header_selected .Calendar-PrevMonth,
 .Calendar-Header_selected .Calendar-NextMonth {
     background-color: var(--secondaryColor);
+}
+
+.Calendar-TodayButton {
+    height: 24px;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    font-weight: 500;
 }
 
 @media (pointer: coarse) {

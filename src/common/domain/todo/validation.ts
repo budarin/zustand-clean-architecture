@@ -28,7 +28,7 @@ export const validate_status_id = (x: UnknownObject): boolean => exists(x.status
 export const validate_category_id = (x: UnknownObject): boolean => isUndefined(x.category_id) || isInt(x.category_id);
 
 // поле due_date должно присутствовать и имет целочисленное значение
-export const validate_dueDate = (x: UnknownObject) => isNotExists(x.due_date) || isTimeStamp(x.due_date);
+export const validate_dueDate = (x: UnknownObject) => isNotExists(x.due_date) || isString(x.due_date);
 
 // Поле completed должно быть логическим типом и по умолчанию должно быть установлено в false,
 // либо оно может быть неопределенным.
@@ -82,7 +82,7 @@ const description: ValidationRule = [
     validateDescription,
     `длина description должна быть более ${MIN_DESCRIPTION_LENGTH} символов и не превышать ${MAX_DESCRIPTION_LENGTH} символов`,
 ];
-const due_date: ValidationRule = [validate_dueDate, 'необязательное поле due_date должно быть значением timestamp'];
+const due_date: ValidationRule = [validate_dueDate, 'необязательное поле due_date должно быть строкой ISO 8086'];
 const completed: ValidationRule = [validate_completed, 'поле completed должно быть boolean'];
 const deleted: ValidationRule = [validate_deleted, 'поле deleted должно быть boolean'];
 
