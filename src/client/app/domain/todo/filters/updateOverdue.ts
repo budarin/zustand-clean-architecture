@@ -3,7 +3,7 @@ import { isOverdueItem } from '../../../../../common/domain/todo/isOverdueItem';
 
 // Добавляем задачу в список просроченных
 
-export function updateOverdue(state: TodoState, todo: Todo) {
+export function updateOverdue(state: TodoState, todo: ExtendedTodo) {
     const overdueIds = state.idsByFilterId[overdueKey];
     const idx = overdueIds.indexOf(todo.todo_id);
 

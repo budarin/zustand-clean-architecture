@@ -15,7 +15,7 @@ export function validateCategoryEntity(icon: UnknownObject, state: State): Valid
         };
     }
 
-    if (Object.values(state.categories.byId).find((item) => item.category == entity.category)) {
+    if (Object.values(state.categories.byId).find((item) => item.category === entity.category)) {
         return {
             error: `Нарушение уникальности имени категории`,
         };
