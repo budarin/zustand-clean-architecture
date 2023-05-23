@@ -21,7 +21,7 @@
 
 .Calendar-PrevMonth,
 .Calendar-NextMonth {
-    font-weight: bold;
+    font-weight: 600;
     height: var(--x6);
     width: var(--x11);
     border: 1px solid var(--primaryLightColor);

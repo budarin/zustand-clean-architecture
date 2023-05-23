@@ -14,7 +14,7 @@
     padding: var(--x2) var(--x4);
     margin-left: var(--x2);
 
-    font-weight: bold;
+    font-weight: 600;
     color: white;
     background-color: var(--primaryDarkColor);
     cursor: pointer;
