@@ -62,6 +62,8 @@ function Calendar(props: Calendar) {
                 title={title}
                 handlePrevMonth={setPrevMonth}
                 handleNextMonth={setNextMonth}
+                handleToday={setToday}
+                disableTodayButton={areDateEqualByMonthAndYear(todayDate, currentDay)}
             />
 
             <CalendarWeekNamesRow />
@@ -84,13 +86,6 @@ function Calendar(props: Calendar) {
                     );
                 })}
             </div>
-            <button
-                className="Calendar-TodayButton Calendar-Button"
-                onClick={setToday}
-                disabled={areDateEqualByMonthAndYear(todayDate, currentDay)}
-            >
-                Вернуться к сегодня
-            </button>
         </div>
     );
 }
