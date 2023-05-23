@@ -32,7 +32,7 @@ type TodoStatusId = number;
 type TodoCategoryId = Id | undefined;
 type TodoTodo = string;
 type TodoDescription = string | undefined;
-type TodoDueDate = TimeStamp | undefined;
+type TodoDueDate = string | undefined;
 type TodoDeleted = boolean | undefined;
 type TodoCompleted = boolean | undefined;
 

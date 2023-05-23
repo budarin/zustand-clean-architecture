@@ -9,6 +9,7 @@ import { validateIconEntity } from './icon/validateIconEntity.ts';
 import { updateTodoCategories } from './todo/updateTodoCategories.ts';
 import { validateStatusEntity } from './status/validateStatusEntity.ts';
 import { validateCategoryEntity } from './category/validateCategoryEntity.ts';
+import { getOnlyDateTimestamp } from '../../../common/getOnlyDateTimestamp.ts';
 
 import { getNavigationFilterWithCalendarDate, inboxKey, overdueKey, recycleBinKey } from './navigationFilter/index.ts';
 
@@ -180,13 +181,20 @@ const todoStore = create<State & Actions>((set) => ({
                 }
 
                 const newState = { ...state };
+                const newTodo = entity as ExtendedTodo;
 
-                updateTodoFilters(newState.todos, entity);
-                updateTodoCategories(newState.todos, entity);
-                updateTodoDueDate(newState.todos, entity);
+                // дополняем сущность полями специфичными для стора
+                if (newTodo.due_date) {
+                    newTodo.due_date_ts = getOnlyDateTimestamp(newTodo.due_date);
+                    newTodo.due_date_time_ts = Date.parse(newTodo.due_date);
+                }
 
-                newState.todos.byId = { ...state.todos.byId, [entity.todo_id]: entity };
-                newState.todos.ids = [...state.todos.ids, entity.todo_id];
+                updateTodoFilters(newState.todos, newTodo);
+                updateTodoCategories(newState.todos, newTodo);
+                updateTodoDueDate(newState.todos, newTodo);
+
+                newState.todos.byId = { ...state.todos.byId, [newTodo.todo_id]: newTodo };
+                newState.todos.ids = [...state.todos.ids, newTodo.todo_id];
 
                 return newState;
             }
@@ -211,7 +219,13 @@ const todoStore = create<State & Actions>((set) => ({
             if (entity) {
                 const newState = { ...state };
                 const oldTodo = state.todos.byId[entity.todo_id];
-                const newTodo = { ...state.todos.byId[entity.todo_id], ...entity };
+                const newTodo = { ...state.todos.byId[entity.todo_id], ...entity } as ExtendedTodo;
+
+                // дополняем сущность полями специфичными для стора
+                if (newTodo.due_date) {
+                    newTodo.due_date_ts = getOnlyDateTimestamp(newTodo.due_date);
+                    newTodo.due_date_time_ts = Date.parse(newTodo.due_date);
+                }
 
                 updateTodoFilters(newState.todos, newTodo, oldTodo);
                 updateTodoCategories(newState.todos, newTodo, oldTodo);

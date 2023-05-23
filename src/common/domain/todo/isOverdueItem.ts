@@ -1,7 +1,7 @@
 import { exists } from '../../validation_utils/exists';
 
-export function isOverdueItem(todo: Todo): boolean {
+export function isOverdueItem(todo: ExtendedTodo): boolean {
     const today = new Date().valueOf();
 
-    return exists(todo.due_date) && todo.due_date < today && exists(todo.completed) && todo.completed === false;
+    return todo.due_date != undefined && todo.due_date_time_ts < today && todo.completed === false;
 }

@@ -6,7 +6,23 @@ type TodoIdsByCategoryIdKey = keyof TodoIdsByCategoryId;
 type TodoIdsByFilterId = Record<NavigationFilterKey, Readonly<Id[]>>;
 type TodoIdsByFilterIdKey = keyof TodoIdsByFilterId;
 
-type TodoById = Record<Id, Todo>;
+type ExtendedTodo = Todo & {
+    due_date_ts?: Timestamp;
+    due_date_time_ts?: Timestamp;
+} & (
+        | {
+              due_date: string;
+              due_date_ts: Timestamp;
+              due_date_time_ts: Timestamp;
+          }
+        | {
+              due_date?: undefined;
+              due_date_ts?: undefined;
+              due_date_time_ts?: undefined;
+          }
+    );
+
+type TodoById = Record<Id, ExtendedTodo>;
 type TodoState = {
     byId: TodoById;
     ids: Readonly<Id[]>;

@@ -2,14 +2,14 @@ function getDateOverToday(day: number) {
     const dt = new Date();
     dt.setDate(dt.getDate() + day);
 
-    return dt.valueOf();
+    return dt.toISOString();
 }
 
 function getTodayInMinutes(minutes: number) {
     const dt = new Date();
     dt.setMinutes(dt.getMinutes() + minutes);
 
-    return dt.valueOf();
+    return dt.toISOString();
 }
 
 export const serverInitialState: EntitiesPayload = {
