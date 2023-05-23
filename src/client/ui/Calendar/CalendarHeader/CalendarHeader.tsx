@@ -40,7 +40,12 @@ export const CalendarHeader = memo(function CalendarHeader(props: CalendarHeader
                     {'>'}
                 </button>
             </div>
-            <button className="Calendar-TodayButton" onClick={handleToday} disabled={disableTodayButton}>
+            <button
+                className="Calendar-TodayButton"
+                onClick={handleToday}
+                disabled={disableTodayButton}
+                title="Перейти к текущему месяцу"
+            >
                 Сегодня
             </button>
         </div>
