@@ -7,7 +7,7 @@ import { isNotExists } from '../../../../common/validation_utils/isNotExists.ts'
 
 export function updateTodoFilters(state: TodoState, newTodo: Todo, oldTodo?: Todo): void {
     // если задача удалена - удалить из всех фильтров и поместить в RecycleBin
-    if (oldTodo && oldTodo.deleted == false && newTodo.deleted === true) {
+    if (oldTodo && oldTodo.deleted === false && newTodo.deleted === true) {
         deleteTodoFromFilters(state, [inboxKey, overdueKey], oldTodo);
         updateRecycleBin(state, newTodo);
         return;

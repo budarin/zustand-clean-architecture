@@ -3,7 +3,7 @@ import { create } from 'zustand';
 import { TodoStoreError } from './TodoStoreError.tsx';
 import { createSelectors } from './createSelectors.ts';
 import { updateTodoFilters } from './todo/updateTodoFilters.ts';
-import { updateTodoOverdue } from './todo/updateTodoOverdue.ts';
+import { updateTodoDueDate } from './todo/updateTodoDueDate.ts';
 import { validateTodoEntity } from './todo/validateTodoEntity.ts';
 import { validateIconEntity } from './icon/validateIconEntity.ts';
 import { updateTodoCategories } from './todo/updateTodoCategories.ts';
@@ -183,7 +183,7 @@ const todoStore = create<State & Actions>((set) => ({
 
                 updateTodoFilters(newState.todos, entity);
                 updateTodoCategories(newState.todos, entity);
-                updateTodoOverdue(newState.todos, entity);
+                updateTodoDueDate(newState.todos, entity);
 
                 newState.todos.byId = { ...state.todos.byId, [entity.todo_id]: entity };
                 newState.todos.ids = [...state.todos.ids, entity.todo_id];
@@ -215,7 +215,7 @@ const todoStore = create<State & Actions>((set) => ({
 
                 updateTodoFilters(newState.todos, newTodo, oldTodo);
                 updateTodoCategories(newState.todos, newTodo, oldTodo);
-                updateTodoOverdue(newState.todos, newTodo, oldTodo);
+                updateTodoDueDate(newState.todos, newTodo, oldTodo);
 
                 newState.todos.byId[entity.todo_id] = newTodo;
 

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useTodoStore } from '../domain/store';
 import { joyfullyGilling } from '../../services/notification';
 import { overdueKey } from '../domain/navigationFilter';
+import { Task, runTask } from '../../../common/runTask.ts';
 
 const ONE_MINUTE = 60000;
 const TWO_MINUTES = ONE_MINUTE * 2;
@@ -12,16 +13,17 @@ export function useCheckingDueDateOfTodos() {
     const _addToOverduedTodos = useTodoStore((state) => state._addToOverduedTodos);
 
     useEffect(() => {
-        let timer: NodeJS.Timer;
+        let task: Task;
         let mounted = true;
 
         const checkDueDateMatchedTodos = (todos: TodoById, overdueIds: readonly Id[]) => {
-            const now = Date.now();
+            const now = new Date().valueOf();
 
             Object.values(todos).forEach((todo) => {
                 if (todo.due_date) {
-                    const diff = todo.due_date - now;
-                    const isOverdue = diff < 0 && overdueIds.indexOf(todo.todo_id) === -1;
+                    const diff = now - todo.due_date;
+                    const isOverdue =
+                        diff > 0 && overdueIds.indexOf(todo.todo_id) === -1 && !todo.completed && !todo.deleted;
 
                     if (isOverdue) {
                         if (Math.abs(diff) < TWO_MINUTES) {
@@ -37,14 +39,12 @@ export function useCheckingDueDateOfTodos() {
         };
 
         if (mounted) {
-            timer = setInterval(() => {
-                checkDueDateMatchedTodos(todos, overdueIds);
-            }, ONE_MINUTE);
+            task = runTask(() => checkDueDateMatchedTodos(todos, overdueIds), ONE_MINUTE);
         }
 
         return () => {
             mounted = false;
-            clearInterval(timer);
+            task.stop();
         };
     }, [todos, overdueIds, _addToOverduedTodos]);
 }

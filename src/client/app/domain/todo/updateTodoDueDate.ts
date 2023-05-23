@@ -1,8 +1,7 @@
-import { exists } from '../../../../common/validation_utils/exists';
 import { isNotExists } from '../../../../common/validation_utils/isNotExists';
 
 // обновляем todos.idsByByDueDate
-export function updateTodoOverdue(state: TodoState, newTodo: Todo, oldTodo?: Todo) {
+export function updateTodoDueDate(state: TodoState, newTodo: Todo, oldTodo?: Todo) {
     // если при создании у новой задачи нет due_date
     // или при обновлении due_date не изменилась - выходим
     if ((oldTodo && oldTodo.due_date === newTodo.due_date) || isNotExists(newTodo.due_date)) {
