@@ -9,6 +9,7 @@ import { CalendarHeader } from './CalendarHeader/CalendarHeader.tsx';
 import { CalendarWeekNamesRow } from './CalendarWeekNamesRow/CalendarWeekNamesRow.tsx';
 
 import './index.css';
+import CalendarBody from './CalendarBody/index.tsx';
 
 export type CalendarDayContainerType = {
     day: number;
@@ -90,29 +91,14 @@ const Calendar = memo(function (props: Calendar) {
 
             <CalendarWeekNamesRow />
 
-            <div className="Calendar-Body">
-                {Array.from({ length: daysCount }, (_, index) => {
-                    const date = new Date(startDay.year, startDay.month, startDay.day);
-                    date.setDate(startDay.day + index);
-
-                    const theDate = date.getDate();
-                    const theDay = date.getDay();
-                    const key = date.valueOf();
-
-                    return (
-                        <CalendarDayContainer
-                            key={key}
-                            day={theDate}
-                            value={key}
-                            inCurrentMonth={month === date.getMonth()}
-                            isToday={todayDay.day === theDate && todayDay.month === date.getMonth()}
-                            isWeekend={theDay === 0 || theDay === 6}
-                            dayComponent={CalendarDay}
-                            onSelectDate={onSelectDate}
-                        />
-                    );
-                })}
-            </div>
+            <CalendarBody
+                daysCount={daysCount}
+                month={month}
+                startDay={startDay}
+                todayDay={todayDay}
+                onSelectDate={onSelectDate}
+                dayContainer={CalendarDayContainer}
+            />
         </div>
     );
 });

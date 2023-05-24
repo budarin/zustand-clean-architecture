@@ -1,4 +1,5 @@
 import { MouseEventHandler, memo, useCallback } from 'react';
+
 import { TodosStoreState, useTodoStore } from '../../domain/store';
 import { getNavigationFilterWithCalendarDate, navigationFilterTypes } from '../../domain/navigationFilter';
 
@@ -7,7 +8,7 @@ import { type CalendarDayContainerType } from '../../../ui/Calendar';
 const navFilterSelector = (state: TodosState) => state.navigationFilter;
 const setNavFilterSelector = (state: TodosStoreState) => state.setNavigationFilter;
 
-function CalendarDayContainer(props: CalendarDayContainerType) {
+const CalendarDayContainer = function (props: CalendarDayContainerType) {
     const {
         day,
         value,
@@ -49,9 +50,6 @@ function CalendarDayContainer(props: CalendarDayContainerType) {
             onSelectDate={onSelectDate}
         />
     );
-}
+};
 
-const CalendarDayContainerMemoised = memo(CalendarDayContainer);
-CalendarDayContainerMemoised.displayName = 'CalendarDayContainer';
-
-export default CalendarDayContainerMemoised;
+export default CalendarDayContainer;
