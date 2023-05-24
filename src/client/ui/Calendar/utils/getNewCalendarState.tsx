@@ -4,7 +4,7 @@ import { getCalendarTitle } from './getCalendarTitle.tsx';
 import { getFirstMonthDate } from './getFirstMonthDate.tsx';
 import { getCalendarDaysCount } from './getCalendarDaysCount.tsx';
 
-export function getStateForNewSelectedDate(newDate: Date): CalendarState {
+export function getNewCalendarState(newDate: Date): CalendarState {
     const date = getFirstMonthDate(newDate);
     const title = getCalendarTitle(date);
     const startDate = getFirstDate(date);
