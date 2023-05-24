@@ -1,7 +1,6 @@
-import React, { MouseEventHandler, useCallback, useState } from 'react';
+import React, { MouseEventHandler, memo, useCallback, useState } from 'react';
 
-import { getStateForPrevOrNextMonth } from './utils/getStateForPrevOrNextMonth.tsx';
-import { getStateForNewSelectedDate } from './utils/getStateForNewSelectedDate.tsx';
+import { getNewCalendarState } from './utils/getNewCalendarState.tsx';
 import { areParsedDatesEqualByMonthAndYear } from './utils/areParsedDatesEqualByMonthAndYear.tsx';
 
 // components
@@ -32,52 +31,56 @@ export type CalendarDayType = {
 };
 
 type Calendar = {
-    selected: boolean;
+    selectedDate?: Date;
     dayContainer: React.ComponentType<CalendarDayContainerType>;
 };
 
-const weekendsDays = [0, 6];
+const todayDate = new Date();
+const todayDay = {
+    day: todayDate.getDate(),
+    month: todayDate.getMonth(),
+    year: todayDate.getFullYear(),
+};
 
-function Calendar(props: Calendar) {
-    const { selected, dayContainer: CalendarDayContainer } = props;
+const Calendar = memo(function (props: Calendar) {
+    const { selectedDate, dayContainer: CalendarDayContainer } = props;
 
-    const todayDate = new Date();
-    const todayDay = {
-        day: todayDate.getDate(),
-        month: todayDate.getMonth(),
-        year: todayDate.getFullYear(),
-    };
-
-    const [{ title, currentDay, daysCount, startDay }, setState] = useState(getStateForNewSelectedDate(todayDate));
-    const { month, year, day } = currentDay;
+    const [state, setState] = useState(getNewCalendarState(selectedDate || todayDate));
+    const { title, currentDay, daysCount, startDay } = state;
+    const { month, year } = currentDay;
 
     const setPrevMonth = useCallback(() => {
         const prevMonthDate = new Date(year, month - 1, 1);
-        setState(getStateForPrevOrNextMonth(prevMonthDate));
+        setState(getNewCalendarState(prevMonthDate));
     }, [year, month]);
 
     const setNextMonth = useCallback(() => {
         const nextMonthDate = new Date(year, month + 1, 1);
-        setState(getStateForPrevOrNextMonth(nextMonthDate));
+        setState(getNewCalendarState(nextMonthDate));
     }, [year, month]);
 
-    const setToday = () => {
-        setState(getStateForPrevOrNextMonth(todayDate));
-    };
-
-    const onSelectDate: MouseEventHandler<HTMLDivElement> = useCallback((event) => {
-        const timestamp = Number((event.target as HTMLElement).dataset.date);
-        const selectedDt = new Date(timestamp);
-
-        if (month !== selectedDt.getMonth()) {
-            setState(getStateForNewSelectedDate(selectedDt));
-        }
+    const setToday = useCallback(() => {
+        setState(getNewCalendarState(todayDate));
     }, []);
+
+    const onSelectDate: MouseEventHandler<HTMLDivElement> = useCallback(
+        (event) => {
+            const timestamp = Number((event.target as HTMLElement).dataset.date);
+            const selectedDt = new Date(timestamp);
+
+            console.log('onSelectDate', currentDay, selectedDt);
+
+            if (currentDay.month !== selectedDt.getMonth()) {
+                setState(getNewCalendarState(selectedDt));
+            }
+        },
+        [currentDay],
+    );
 
     return (
         <div className="Calendar">
             <CalendarHeader
-                selected={selected}
+                selected={selectedDate !== undefined}
                 title={title}
                 handlePrevMonth={setPrevMonth}
                 handleNextMonth={setNextMonth}
@@ -89,7 +92,9 @@ function Calendar(props: Calendar) {
 
             <div className="Calendar-Body">
                 {Array.from({ length: daysCount }, (_, index) => {
-                    const date = new Date(startDay.year, startDay.month, startDay.day + index);
+                    const date = new Date(startDay.year, startDay.month, startDay.day);
+                    date.setDate(startDay.day + index);
+
                     const theDate = date.getDate();
                     const theDay = date.getDay();
                     const key = date.valueOf();
@@ -110,6 +115,8 @@ function Calendar(props: Calendar) {
             </div>
         </div>
     );
-}
+});
+
+Calendar.displayName = 'Calendar';
 
 export default Calendar;

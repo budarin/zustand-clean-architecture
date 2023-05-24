@@ -27,13 +27,16 @@ function CalendarDayContainer(props: CalendarDayContainerType) {
         selected = value === navFilter.key;
     }
 
-    const onSelectDate: MouseEventHandler<HTMLDivElement> = useCallback((event) => {
-        const selectedDateTimestamp = Number((event.target as HTMLElement).dataset.date);
-        const selectedDate = new Date(selectedDateTimestamp);
+    const onSelectDate: MouseEventHandler<HTMLDivElement> = useCallback(
+        (event) => {
+            const selectedDateTimestamp = Number((event.target as HTMLElement).dataset.date);
+            const selectedDate = new Date(selectedDateTimestamp);
 
-        setNavigationFilter(getNavigationFilterWithCalendarDate(selectedDate));
-        onCalendarSelectDate(event);
-    }, []);
+            setNavigationFilter(getNavigationFilterWithCalendarDate(selectedDate));
+            onCalendarSelectDate(event);
+        },
+        [onCalendarSelectDate],
+    );
 
     return (
         <Day
