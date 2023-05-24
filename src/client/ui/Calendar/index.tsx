@@ -24,6 +24,7 @@ export type CalendarDayContainerType = {
 export type CalendarDayType = {
     day: number;
     value: number;
+    todosCount: number;
     inCurrentMonth: boolean;
     isToday: boolean;
     isWeekend: boolean;
