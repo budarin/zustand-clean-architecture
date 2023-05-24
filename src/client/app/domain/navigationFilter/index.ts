@@ -32,7 +32,7 @@ export function getNavigationFilterWithCalendarDate(date: Date): CalendarNavigat
 
     return {
         type: 'calendar',
-        title: `${dayName ? dayName + ': ' : ''}${date.toLocaleDateString('ru-Ru', options)}`,
+        title: `${date.toLocaleDateString('ru-Ru', options)}${dayName ? ', ' + dayName : ''}`,
         key: date.valueOf(),
     };
 }

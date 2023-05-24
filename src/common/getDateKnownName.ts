@@ -6,15 +6,15 @@ export function getDateKnownName(date: Date) {
 
     switch (diff) {
         case 0:
-            return 'Сегодня';
+            return 'сегодня';
         case 1:
-            return 'Завтра';
+            return 'завтра';
         case 2:
-            return 'Послезавтра';
+            return 'послезавтра';
         case -1:
-            return 'Вчера';
+            return 'вчера';
         case -2:
-            return 'Позавчера';
+            return 'позавчера';
 
         default:
             return '';
