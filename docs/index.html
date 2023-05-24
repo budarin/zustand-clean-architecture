@@ -1,106 +1,106 @@
 <!doctype html><html lang="ru"><head><meta charset="UTF-8"/><meta name="theme-color" content="#cce2ff"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="msapplication-TileColor" content="#f0f6ff"/><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/><title>Мои Задачи</title><meta name="description" content="Приложение для управления задачами на каждый день."/><link rel="icon" href="favicon.ico"/><link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"/><link rel="manifest" href="site.webmanifest"/><link rel="mask-icon" href="safari-pinned-tab.svg" color="#f0f6ff"/><link rel="preload" as="image" href="7c6d2e8a35ab9fe33a8f.svg"/><script id="initialScript">function scriptLoadError(event) {
-            var target = event.target;
-            if (target.tagName === 'SCRIPT') {
-                var timestamp = new Date().getTime();
-                var url = window.location.href + '?t=' + timestamp;
-                window.location.href = url;
-            }
-        }
-        window.addEventListener('error', scriptLoadError, true);
-
-        const waitForLoadingAnimation = false;
-        window.loading = Promise.resolve(waitForLoadingAnimation);
-        navigator.serviceWorker.register('./sw.js');</script></head><body><div id="root" class="hidden"></div><div id="loading"><script>setTimeout(() => {
-                const loadingText = document.querySelector('.loading-text');
-                if (loadingText) {
-                    loadingText.style.visibility = 'visible';
-                }
-
-                const icon = document.querySelector('.icon');
-                if (icon) {
-                    icon.style.visibility = 'visible';
-                }
-
-                window.loading = new Promise((resolve) => {
-                    setTimeout(() => {
-                        const waitForLoadingAnimation = true;
-                        resolve(waitForLoadingAnimation);
-                    }, 1500);
-                });
-            }, 250);</script><style>html,
-            body {
-                height: 100%;
-                margin: 0;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial,
-                    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
-            }
-
-            .hidden {
-                background-color: transparent;
-                opacity: 0;
-            }
-
-            #loading {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: 9999;
-                margin: 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                background-color: hsl(214deg 100% 97%);
-                transition: opacity 1s ease;
-                overflow: hidden;
-            }
-
-            .icon-container {
-                position: relative;
-                width: 100px;
-                height: 100px;
-            }
-
-            .icon {
-                position: absolute;
-                top: 0;
-                left: 0;
-                animation: beat 1s infinite;
-                visibility: hidden;
-            }
-
-            @keyframes beat {
-                from {
-                    transform: scale(1);
-                    transform-origin: center center;
-                    animation-timing-function: ease-out;
-                }
-
-                10% {
-                    transform: scale(1.15);
-                    animation-timing-function: ease-in;
-                }
-
-                15% {
-                    transform: scale(1.08);
-                    animation-timing-function: ease-out;
-                }
-
-                25% {
-                    transform: scale(1.25);
-                    animation-timing-function: ease-in;
-                }
-
-                35% {
-                    transform: scale(1);
-                    animation-timing-function: ease-out;
+                var target = event.target;
+                if (target.tagName === 'SCRIPT') {
+                    var timestamp = new Date().getTime();
+                    var url = window.location.href + '?t=' + timestamp;
+                    window.location.href = url;
                 }
             }
+            window.addEventListener('error', scriptLoadError, true);
 
-            .loading-text {
-                margin-top: 20px;
-                margin-bottom: 80px;
-                visibility: hidden;
-            }</style><div class="icon-container"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" class="icon" viewBox="0 0 491.526 491.526"><path d="M413.088 63.687c.024-11.819-9.677-21.421-21.668-21.446l-368.731-.757C10.697 41.459.957 51.021.933 62.841l-.139 67.856 412.154.846.14-67.856z" style="fill: rgb(229, 99, 83)"></path><path d="M.794 130.697.26 390.609c-.024 11.82 9.677 21.421 21.668 21.446l368.731.757c11.991.024 21.731-9.537 21.755-21.357l.534-259.912-412.154-.846z" style="fill: rgb(206, 227, 255); fill-opacity: 1"></path><circle cx="71.64" cy="71.213" r="19.543" style="fill: rgb(209, 82, 65)"></circle><circle cx="342.365" cy="71.767" r="19.543" style="fill: rgb(209, 82, 65)"></circle><path d="m71.784 0-.17 83.168c7.559.015 13.7-6.012 13.716-13.464l.115-56.183C85.46 6.07 79.343.016 71.784 0z" style="fill: rgb(225, 230, 233)"></path><path d="m58.068 13.465-.115 56.183c-.015 7.452 6.1 13.505 13.66 13.52L71.784 0c-7.56-.015-13.7 6.013-13.716 13.465zM328.779 14.02l-.115 56.183c-.016 7.452 6.101 13.505 13.66 13.521l.171-83.168c-7.56-.015-13.701 6.013-13.716 13.464z" style="fill: rgb(235, 240, 243)"></path><path d="m342.496.556-.171 83.168c7.559.015 13.7-6.013 13.716-13.465l.116-56.183c.014-7.451-6.103-13.505-13.661-13.52z" style="fill: rgb(225, 230, 233)"></path><path d="M-226.246-196.869H-188v38.246h-38.246zM-294.848-196.841h38.246v38.246h-38.246z" transform="rotate(-179.885)" style="fill: rgb(173, 174, 182); stroke-width: 1; fill-opacity: 1"></path><path d="M324.914 159.282h38.246v38.246h-38.246z" transform="rotate(-180 344.032 178.414)" style="fill: rgb(229, 99, 83)"></path><path d="M50.294 221.132H88.54v38.246H50.294z" transform="rotate(-180 69.41 240.257)" style="fill: rgb(173, 174, 182); fill-opacity: 1"></path><path d="M118.886 221.288h38.246v38.246h-38.246z" transform="rotate(-180 138.003 240.415)" style="fill: rgb(68, 196, 161)"></path><path d="M-226.24-259.282h38.246v38.246h-38.246zM-294.867-259.304h38.246v38.246h-38.246z" transform="rotate(-179.885)" style="fill: rgb(173, 174, 182); stroke-width: 1; fill-opacity: 1"></path><path d="M324.76 221.695h38.246v38.246H324.76z" transform="rotate(-180 343.877 240.826)" style="fill: rgb(229, 99, 83)"></path><path d="M-89.002-321.706h38.246v38.246h-38.246zM-157.62-321.728h38.246v38.246h-38.246zM-226.233-321.694h38.246v38.246h-38.246z" transform="rotate(-179.885)" style="fill: rgb(173, 174, 182); stroke-width: 1; fill-opacity: 1"></path><path d="M-294.836-321.716h38.246v38.246h-38.246z" transform="rotate(-179.885)" style="fill: rgb(213, 214, 219); stroke-width: 1"></path><path d="M324.654 284.162H362.9v38.246h-38.246z" transform="rotate(-180 343.772 303.29)" style="fill: rgb(229, 99, 83)"></path><path d="M-88.996-384.119h38.246v38.246h-38.246zM-157.588-384.141h38.246v38.246h-38.246z" transform="rotate(-179.885)" style="fill: rgb(173, 174, 182); stroke-width: 1; fill-opacity: 1"></path><circle cx="359.461" cy="359.722" r="131.804" style="fill: rgb(100, 121, 138)"></circle><circle cx="359.461" cy="359.722" r="107.571" style="fill: rgb(255, 255, 255)"></circle><path d="M257.119 362.138c.119-57.965 47.205-104.859 105.171-104.74 57.524.118 104.119 46.496 104.71 103.853.006-.44.036-.875.037-1.317.122-59.42-47.949-107.689-107.371-107.812-59.42-.122-107.688 47.949-107.811 107.37-.122 59.421 47.949 107.69 107.369 107.812.442.001.877-.026 1.318-.03-57.356-.827-103.541-47.612-103.423-105.136z" style="fill: rgb(225, 230, 233)"></path><path d="M414.117 416.177a2.392 2.392 0 0 1-1.692-.705l-69.65-69.937a2.396 2.396 0 1 1 3.396-3.382l69.649 69.937a2.395 2.395 0 0 1-1.703 4.087z" style="fill: rgb(229, 99, 83)"></path><path d="m363.062 349.464.116-56.548a3.597 3.597 0 0 0-3.587-3.603 3.598 3.598 0 0 0-3.603 3.588l-.116 56.548a10.904 10.904 0 0 0-6.174 5.452l-43.166-.088a4.79 4.79 0 0 0-4.803 4.783 4.79 4.79 0 0 0 4.783 4.803l43.166.088c1.775 3.615 5.454 6.134 9.745 6.143 6.02.013 10.925-4.874 10.938-10.893.01-4.754-3.054-8.77-7.299-10.273z" style="fill: rgb(100, 121, 138)"></path><circle cx="359.463" cy="359.667" r="6.124" style="fill: rgb(255, 255, 255)"></circle><circle cx="359.655" cy="268.587" r="5.381" style="fill: rgb(58, 85, 106)"></circle><circle cx="359.264" cy="450.849" r="5.381" style="fill: rgb(58, 85, 106)"></circle><circle cx="450.568" cy="359.883" r="5.381" style="fill: rgb(58, 85, 106)"></circle><circle cx="268.306" cy="359.545" r="5.381" style="fill: rgb(58, 85, 106)"></circle></svg></div><div class="loading-text"><span>Загрузка &laquo;Мои Задачи&raquo;</span></div></div><script defer="defer" src="main.6a1a6b0e14a994bba7ac.js"></script></body></html>
+            const waitForLoadingAnimation = false;
+            window.loading = Promise.resolve(waitForLoadingAnimation);
+            navigator.serviceWorker.register('./sw.js');</script></head><body><div id="root" class="hidden"></div><div id="loading"><script>setTimeout(() => {
+                    const loadingText = document.querySelector('.loading-text');
+                    if (loadingText) {
+                        loadingText.style.visibility = 'visible';
+                    }
+
+                    const icon = document.querySelector('.icon');
+                    if (icon) {
+                        icon.style.visibility = 'visible';
+                    }
+
+                    window.loading = new Promise((resolve) => {
+                        setTimeout(() => {
+                            const waitForLoadingAnimation = true;
+                            resolve(waitForLoadingAnimation);
+                        }, 1500);
+                    });
+                }, 250);</script><style>html,
+                body {
+                    height: 100%;
+                    margin: 0;
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial,
+                        sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+                }
+
+                .hidden {
+                    background-color: transparent;
+                    opacity: 0;
+                }
+
+                #loading {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 9999;
+                    margin: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    background-color: hsl(214deg 100% 97%);
+                    transition: opacity 1s ease;
+                    overflow: hidden;
+                }
+
+                .icon-container {
+                    position: relative;
+                    width: 100px;
+                    height: 100px;
+                }
+
+                .icon {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    animation: beat 1s infinite;
+                    visibility: hidden;
+                }
+
+                @keyframes beat {
+                    from {
+                        transform: scale(1);
+                        transform-origin: center center;
+                        animation-timing-function: ease-out;
+                    }
+
+                    10% {
+                        transform: scale(1.15);
+                        animation-timing-function: ease-in;
+                    }
+
+                    15% {
+                        transform: scale(1.08);
+                        animation-timing-function: ease-out;
+                    }
+
+                    25% {
+                        transform: scale(1.25);
+                        animation-timing-function: ease-in;
+                    }
+
+                    35% {
+                        transform: scale(1);
+                        animation-timing-function: ease-out;
+                    }
+                }
+
+                .loading-text {
+                    margin-top: 20px;
+                    margin-bottom: 80px;
+                    visibility: hidden;
+                }</style><div class="icon-container"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" class="icon" viewBox="0 0 491.526 491.526"><path d="M413.088 63.687c.024-11.819-9.677-21.421-21.668-21.446l-368.731-.757C10.697 41.459.957 51.021.933 62.841l-.139 67.856 412.154.846.14-67.856z" style="fill: rgb(229, 99, 83)"></path><path d="M.794 130.697.26 390.609c-.024 11.82 9.677 21.421 21.668 21.446l368.731.757c11.991.024 21.731-9.537 21.755-21.357l.534-259.912-412.154-.846z" style="fill: rgb(206, 227, 255); fill-opacity: 1"></path><circle cx="71.64" cy="71.213" r="19.543" style="fill: rgb(209, 82, 65)"></circle><circle cx="342.365" cy="71.767" r="19.543" style="fill: rgb(209, 82, 65)"></circle><path d="m71.784 0-.17 83.168c7.559.015 13.7-6.012 13.716-13.464l.115-56.183C85.46 6.07 79.343.016 71.784 0z" style="fill: rgb(225, 230, 233)"></path><path d="m58.068 13.465-.115 56.183c-.015 7.452 6.1 13.505 13.66 13.52L71.784 0c-7.56-.015-13.7 6.013-13.716 13.465zM328.779 14.02l-.115 56.183c-.016 7.452 6.101 13.505 13.66 13.521l.171-83.168c-7.56-.015-13.701 6.013-13.716 13.464z" style="fill: rgb(235, 240, 243)"></path><path d="m342.496.556-.171 83.168c7.559.015 13.7-6.013 13.716-13.465l.116-56.183c.014-7.451-6.103-13.505-13.661-13.52z" style="fill: rgb(225, 230, 233)"></path><path d="M-226.246-196.869H-188v38.246h-38.246zM-294.848-196.841h38.246v38.246h-38.246z" transform="rotate(-179.885)" style="fill: rgb(173, 174, 182); stroke-width: 1; fill-opacity: 1"></path><path d="M324.914 159.282h38.246v38.246h-38.246z" transform="rotate(-180 344.032 178.414)" style="fill: rgb(229, 99, 83)"></path><path d="M50.294 221.132H88.54v38.246H50.294z" transform="rotate(-180 69.41 240.257)" style="fill: rgb(173, 174, 182); fill-opacity: 1"></path><path d="M118.886 221.288h38.246v38.246h-38.246z" transform="rotate(-180 138.003 240.415)" style="fill: rgb(68, 196, 161)"></path><path d="M-226.24-259.282h38.246v38.246h-38.246zM-294.867-259.304h38.246v38.246h-38.246z" transform="rotate(-179.885)" style="fill: rgb(173, 174, 182); stroke-width: 1; fill-opacity: 1"></path><path d="M324.76 221.695h38.246v38.246H324.76z" transform="rotate(-180 343.877 240.826)" style="fill: rgb(229, 99, 83)"></path><path d="M-89.002-321.706h38.246v38.246h-38.246zM-157.62-321.728h38.246v38.246h-38.246zM-226.233-321.694h38.246v38.246h-38.246z" transform="rotate(-179.885)" style="fill: rgb(173, 174, 182); stroke-width: 1; fill-opacity: 1"></path><path d="M-294.836-321.716h38.246v38.246h-38.246z" transform="rotate(-179.885)" style="fill: rgb(213, 214, 219); stroke-width: 1"></path><path d="M324.654 284.162H362.9v38.246h-38.246z" transform="rotate(-180 343.772 303.29)" style="fill: rgb(229, 99, 83)"></path><path d="M-88.996-384.119h38.246v38.246h-38.246zM-157.588-384.141h38.246v38.246h-38.246z" transform="rotate(-179.885)" style="fill: rgb(173, 174, 182); stroke-width: 1; fill-opacity: 1"></path><circle cx="359.461" cy="359.722" r="131.804" style="fill: rgb(100, 121, 138)"></circle><circle cx="359.461" cy="359.722" r="107.571" style="fill: rgb(255, 255, 255)"></circle><path d="M257.119 362.138c.119-57.965 47.205-104.859 105.171-104.74 57.524.118 104.119 46.496 104.71 103.853.006-.44.036-.875.037-1.317.122-59.42-47.949-107.689-107.371-107.812-59.42-.122-107.688 47.949-107.811 107.37-.122 59.421 47.949 107.69 107.369 107.812.442.001.877-.026 1.318-.03-57.356-.827-103.541-47.612-103.423-105.136z" style="fill: rgb(225, 230, 233)"></path><path d="M414.117 416.177a2.392 2.392 0 0 1-1.692-.705l-69.65-69.937a2.396 2.396 0 1 1 3.396-3.382l69.649 69.937a2.395 2.395 0 0 1-1.703 4.087z" style="fill: rgb(229, 99, 83)"></path><path d="m363.062 349.464.116-56.548a3.597 3.597 0 0 0-3.587-3.603 3.598 3.598 0 0 0-3.603 3.588l-.116 56.548a10.904 10.904 0 0 0-6.174 5.452l-43.166-.088a4.79 4.79 0 0 0-4.803 4.783 4.79 4.79 0 0 0 4.783 4.803l43.166.088c1.775 3.615 5.454 6.134 9.745 6.143 6.02.013 10.925-4.874 10.938-10.893.01-4.754-3.054-8.77-7.299-10.273z" style="fill: rgb(100, 121, 138)"></path><circle cx="359.463" cy="359.667" r="6.124" style="fill: rgb(255, 255, 255)"></circle><circle cx="359.655" cy="268.587" r="5.381" style="fill: rgb(58, 85, 106)"></circle><circle cx="359.264" cy="450.849" r="5.381" style="fill: rgb(58, 85, 106)"></circle><circle cx="450.568" cy="359.883" r="5.381" style="fill: rgb(58, 85, 106)"></circle><circle cx="268.306" cy="359.545" r="5.381" style="fill: rgb(58, 85, 106)"></circle></svg></div><div class="loading-text"><span>Загрузка &laquo;Мои Задачи&raquo;</span></div></div><script defer="defer" src="main.9a571ed7e450b7f07c1c.js"></script></body></html>
