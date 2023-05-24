@@ -1,19 +1,20 @@
+import { getTodayDate } from './getTodayDate';
 import { getDatesDiffInDays } from './getDatesDiffInDays';
 
 export function getDateKnownName(date: Date) {
-    const diff = getDatesDiffInDays(date, new Date());
+    const diff = getDatesDiffInDays(getTodayDate(), date);
 
     switch (diff) {
         case 0:
-            return 'Сегодня';
+            return 'сегодня';
         case 1:
-            return 'Завтра';
+            return 'завтра';
         case 2:
-            return 'Послезавтра';
+            return 'послезавтра';
         case -1:
-            return 'Вчера';
+            return 'вчера';
         case -2:
-            return 'Позавчера';
+            return 'позавчера';
 
         default:
             return '';

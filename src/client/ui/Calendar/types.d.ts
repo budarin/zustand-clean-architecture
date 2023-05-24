@@ -7,7 +7,6 @@ type ParsedDate = {
 type CalendarState = {
     currentDay: ParsedDate;
     title: string;
-    selectedDay: ParsedDate;
     startDay: ParsedDate;
     daysCount: number;
 };

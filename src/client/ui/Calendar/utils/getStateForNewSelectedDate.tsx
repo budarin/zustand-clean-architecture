@@ -23,11 +23,6 @@ export function getStateForNewSelectedDate(newDate: Date): CalendarState {
             month: startDate.getMonth(),
             year: startDate.getFullYear(),
         },
-        selectedDay: {
-            day: newDate.getDate(),
-            month: newDate.getMonth(),
-            year: newDate.getFullYear(),
-        },
         daysCount,
     };
 }

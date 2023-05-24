@@ -23,7 +23,6 @@ export function getStateForPrevOrNextMonth(newDate: Date) {
                 month: startDate.getMonth(),
                 year: startDate.getFullYear(),
             },
-            selectedDay: state.selectedDay,
             daysCount: getCalendarDaysCount(startDate, endDate),
         };
     };

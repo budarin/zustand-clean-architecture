@@ -1,6 +1,6 @@
 import { validateTodo } from '../../../../common/domain/todo/validation';
 
-export function validateTodoEntity(todo: UnknownObject, state: State): ValidateEntity<Todo> {
+export function validateTodoEntity(todo: UnknownObject, state: TodosState): ValidateEntity<Todo> {
     const result = validateTodo(todo);
 
     if (!result.entity) {
