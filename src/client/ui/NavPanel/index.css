@@ -21,8 +21,7 @@
 
 @media only screen and (min-width: 641px) {
     .nav {
-        width: 246px;
-        padding-bottom: 0;
+        width: 256px;
     }
 
     @media (pointer: coarse) {
