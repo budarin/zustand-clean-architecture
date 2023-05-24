@@ -1,6 +1,6 @@
 import { validateIcon } from '../../../../common/domain/icon/validation';
 
-export function validateIconEntity(icon: UnknownObject, state: State): ValidateEntity<Icon> {
+export function validateIconEntity(icon: UnknownObject, state: TodosState): ValidateEntity<Icon> {
     const result = validateIcon(icon);
 
     if (!result.entity) {

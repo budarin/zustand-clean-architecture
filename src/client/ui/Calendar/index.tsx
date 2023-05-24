@@ -1,7 +1,8 @@
-import { MouseEventHandler, useCallback, useState } from 'react';
+import React, { MouseEventHandler, useCallback, useState } from 'react';
 
 import { getStateForPrevOrNextMonth } from './utils/getStateForPrevOrNextMonth.tsx';
 import { getStateForNewSelectedDate } from './utils/getStateForNewSelectedDate.tsx';
+import { areParsedDatesEqualByMonthAndYear } from './utils/areParsedDatesEqualByMonthAndYear.tsx';
 
 // components
 import CalendarDay from './CalendarDay/CalendarDay.tsx';
@@ -10,19 +11,30 @@ import { CalendarWeekNamesRow } from './CalendarWeekNamesRow/CalendarWeekNamesRo
 
 import './index.css';
 
-function areDateEqualByMonthAndYear(d1: Date, d2: ParsedDate): boolean {
-    const yearsAreEqual = d1.getFullYear() === d2.year;
-    const monthsAreEqual = d1.getMonth() === d2.month;
+export type CalendarDayType = {
+    date: Date;
+    value: number;
+    selected: boolean;
+    calendarMonth: number;
+    todayDay: ParsedDate;
+    onSelectDate: MouseEventHandler<HTMLDivElement>;
+};
 
-    return yearsAreEqual && monthsAreEqual;
-}
+export type CalendarDayContainerType = {
+    date: Date;
+    value: number;
+    calendarMonth: number;
+    todayDay: ParsedDate;
+    dayComponent: React.ComponentType<CalendarDayType>;
+};
 
 type Calendar = {
     selected: boolean;
+    dayContainer: React.ComponentType<CalendarDayContainerType>;
 };
 
 function Calendar(props: Calendar) {
-    const { selected } = props;
+    const { selected, dayContainer: CalendarDayContainer } = props;
 
     const todayDate = new Date();
     const todayDay = {
@@ -51,10 +63,6 @@ function Calendar(props: Calendar) {
         setState(getStateForPrevOrNextMonth(todayDate));
     };
 
-    const onSelectDate: MouseEventHandler<HTMLDivElement> = (event) => {
-        setState(getStateForNewSelectedDate(new Date(Number((event.target as HTMLElement).dataset.date))));
-    };
-
     return (
         <div className="Calendar">
             <CalendarHeader
@@ -63,7 +71,7 @@ function Calendar(props: Calendar) {
                 handlePrevMonth={setPrevMonth}
                 handleNextMonth={setNextMonth}
                 handleToday={setToday}
-                disableTodayButton={areDateEqualByMonthAndYear(todayDate, currentDay)}
+                disableTodayButton={areParsedDatesEqualByMonthAndYear(todayDay, currentDay)}
             />
 
             <CalendarWeekNamesRow />
@@ -74,14 +82,13 @@ function Calendar(props: Calendar) {
                     const key = date.valueOf();
 
                     return (
-                        <CalendarDay
+                        <CalendarDayContainer
                             key={key}
                             date={date}
                             value={key}
-                            selectedDay={selectedDay}
                             calendarMonth={month}
                             todayDay={todayDay}
-                            onSelectDate={onSelectDate}
+                            dayComponent={CalendarDay}
                         />
                     );
                 })}

@@ -8,7 +8,7 @@ import NavigationPanelItemContainer from '../PanelItem';
 import CategoryHeadersContainer from '../CategoryHeader';
 
 // selectors
-const getCategoryIds = (state: State) => state.categories.ids;
+const getCategoryIds = (state: TodosState) => state.categories.ids;
 
 function CategorySectionContainer() {
     const categoryIds = useTodoStore(getCategoryIds);

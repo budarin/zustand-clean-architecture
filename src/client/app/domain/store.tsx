@@ -2,6 +2,7 @@ import { create } from 'zustand';
 
 import { TodoStoreError } from './TodoStoreError.tsx';
 import { createSelectors } from './createSelectors.ts';
+import { getTodayDate } from '../../../common/getTodayDate.ts';
 import { updateTodoFilters } from './todo/updateTodoFilters.ts';
 import { updateTodoDueDate } from './todo/updateTodoDueDate.ts';
 import { validateTodoEntity } from './todo/validateTodoEntity.ts';
@@ -13,7 +14,7 @@ import { getOnlyDateTimestamp } from '../../../common/getOnlyDateTimestamp.ts';
 
 import { getNavigationFilterWithCalendarDate, inboxKey, overdueKey, recycleBinKey } from './navigationFilter/index.ts';
 
-type Actions = {
+export type Actions = {
     // Icon
     _addIcon: (icon: UnknownObject) => void;
 
@@ -35,7 +36,7 @@ type Actions = {
     setNavigationFilter: (filter: NavigationFilter) => void;
 };
 
-const todoStore = create<State & Actions>((set) => ({
+const todoStore = create<TodosState & Actions>((set) => ({
     icons: {
         byId: {},
         ids: [],
@@ -63,7 +64,7 @@ const todoStore = create<State & Actions>((set) => ({
         },
     },
 
-    navigationFilter: getNavigationFilterWithCalendarDate(new Date()),
+    navigationFilter: getNavigationFilterWithCalendarDate(getTodayDate()),
 
     // Icon
     _addIcon: (icon: UnknownObject) => {
@@ -275,3 +276,5 @@ const todoStore = create<State & Actions>((set) => ({
 }));
 
 export const useTodoStore = createSelectors(todoStore);
+
+export type TodosStoreState = TodosState & Actions;

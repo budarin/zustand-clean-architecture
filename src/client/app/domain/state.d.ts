@@ -69,7 +69,7 @@ type NavigationFilter = FilterNavigationFilter | CategoryNavigationFilter | Cale
 type NavigationFilterType = NavigationFilter['type'];
 type NavigationFilterKey = NavigationFilter['key'];
 
-type State = {
+type TodosState = {
     icons: IconState;
     statuses: StatusState;
     categories: CategoryState;

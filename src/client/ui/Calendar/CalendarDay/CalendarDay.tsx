@@ -1,25 +1,17 @@
-import { MouseEventHandler } from 'react';
+import { memo } from 'react';
 
 import { cn } from '../../classNames';
 import { areDaysEqual } from '../utils/areDaysEqual';
 
+import { type CalendarDayType } from '..';
+
 import './index.css';
 
+const weekendDays = [0, 6];
 const currentDayCN = cn('Calendar-Day');
 
-const weekendDays = [0, 6];
-
-type CalendarDay = {
-    date: Date;
-    value: number;
-    selectedDay: ParsedDate;
-    calendarMonth: number;
-    todayDay: ParsedDate;
-    onSelectDate: MouseEventHandler<HTMLDivElement>;
-};
-
-function CalendarDay(props: CalendarDay) {
-    const { date, value, selectedDay, calendarMonth, todayDay, onSelectDate } = props;
+function CalendarDay(props: CalendarDayType) {
+    const { date, value, selected, calendarMonth, todayDay, onSelectDate } = props;
 
     const day = {
         day: date.getDate(),
@@ -31,7 +23,7 @@ function CalendarDay(props: CalendarDay) {
 
     const className = currentDayCN({
         other_month: day.month !== calendarMonth,
-        selected: areDaysEqual(day, selectedDay),
+        selected,
         today: isToday,
         weekend: weekendDays.includes(date.getDay()),
     });
@@ -49,4 +41,7 @@ function CalendarDay(props: CalendarDay) {
     );
 }
 
-export default CalendarDay;
+const CalendarDayMemoized = memo(CalendarDay);
+CalendarDayMemoized.displayName = 'CalendarDay';
+
+export default CalendarDayMemoized;

@@ -1,6 +1,6 @@
 import { validateStatus } from '../../../../common/domain/status/validation';
 
-export function validateStatusEntity(status: UnknownObject, state: State): ValidateEntity<Status> {
+export function validateStatusEntity(status: UnknownObject, state: TodosState): ValidateEntity<Status> {
     const result = validateStatus(status);
 
     if (!result.entity) {

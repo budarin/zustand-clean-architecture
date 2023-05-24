@@ -1,3 +1,7 @@
-export function areDaysEqual(day: ParsedDate, date: ParsedDate): boolean {
-    return day.month === date.month && day.day === date.day && day.year === date.year;
+export function areDaysEqual(date1: ParsedDate, date2?: ParsedDate): boolean {
+    if (!date2) {
+        return false;
+    }
+
+    return date1.month === date2.month && date1.day === date2.day && date1.year === date2.year;
 }

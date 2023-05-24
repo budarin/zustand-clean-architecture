@@ -9,9 +9,9 @@ import TodoListItem from '../../../../ui/TodoList/TodoListItem/index.tsx';
 type TodoListItemContainer = { id: Id };
 
 // selectors
-const getTodoById = (id: Id) => useCallback((state: State) => state.todos.byId[id as Id], [id]);
+const getTodoById = (id: Id) => useCallback((state: TodosState) => state.todos.byId[id as Id], [id]);
 const getTodoStatus = (status_id: TodoStatusId) =>
-    useCallback((state: State) => state.statuses.byId[status_id as Id], [status_id]);
+    useCallback((state: TodosState) => state.statuses.byId[status_id as Id], [status_id]);
 
 const TodoListItemContainer = memo((props: TodoListItemContainer): JSX.Element => {
     const { id } = props;

@@ -1,7 +1,8 @@
+import { getTodayDate } from './getTodayDate';
 import { getDatesDiffInDays } from './getDatesDiffInDays';
 
 export function getDateKnownName(date: Date) {
-    const diff = getDatesDiffInDays(date, new Date());
+    const diff = getDatesDiffInDays(getTodayDate(), date);
 
     switch (diff) {
         case 0:
