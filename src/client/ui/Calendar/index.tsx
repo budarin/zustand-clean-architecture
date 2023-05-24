@@ -69,8 +69,6 @@ const Calendar = memo(function (props: Calendar) {
             const timestamp = Number((event.target as HTMLElement).dataset.date);
             const selectedDt = new Date(timestamp);
 
-            console.log('onSelectDate', currentDay, selectedDt);
-
             if (currentDay.month !== selectedDt.getMonth()) {
                 setState(getNewCalendarState(selectedDt));
             }
