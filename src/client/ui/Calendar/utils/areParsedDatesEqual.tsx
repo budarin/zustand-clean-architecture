@@ -1,4 +1,4 @@
-export function areDaysEqual(date1: ParsedDate, date2?: ParsedDate): boolean {
+export function areParsedDatesEqual(date1: ParsedDate, date2?: ParsedDate): boolean {
     if (!date2) {
         return false;
     }
