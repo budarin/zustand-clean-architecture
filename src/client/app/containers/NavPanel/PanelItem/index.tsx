@@ -23,7 +23,7 @@ type NavigationPanelItemContainer = {
 //selectors
 const selector = (id: NavigationFilterKey, navigationType: NavigationFilterType) =>
     useCallback(
-        (state: State) => {
+        (state: TodosState) => {
             let checked = false;
             let title = '';
             let icon = '';

@@ -13,7 +13,7 @@ type CreateCategoryFormContainer = {
     onCreateCategory: FormEventHandler<HTMLFormElement>;
 };
 
-const iconsSelector = (state: State) => Object.values(state.icons.byId);
+const iconsSelector = (state: TodosState) => Object.values(state.icons.byId);
 
 const CreateCategoryFormContainer = memo(
     forwardRef(function (props: CreateCategoryFormContainer, ref: React.ForwardedRef<HTMLFormElement | null>) {

@@ -39,13 +39,15 @@ type AppContainer = {
     waitForLoadingAnimation: boolean;
 };
 
+const navFilterSelector = (state: TodosState) => state.navigationFilter;
+
 function AppContainer(props: AppContainer) {
     const { waitForLoadingAnimation } = props;
 
     useCheckingDueDateOfTodos();
 
     const matches = useMediaQuery('(max-width: 640px)');
-    const { key } = useTodoStore.use.navigationFilter();
+    const { key } = useTodoStore(navFilterSelector);
     const [isNavPaneOpen, setNavPaneOpen] = useState(showNavePaneAtStart);
 
     useEffect(() => {

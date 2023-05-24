@@ -14,7 +14,7 @@ type TodosCountBadgeContainer = {
 // selectors
 const getTodoCountSelector = (id: NavigationFilterKey, isCategory: boolean) =>
     useCallback(
-        (state: State) => {
+        (state: TodosState) => {
             return isCategory
                 ? state.todos.idsByCategoryId[id as Id]?.length || 0
                 : state.todos.idsByFilterId[id].length;

@@ -22,7 +22,7 @@ type TodoListViewContainer = {
 function TodoListViewContainer(props: TodoListViewContainer): JSX.Element {
     const { isOpen } = props;
 
-    const selector = useCallback((state: State) => {
+    const selector = useCallback((state: TodosState) => {
         let title = '';
         let icon = '';
         let count = 0;
