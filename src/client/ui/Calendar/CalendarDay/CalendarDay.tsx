@@ -6,7 +6,7 @@ import './index.css';
 
 const currentDayCN = cn('Calendar-Day');
 
-function CalendarDay(props: CalendarDayType) {
+const CalendarDay = memo(function (props: CalendarDayType) {
     const { day, value, selected, inCurrentMonth, isToday, isWeekend, onSelectDate } = props;
 
     const className = currentDayCN({
@@ -27,9 +27,8 @@ function CalendarDay(props: CalendarDayType) {
             {day}
         </div>
     );
-}
+});
 
-const CalendarDayMemoized = memo(CalendarDay);
-CalendarDayMemoized.displayName = 'CalendarDay';
+CalendarDay.displayName = 'CalendarDay';
 
-export default CalendarDayMemoized;
+export default CalendarDay;

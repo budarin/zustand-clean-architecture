@@ -5,13 +5,15 @@ import { navigationFilterTypes } from '../../domain/navigationFilter';
 import Calendar from '../../../ui/Calendar';
 import CalendarDayContainer from './CalendarDayContainer';
 
-const isCalendarSelectedSelector = (state: TodosState) => {
-    return state.navigationFilter.type === navigationFilterTypes.calendar;
+const selectedDateSelector = (state: TodosState) => {
+    if (state.navigationFilter.type === navigationFilterTypes.calendar) {
+        return new Date(state.navigationFilter.key);
+    }
 };
 
 function CalendarContainer() {
-    const isCalendarSelected = useTodoStore(isCalendarSelectedSelector);
-    return <Calendar selected={isCalendarSelected} dayContainer={CalendarDayContainer} />;
+    const selectedDate = useTodoStore(selectedDateSelector);
+    return <Calendar selectedDate={selectedDate} dayContainer={CalendarDayContainer} />;
 }
 
 export default CalendarContainer;
