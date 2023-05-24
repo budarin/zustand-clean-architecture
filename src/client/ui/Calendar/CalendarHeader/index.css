@@ -17,8 +17,8 @@
 
 .Calendar-HeadNav {
     display: flex;
-    min-width: 170px;
     align-items: center;
+    min-width: 170px;
     flex-grow: 1;
 }
 
@@ -26,6 +26,7 @@
     flex: 1;
     display: inline-block;
     text-align: center;
+    width: 110px;
 }
 
 .Calendar-PrevMonth,
@@ -41,18 +42,19 @@
     background-color: var(--secondaryColor);
 }
 
+.Calendar-TodayButtonContainer {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-around;
+    margin-right: var(--x2);
+}
+
 .Calendar-TodayButton {
     height: 24px;
     background-color: transparent;
     border: 0;
     cursor: pointer;
     font-weight: 500;
-}
-
-.Calendar-TodayButtonContainer {
-    display: flex;
-    flex-grow: 1;
-    justify-content: space-around;
 }
 
 @media (pointer: coarse) {
