@@ -47,16 +47,16 @@ export const notifyWarning: typeof toast.warning = (content, options?) => {
 
 function onJoyfullyOpen() {
     delay(250).then(() => {
+        au.play();
         if (window.matchMedia('(hover: none) and (pointer: coarse)').matches === true && 'vibrate' in navigator) {
             window.navigator.vibrate([100, 30, 100, 30, 100]);
         }
-        au.play();
     });
 }
 export const joyfullyGilling: typeof toast.warning = (content, options?) => {
     return toast.success(content, {
         ...options,
-        style: { border: '2px solid var(--secondaryColor)', lineHeight },
+        style: { border: '2px solid var(--primaryDarkColor)', lineHeight },
         autoClose: false,
         onOpen: onJoyfullyOpen,
     });
