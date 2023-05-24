@@ -56,7 +56,7 @@ function onJoyfullyOpen() {
 export const joyfullyGilling: typeof toast.warning = (content, options?) => {
     return toast.success(content, {
         ...options,
-        style: { border: '2px solid var(--secondaryColor)', lineHeight },
+        style: { border: '2px solid var(--primaryDarkColor)', lineHeight },
         autoClose: false,
         onOpen: onJoyfullyOpen,
     });
