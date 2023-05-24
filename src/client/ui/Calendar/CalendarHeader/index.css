@@ -39,7 +39,8 @@
 
 .Calendar-Header_selected .Calendar-PrevMonth,
 .Calendar-Header_selected .Calendar-NextMonth {
-    background-color: var(--secondaryColor);
+    background-color: transparent;
+    border: 0;
 }
 
 .Calendar-TodayButtonContainer {
