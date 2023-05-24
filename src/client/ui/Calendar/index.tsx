@@ -11,28 +11,32 @@ import { CalendarWeekNamesRow } from './CalendarWeekNamesRow/CalendarWeekNamesRo
 
 import './index.css';
 
-export type CalendarDayType = {
-    date: Date;
-    value: number;
-    selected: boolean;
-    calendarMonth: number;
-    todayDay: ParsedDate;
-    onSelectDate: MouseEventHandler<HTMLDivElement>;
-};
-
 export type CalendarDayContainerType = {
-    date: Date;
+    day: number;
     value: number;
-    calendarMonth: number;
-    todayDay: ParsedDate;
+    inCurrentMonth: boolean;
+    isToday: boolean;
+    isWeekend: boolean;
     onSelectDate: MouseEventHandler<HTMLDivElement>;
     dayComponent: React.ComponentType<CalendarDayType>;
+};
+
+export type CalendarDayType = {
+    day: number;
+    value: number;
+    inCurrentMonth: boolean;
+    isToday: boolean;
+    isWeekend: boolean;
+    selected: boolean;
+    onSelectDate: MouseEventHandler<HTMLDivElement>;
 };
 
 type Calendar = {
     selected: boolean;
     dayContainer: React.ComponentType<CalendarDayContainerType>;
 };
+
+const weekendsDays = [0, 6];
 
 function Calendar(props: Calendar) {
     const { selected, dayContainer: CalendarDayContainer } = props;
@@ -45,7 +49,7 @@ function Calendar(props: Calendar) {
     };
 
     const [{ title, currentDay, daysCount, startDay }, setState] = useState(getStateForNewSelectedDate(todayDate));
-    const { month, year } = currentDay;
+    const { month, year, day } = currentDay;
 
     const setPrevMonth = useCallback(() => {
         const prevMonthDate = new Date(year, month - 1, 1);
@@ -61,14 +65,14 @@ function Calendar(props: Calendar) {
         setState(getStateForPrevOrNextMonth(todayDate));
     };
 
-    const onSelectDate: MouseEventHandler<HTMLDivElement> = (event) => {
+    const onSelectDate: MouseEventHandler<HTMLDivElement> = useCallback((event) => {
         const timestamp = Number((event.target as HTMLElement).dataset.date);
         const selectedDt = new Date(timestamp);
 
         if (month !== selectedDt.getMonth()) {
             setState(getStateForNewSelectedDate(selectedDt));
         }
-    };
+    }, []);
 
     return (
         <div className="Calendar">
@@ -86,15 +90,18 @@ function Calendar(props: Calendar) {
             <div className="Calendar-Body">
                 {Array.from({ length: daysCount }, (_, index) => {
                     const date = new Date(startDay.year, startDay.month, startDay.day + index);
+                    const theDate = date.getDate();
+                    const theDay = date.getDay();
                     const key = date.valueOf();
 
                     return (
                         <CalendarDayContainer
                             key={key}
-                            date={date}
+                            day={theDate}
                             value={key}
-                            calendarMonth={month}
-                            todayDay={todayDay}
+                            inCurrentMonth={month === date.getMonth()}
+                            isToday={todayDay.day === theDate && todayDay.month === date.getMonth()}
+                            isWeekend={theDay === 0 || theDay === 6}
                             dayComponent={CalendarDay}
                             onSelectDate={onSelectDate}
                         />
