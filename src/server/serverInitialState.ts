@@ -70,7 +70,7 @@ export const serverInitialState: EntitiesPayload = {
         {
             category_id: 4,
             icon_id: 7,
-            category: 'Фуфло',
+            category: 'Фигня',
         },
     ],
     todos: [

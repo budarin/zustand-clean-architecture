@@ -9,8 +9,11 @@ import App from '../../../ui/App/index.tsx';
 import NavigationPanelContainer from '../NavPanel/index.tsx';
 import TodoListViewContainer from '../TodoList/ListView/index.tsx';
 
+import '../../../../../assets/site_icons/android-chrome-maskable-192x192.png';
+import '../../../../../assets/site_icons/android-chrome-maskable-512x512.png';
 import '../../../../../assets/site_icons/android-chrome-192x192.png';
 import '../../../../../assets/site_icons/android-chrome-512x512.png';
+
 import '../../../../../assets/site_icons/apple-touch-icon.png';
 import '../../../../../assets/site_icons/favicon-16x16.png';
 import '../../../../../assets/site_icons/favicon-32x32.png';
