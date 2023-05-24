@@ -25,6 +25,7 @@ export type CalendarDayContainerType = {
     value: number;
     calendarMonth: number;
     todayDay: ParsedDate;
+    onSelectDate: MouseEventHandler<HTMLDivElement>;
     dayComponent: React.ComponentType<CalendarDayType>;
 };
 
@@ -43,10 +44,7 @@ function Calendar(props: Calendar) {
         year: todayDate.getFullYear(),
     };
 
-    const [{ title, currentDay, daysCount, startDay, selectedDay }, setState] = useState(
-        getStateForNewSelectedDate(todayDate),
-    );
-
+    const [{ title, currentDay, daysCount, startDay }, setState] = useState(getStateForNewSelectedDate(todayDate));
     const { month, year } = currentDay;
 
     const setPrevMonth = useCallback(() => {
@@ -61,6 +59,15 @@ function Calendar(props: Calendar) {
 
     const setToday = () => {
         setState(getStateForPrevOrNextMonth(todayDate));
+    };
+
+    const onSelectDate: MouseEventHandler<HTMLDivElement> = (event) => {
+        const timestamp = Number((event.target as HTMLElement).dataset.date);
+        const selectedDt = new Date(timestamp);
+
+        if (month !== selectedDt.getMonth()) {
+            setState(getStateForNewSelectedDate(selectedDt));
+        }
     };
 
     return (
@@ -89,6 +96,7 @@ function Calendar(props: Calendar) {
                             calendarMonth={month}
                             todayDay={todayDay}
                             dayComponent={CalendarDay}
+                            onSelectDate={onSelectDate}
                         />
                     );
                 })}

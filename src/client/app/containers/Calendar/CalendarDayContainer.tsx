@@ -8,7 +8,7 @@ const navFilterSelector = (state: TodosState) => state.navigationFilter;
 const setNavFilterSelector = (state: TodosStoreState) => state.setNavigationFilter;
 
 function CalendarDayContainer(props: CalendarDayContainerType) {
-    const { date, value, calendarMonth, todayDay, dayComponent: Day } = props;
+    const { date, value, calendarMonth, todayDay, dayComponent: Day, onSelectDate: onCalendarSelectDate } = props;
     const navFilter = useTodoStore(navFilterSelector);
     const setNavigationFilter = useTodoStore(setNavFilterSelector);
 
@@ -19,9 +19,11 @@ function CalendarDayContainer(props: CalendarDayContainerType) {
     }
 
     const onSelectDate: MouseEventHandler<HTMLDivElement> = (event) => {
-        setNavigationFilter(
-            getNavigationFilterWithCalendarDate(new Date(Number((event.target as HTMLElement).dataset.date))),
-        );
+        const selectedDateTimestamp = Number((event.target as HTMLElement).dataset.date);
+        const selectedDate = new Date(selectedDateTimestamp);
+
+        setNavigationFilter(getNavigationFilterWithCalendarDate(selectedDate));
+        onCalendarSelectDate(event);
     };
 
     return (
