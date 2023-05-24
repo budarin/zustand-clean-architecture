@@ -12,6 +12,7 @@ import AppContainer from './app/containers/App/index.tsx';
 declare global {
     interface Window {
         loading: Promise<boolean>;
+        scriptLoadError?: () => void;
     }
 }
 
@@ -24,7 +25,14 @@ function createRootElement() {
     return root;
 }
 
-function loadTodoStore() {
+function InitApp() {
+    if (window.scriptLoadError) {
+        window.removeEventListener('error', window.scriptLoadError);
+        window.scriptLoadError = undefined;
+    }
+
+    document.getElementById('initialScript')?.remove();
+
     getTodoStore()
         .then((data) => {
             initStore(data);
@@ -54,10 +62,10 @@ if ('serviceWorker' in navigator) {
         }
 
         if (registration.active?.state === 'activated') {
-            loadTodoStore();
+            InitApp();
         } else {
             registration.active?.addEventListener('statechange', () => {
-                loadTodoStore();
+                InitApp();
             });
         }
     });
