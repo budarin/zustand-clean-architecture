@@ -51,7 +51,7 @@ function TodoListViewContainer(props: TodoListViewContainer): JSX.Element {
             case navigationFilterTypes.calendar: {
                 title = filterTitle;
                 icon = 'today.png';
-                count = 0;
+                count = state.todos.idsByDueDate[key]?.length || 0;
 
                 break;
             }

@@ -8,9 +8,6 @@ const currentDayCN = cn('Calendar-Day');
 
 const CalendarDay = memo(function (props: CalendarDayType) {
     const { day, value, todosCount, selected, inCurrentMonth, isToday, isWeekend, onSelectDate } = props;
-
-    todosCount && console.log('Todos on:', new Date(value), todosCount);
-
     const className = currentDayCN({
         other_month: inCurrentMonth === false,
         selected,
