@@ -21,15 +21,16 @@
     <!-- preload logo icon -->
     <link rel="preload" as="image" href="7c6d2e8a35ab9fe33a8f.svg" />
 
-    <script>
-        window.addEventListener('error', function (event) {
+    <script id="initialScript">
+        function scriptLoadError(event) {
             var target = event.target;
             if (target.tagName === 'SCRIPT') {
                 var timestamp = new Date().getTime();
                 var url = window.location.href + '?t=' + timestamp;
                 window.location.href = url;
             }
-        }, true);
+        }
+        window.addEventListener('error', scriptLoadError, true);
 
         const waitForLoadingAnimation = false;
         window.loading = Promise.resolve(waitForLoadingAnimation);
