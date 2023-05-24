@@ -7,6 +7,8 @@ import { type CalendarDayContainerType } from '../../../ui/Calendar';
 
 const navFilterSelector = (state: TodosState) => state.navigationFilter;
 const setNavFilterSelector = (state: TodosStoreState) => state.setNavigationFilter;
+const todosCountSelector = (timestap: TimeStamp) =>
+    useCallback((state: TodosState) => state.todos.idsByDueDate[timestap]?.length || 0, [timestap]);
 
 const CalendarDayContainer = function (props: CalendarDayContainerType) {
     const {
@@ -21,6 +23,7 @@ const CalendarDayContainer = function (props: CalendarDayContainerType) {
 
     const navFilter = useTodoStore(navFilterSelector);
     const setNavigationFilter = useTodoStore(setNavFilterSelector);
+    const todosCount = useTodoStore(todosCountSelector(value));
 
     let selected = false;
 
@@ -43,6 +46,7 @@ const CalendarDayContainer = function (props: CalendarDayContainerType) {
         <Day
             day={day}
             value={value}
+            todosCount={todosCount}
             selected={selected}
             isToday={isToday}
             isWeekend={isWeekend}

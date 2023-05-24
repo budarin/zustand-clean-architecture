@@ -7,12 +7,20 @@ import { navigationFilterTypes } from '../../domain/navigationFilter/index.ts';
 import TodoListItemContainer from './ListItem/index.tsx';
 
 function TodoListContainer() {
-    const { key, type } = useTodoStore.use.navigationFilter();
-    const isCategoryNavigation = navigationFilterTypes.category === type;
-
-    const todoIds =
+    const todoIds: Id[] =
         useTodoStore((state) => {
-            return isCategoryNavigation ? state.todos.idsByCategoryId[key as Id] : state.todos.idsByFilterId[key];
+            const key = state.navigationFilter.key;
+
+            switch (state.navigationFilter.type) {
+                case navigationFilterTypes.calendar:
+                    return state.todos.idsByDueDate[key];
+                case navigationFilterTypes.category:
+                    return state.todos.idsByCategoryId[key as Id];
+                case navigationFilterTypes.filter:
+                    return state.todos.idsByFilterId[key];
+                default:
+                    return [];
+            }
         }) || [];
 
     return (
