@@ -16,8 +16,8 @@ function NavigationPanelContainer(props: NavigationPanelContainer) {
     return (
         <NavigationPanel isOpen={isOpen}>
             <CalendarSectionContainer />
-            <CategorySectionContainer />
             <FiltersSectionContainer />
+            <CategorySectionContainer />
         </NavigationPanel>
     );
 }
