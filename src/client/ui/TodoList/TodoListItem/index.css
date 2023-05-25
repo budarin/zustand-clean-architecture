@@ -8,6 +8,10 @@
     border-bottom: 1px solid var(--borderColor);
 }
 
+.todoListItem-label {
+    padding: var(--x2) 0;
+}
+
 @media (hover: hover) {
     .todoListItem:hover {
         background-color: var(--itemHoverColor);
