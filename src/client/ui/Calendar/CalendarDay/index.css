@@ -9,6 +9,7 @@
     min-height: var(--x8);
     min-width: var(--x8);
     background-color: white;
+    border: 2px solid transparent;
     opacity: 1;
     cursor: pointer;
 }
