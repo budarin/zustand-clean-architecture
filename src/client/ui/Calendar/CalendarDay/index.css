@@ -61,5 +61,11 @@
     .Calendar-Day {
         min-height: var(--x10);
         min-width: var(--x10);
+        padding-bottom: 10%;
+    }
+
+    .Calendar-Day::after {
+        top: 15%;
+        width: 80%;
     }
 }
