@@ -8,6 +8,23 @@
     justify-content: center;
     background-color: white;
     opacity: 1;
+    position: relative;
+}
+
+.Calendar-Day::after {
+    display: block;
+    position: absolute;
+
+    top: 4%;
+    left: 0;
+    right: 0%;
+    width: 92%;
+
+    content: attr(data-todos);
+
+    font-size: 10px;
+    font-weight: 600;
+    text-align: right;
 }
 
 .Calendar-Day_weekend {
