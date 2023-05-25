@@ -21,3 +21,9 @@
 .Calendar-WeekName + .Calendar-WeekName {
     border-left: 1px solid var(--primaryColor);
 }
+
+@media only screen and (min-width: 641px) {
+    .Calendar-WeekName {
+        padding-left: 3%;
+    }
+}
