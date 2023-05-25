@@ -5,6 +5,7 @@ import { useTodoStore } from '../domain/store';
 import { createCategory } from '../../services/api/api';
 import { notifyError } from '../../services/notification';
 import { validateNewCategory } from '../../../common/domain/category/validation';
+import { createCategoryNavFilter } from '../domain/navigationFilter/createCategoryNavFilter';
 
 type UseCreateCategory = [
     success: boolean,
@@ -35,8 +36,12 @@ export function useCreateCategory(): UseCreateCategory {
 
                     const numbers = Object.keys(store.categories.byId).map(Number);
                     const newCategoryId = Math.max(...numbers) + 1;
+                    entity['category_id'] = newCategoryId;
 
-                    store._addCategory({ ...category, category_id: newCategoryId });
+                    store._addCategory(entity);
+
+                    // устанавливаем навигационный фильтр на данную категорию
+                    store.setNavigationFilter(createCategoryNavFilter(newCategoryId, entity.category));
 
                     setSuccess(true);
                 } else {
