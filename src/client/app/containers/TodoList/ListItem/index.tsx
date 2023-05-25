@@ -24,7 +24,7 @@ const TodoListItemContainer = memo((props: TodoListItemContainer): JSX.Element =
 
             const isChecked = e.target.checked;
             updateTodo({
-                todo_id: 1,
+                todo_id: 3,
                 status_id: 1,
                 todo: String(Math.random()),
                 completed: isChecked,
