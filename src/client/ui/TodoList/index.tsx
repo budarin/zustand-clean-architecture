@@ -18,7 +18,7 @@ function TodoList(props: TodoList) {
             <h3 className="todoList-header">
                 <img className="todoList-header-icon" src={icon} alt="" /> {category}{' '}
                 <span className="todoList-header-count" aria-label="Количество задач в разделе">
-                    {count ? `(${count})` : null}
+                    {count ? `( ${count}шт. )` : null}
                 </span>
             </h3>
             <ul className="todoList-list">{children}</ul>
