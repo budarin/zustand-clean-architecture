@@ -21,7 +21,7 @@
     top: 4%;
     left: 0;
     right: 0;
-    width: 90%;
+    width: 80%;
 
     content: attr(data-todos);
     /* content: '55'; */
@@ -67,5 +67,15 @@
     .Calendar-Day::after {
         top: 15%;
         width: 80%;
+    }
+}
+
+@media only screen and (min-width: 641px) {
+    .Calendar-Day {
+        padding-left: 15%;
+    }
+
+    .Calendar-Day::after {
+        width: 90%;
     }
 }
