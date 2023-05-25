@@ -6,6 +6,7 @@
 
     min-height: 36px;
     border-bottom: 1px solid var(--borderColor);
+    padding-right: var(--x2);
 }
 
 .todoListItem-label {
