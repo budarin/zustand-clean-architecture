@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 
 import { TodoStoreError } from './TodoStoreError.tsx';
-import { createSelectors } from './createSelectors.ts';
 import { getTodayDate } from '../../../common/getTodayDate.ts';
 import { updateTodoFilters } from './todo/updateTodoFilters.ts';
 import { updateTodoDueDate } from './todo/updateTodoDueDate.ts';
@@ -36,7 +35,7 @@ export type Actions = {
     setNavigationFilter: (filter: NavigationFilter) => void;
 };
 
-const todoStore = create<TodosState & Actions>((set) => ({
+export const useTodoStore = create<TodosState & Actions>((set) => ({
     icons: {
         byId: {},
         ids: [],
@@ -274,7 +273,5 @@ const todoStore = create<TodosState & Actions>((set) => ({
         });
     },
 }));
-
-export const useTodoStore = createSelectors(todoStore);
 
 export type TodosStoreState = TodosState & Actions;

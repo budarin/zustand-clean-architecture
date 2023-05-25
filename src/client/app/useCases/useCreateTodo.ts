@@ -25,8 +25,11 @@ export function useUCreateTodo(): UseCreateTodo {
                 await delay(3000);
 
                 const numbers = Object.keys(store.todos.byId).map(Number);
+
                 const newTodoId = Math.max(...numbers) + 1;
-                store._addTodo({ ...todo, todo_id: newTodoId });
+                todo['todo_id'] = newTodoId;
+
+                store._addTodo(todo);
             } catch (error) {
                 notifyError(`Ошибка: ${(error as Error).message}`, {
                     toastId: 'create_todo_error' + todo.todo,
