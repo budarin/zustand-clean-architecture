@@ -41,10 +41,13 @@
 }
 
 .create-category-form-icon-label {
+    display: inline-block;
+    padding: 0;
     margin-left: 2px;
 }
 
 .create-category-form-icon-cb + img {
+    display: block;
     height: var(--x9);
     width: var(--x9);
     padding: calc(var(--x) + 2px);

@@ -95,9 +95,9 @@ body,
 }
 
 .app-header {
-    border-bottom: 1px solid var(--borderColor);
     display: flex;
     align-items: center;
+    border-bottom: 1px solid var(--primaryColor);
 }
 
 .app-header-menu-button {
