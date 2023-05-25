@@ -4,6 +4,8 @@ import { IconsByNameKey, iconsByName } from '../../../app/containers/iconsByName
 import { MAX_CATEGOTY_LENGTH, MIN_CATEGOTY_LENGTH } from '../../../../common/domain/category/validation';
 
 import './index.css';
+import { useKeyDownToClickEventyDown } from '../../hooks/useKeyDownToClickEvent';
+import { useArrowKeysToSimulateTab } from '../../hooks/useArrowKeysToSimulateTab';
 
 type CreatecategoryForm = {
     icons: Icon[];
@@ -18,6 +20,7 @@ const CreateCategoryForm = forwardRef((props: CreatecategoryForm, ref: React.For
 
     const disabled = Boolean(inProgress);
     const catrgoryRef = useRef<HTMLInputElement>(null);
+    const iconsContainerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (isOpen) {
@@ -30,6 +33,9 @@ const CreateCategoryForm = forwardRef((props: CreatecategoryForm, ref: React.For
             ref.current?.reset();
         }
     }, [isResetForm]);
+
+    useArrowKeysToSimulateTab(iconsContainerRef);
+    useKeyDownToClickEventyDown(iconsContainerRef, ['Enter', 'Space']);
 
     return (
         <form ref={ref} className="create-category-form" onSubmit={onCreateCategory}>
@@ -44,12 +50,12 @@ const CreateCategoryForm = forwardRef((props: CreatecategoryForm, ref: React.For
                     maxLength={MAX_CATEGOTY_LENGTH}
                     disabled={disabled}
                 />
-                <div className="create-category-form-icons">
+                <div ref={iconsContainerRef} className="create-category-form-icons">
                     {icons.map((icon, idx) => {
                         const iconName = iconsByName[icon.icon_name as IconsByNameKey];
 
                         return (
-                            <label key={icon.icon_id} className="create-category-form-icon-label">
+                            <label key={icon.icon_id} className="create-category-form-icon-label" tabIndex={0}>
                                 <input
                                     className="create-category-form-icon-cb"
                                     type="radio"
@@ -58,7 +64,7 @@ const CreateCategoryForm = forwardRef((props: CreatecategoryForm, ref: React.For
                                     defaultChecked={idx === 0}
                                     disabled={disabled}
                                 />
-                                <img src={iconName} width={18} height={18} tabIndex={0} alt="" />
+                                <img src={iconName} width={18} height={18} alt="" />
                             </label>
                         );
                     })}
