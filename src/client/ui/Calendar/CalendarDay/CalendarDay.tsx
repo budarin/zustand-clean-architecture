@@ -22,6 +22,7 @@ const CalendarDay = memo(function (props: CalendarDayType) {
             data-date={value}
             onClick={onSelectDate}
             tabIndex={0}
+            data-todos={todosCount ? todosCount : ''}
         >
             {day}
         </div>
