@@ -1,21 +1,23 @@
 .Calendar-Day {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: start;
+    padding-left: 25%;
+    padding-bottom: 15%;
     line-height: 0.9;
     min-height: var(--x8);
     min-width: var(--x8);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: white;
     opacity: 1;
-    position: relative;
+    cursor: pointer;
 }
 
 .Calendar-Day::after {
     display: block;
     position: absolute;
 
-    top: 2%;
+    top: 4%;
     left: 0;
     right: 0;
     width: 90%;
