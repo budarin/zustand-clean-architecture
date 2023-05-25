@@ -5,38 +5,32 @@ export function useArrowKeysToSimulateTab<T extends HTMLElement>(ref: RefObject<
     const onKeyDown = function (event: KeyboardEvent) {
         if (!event.shiftKey && !event.ctrlKey) {
             if (event.code === 'ArrowRight') {
-                event.preventDefault(); // Предотвращаем стандартное поведение перехода фокуса
+                event.preventDefault();
 
-                // Получаем ссылку на текущий активный элемент
-                const currentElement = document.activeElement as HTMLElement;
+                let nextElement = (event.target as HTMLElement).nextElementSibling as HTMLElement | null;
 
-                // Находим следующий элемент в DOM
-                let nextElement = currentElement.nextElementSibling as HTMLElement | null;
                 while (nextElement && !nextElement.focus) {
                     nextElement = nextElement.nextElementSibling as HTMLElement | null;
                 }
 
-                // Если найден следующий элемент, фокусируем его
                 if (nextElement) {
                     nextElement.focus();
+                    nextElement.click();
                 }
             }
 
             if (event.code === 'ArrowLeft') {
-                event.preventDefault(); // Предотвращаем стандартное поведение перехода фокуса
+                event.preventDefault();
 
-                // Получаем ссылку на текущий активный элемент
-                const currentElement = document.activeElement as HTMLElement;
+                let prevElement = (event.target as HTMLElement).previousElementSibling as HTMLElement | null;
 
-                // Находим следующий элемент в DOM
-                let prevElement = currentElement.previousElementSibling as HTMLElement | null;
                 while (prevElement && !prevElement.focus) {
                     prevElement = prevElement.previousElementSibling as HTMLElement | null;
                 }
 
-                // Если найден следующий элемент, фокусируем его
                 if (prevElement) {
                     prevElement.focus();
+                    prevElement.click();
                 }
             }
         }

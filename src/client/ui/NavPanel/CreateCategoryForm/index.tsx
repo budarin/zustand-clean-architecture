@@ -4,7 +4,7 @@ import { IconsByNameKey, iconsByName } from '../../../app/containers/iconsByName
 import { MAX_CATEGOTY_LENGTH, MIN_CATEGOTY_LENGTH } from '../../../../common/domain/category/validation';
 
 import './index.css';
-import { useKeyDownToClickEventyDown } from '../../hooks/useKeyDownToClickEvent';
+import { useKeyDownToClickEvent } from '../../hooks/useKeyDownToClickEvent';
 import { useArrowKeysToSimulateTab } from '../../hooks/useArrowKeysToSimulateTab';
 
 type CreatecategoryForm = {
@@ -35,7 +35,7 @@ const CreateCategoryForm = forwardRef((props: CreatecategoryForm, ref: React.For
     }, [isResetForm]);
 
     useArrowKeysToSimulateTab(iconsContainerRef);
-    useKeyDownToClickEventyDown(iconsContainerRef, ['Enter', 'Space']);
+    useKeyDownToClickEvent(iconsContainerRef, ['Enter', 'Space']);
 
     return (
         <form ref={ref} className="create-category-form" onSubmit={onCreateCategory}>
