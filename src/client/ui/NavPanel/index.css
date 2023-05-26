@@ -1,15 +1,15 @@
-.nav {
+.NavPanel {
     width: 100%;
     padding-bottom: var(--x9);
 }
 
-.nav ul {
+.NavPanel ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.nav h2 {
+.NavPanel h2 {
     font-size: 1.1rem;
     line-height: var(--x9);
     margin: 0;
@@ -20,19 +20,19 @@
 }
 
 @media only screen and (min-width: 641px) {
-    .nav {
+    .NavPanel {
         width: 256px;
     }
 
     @media (pointer: coarse) {
-        .nav {
+        .NavPanel {
             width: 294px;
         }
     }
 }
 
 @media (pointer: coarse) {
-    .nav h2 {
+    .NavPanel h2 {
         line-height: var(--x11);
     }
 }

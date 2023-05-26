@@ -1,4 +1,12 @@
-.category-header-container {
+.CategoryHeader .CheckButton {
+    height: var(--x9);
+    width: var(--x9);
+    background-color: var(--primaryColor);
+    color: gray;
+    margin-right: 2px;
+}
+
+.CategoryHeader-Container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -8,32 +16,24 @@
     background-color: var(--primaryColor);
 }
 
-.category-header .checkButton {
-    height: var(--x9);
-    width: var(--x9);
-    background-color: var(--primaryColor);
-    color: gray;
-    margin-right: 2px;
-}
-
-.category-header-button-icon {
+.CategoryHeader-ButtonIcon {
     fill: var(--primaryColor);
 }
 
 @media (hover: hover) {
-    .category-header-button-icon:hover {
+    .CategoryHeader-ButtonIcon:hover {
         fill: var(--primaryDarkColor);
         color: white;
     }
 }
 
-.category-header-form-container {
+.CategoryHeader-FormContainer {
     border: 1px solid var(--borderColor);
     background-color: var(--primaryLightColor);
 }
 
 @media (pointer: coarse) {
-    .category-header .checkButton {
+    .CategoryHeader .CheckButton {
         height: var(--x11);
         width: var(--x11);
         margin-right: 0;

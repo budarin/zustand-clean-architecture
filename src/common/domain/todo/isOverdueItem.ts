@@ -1,5 +1,3 @@
-import { exists } from '../../validation_utils/exists';
-
 export function isOverdueItem(todo: ExtendedTodo): boolean {
     const today = new Date().valueOf();
 

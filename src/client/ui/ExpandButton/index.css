@@ -1,4 +1,4 @@
-.expandButton {
+.ExpandButton {
     height: var(--x9);
     padding: var(--touchAreaPadding, 8px);
     margin: 0;
@@ -7,7 +7,7 @@
 }
 
 @media (pointer: coarse) {
-    .expandButton {
+    .ExpandButton {
         height: var(--x11);
         width: var(--x11);
     }

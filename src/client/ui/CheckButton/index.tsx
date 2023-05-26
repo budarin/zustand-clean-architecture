@@ -15,7 +15,7 @@ function CheckButton(props: CheckButton) {
     const { className, checked, unCheckedIcon, checkedIcon, onClick, title } = props;
 
     return (
-        <button className={className || 'checkButton'} aria-expanded={checked} onClick={onClick} title={title}>
+        <button className={className || 'CheckButton'} aria-expanded={checked} onClick={onClick} title={title}>
             {checked ? checkedIcon : unCheckedIcon}
         </button>
     );

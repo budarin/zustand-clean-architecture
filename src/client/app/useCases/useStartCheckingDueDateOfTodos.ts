@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 
-import { useTodoStore } from '../domain/store';
-import { overdueKey } from '../domain/navigationFilter';
-import { Task, runTask } from '../../../common/runTask.ts';
-import { joyfullyGilling } from '../../services/notification';
+import { useTodoStore } from '../domain/store.tsx';
+import { overdueKey } from '../domain/navigationFilter/index.ts';
+import { Task, runTask } from '../../../common/utils/runTask.ts';
+import { joyfullyGilling } from '../../services/notification/index.ts';
 
 const ONE_MINUTE = 60000;
 const TWO_MINUTES = ONE_MINUTE * 2;
@@ -12,7 +12,7 @@ const TWO_MINUTES = ONE_MINUTE * 2;
 // Если задача "выстрелила" в течении последней минуты - показываем радостное сообщение
 // записываем просроченные задачи в в фильтр "Просроченные"
 
-export function useCheckingDueDateOfTodos() {
+export function useStartCheckingDueDateOfTodos() {
     const todos = useTodoStore((state) => state.todos.byId);
     const overdueIds = useTodoStore((state) => state.todos.idsByFilterId[overdueKey]);
     const _addToOverduedTodos = useTodoStore((state) => state._addToOverduedTodos);

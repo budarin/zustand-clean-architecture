@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 
 import { useTodoStore } from '../../../domain/store.tsx';
 import { navigationFilterTypes } from '../../../domain/navigationFilter/index.ts';
