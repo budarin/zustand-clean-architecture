@@ -15,7 +15,7 @@ function TodoListHeader(props: TodoListHeader) {
             <div className="TodoListHeader-Title">
                 <h3>{title}</h3>
                 <span className="TodoListHeader-Count" aria-label="Количество задач в разделе">
-                    {`задач: ${count} шт.`}
+                    задач: {count ? `${count} шт.` : 'нет'}
                 </span>
             </div>
         </div>
