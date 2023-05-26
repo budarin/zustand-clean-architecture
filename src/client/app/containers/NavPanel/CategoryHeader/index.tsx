@@ -3,7 +3,7 @@ import { FormEventHandler, MouseEventHandler, memo, useCallback, useEffect, useR
 
 import { logger } from '../../../../services/logger';
 import { useCreateCategory } from '../../../useCases/useCreateCategory';
-import { isString } from '../../../../../common/validation_utils/isString.ts';
+import { isString } from '../../../../../common/utils/validation/isString';
 
 // components
 import CreateCategoryFormContainer from '../CreateCategoryForm';

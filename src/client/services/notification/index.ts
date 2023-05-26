@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 
 import sound from '../../../../assets/error.mp3';
-import { delay } from '../../../common/promises/delay';
+import { delay } from '../../../common/utils/promises/delay';
 
 const lineHeight = 1.45;
 

@@ -1,5 +1,3 @@
-import { getDateKnownName } from '../../../../common/getDateKnownName';
-
 export const navigationFilterTypes = {
     filter: 'filter',
     category: 'category',

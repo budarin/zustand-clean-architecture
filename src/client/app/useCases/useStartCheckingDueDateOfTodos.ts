@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { useTodoStore } from '../domain/store.tsx';
-import { Task, runTask } from '../../../common/runTask.ts';
+import { Task, runTask } from '../../../common/utils/runTask.ts';
 import { overdueKey } from '../domain/navigationFilter/index.ts';
 import { joyfullyGilling } from '../../services/notification/index.ts';
 
