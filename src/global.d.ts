@@ -1,3 +1,5 @@
+declare const __DEV__: boolean;
+
 declare module '*.module.css';
 declare module '*.mp3';
 declare module '*.wav';
