@@ -1,4 +1,5 @@
-import { create } from 'zustand';
+import { StateCreator, create } from 'zustand';
+import { devtools } from 'zustand/middleware';
 
 import { TodoStoreError } from './TodoStoreError.tsx';
 import { getTodayDate } from '../../../common/getTodayDate.ts';
@@ -35,243 +36,247 @@ export type Actions = {
     setNavigationFilter: (filter: NavigationFilter) => void;
 };
 
-export const useTodoStore = create<TodosState & Actions>((set) => ({
-    icons: {
-        byId: {},
-        ids: [],
-    },
+const devtoolsInNonProd = (__DEV__ ? devtools : (fn: any) => fn) as unknown as typeof devtools;
 
-    statuses: {
-        byId: {},
-        ids: [],
-    },
-
-    categories: {
-        byId: {},
-        ids: [],
-    },
-
-    todos: {
-        byId: {},
-        ids: [],
-        idsByDueDate: {},
-        idsByCategoryId: {},
-        idsByFilterId: {
-            [inboxKey]: [],
-            [recycleBinKey]: [],
-            [overdueKey]: [],
+export const useTodoStore = create<TodosState & Actions>()(
+    devtoolsInNonProd((set) => ({
+        icons: {
+            byId: {},
+            ids: [],
         },
-    },
 
-    navigationFilter: getNavigationFilterWithCalendarDate(getTodayDate()),
+        statuses: {
+            byId: {},
+            ids: [],
+        },
 
-    // Icon
-    _addIcon: (icon: UnknownObject) => {
-        return set((state) => {
-            const { entity, error } = validateIconEntity(icon, state);
+        categories: {
+            byId: {},
+            ids: [],
+        },
 
-            if (entity) {
-                const newState = { ...state };
+        todos: {
+            byId: {},
+            ids: [],
+            idsByDueDate: {},
+            idsByCategoryId: {},
+            idsByFilterId: {
+                [inboxKey]: [],
+                [recycleBinKey]: [],
+                [overdueKey]: [],
+            },
+        },
 
-                newState.icons.byId = { ...state.icons.byId, [entity.icon_id]: entity };
-                newState.icons.ids = [...state.icons.ids, entity.icon_id];
+        navigationFilter: getNavigationFilterWithCalendarDate(getTodayDate()),
 
-                return newState;
-            }
+        // Icon
+        _addIcon: (icon: UnknownObject) => {
+            return set((state) => {
+                const { entity, error } = validateIconEntity(icon, state);
 
-            throw new TodoStoreError(error, icon);
-        });
-    },
+                if (entity) {
+                    const newState = { ...state };
 
-    // Status
-    _addStatus: (status: UnknownObject) => {
-        return set((state) => {
-            const { entity, error } = validateStatusEntity(status, state);
+                    newState.icons.byId = { ...state.icons.byId, [entity.icon_id]: entity };
+                    newState.icons.ids = [...state.icons.ids, entity.icon_id];
 
-            if (entity) {
-                if (state.statuses.ids.includes(entity.status_id) === true) {
-                    throw new TodoStoreError(`Нарушение уникальности ключа statuses.status_id!`, status);
+                    return newState;
+                }
+
+                throw new TodoStoreError(error, icon);
+            });
+        },
+
+        // Status
+        _addStatus: (status: UnknownObject) => {
+            return set((state) => {
+                const { entity, error } = validateStatusEntity(status, state);
+
+                if (entity) {
+                    if (state.statuses.ids.includes(entity.status_id) === true) {
+                        throw new TodoStoreError(`Нарушение уникальности ключа statuses.status_id!`, status);
+                    }
+
+                    const newState = { ...state };
+
+                    newState.statuses.byId = { ...state.statuses.byId, [entity.status_id]: entity };
+                    newState.statuses.ids = [...state.statuses.ids, entity.status_id];
+
+                    return newState;
+                }
+
+                throw new TodoStoreError(error, status);
+            });
+        },
+
+        // Category
+        _addCategory: (category: UnknownObject) => {
+            return set((state) => {
+                const { entity, error } = validateCategoryEntity(category, state);
+
+                if (entity) {
+                    const newState = { ...state };
+
+                    newState.categories.byId = { ...state.categories.byId, [entity.category_id]: entity };
+                    newState.categories.ids = [...state.categories.ids, entity.category_id];
+
+                    return newState;
+                }
+
+                throw new TodoStoreError(error, category);
+            });
+        },
+
+        _updateCategory: (category: UnknownObject) => {
+            return set((state) => {
+                const { entity, error } = validateCategoryEntity(category, state);
+
+                if (entity) {
+                    const newState = { ...state };
+
+                    newState.categories.byId[entity.category_id] = {
+                        ...state.categories.byId[entity.category_id],
+                        ...entity,
+                    };
+                    return newState;
+                }
+
+                throw new TodoStoreError(error, category);
+            });
+        },
+
+        _deleteCategory: (id: Category['category_id']) => {
+            return set((state) => {
+                const { [id]: deleted, ...restById } = state.categories.byId;
+
+                if (Object.keys(state.todos.idsByCategoryId).includes(String(id))) {
+                    throw new TodoStoreError(
+                        `Нельзя удалить категорию "${deleted.category}": в этой категории есть задачи!`,
+                    );
                 }
 
                 const newState = { ...state };
 
-                newState.statuses.byId = { ...state.statuses.byId, [entity.status_id]: entity };
-                newState.statuses.ids = [...state.statuses.ids, entity.status_id];
+                newState.categories.byId = restById;
+
+                const ids = state.categories.ids;
+                const idx = ids.indexOf(id);
+
+                if (idx > -1) {
+                    newState.categories.ids = ids.filter((item) => item !== id);
+                }
+
+                // удалить в todos idsByCategoryId так как там нет todos
+                const { [id]: del, ...restIdsByCategoryId } = state.todos.idsByCategoryId;
+                newState.todos.idsByCategoryId = restIdsByCategoryId;
 
                 return newState;
-            }
+            });
+        },
 
-            throw new TodoStoreError(error, status);
-        });
-    },
+        // Todo
+        _addTodo: (todo: UnknownObject) => {
+            return set((state) => {
+                const { entity, error } = validateTodoEntity(todo, state);
 
-    // Category
-    _addCategory: (category: UnknownObject) => {
-        return set((state) => {
-            const { entity, error } = validateCategoryEntity(category, state);
+                if (entity) {
+                    if (state.todos.ids.includes(entity.todo_id) === true) {
+                        throw new TodoStoreError('Нарушение уникальности ключа todos!', { todo });
+                    }
 
-            if (entity) {
+                    const newState = { ...state };
+                    const newTodo = entity as ExtendedTodo;
+
+                    // дополняем сущность полями специфичными для стора
+                    if (newTodo.due_date) {
+                        newTodo.due_date_ts = getOnlyDateTimestamp(newTodo.due_date);
+                        newTodo.due_date_time_ts = Date.parse(newTodo.due_date);
+                    }
+
+                    updateTodoFilters(newState.todos, newTodo);
+                    updateTodoCategories(newState.todos, newTodo);
+                    updateTodoDueDate(newState.todos, newTodo);
+
+                    newState.todos.byId = { ...state.todos.byId, [newTodo.todo_id]: newTodo };
+                    newState.todos.ids = [...state.todos.ids, newTodo.todo_id];
+
+                    return newState;
+                }
+
+                throw new TodoStoreError(error, todo);
+            });
+        },
+
+        _addToOverduedTodos: (id: Category['category_id']) => {
+            return set((state) => {
                 const newState = { ...state };
-
-                newState.categories.byId = { ...state.categories.byId, [entity.category_id]: entity };
-                newState.categories.ids = [...state.categories.ids, entity.category_id];
+                newState.todos.idsByFilterId[overdueKey] = [...newState.todos.idsByFilterId[overdueKey], id];
 
                 return newState;
-            }
+            });
+        },
 
-            throw new TodoStoreError(error, category);
-        });
-    },
+        _updateTodo: (todo: UnknownObject) => {
+            return set((state) => {
+                const { entity, error } = validateTodoEntity(todo, state);
 
-    _updateCategory: (category: UnknownObject) => {
-        return set((state) => {
-            const { entity, error } = validateCategoryEntity(category, state);
+                if (entity) {
+                    const newState = { ...state };
+                    const oldTodo = state.todos.byId[entity.todo_id];
+                    const newTodo = { ...state.todos.byId[entity.todo_id], ...entity } as ExtendedTodo;
 
-            if (entity) {
+                    // дополняем сущность полями специфичными для стора
+                    if (newTodo.due_date) {
+                        newTodo.due_date_ts = getOnlyDateTimestamp(newTodo.due_date);
+                        newTodo.due_date_time_ts = Date.parse(newTodo.due_date);
+                    }
+
+                    updateTodoFilters(newState.todos, newTodo, oldTodo);
+                    updateTodoCategories(newState.todos, newTodo, oldTodo);
+                    updateTodoDueDate(newState.todos, newTodo, oldTodo);
+
+                    newState.todos.byId[entity.todo_id] = newTodo;
+
+                    return newState;
+                }
+
+                throw new TodoStoreError(error, todo);
+            });
+        },
+
+        _deleteTodo: (id: Todo['todo_id']) => {
+            return set((state) => {
                 const newState = { ...state };
+                const { [id]: del, ...rest } = state.todos.byId;
 
-                newState.categories.byId[entity.category_id] = {
-                    ...state.categories.byId[entity.category_id],
-                    ...entity,
-                };
+                newState.todos.byId = rest;
+
+                const ids = state.todos.ids;
+                let idx = ids.indexOf(id);
+
+                if (idx > -1) {
+                    newState.todos.ids = ids.filter((item) => item !== id);
+                }
+
                 return newState;
-            }
+            });
+        },
 
-            throw new TodoStoreError(error, category);
-        });
-    },
-
-    _deleteCategory: (id: Category['category_id']) => {
-        return set((state) => {
-            const { [id]: deleted, ...restById } = state.categories.byId;
-
-            if (Object.keys(state.todos.idsByCategoryId).includes(String(id))) {
-                throw new TodoStoreError(
-                    `Нельзя удалить категорию "${deleted.category}": в этой категории есть задачи!`,
-                );
-            }
-
-            const newState = { ...state };
-
-            newState.categories.byId = restById;
-
-            const ids = state.categories.ids;
-            const idx = ids.indexOf(id);
-
-            if (idx > -1) {
-                newState.categories.ids = ids.filter((item) => item !== id);
-            }
-
-            // удалить в todos idsByCategoryId так как там нет todos
-            const { [id]: del, ...restIdsByCategoryId } = state.todos.idsByCategoryId;
-            newState.todos.idsByCategoryId = restIdsByCategoryId;
-
-            return newState;
-        });
-    },
-
-    // Todo
-    _addTodo: (todo: UnknownObject) => {
-        return set((state) => {
-            const { entity, error } = validateTodoEntity(todo, state);
-
-            if (entity) {
-                if (state.todos.ids.includes(entity.todo_id) === true) {
-                    throw new TodoStoreError('Нарушение уникальности ключа todos!', { todo });
+        // NavigationFilter
+        setNavigationFilter: (filter: NavigationFilter) => {
+            return set((state) => {
+                if (state.navigationFilter.key === filter.key) {
+                    return state;
                 }
 
                 const newState = { ...state };
-                const newTodo = entity as ExtendedTodo;
 
-                // дополняем сущность полями специфичными для стора
-                if (newTodo.due_date) {
-                    newTodo.due_date_ts = getOnlyDateTimestamp(newTodo.due_date);
-                    newTodo.due_date_time_ts = Date.parse(newTodo.due_date);
-                }
-
-                updateTodoFilters(newState.todos, newTodo);
-                updateTodoCategories(newState.todos, newTodo);
-                updateTodoDueDate(newState.todos, newTodo);
-
-                newState.todos.byId = { ...state.todos.byId, [newTodo.todo_id]: newTodo };
-                newState.todos.ids = [...state.todos.ids, newTodo.todo_id];
+                newState.navigationFilter = filter;
 
                 return newState;
-            }
-
-            throw new TodoStoreError(error, todo);
-        });
-    },
-
-    _addToOverduedTodos: (id: Category['category_id']) => {
-        return set((state) => {
-            const newState = { ...state };
-            newState.todos.idsByFilterId[overdueKey] = [...newState.todos.idsByFilterId[overdueKey], id];
-
-            return newState;
-        });
-    },
-
-    _updateTodo: (todo: UnknownObject) => {
-        return set((state) => {
-            const { entity, error } = validateTodoEntity(todo, state);
-
-            if (entity) {
-                const newState = { ...state };
-                const oldTodo = state.todos.byId[entity.todo_id];
-                const newTodo = { ...state.todos.byId[entity.todo_id], ...entity } as ExtendedTodo;
-
-                // дополняем сущность полями специфичными для стора
-                if (newTodo.due_date) {
-                    newTodo.due_date_ts = getOnlyDateTimestamp(newTodo.due_date);
-                    newTodo.due_date_time_ts = Date.parse(newTodo.due_date);
-                }
-
-                updateTodoFilters(newState.todos, newTodo, oldTodo);
-                updateTodoCategories(newState.todos, newTodo, oldTodo);
-                updateTodoDueDate(newState.todos, newTodo, oldTodo);
-
-                newState.todos.byId[entity.todo_id] = newTodo;
-
-                return newState;
-            }
-
-            throw new TodoStoreError(error, todo);
-        });
-    },
-
-    _deleteTodo: (id: Todo['todo_id']) => {
-        return set((state) => {
-            const newState = { ...state };
-            const { [id]: del, ...rest } = state.todos.byId;
-
-            newState.todos.byId = rest;
-
-            const ids = state.todos.ids;
-            let idx = ids.indexOf(id);
-
-            if (idx > -1) {
-                newState.todos.ids = ids.filter((item) => item !== id);
-            }
-
-            return newState;
-        });
-    },
-
-    // NavigationFilter
-    setNavigationFilter: (filter: NavigationFilter) => {
-        return set((state) => {
-            if (state.navigationFilter.key === filter.key) {
-                return state;
-            }
-
-            const newState = { ...state };
-
-            newState.navigationFilter = filter;
-
-            return newState;
-        });
-    },
-}));
+            });
+        },
+    })),
+);
 
 export type TodosStoreState = TodosState & Actions;

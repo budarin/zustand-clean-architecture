@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -23,6 +24,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './assets/index.html',
             inject: 'body',
+        }),
+        new webpack.DefinePlugin({
+            __DEV__: process.env['NODE_ENV'] !== 'production',
         }),
     ],
     resolve: {

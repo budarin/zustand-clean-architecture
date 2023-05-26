@@ -27,6 +27,7 @@ function createRootElement() {
 
 function InitApp() {
     if (window.scriptLoadError) {
+        localStorage.removeItem('reloadOnError');
         window.removeEventListener('error', window.scriptLoadError);
         window.scriptLoadError = undefined;
     }
