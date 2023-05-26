@@ -1,4 +1,4 @@
-import { StateCreator, create } from 'zustand';
+import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
 import { TodoStoreError } from './TodoStoreError.tsx';
