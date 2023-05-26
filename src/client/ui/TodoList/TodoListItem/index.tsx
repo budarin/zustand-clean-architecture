@@ -12,9 +12,9 @@ const TodoListItem = (props: TodoListItem) => {
     const { todo, status, handleChange } = props;
 
     return (
-        <li className="todoListItem">
+        <li className="TodoListItem">
             <input
-                className="todoListItem-checkbox"
+                className="TodoListItem-Checkbox"
                 name="completed"
                 type="checkbox"
                 checked={Boolean(todo.completed)}
@@ -22,7 +22,7 @@ const TodoListItem = (props: TodoListItem) => {
                 aria-label="Задача выполнена"
                 title="Отметить задачу как выполненную"
             ></input>
-            <span className="todoListItem-label" style={{ color: status.color }}>
+            <span className="TodoListItem-Label" style={{ color: status.color }}>
                 {todo.todo}
             </span>
         </li>

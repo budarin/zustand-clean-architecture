@@ -1,48 +1,13 @@
-.todoList {
+.TodoListView {
     display: flex;
     flex-direction: column;
     flex: 1;
+    margin: 0;
+    padding: 0;
     list-style-type: none;
-    margin: 0;
-    padding: 0;
-    padding-bottom: var(--x9);
 }
 
-.todoList-header {
-    display: flex;
-    align-items: center;
-    font-size: 1.1rem;
-    font-weight: 500;
-    line-height: 2;
-    margin: 0;
-    background-color: var(--secondaryColor);
-    border-top: 1px solid var(--secondaryColor);
-    border-bottom: 1px solid var(--secondaryColor);
-}
-
-.todoList-header-icon {
-    height: var(--x9);
-    width: var(--x9);
-    padding: var(--touchAreaPadding, 8px);
-    vertical-align: bottom;
-}
-
-.todoList-header-count {
-    font-weight: 400;
-    font-size: smaller;
-    margin-left: var(--x2);
-}
-
-.todoList-list {
+.TodoListView-List {
     padding: 0;
     margin: 0;
-    flex: 1;
-    overflow-y: auto;
-}
-
-@media (pointer: coarse) {
-    .todoList-header-icon {
-        height: var(--x11);
-        width: var(--x11);
-    }
 }

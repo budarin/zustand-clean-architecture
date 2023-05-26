@@ -22,8 +22,8 @@ const CalendarDayContainer = function (props: CalendarDayContainerType) {
     } = props;
 
     const navFilter = useTodoStore(navFilterSelector);
-    const setNavigationFilter = useTodoStore(setNavFilterSelector);
     const todosCount = useTodoStore(todosCountSelector(value));
+    const setNavigationFilter = useTodoStore(setNavFilterSelector);
 
     let selected = false;
 

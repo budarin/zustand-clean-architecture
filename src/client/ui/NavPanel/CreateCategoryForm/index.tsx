@@ -38,10 +38,10 @@ const CreateCategoryForm = forwardRef((props: CreatecategoryForm, ref: React.For
     useKeyDownToClickEvent(iconsContainerRef, ['Enter', 'Space']);
 
     return (
-        <form ref={ref} className="create-category-form" onSubmit={onCreateCategory}>
+        <form ref={ref} className="CreateCategoryForm" onSubmit={onCreateCategory}>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <input
-                    className="create-category-form-input"
+                    className="CreateCategoryForm-Input"
                     type="text"
                     name="category"
                     ref={catrgoryRef}
@@ -50,14 +50,14 @@ const CreateCategoryForm = forwardRef((props: CreatecategoryForm, ref: React.For
                     maxLength={MAX_CATEGOTY_LENGTH}
                     disabled={disabled}
                 />
-                <div ref={iconsContainerRef} className="create-category-form-icons">
+                <div ref={iconsContainerRef} className="CreateCategoryForm-Icons">
                     {icons.map((icon, idx) => {
                         const iconName = iconsByName[icon.icon_name as IconsByNameKey];
 
                         return (
-                            <label key={icon.icon_id} className="create-category-form-icon-label" tabIndex={0}>
+                            <label key={icon.icon_id} className="CreateCategoryForm-IconLabel" tabIndex={0}>
                                 <input
-                                    className="create-category-form-icon-cb"
+                                    className="CreateCategoryForm-IconCheckBox"
                                     type="radio"
                                     name="icon_id"
                                     value={icon.icon_id}
@@ -70,7 +70,7 @@ const CreateCategoryForm = forwardRef((props: CreatecategoryForm, ref: React.For
                     })}
                 </div>
             </div>
-            <button type="submit" className="create-category-form-button" disabled={disabled}>
+            <button type="submit" className="CreateCategoryForm-Button" disabled={disabled}>
                 Создать
             </button>
         </form>

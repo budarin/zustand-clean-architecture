@@ -7,6 +7,11 @@ declare module '*.svg';
 declare module '*.png';
 declare module '*.gif';
 
+interface Window {
+    loading: Promise<boolean>;
+    scriptLoadError?: () => void;
+}
+
 type Optional<T> = T | undefined;
 type List<T> = T[];
 type NumberLike = string | number;

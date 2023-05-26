@@ -1,5 +1,5 @@
 import { log } from '../api/api';
-import { isString } from '../../../common/validation_utils/isString';
+import { isString } from '../../../common/utils/validation/isString';
 
 type LogMethods = 'info' | 'warn' | 'error';
 

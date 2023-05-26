@@ -4,12 +4,18 @@ import { getNewCalendarState } from './utils/getNewCalendarState.tsx';
 import { areParsedDatesEqualByMonthAndYear } from './utils/areParsedDatesEqualByMonthAndYear.tsx';
 
 // components
-import CalendarDay from './CalendarDay/CalendarDay.tsx';
+import CalendarBody from './CalendarBody/index.tsx';
 import { CalendarHeader } from './CalendarHeader/CalendarHeader.tsx';
 import { CalendarWeekNamesRow } from './CalendarWeekNamesRow/CalendarWeekNamesRow.tsx';
 
 import './index.css';
-import CalendarBody from './CalendarBody/index.tsx';
+
+const todayDate = new Date();
+const todayDay = {
+    day: todayDate.getDate(),
+    month: todayDate.getMonth(),
+    year: todayDate.getFullYear(),
+};
 
 export type CalendarDayContainerType = {
     day: number;
@@ -35,13 +41,6 @@ export type CalendarDayType = {
 type Calendar = {
     selectedDate?: Date;
     dayContainer: React.ComponentType<CalendarDayContainerType>;
-};
-
-const todayDate = new Date();
-const todayDay = {
-    day: todayDate.getDate(),
-    month: todayDate.getMonth(),
-    year: todayDate.getFullYear(),
 };
 
 const Calendar = memo(function (props: Calendar) {

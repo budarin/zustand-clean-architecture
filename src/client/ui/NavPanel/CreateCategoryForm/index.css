@@ -1,16 +1,16 @@
-.create-category-form {
+.CreateCategoryForm {
     padding: var(--x2);
     text-align: right;
     margin-left: auto;
 }
 
-.create-category-form-input {
+.CreateCategoryForm-Input {
     font-size: 1rem;
     display: flex;
     flex: 1;
 }
 
-.create-category-form-button {
+.CreateCategoryForm-Button {
     padding: var(--x2) var(--x4);
     margin-left: var(--x2);
 
@@ -24,29 +24,29 @@
     border-color: var(--primaryDarkColor);
 }
 
-.create-category-form-button:disabled {
+.CreateCategoryForm-Button:disabled {
     color: var(--borderColor);
     background-color: var(--primaryGrayColor);
 }
 
 /* icon group */
-.create-category-form-icons {
+.CreateCategoryForm-Icons {
     text-align: end;
     margin-top: var(--x2);
     margin-bottom: var(--x2);
 }
 
-.create-category-form-icon-cb {
+.CreateCategoryForm-IconCheckBox {
     display: none;
 }
 
-.create-category-form-icon-label {
+.CreateCategoryForm-IconLabel {
     display: inline-block;
     padding: 0;
     margin-left: 2px;
 }
 
-.create-category-form-icon-cb + img {
+.CreateCategoryForm-IconCheckBox + img {
     display: block;
     height: var(--x9);
     width: var(--x9);
@@ -57,22 +57,22 @@
     outline-color: var(--primaryDarkColor);
 }
 
-.create-category-form-icon-cb:checked + img {
+.CreateCategoryForm-IconCheckBox:checked + img {
     border: 2px solid var(--primaryDarkColor);
 }
 
 @media only screen and (min-width: 641px) {
-    .create-category-form {
+    .CreateCategoryForm {
         padding: var(--x2);
     }
 }
 
 @media (pointer: coarse) {
-    .create-category-form-button {
+    .CreateCategoryForm-Button {
         padding: var(--touchAreaPadding, 8px) var(--x4);
     }
 
-    .create-category-form-icon-cb + img {
+    .CreateCategoryForm-IconCheckBox + img {
         height: var(--x11);
         width: var(--x11);
     }

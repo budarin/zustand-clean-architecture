@@ -12,7 +12,7 @@ function NavigationPanel(props: NavigationPanel) {
     const { isOpen, children } = props;
 
     return (
-        <nav className="nav" style={{ display: isOpen ? 'block' : 'none' }}>
+        <nav className="NavPanel" style={{ display: isOpen ? 'block' : 'none' }}>
             <ul>{children}</ul>
         </nav>
     );

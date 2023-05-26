@@ -2,30 +2,12 @@ import { useMediaQuery } from 'usehooks-ts';
 import { useCallback, useEffect, useState } from 'react';
 
 import { useTodoStore } from '../../domain/store.tsx';
-import { useCheckingDueDateOfTodos } from '../../useCases/useCheckingDueDateOfTodos.ts';
+import { useStartCheckingDueDateOfTodos } from '../../useCases/useStartCheckingDueDateOfTodos.ts';
 
 // components
 import App from '../../../ui/App/index.tsx';
 import NavigationPanelContainer from '../NavPanel/index.tsx';
 import TodoListViewContainer from '../TodoList/ListView/index.tsx';
-
-import '../../../../../assets/site_icons/android-chrome-maskable-192x192.png';
-import '../../../../../assets/site_icons/android-chrome-maskable-512x512.png';
-import '../../../../../assets/site_icons/android-chrome-192x192.png';
-import '../../../../../assets/site_icons/android-chrome-512x512.png';
-
-import '../../../../../assets/site_icons/apple-touch-icon.png';
-import '../../../../../assets/site_icons/favicon-16x16.png';
-import '../../../../../assets/site_icons/favicon-32x32.png';
-import '../../../../../assets/site_icons/mstile-144x144.png';
-import '../../../../../assets/site_icons/mstile-150x150.png';
-import '../../../../../assets/site_icons/mstile-310x150.png';
-import '../../../../../assets/site_icons/mstile-310x310.png';
-import '../../../../../assets/site_icons/mstile-70x70.png';
-import '../../../../../assets/site_icons/safari-pinned-tab.svg';
-import '../../../../../assets/site_icons/favicon.ico';
-import '../../../../../assets/site_icons/site.webmanifest';
-import '../../../../../assets/site_icons/browserconfig.xml';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -35,27 +17,21 @@ if (window) {
     showNavePaneAtStart = window.innerWidth > 640;
 }
 
-type AppContainer = {
-    waitForLoadingAnimation: boolean;
-};
-
 const navFilterSelector = (state: TodosState) => state.navigationFilter;
 
-function AppContainer(props: AppContainer) {
-    const { waitForLoadingAnimation } = props;
-
-    useCheckingDueDateOfTodos();
+function AppContainer() {
+    useStartCheckingDueDateOfTodos();
 
     const matches = useMediaQuery('(max-width: 640px)');
     const { key } = useTodoStore(navFilterSelector);
-    const [isNavPaneOpen, setNavPaneOpen] = useState(showNavePaneAtStart);
+    const [isNavPanelOpen, setNavPaneOpen] = useState(showNavePaneAtStart);
 
     useEffect(() => {
         let mounted = true;
 
         if (mounted) {
             if (matches) {
-                isNavPaneOpen && setNavPaneOpen(false);
+                isNavPanelOpen && setNavPaneOpen(false);
             } else {
                 setNavPaneOpen(true);
             }
@@ -88,11 +64,11 @@ function AppContainer(props: AppContainer) {
 
     return (
         <App
-            isOpen={isNavPaneOpen}
+            isNavPanelOpen={isNavPanelOpen}
             isSmallScreen={matches}
             toggleNavPane={onToggleNavPan}
-            navigationPanel={<NavigationPanelContainer isOpen={isNavPaneOpen} />}
-            todos={<TodoListViewContainer isOpen={!(matches && isNavPaneOpen)} />}
+            navigationPanel={<NavigationPanelContainer isOpen={isNavPanelOpen} />}
+            todos={<TodoListViewContainer isOpen={!(matches && isNavPanelOpen)} />}
         />
     );
 }

@@ -1,15 +1,12 @@
-import React from 'react';
-
-// components
-import MenuIcon from '../Icons/MenuIcon';
-import CloseIcon from '../Icons/CloseIcon';
-import CheckButton from '../CheckButton';
-
 import './index.css';
+
 import icon from '../../../../assets/todolist_.svg';
 
+// components
+import AppHeader from './AppHeader';
+
 type App = {
-    isOpen: boolean;
+    isNavPanelOpen: boolean;
     isSmallScreen: boolean;
     toggleNavPane: () => void;
     navigationPanel: JSX.Element;
@@ -17,26 +14,18 @@ type App = {
 };
 
 function App(props: App) {
-    const { isOpen, isSmallScreen, toggleNavPane, navigationPanel, todos } = props;
+    const { isNavPanelOpen, isSmallScreen, toggleNavPane, navigationPanel, todos } = props;
 
     return (
-        <main className="app">
-            <div className="app-header">
-                <img className="app-header-icon" src={icon} width={32} height={32} alt="App logo" />
-                <h1 className="app-header-title">Мои Задачи</h1>
-                {isSmallScreen ? (
-                    <CheckButton
-                        className="app-header-menu-button"
-                        checked={isOpen}
-                        unCheckedIcon={<MenuIcon />}
-                        checkedIcon={<CloseIcon />}
-                        onClick={toggleNavPane}
-                        title={`${isOpen ? 'Скрыть' : 'Показать'} панель навигации`}
-                    />
-                ) : null}
-            </div>
+        <main className="App">
+            <AppHeader
+                icon={icon}
+                isNavPanelOpen={isNavPanelOpen}
+                isSmallScreen={isSmallScreen}
+                toggleNavPane={toggleNavPane}
+            />
 
-            <div className="app-container">
+            <div className="App-Container">
                 {navigationPanel}
                 {todos}
             </div>

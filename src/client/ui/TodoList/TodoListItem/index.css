@@ -1,4 +1,4 @@
-.todoListItem {
+.TodoListItem {
     list-style: none;
 
     display: flex;
@@ -9,22 +9,22 @@
     padding-right: var(--x2);
 }
 
-.todoListItem-label {
+.TodoListItem-Label {
     padding: var(--x2) 0;
 }
 
 @media (hover: hover) {
-    .todoListItem:hover {
+    .TodoListItem:hover {
         background-color: var(--itemHoverColor);
     }
 }
 
-.todoListItem-checkbox {
+.TodoListItem-Checkbox {
     cursor: pointer;
     margin: 0 var(--x3);
 }
 
-.todoListItem-label {
+.TodoListItem-Label {
     flex: 1;
     cursor: pointer;
 }

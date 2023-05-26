@@ -84,7 +84,7 @@ body,
 
 /* app */
 
-.app {
+.App {
     height: 100%;
     overflow: hidden;
     block-size: 100%;
@@ -94,37 +94,7 @@ body,
     padding: 0 var(--x);
 }
 
-.app-header {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid var(--primaryColor);
-}
-
-.app-header-menu-button {
-    margin: var(--touchAreaPadding, 8px);
-    height: var(--x10);
-    width: var(--x10);
-    border: 0;
-    cursor: pointer;
-    background-color: white;
-    vertical-align: sub;
-}
-
-.app-header-icon {
-    height: var(--x8);
-    width: var(--x8);
-    vertical-align: text-bottom;
-    margin-right: var(--x2);
-    margin-left: var(--x2);
-}
-
-.app-header-title {
-    font-size: 1.5rem;
-    display: inline-block;
-    flex: 1;
-}
-
-.app-container {
+.App-Container {
     width: 100%;
     flex: 1;
     align-items: flex-start;
@@ -132,38 +102,22 @@ body,
     scroll-behavior: smooth;
 }
 
-/* media queries */
-
 @media only screen and (min-width: 641px) {
-    .app {
+    .App {
         padding: 0 var(--x2);
     }
 
-    .app-container {
+    .App-Container {
         display: flex;
         flex-direction: row;
         gap: var(--x4);
     }
-
-    .app-header {
-        border-bottom: none;
-    }
-
-    .app-header-icon {
-        margin-left: 0;
-    }
 }
 
 @media only screen and (min-width: 1100px) {
-    .app {
+    .App {
         padding: 0;
         margin: 0 auto;
-    }
-}
-
-@media only screen and (min-height: 640px) {
-    .app-header {
-        height: 80px;
     }
 }
 

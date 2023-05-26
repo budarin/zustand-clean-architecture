@@ -1,8 +1,8 @@
-import { isInt } from '../../validation_utils/isInt.ts';
-import { exists } from '../../validation_utils/exists.ts';
-import { inRange } from '../../validation_utils/inRange.ts';
-import { isString } from '../../validation_utils/isString.ts';
-import { validateRawEntity } from '../../validation_utils/validateEntity.ts';
+import { isInt } from '../../utils/validation/isInt.ts';
+import { exists } from '../../utils/validation/exists.ts';
+import { inRange } from '../../utils/validation/inRange.ts';
+import { isString } from '../../utils/validation/isString.ts';
+import { validateRawEntity } from '../../utils/validation/validateEntity.ts';
 
 export const MIN_CATEGOTY_LENGTH = 3;
 export const MAX_CATEGOTY_LENGTH = 20;

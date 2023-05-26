@@ -71,7 +71,7 @@ function TodoListViewContainer(props: TodoListViewContainer): JSX.Element {
     const iconName = iconsByName[icon as IconsByNameKey];
 
     return (
-        <TodoList isOpen={isOpen} category={title} icon={iconName} count={count}>
+        <TodoList isOpen={isOpen} title={title} icon={iconName} count={count}>
             <TodoListContainer />
         </TodoList>
     );

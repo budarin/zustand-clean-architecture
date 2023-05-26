@@ -1,4 +1,4 @@
-import { isNotExists } from '../../../../common/validation_utils/isNotExists';
+import { isNotExists } from '../../../../common/utils/validation/isNotExists';
 
 export function updateTodoCategories(state: TodoState, newTodo: Todo, oldTodo?: Todo) {
     // если обновление задачи и категория не изменилась - выходим

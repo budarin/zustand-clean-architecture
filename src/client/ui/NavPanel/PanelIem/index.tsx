@@ -12,7 +12,7 @@ type NavigationIPanelIem = {
     children: ReactNode;
 };
 
-const navItem = cn('nav-item');
+const navItem = cn('NavItem');
 
 const NavigationIPanelIem = (props: NavigationIPanelIem) => {
     const { title, icon, checked, handleClick, children } = props;
@@ -20,8 +20,8 @@ const NavigationIPanelIem = (props: NavigationIPanelIem) => {
 
     return (
         <li className={itemClass} onClick={handleClick}>
-            <img className="nav-item-icon" src={icon} alt="" />
-            <a className="nav-item-link" href="#">
+            <img className="NavItem-Icon" src={icon} alt="" />
+            <a className="NavItem-Link" href="#">
                 {title}
             </a>
             {children}
