@@ -9,6 +9,8 @@ import { initStore } from './app/domain/initStore.tsx';
 import { ToastContainer } from 'react-toastify';
 import AppContainer from './app/containers/App/index.tsx';
 
+import './importSiteIcons.ts';
+
 declare global {
     interface Window {
         loading: Promise<boolean>;

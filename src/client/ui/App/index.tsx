@@ -6,7 +6,7 @@ import icon from '../../../../assets/todolist_.svg';
 import AppHeader from './AppHeader';
 
 type App = {
-    isOpen: boolean;
+    isNavPanelOpen: boolean;
     isSmallScreen: boolean;
     toggleNavPane: () => void;
     navigationPanel: JSX.Element;
@@ -14,11 +14,16 @@ type App = {
 };
 
 function App(props: App) {
-    const { isOpen, isSmallScreen, toggleNavPane, navigationPanel, todos } = props;
+    const { isNavPanelOpen, isSmallScreen, toggleNavPane, navigationPanel, todos } = props;
 
     return (
         <main className="App">
-            <AppHeader icon={icon} isOpen={isOpen} isSmallScreen={isSmallScreen} toggleNavPane={toggleNavPane} />
+            <AppHeader
+                icon={icon}
+                isNavPanelOpen={isNavPanelOpen}
+                isSmallScreen={isSmallScreen}
+                toggleNavPane={toggleNavPane}
+            />
 
             <div className="App-Container">
                 {navigationPanel}

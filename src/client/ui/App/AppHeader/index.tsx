@@ -7,12 +7,12 @@ import './index.css';
 type AppHeader = {
     icon: string;
     isSmallScreen: boolean;
-    isOpen: boolean;
+    isNavPanelOpen: boolean;
     toggleNavPane: () => void;
 };
 
 function AppHeader(props: AppHeader) {
-    const { icon, isSmallScreen, isOpen, toggleNavPane } = props;
+    const { icon, isSmallScreen, isNavPanelOpen, toggleNavPane } = props;
 
     return (
         <div className="App-Header">
@@ -21,11 +21,11 @@ function AppHeader(props: AppHeader) {
             {isSmallScreen ? (
                 <CheckButton
                     className="AppHeader-MenuButton"
-                    checked={isOpen}
+                    checked={isNavPanelOpen}
                     unCheckedIcon={<MenuIcon />}
                     checkedIcon={<CloseIcon />}
                     onClick={toggleNavPane}
-                    title={`${isOpen ? 'Скрыть' : 'Показать'} панель навигации`}
+                    title={`${isNavPanelOpen ? 'Скрыть' : 'Показать'} панель навигации`}
                 />
             ) : null}
         </div>
