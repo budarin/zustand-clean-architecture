@@ -1,4 +1,3 @@
-import { delay } from '../common/promises/delay.ts';
 import { serverInitialState } from './serverInitialState';
 
 const VERSION = '1.0.0';
