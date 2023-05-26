@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { logger } from './services/logger';
 import { getTodoStore } from './services/api/api.ts';
 import { initStore } from './app/domain/initStore.tsx';
+import { createRootElement } from './createRootElement.tsx';
 
 // components
 import { ToastContainer } from 'react-toastify';
@@ -11,31 +12,32 @@ import AppContainer from './app/containers/App/index.tsx';
 
 import './importSiteIcons.ts';
 
-declare global {
-    interface Window {
-        loading: Promise<boolean>;
-        scriptLoadError?: () => void;
-    }
-}
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.ready.then((registration) => {
+        if (!registration) {
+            return;
+        }
 
-function createRootElement() {
-    const root = document.createElement('div');
-
-    root.id = 'root';
-    document.body.appendChild(root);
-
-    return root;
+        if (registration.active?.state === 'activated') {
+            InitApp();
+        } else {
+            registration.active?.addEventListener('statechange', () => {
+                InitApp();
+            });
+        }
+    });
 }
 
 function InitApp() {
+    // очищаем html и localStorage
     if (window.scriptLoadError) {
-        localStorage.removeItem('reloadOnError');
         window.removeEventListener('error', window.scriptLoadError);
         window.scriptLoadError = undefined;
     }
-
+    localStorage.removeItem('reloadOnError');
     document.getElementById('initialScript')?.remove();
 
+    // загружаем данные
     getTodoStore()
         .then((data) => {
             initStore(data);
@@ -56,20 +58,4 @@ function InitApp() {
             });
         })
         .catch((error) => logger.error(error));
-}
-
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.ready.then((registration) => {
-        if (!registration) {
-            return;
-        }
-
-        if (registration.active?.state === 'activated') {
-            InitApp();
-        } else {
-            registration.active?.addEventListener('statechange', () => {
-                InitApp();
-            });
-        }
-    });
 }
