@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import { useTodoStore } from '../domain/store';
-import { delay } from '../../../common/promises/delay';
 import { notifyError } from '../../services/notification';
+import { delay } from '../../../common/utils/promises/delay';
 
 type UseCreateTodo = [inProgress: boolean, createTodo: Dispatch<SetStateAction<Todo | undefined>>];
 

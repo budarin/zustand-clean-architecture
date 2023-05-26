@@ -1,7 +1,7 @@
 import { useTodoStore } from '../domain/store';
-import { delay } from '../../../common/promises/delay';
 import { notifyError } from '../../services/notification';
 import { TodoStoreError } from '../domain/TodoStoreError';
+import { delay } from '../../../common/utils/promises/delay';
 
 export async function deleteCategory(id: Category['category_id']) {
     const store = useTodoStore.getState();
