@@ -1,8 +1,12 @@
 import { memo, useRef } from 'react';
-import { CalendarDayContainerType } from '..';
-import CalendarDay from '../CalendarDay/CalendarDay';
+
 import { useKeyDownToClickEvent } from '../../hooks/useKeyDownToClickEvent';
 import { useArrowKeysToSimulateTab } from '../../hooks/useArrowKeysToSimulateTab';
+
+//components
+import CalendarDay from '../CalendarDay/CalendarDay';
+
+import { type CalendarDayContainerType } from '..';
 
 type CalendarBody = {
     daysCount: number;
@@ -21,7 +25,7 @@ const CalendarBody = memo(function (props: CalendarBody) {
     useKeyDownToClickEvent(calendarBodyRef, ['Enter', 'Space']);
 
     return (
-        <div className="Calendar-Body">
+        <div className="Calendar-Body" onClick={onSelectDate}>
             {Array.from({ length: daysCount }, (_, index) => {
                 const date = new Date(startDay.year, startDay.month, startDay.day);
                 date.setDate(startDay.day + index);
@@ -39,7 +43,6 @@ const CalendarBody = memo(function (props: CalendarBody) {
                         isToday={todayDay.day === theDate && todayDay.month === date.getMonth()}
                         isWeekend={theDay === 0 || theDay === 6}
                         dayComponent={CalendarDay}
-                        onSelectDate={onSelectDate}
                     />
                 );
             })}

@@ -6,22 +6,25 @@ import { navigationFilterTypes } from '../../domain/navigationFilter/index.ts';
 // components
 import TodoListItemContainer from './ListItem/index.tsx';
 
-function TodoListContainer() {
-    const todoIds: Id[] =
-        useTodoStore((state) => {
-            const key = state.navigationFilter.key;
+const selector = (state: TodosState) => {
+    const key = state.navigationFilter.key;
 
-            switch (state.navigationFilter.type) {
-                case navigationFilterTypes.calendar:
-                    return state.todos.idsByDueDate[key];
-                case navigationFilterTypes.category:
-                    return state.todos.idsByCategoryId[key as Id];
-                case navigationFilterTypes.filter:
-                    return state.todos.idsByFilterId[key];
-                default:
-                    return [];
-            }
-        }) || [];
+    switch (state.navigationFilter.type) {
+        case navigationFilterTypes.calendar:
+            return state.todos.idsByDueDate[key];
+        case navigationFilterTypes.category:
+            return state.todos.idsByCategoryId[key as Id];
+        case navigationFilterTypes.filter:
+            return state.todos.idsByFilterId[key];
+        default:
+            return [];
+    }
+};
+
+const emptyList = [] as Id[];
+
+function TodoListContainer() {
+    const todoIds: Id[] = useTodoStore(selector) || emptyList;
 
     return (
         <>

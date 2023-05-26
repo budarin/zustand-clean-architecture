@@ -1,13 +1,15 @@
 import { memo } from 'react';
 
 import { cn } from '../../classNames';
+
 import { type CalendarDayType } from '..';
+
 import './index.css';
 
 const currentDayCN = cn('Calendar-Day');
 
 const CalendarDay = memo(function (props: CalendarDayType) {
-    const { day, value, todosCount, selected, inCurrentMonth, isToday, isWeekend, onSelectDate } = props;
+    const { day, value, todosCount, selected, inCurrentMonth, isToday, isWeekend } = props;
     const className = currentDayCN({
         other_month: inCurrentMonth === false,
         selected,
@@ -20,7 +22,6 @@ const CalendarDay = memo(function (props: CalendarDayType) {
             className={className}
             title={isToday ? 'Сегодня' : ''}
             data-date={value}
-            onClick={onSelectDate}
             tabIndex={0}
             data-todos={todosCount ? todosCount : ''}
         >
