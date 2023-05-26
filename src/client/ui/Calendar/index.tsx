@@ -23,7 +23,6 @@ export type CalendarDayContainerType = {
     inCurrentMonth: boolean;
     isToday: boolean;
     isWeekend: boolean;
-    onSelectDate: MouseEventHandler<HTMLDivElement>;
     dayComponent: React.ComponentType<CalendarDayType>;
 };
 
@@ -35,16 +34,16 @@ export type CalendarDayType = {
     isToday: boolean;
     isWeekend: boolean;
     selected: boolean;
-    onSelectDate: MouseEventHandler<HTMLDivElement>;
 };
 
 type Calendar = {
     selectedDate?: Date;
+    onSelectDate: MouseEventHandler<HTMLDivElement>;
     dayContainer: React.ComponentType<CalendarDayContainerType>;
 };
 
 const Calendar = memo(function (props: Calendar) {
-    const { selectedDate, dayContainer: CalendarDayContainer } = props;
+    const { selectedDate, onSelectDate, dayContainer: CalendarDayContainer } = props;
 
     const [state, setState] = useState(getNewCalendarState(selectedDate || todayDate));
     const { title, currentDay, daysCount, startDay } = state;
@@ -64,7 +63,7 @@ const Calendar = memo(function (props: Calendar) {
         setState(getNewCalendarState(todayDate));
     }, []);
 
-    const onSelectDate: MouseEventHandler<HTMLDivElement> = useCallback(
+    const onInternalSelectDate: MouseEventHandler<HTMLDivElement> = useCallback(
         (event) => {
             const timestamp = Number((event.target as HTMLElement).dataset.date);
             const selectedDt = new Date(timestamp);
@@ -72,8 +71,10 @@ const Calendar = memo(function (props: Calendar) {
             if (currentDay.month !== selectedDt.getMonth()) {
                 setState(getNewCalendarState(selectedDt));
             }
+
+            onSelectDate(event);
         },
-        [currentDay],
+        [currentDay, onSelectDate],
     );
 
     return (
@@ -94,7 +95,7 @@ const Calendar = memo(function (props: Calendar) {
                 month={month}
                 startDay={startDay}
                 todayDay={todayDay}
-                onSelectDate={onSelectDate}
+                onSelectDate={onInternalSelectDate}
                 dayContainer={CalendarDayContainer}
             />
         </div>

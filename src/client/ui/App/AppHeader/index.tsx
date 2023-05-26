@@ -15,7 +15,7 @@ function AppHeader(props: AppHeader) {
     const { icon, isSmallScreen, isNavPanelOpen, toggleNavPane } = props;
 
     return (
-        <div className="App-Header">
+        <div className="AppHeader">
             <img className="AppHeader-Icon" src={icon} width={32} height={32} alt="App logo" />
             <h1 className="AppHeader-Title">Мои Задачи</h1>
             {isSmallScreen ? (
