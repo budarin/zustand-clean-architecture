@@ -23,7 +23,9 @@ export function updateTodoDueDate(state: TodoState, newTodo: ExtendedTodo, oldTo
             state.idsByDueDate[newTodo.due_date_ts] = [newTodo.todo_id];
         } else {
             // добавляем массив
-            state.idsByDueDate[newTodo.due_date_ts] = [...state.idsByDueDate[newTodo.due_date_ts], newTodo.todo_id];
+            if (state.idsByDueDate[newTodo.due_date_ts].includes(newTodo.todo_id) === false) {
+                state.idsByDueDate[newTodo.due_date_ts] = [...state.idsByDueDate[newTodo.due_date_ts], newTodo.todo_id];
+            }
         }
     }
 }
