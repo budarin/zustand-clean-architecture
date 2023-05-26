@@ -29,7 +29,12 @@ function CalendarContainer() {
     }, []);
 
     return (
-        <Calendar selectedDate={selectedDate} onSelectDate={onCalendarSelectDate} dayContainer={CalendarDayContainer} />
+        <Calendar
+            selectedDate={selectedDate}
+            // фишка !!! смотри обработчик
+            onSelectDate={onCalendarSelectDate}
+            dayContainer={CalendarDayContainer}
+        />
     );
 }
 
