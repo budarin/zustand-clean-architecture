@@ -17,7 +17,11 @@ function CalendarContainer() {
     const selectedDate = useTodoStore(selectedDateSelector);
 
     const onCalendarSelectDate: MouseEventHandler<HTMLDivElement> = useCallback(function (event) {
+        // внимание !!!
+        // тут мы используем Store вне компонента React
+        // в обработчике события нельзя использовать хуки а в Zustand мы имеем доступ к Store !
         const setNavigationFilter = useTodoStore.getState().setNavigationFilter;
+
         const selectedDateTimestamp = Number((event.target as HTMLElement).dataset.date);
         const selectedDate = new Date(selectedDateTimestamp);
 
