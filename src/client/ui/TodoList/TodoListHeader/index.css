@@ -16,6 +16,8 @@
 
 .TodoListHeader-Title {
     display: flex;
+    flex: 1;
+    flex-direction: column;
 }
 
 .TodoListHeader-Title h3 {
