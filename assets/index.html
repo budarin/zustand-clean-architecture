@@ -42,8 +42,7 @@
         }
         window.addEventListener('error', scriptLoadError, true);
 
-        const waitForLoadingAnimation = false;
-        window.loading = Promise.resolve(waitForLoadingAnimation);
+        window.loading = Promise.resolve(false);
         navigator.serviceWorker.register('./sw.js');
     </script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/react-render-tracker"></script> -->
@@ -67,8 +66,7 @@
 
                 window.loading = new Promise((resolve) => {
                     setTimeout(() => {
-                        const waitForLoadingAnimation = true;
-                        resolve(waitForLoadingAnimation);
+                        resolve(true);
                     }, 1500);
                 });
             }, 250);

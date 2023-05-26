@@ -43,11 +43,11 @@ function InitApp() {
         .then(() => {
             let rootElement = document.getElementById('root') || createRootElement();
 
-            window.loading.then((doWait) => {
+            window.loading.then(() => {
                 createRoot(rootElement).render(
                     <>
                         <StrictMode>
-                            <AppContainer waitForLoadingAnimation={doWait} />
+                            <AppContainer />
                         </StrictMode>
 
                         <ToastContainer limit={3} hideProgressBar={true} />

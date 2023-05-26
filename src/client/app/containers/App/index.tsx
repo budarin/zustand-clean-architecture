@@ -17,15 +17,9 @@ if (window) {
     showNavePaneAtStart = window.innerWidth > 640;
 }
 
-type AppContainer = {
-    waitForLoadingAnimation: boolean;
-};
-
 const navFilterSelector = (state: TodosState) => state.navigationFilter;
 
-function AppContainer(props: AppContainer) {
-    const { waitForLoadingAnimation } = props;
-
+function AppContainer() {
     useStartCheckingDueDateOfTodos();
 
     const matches = useMediaQuery('(max-width: 640px)');
