@@ -7,7 +7,7 @@
                     return;
                 }
 
-                localStorage.setItem('reloadOnError') = tryNo + 1;
+                localStorage.setItem('reloadOnError', tryNo + 1);
 
                 setTimeout(() => {
                     var timestamp = new Date().getTime();
