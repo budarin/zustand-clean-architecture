@@ -27,12 +27,11 @@ export const navigationFilterIcons = {
 export type NavigationFilterIconsKey = keyof typeof navigationFilterIcons;
 
 export function getNavigationFilterWithCalendarDate(date: Date): CalendarNavigationFilter {
-    const dayName = getDateKnownName(date);
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
 
     return {
         type: 'calendar',
-        title: `${date.toLocaleDateString('ru-Ru', options)}${dayName ? ', ' + dayName : ''}`,
+        title: `${date.toLocaleDateString('ru-Ru', options)}`,
         key: date.valueOf(),
     };
 }

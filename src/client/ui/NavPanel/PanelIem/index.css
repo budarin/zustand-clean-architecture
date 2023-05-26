@@ -1,4 +1,4 @@
-.nav-item {
+.NavItem {
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -8,22 +8,22 @@
 }
 
 @media (hover: hover) {
-    .nav-item:hover {
+    .NavItem:hover {
         background-color: var(--itemHoverColor);
     }
 }
 
-.nav-item_selected {
+.NavItem_selected {
     background-color: var(--secondaryColor);
 }
 
 @media (hover: hover) {
-    .nav-item_selected:hover {
+    .NavItem_selected:hover {
         background-color: var(--secondaryColor);
     }
 }
 
-.nav-item-link {
+.NavItem-Link {
     margin-right: 2px;
     text-decoration: none;
     color: black;
@@ -35,18 +35,18 @@
     flex: 1;
 }
 
-.nav-item-icon {
+.NavItem-Icon {
     height: var(--x9);
     width: var(--x9);
     padding: var(--touchAreaPadding, 8px);
     vertical-align: text-bottom;
 }
 
-.nav-item .badge {
+.NavItem .Badge {
     margin: var(--touchAreaPadding, 8px);
 }
 
-.nav-item .expandButton {
+.NavItem .ExpandButton {
     fill: var(--secondaryColor);
     color: gray;
 
@@ -55,18 +55,18 @@
 }
 
 @media (hover: hover) {
-    .nav-item .expandButton > svg:hover {
+    .NavItem .ExpandButton > svg:hover {
         fill: var(--secondaryDarkColor);
         color: white;
     }
 }
 
 @media (pointer: coarse) {
-    .nav-item .expandButton {
+    .NavItem .ExpandButton {
         margin-right: 0;
     }
 
-    .nav-item-icon {
+    .NavItem-Icon {
         height: var(--x11);
         width: var(--x11);
     }
