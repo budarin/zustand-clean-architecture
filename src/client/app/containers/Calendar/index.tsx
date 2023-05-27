@@ -1,7 +1,8 @@
 import { MouseEventHandler, useCallback } from 'react';
 
 import { useTodoStore } from '../../domain/store';
-import { getNavigationFilterWithCalendarDate, navigationFilterTypes } from '../../domain/navigationFilter';
+import { navigationFilterTypes } from '../../domain/navigationFilter';
+import { getNavigationFilterWithCalendarDate } from '../../domain/navigationFilter/getNavigationFilterWithCalendarDate';
 
 // components
 import Calendar from '../../../ui/Calendar';

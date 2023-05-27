@@ -12,7 +12,8 @@ import { getTodayDate } from '../../../common/utils/dateTime/getTodayDate.ts';
 import { validateCategoryEntity } from './category/validateCategoryEntity.ts';
 import { getOnlyDateTimestamp } from '../../../common/utils/dateTime/getOnlyDateTimestamp.ts';
 
-import { getNavigationFilterWithCalendarDate, inboxKey, overdueKey, recycleBinKey } from './navigationFilter/index.ts';
+import { inboxKey, overdueKey, recycleBinKey } from './navigationFilter/index.ts';
+import { getNavigationFilterWithCalendarDate } from './navigationFilter/getNavigationFilterWithCalendarDate.ts';
 
 export type Actions = {
     // Icon
