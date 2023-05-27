@@ -2,7 +2,6 @@ import { useMediaQuery } from 'usehooks-ts';
 import { useCallback, useEffect, useState } from 'react';
 
 import { useTodoStore } from '../../domain/store.tsx';
-import { useStartCheckingDueDateOfTodos } from '../../useCases/useStartCheckingDueDateOfTodos.ts';
 
 // components
 import App from '../../../ui/App/index.tsx';
@@ -20,8 +19,6 @@ if (window) {
 const navFilterSelector = (state: TodosState) => state.navigationFilter;
 
 function AppContainer() {
-    useStartCheckingDueDateOfTodos();
-
     const matches = useMediaQuery('(max-width: 640px)');
     const { key } = useTodoStore(navFilterSelector);
     const [isNavPanelOpen, setNavPaneOpen] = useState(showNavePaneAtStart);
