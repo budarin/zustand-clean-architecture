@@ -1,11 +1,14 @@
 import { useTodoStore } from '../domain/store.tsx';
 import { overdueKey } from '../domain/navigationFilter/index.ts';
-import { joyfullyGilling } from '../../services/notification/index.ts';
 import { TWO_MINUTES } from '../../../common/utils/dateTime/consts.ts';
+import { joyfullyGilling } from '../../services/notification/index.ts';
+import { getNavigationFilterWithCalendarDate } from '../domain/navigationFilter/getNavigationFilterWithCalendarDate.ts';
 
 export function checkOverduedTodos() {
-    const now = new Date().valueOf();
-    const { todos, _addToOverduedTodos } = useTodoStore.getState();
+    const today = new Date();
+    const now = today.valueOf();
+    const { todos, _addToOverduedTodos, setNavigationFilter } = useTodoStore.getState();
+
     const overdueIds = todos.idsByFilterId[overdueKey];
 
     Object.values(todos.byId).forEach((todo) => {
@@ -17,6 +20,9 @@ export function checkOverduedTodos() {
                 if (Math.abs(diff) < TWO_MINUTES) {
                     joyfullyGilling(`lalala: ${todo.todo}`, {
                         toastId: 'due_date:' + todo.todo,
+                        onClose: () => {
+                            setNavigationFilter(getNavigationFilterWithCalendarDate(today));
+                        },
                     });
                 }
 
