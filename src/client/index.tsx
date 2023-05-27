@@ -2,9 +2,12 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { logger } from './services/logger';
+import { runTask } from '../common/utils/runTask.ts';
 import { getTodoStore } from './services/api/api.ts';
 import { initStore } from './app/domain/initStore.tsx';
 import { createRootElement } from './createRootElement.tsx';
+import { ONE_MINUTE } from '../common/utils/dateTime/consts.ts';
+import { checkOverduedTodos } from './app/useCases/checkOverduedTodos.ts';
 
 // components
 import { ToastContainer } from 'react-toastify';
@@ -41,6 +44,11 @@ function InitApp() {
     getTodoStore()
         .then((data) => {
             initStore(data);
+
+            const task = runTask(checkOverduedTodos, ONE_MINUTE);
+            window.addEventListener('beforeunload', () => {
+                task.stop();
+            });
         })
         .then(() => {
             let rootElement = document.getElementById('root') || createRootElement();
