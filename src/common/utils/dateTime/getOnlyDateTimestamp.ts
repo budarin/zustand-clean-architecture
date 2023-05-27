@@ -1,9 +1,5 @@
-export function getOnlyDateTimestamp(dateStr: string): Timestamp {
-    let d = new Date(dateStr);
-    d.setHours(0);
-    d.setMinutes(0);
-    d.setSeconds(0);
-    d.setMilliseconds(0);
+import { getDateFromDateTime } from './getDateFromDateTime.ts';
 
-    return d.valueOf();
+export function getOnlyDateTimestamp(dateStr: string): Timestamp {
+    return getDateFromDateTime(new Date(dateStr)).valueOf();
 }
