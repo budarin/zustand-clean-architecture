@@ -1,5 +1,5 @@
-import { navigationFilterTypes } from '../domain/navigationFilter';
 import { useTodoStore } from '../domain/store';
+import { navigationFilterTypes } from '../domain/navigationFilter';
 
 const selector = (state: TodosState): Id[] => {
     const key = state.navigationFilter.key;
