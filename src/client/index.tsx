@@ -45,9 +45,10 @@ function InitApp() {
         .then((data) => {
             initStore(data);
 
-            const task = runTask(checkOverduedTodos, ONE_MINUTE);
+            const checkOverduedTodosTask = runTask(checkOverduedTodos, ONE_MINUTE);
+
             window.addEventListener('beforeunload', () => {
-                task.stop();
+                checkOverduedTodosTask.stop();
             });
         })
         .then(() => {

@@ -1,7 +1,11 @@
-import React, { MouseEventHandler, memo, useCallback, useState } from 'react';
+import React, { MouseEventHandler, memo, useCallback, useEffect, useState } from 'react';
 
+import usePrevious from '../hooks/usePrevious.ts';
+import { areDatesEqual } from './utils/areDatesEqual.ts';
 import { getNewCalendarState } from './utils/getNewCalendarState.tsx';
+import { setNavigationFilter } from '../../app/useCases/setNavigationFilter.ts';
 import { areParsedDatesEqualByMonthAndYear } from './utils/areParsedDatesEqualByMonthAndYear.tsx';
+import { getNavigationFilterWithCalendarDate } from '../../app/domain/navigationFilter/getNavigationFilterWithCalendarDate.ts';
 
 // components
 import CalendarBody from './CalendarBody/index.tsx';
@@ -49,6 +53,16 @@ const Calendar = memo(function (props: Calendar) {
     const { title, currentDay, daysCount, startDay } = state;
     const { month, year } = currentDay;
 
+    // если календарь отображает не текущий месяц для selectedDate
+    // - устанавливаем для календаря текущий месяц как в selectedDate
+    // исользуется в случае кода фильтр устанавливается извне календаря
+    const prevSelectedDate = usePrevious(selectedDate);
+    useEffect(() => {
+        if (selectedDate && selectedDate !== prevSelectedDate && selectedDate.getMonth() !== state.currentDay.month) {
+            setState(getNewCalendarState(selectedDate));
+        }
+    }, [selectedDate, prevSelectedDate, state]);
+
     const setPrevMonth = useCallback(() => {
         const prevMonthDate = new Date(year, month - 1, 1);
         setState(getNewCalendarState(prevMonthDate));
@@ -60,6 +74,7 @@ const Calendar = memo(function (props: Calendar) {
     }, [year, month]);
 
     const setToday = useCallback(() => {
+        setNavigationFilter(getNavigationFilterWithCalendarDate(todayDate));
         setState(getNewCalendarState(todayDate));
     }, []);
 
@@ -85,7 +100,9 @@ const Calendar = memo(function (props: Calendar) {
                 handlePrevMonth={setPrevMonth}
                 handleNextMonth={setNextMonth}
                 handleToday={setToday}
-                disableTodayButton={areParsedDatesEqualByMonthAndYear(todayDay, currentDay)}
+                disableTodayButton={
+                    areDatesEqual(selectedDate, todayDate) && areParsedDatesEqualByMonthAndYear(todayDay, currentDay)
+                }
             />
 
             <CalendarWeekNamesRow />
