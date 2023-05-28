@@ -1,14 +1,10 @@
-import { shallow } from 'zustand/shallow';
-import React, { MouseEventHandler, memo, useCallback, useState } from 'react';
+import { type MouseEventHandler, memo, useCallback, useState } from 'react';
 
-import {
-    NavigationFiltersKey,
-    navigationFilterIcons,
-    navigationFilterTypes,
-    navigationFilters,
-} from '../../../domain/navigationFilter/index.ts';
-import { useTodoStore } from '../../../domain/store.tsx';
-import { IconsByNameKey, iconsByName } from '../../iconsByName.ts';
+import { type IconsByNameKey, iconsByName } from '../../iconsByName.ts';
+import { setNavigationFilter } from '../../../useCases/setNavigationFilter.ts';
+import { getNavPanelItemProps } from '../../../selectors/getNavPanelItemProps.ts';
+import { createFilterNavFilter } from '../../../action_creators/createFilterNavFilter.ts';
+import { createCategoryNavFilter } from '../../../action_creators/createCategoryNavFilter.ts';
 
 // components
 import TodosCountBadgeContainer from '../CountBadge/index.tsx';
@@ -20,53 +16,20 @@ type NavigationPanelItemContainer = {
     navigationType: NavigationFilterType;
 };
 
-//selectors
-const selector = (id: NavigationFilterKey, navigationType: NavigationFilterType) =>
-    useCallback(
-        (state: TodosState) => {
-            let checked = false;
-            let title = '';
-            let icon = '';
-
-            const filter = state.navigationFilter;
-            const isCategory = navigationFilterTypes.category === navigationType;
-
-            if (isCategory) {
-                const category = state.categories.byId[id as Id];
-
-                title = category.category;
-                checked = title === filter.title;
-                icon = state.icons.byId[category.icon_id].icon_name;
-            } else {
-                title = navigationFilters[id as NavigationFiltersKey];
-                checked = id === filter.key;
-                icon = navigationFilterIcons[id as NavigationFiltersKey];
-            }
-
-            return {
-                isCategory,
-                title,
-                checked,
-                icon,
-            };
-        },
-        [id, navigationType],
-    );
-
 const clickableTagNames = ['A', 'SPAN', 'IMG'];
 
 const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainer): JSX.Element => {
     const { id, navigationType } = props;
 
-    const { icon, isCategory, title, checked } = useTodoStore(selector(id, navigationType), shallow);
-    const iconName = iconsByName[icon as IconsByNameKey];
     const [expanded, setExpanded] = useState(false);
+    const { icon, isCategory, title, selected } = getNavPanelItemProps(id, navigationType);
+    const iconName = iconsByName[icon as IconsByNameKey];
 
     const handleExpan = useCallback(() => {
         setExpanded((state) => !state);
     }, []);
 
-    const handleClick = React.useCallback<MouseEventHandler<HTMLLIElement>>(
+    const handleClick = useCallback<MouseEventHandler<HTMLLIElement>>(
         (event) => {
             const liElement = event.currentTarget as HTMLLIElement;
             const tagName = (event.target as HTMLElement).tagName;
@@ -77,26 +40,18 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainer):
                 event.preventDefault();
 
                 const filter = isCategory
-                    ? ({
-                          key: Number(id),
-                          title: containerTitle,
-                          type: navigationType,
-                      } as CategoryNavigationFilter)
-                    : ({
-                          key: id,
-                          title: containerTitle,
-                          type: navigationType,
-                      } as FilterNavigationFilter);
+                    ? createCategoryNavFilter(Number(id), containerTitle)
+                    : createFilterNavFilter(id as string, containerTitle);
 
-                useTodoStore.getState().setNavigationFilter(filter);
+                setNavigationFilter(filter);
             }
         },
         [id, navigationType, isCategory],
     );
 
     return (
-        <NavigationIPanelIem title={title} icon={iconName} checked={checked} handleClick={handleClick}>
-            {checked && isCategory ? (
+        <NavigationIPanelIem title={title} icon={iconName} selected={selected} handleClick={handleClick}>
+            {selected && isCategory ? (
                 <ExpandButton
                     isToggled={expanded}
                     title={`${expanded ? 'Свернуть' : 'Показать'} меню`}

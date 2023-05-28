@@ -7,7 +7,7 @@ import './index.css';
 type NavigationIPanelIem = {
     title: string;
     icon: string;
-    checked: boolean;
+    selected: boolean;
     handleClick: MouseEventHandler<HTMLLIElement>;
     children: ReactNode;
 };
@@ -15,8 +15,8 @@ type NavigationIPanelIem = {
 const navItem = cn('NavItem');
 
 const NavigationIPanelIem = (props: NavigationIPanelIem) => {
-    const { title, icon, checked, handleClick, children } = props;
-    const itemClass = navItem({ selected: checked });
+    const { title, icon, selected, handleClick, children } = props;
+    const itemClass = navItem({ selected });
 
     return (
         <li className={itemClass} onClick={handleClick}>

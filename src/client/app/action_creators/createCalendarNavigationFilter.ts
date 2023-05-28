@@ -1,6 +1,6 @@
-import { getDateFromDateTime } from '../../../../common/utils/dateTime/getDateFromDateTime.ts';
+import { getDateFromDateTime } from '../../../common/utils/dateTime/getDateFromDateTime.ts';
 
-export function getNavigationFilterWithCalendarDate(date: Date): CalendarNavigationFilter {
+export function createCalendarNavigationFilter(date: Date): CalendarNavigationFilter {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
 
     return {
