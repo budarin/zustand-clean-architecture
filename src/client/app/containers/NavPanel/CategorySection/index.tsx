@@ -1,17 +1,12 @@
-import React from 'react';
-
-import { useTodoStore } from '../../../domain/store';
+import { getCategoryList } from '../../../selectors/getCategoryList';
 import { navigationFilterTypes } from '../../../domain/navigationFilter';
 
 // components
 import NavigationPanelItemContainer from '../PanelItem';
 import CategoryHeadersContainer from '../CategoryHeader';
 
-// selectors
-const getCategoryIds = (state: TodosState) => state.categories.ids;
-
 function CategorySectionContainer() {
-    const categoryIds = useTodoStore(getCategoryIds);
+    const categoryIds = getCategoryList();
 
     return (
         <li>

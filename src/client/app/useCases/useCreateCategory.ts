@@ -5,7 +5,7 @@ import { useTodoStore } from '../domain/store';
 import { createCategory } from '../../services/api/api';
 import { notifyError } from '../../services/notification';
 import { validateNewCategory } from '../../../common/domain/category/validation';
-import { createCategoryNavFilter } from '../domain/navigationFilter/createCategoryNavFilter';
+import { createCategoryNavFilter } from '../action_creators/createCategoryNavFilter';
 
 type UseCreateCategory = [
     success: boolean,

@@ -1,7 +1,7 @@
-import { shallow } from 'zustand/shallow';
-import React, { FormEventHandler, forwardRef, memo } from 'react';
+import { forwardRef, memo } from 'react';
+import type { FormEventHandler, ForwardedRef } from 'react';
 
-import { useTodoStore } from '../../../domain/store';
+import { getIconCollection } from '../../../selectors/getIconCollection';
 
 // components
 import CreateCategoryForm from '../../../../ui/NavPanel/CreateCategoryForm';
@@ -13,12 +13,11 @@ type CreateCategoryFormContainer = {
     onCreateCategory: FormEventHandler<HTMLFormElement>;
 };
 
-const iconsSelector = (state: TodosState) => Object.values(state.icons.byId);
-
 const CreateCategoryFormContainer = memo(
-    forwardRef(function (props: CreateCategoryFormContainer, ref: React.ForwardedRef<HTMLFormElement | null>) {
+    forwardRef(function (props: CreateCategoryFormContainer, ref: ForwardedRef<HTMLFormElement | null>) {
         const { inProgress, isResetForm, isOpen, onCreateCategory } = props;
-        const icons = useTodoStore(iconsSelector, shallow);
+
+        const icons = getIconCollection();
 
         return (
             <CreateCategoryForm
