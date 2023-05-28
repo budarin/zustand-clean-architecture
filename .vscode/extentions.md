@@ -20,3 +20,4 @@
 -   Mintlify Doc Writer for Python, JavaScript, TypeScript, C+
 -   Color Highlight
 -   GIT Patch
+-   Deopt Explorer https://github.com/microsoft/deoptexplorer-vscode#dexnode
