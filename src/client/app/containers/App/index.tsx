@@ -1,5 +1,6 @@
 import { useMediaQuery } from 'usehooks-ts';
 import { useCallback, useEffect, useState } from 'react';
+import { getNavigationFilter } from '../../selectors/getNavigationFilter.ts';
 
 // components
 import App from '../../../ui/App/index.tsx';
@@ -7,7 +8,6 @@ import NavigationPanelContainer from '../NavPanel/index.tsx';
 import TodoListViewContainer from '../TodoList/ListView/index.tsx';
 
 import 'react-toastify/dist/ReactToastify.css';
-import { getNavigationFilter } from '../../selectors/getNavigationFilter.ts';
 
 let showNavePaneAtStart = true;
 
