@@ -1,8 +1,6 @@
 import { useMediaQuery } from 'usehooks-ts';
 import { useCallback, useEffect, useState } from 'react';
 
-import { getNavigationFilter } from '../../selectors/getNavigationFilter.ts';
-
 // components
 import App from '../../../ui/App/index.tsx';
 import NavigationPanelContainer from '../NavPanel/index.tsx';
@@ -17,8 +15,6 @@ if (window) {
 }
 
 function AppContainer() {
-    const { key } = getNavigationFilter();
-
     const matches = useMediaQuery('(max-width: 640px)');
     const [isNavPanelOpen, setNavPaneOpen] = useState(showNavePaneAtStart);
 
@@ -36,7 +32,7 @@ function AppContainer() {
         return () => {
             mounted = false;
         };
-    }, [key, matches]);
+    }, [matches]);
 
     useEffect(() => {
         let mounted = true;
@@ -60,11 +56,11 @@ function AppContainer() {
 
     return (
         <App
-            isNavPanelOpen={isNavPanelOpen}
             isSmallScreen={matches}
+            isNavPanelOpen={isNavPanelOpen}
             toggleNavPane={onToggleNavPan}
             navigationPanel={<NavigationPanelContainer isOpen={isNavPanelOpen} />}
-            todos={<TodoListViewContainer isOpen={!(matches && isNavPanelOpen)} />}
+            todoListView={<TodoListViewContainer isOpen={!(matches && isNavPanelOpen)} />}
         />
     );
 }

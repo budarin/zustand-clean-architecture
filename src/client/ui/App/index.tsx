@@ -10,11 +10,11 @@ type App = {
     isSmallScreen: boolean;
     toggleNavPane: () => void;
     navigationPanel: JSX.Element;
-    todos: JSX.Element;
+    todoListView: JSX.Element;
 };
 
 function App(props: App) {
-    const { isNavPanelOpen, isSmallScreen, toggleNavPane, navigationPanel, todos } = props;
+    const { isNavPanelOpen, isSmallScreen, toggleNavPane, navigationPanel, todoListView } = props;
 
     return (
         <main className="App">
@@ -27,7 +27,7 @@ function App(props: App) {
 
             <div className="App-Container">
                 {navigationPanel}
-                {todos}
+                {todoListView}
             </div>
         </main>
     );
