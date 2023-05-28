@@ -5,7 +5,7 @@ import { areDatesEqual } from './utils/areDatesEqual.ts';
 import { getNewCalendarState } from './utils/getNewCalendarState.tsx';
 import { setNavigationFilter } from '../../app/useCases/setNavigationFilter.ts';
 import { areParsedDatesEqualByMonthAndYear } from './utils/areParsedDatesEqualByMonthAndYear.tsx';
-import { getNavigationFilterWithCalendarDate } from '../../app/domain/navigationFilter/getNavigationFilterWithCalendarDate.ts';
+import { createCalendarNavigationFilter } from '../../app/action_creators/createCalendarNavigationFilter.ts';
 
 // components
 import CalendarBody from './CalendarBody/index.tsx';
@@ -74,7 +74,7 @@ const Calendar = memo(function (props: Calendar) {
     }, [year, month]);
 
     const setToday = useCallback(() => {
-        setNavigationFilter(getNavigationFilterWithCalendarDate(todayDate));
+        setNavigationFilter(createCalendarNavigationFilter(todayDate));
         setState(getNewCalendarState(todayDate));
     }, []);
 

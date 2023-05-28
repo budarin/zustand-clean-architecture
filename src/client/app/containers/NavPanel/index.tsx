@@ -1,5 +1,3 @@
-import React from 'react';
-
 // components
 import NavigationPanel from '../../../ui/NavPanel';
 import FiltersSectionContainer from './FiltersSection';

@@ -13,7 +13,7 @@ import { validateCategoryEntity } from './category/validateCategoryEntity.ts';
 import { getOnlyDateTimestamp } from '../../../common/utils/dateTime/getOnlyDateTimestamp.ts';
 
 import { inboxKey, overdueKey, recycleBinKey } from './navigationFilter/index.ts';
-import { getNavigationFilterWithCalendarDate } from './navigationFilter/getNavigationFilterWithCalendarDate.ts';
+import { createCalendarNavigationFilter } from '../action_creators/createCalendarNavigationFilter.ts';
 
 export type Actions = {
     // Icon
@@ -68,7 +68,7 @@ export const useTodoStore = create<TodosState & Actions>()(
             },
         },
 
-        navigationFilter: getNavigationFilterWithCalendarDate(getTodayDate()),
+        navigationFilter: createCalendarNavigationFilter(getTodayDate()),
 
         // Icon
         _addIcon: (icon: UnknownObject) => {

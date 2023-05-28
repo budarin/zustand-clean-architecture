@@ -3,24 +3,11 @@ import { FormEventHandler, MouseEventHandler, memo, useCallback, useEffect, useR
 
 import { logger } from '../../../../services/logger';
 import { useCreateCategory } from '../../../useCases/useCreateCategory';
-import { isString } from '../../../../../common/utils/validation/isString';
+import { isNotificationElement } from './isNotificationElement';
 
 // components
 import CreateCategoryFormContainer from '../CreateCategoryForm';
 import CategoryHeader from '../../../../ui/NavPanel/CategoryHeader';
-
-function isNotificationElement(el: HTMLElement): boolean {
-    let parent = el.parentElement;
-
-    while (parent) {
-        if (isString(parent?.className) && parent?.className.startsWith('Toastify')) {
-            return true;
-        }
-        parent = parent.parentElement;
-    }
-
-    return false;
-}
 
 let timer: NodeJS.Timeout;
 
