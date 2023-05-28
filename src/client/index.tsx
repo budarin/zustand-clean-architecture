@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { logger } from './services/logger';
+import { cleanHtml } from './cleanHtml.tsx';
 import { runTask } from '../common/utils/runTask.ts';
 import { getTodoStore } from './services/api/api.ts';
 import { initStore } from './app/domain/initStore.tsx';
@@ -32,21 +33,13 @@ if ('serviceWorker' in navigator) {
 }
 
 function InitApp() {
-    // очищаем html и localStorage
-    if (window.scriptLoadError) {
-        window.removeEventListener('error', window.scriptLoadError);
-        window.scriptLoadError = undefined;
-    }
-    localStorage.removeItem('reloadOnError');
-    document.getElementById('initialScript')?.remove();
+    cleanHtml();
 
-    // загружаем данные
     getTodoStore()
         .then((data) => {
             initStore(data);
 
             const checkOverduedTodosTask = runTask(checkOverduedTodos, ONE_MINUTE);
-
             window.addEventListener('beforeunload', () => {
                 checkOverduedTodosTask.stop();
             });

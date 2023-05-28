@@ -4,6 +4,9 @@ import { TWO_MINUTES } from '../../../common/utils/dateTime/consts.ts';
 import { joyfullyGilling } from '../../services/notification/index.ts';
 import { createCalendarNavigationFilter } from '../action_creators/createCalendarNavigationFilter.ts';
 
+// Внимание !!
+// Можно использовать в обработчиках событий в React или вне его
+
 export function checkOverduedTodos() {
     const today = new Date();
     const now = today.valueOf();
