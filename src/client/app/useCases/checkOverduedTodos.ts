@@ -18,15 +18,13 @@ export function checkOverduedTodos() {
 
             if (isOverdue) {
                 if (Math.abs(diff) < TWO_MINUTES) {
+                    setNavigationFilter(getNavigationFilterWithCalendarDate(today));
+                    _addToOverduedTodos(todo.todo_id);
+
                     joyfullyGilling(`lalala: ${todo.todo}`, {
                         toastId: 'due_date:' + todo.todo,
-                        onClose: () => {
-                            setNavigationFilter(getNavigationFilterWithCalendarDate(today));
-                        },
                     });
                 }
-
-                _addToOverduedTodos(todo.todo_id);
             }
         }
     });
