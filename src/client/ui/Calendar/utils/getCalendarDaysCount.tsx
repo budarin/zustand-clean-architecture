@@ -1,5 +1,6 @@
 import { getDatesDiffInDays } from '../../../../common/utils/dateTime/getDatesDiffInDays.ts';
 
 export function getCalendarDaysCount(date1: Date, date2: Date): number {
-    return getDatesDiffInDays(date1, date2);
+    // includs date1 abd date2
+    return getDatesDiffInDays(date1, date2) + 1;
 }
