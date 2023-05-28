@@ -9,7 +9,6 @@ const CalendarDayContainer = function (props: CalendarDayContainerType) {
 
     const navFilter = getNavigationFilter();
     const todosCount = getTodosCountByTimestamp(value);
-
     const selected = navFilter.type === navigationFilterTypes.calendar && value === navFilter.key;
 
     return (
