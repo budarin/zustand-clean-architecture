@@ -7,6 +7,7 @@ import NavigationPanelContainer from '../NavPanel/index.tsx';
 import TodoListViewContainer from '../TodoList/ListView/index.tsx';
 
 import 'react-toastify/dist/ReactToastify.css';
+import { getNavigationFilter } from '../../selectors/getNavigationFilter.ts';
 
 let showNavePaneAtStart = true;
 
@@ -15,9 +16,12 @@ if (window) {
 }
 
 function AppContainer() {
+    const { key } = getNavigationFilter();
     const matches = useMediaQuery('(max-width: 640px)');
     const [isNavPanelOpen, setNavPaneOpen] = useState(showNavePaneAtStart);
 
+    // в мобильном view при переключении navFilter
+    // переключаемся на TodoView
     useEffect(() => {
         let mounted = true;
 
@@ -32,7 +36,7 @@ function AppContainer() {
         return () => {
             mounted = false;
         };
-    }, [matches]);
+    }, [key, matches]);
 
     useEffect(() => {
         let mounted = true;
