@@ -1,5 +1,4 @@
-import { navigationFilterTypes } from '../../../domain/navigationFilter/index.ts';
-import { getTodoCountByCategory } from '../../../selectors/getTodoCountByCategory.ts';
+import { getTodoCountForNavPanelItem } from '../../../selectors/getTodoCountForNavPanelItem.ts';
 
 // components
 import Badge from '../../../../ui/NavPanel/Badge/index.tsx';
@@ -12,8 +11,7 @@ type TodosCountBadgeContainer = {
 function TodosCountBadgeContainer(props: TodosCountBadgeContainer): JSX.Element {
     const { id, navigationType } = props;
 
-    const isCategory = navigationFilterTypes.category === navigationType;
-    const count = getTodoCountByCategory(id, isCategory);
+    const count = getTodoCountForNavPanelItem(id, navigationType);
 
     return <>{count ? <Badge count={count} /> : null}</>;
 }
