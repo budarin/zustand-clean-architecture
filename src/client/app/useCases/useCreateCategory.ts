@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { logger } from '../../services/logger';
 import { useTodoStore } from '../domain/store';
@@ -10,7 +10,7 @@ import { createCategoryNavFilter } from '../action_creators/createCategoryNavFil
 type UseCreateCategory = [
     success: boolean,
     inProgress: boolean,
-    createTodo: Dispatch<SetStateAction<NewCategory | undefined>>,
+    createTodo: React.Dispatch<React.SetStateAction<NewCategory | undefined>>,
 ];
 
 export function useCreateCategory(): UseCreateCategory {

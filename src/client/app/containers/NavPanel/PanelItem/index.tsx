@@ -1,4 +1,4 @@
-import { type MouseEventHandler, memo, useCallback, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 
 import { type IconsByNameKey, iconsByName } from '../../iconsByName.ts';
 import { setNavigationFilter } from '../../../useCases/setNavigationFilter.ts';
@@ -29,7 +29,7 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainer):
         setExpanded((state) => !state);
     }, []);
 
-    const handleClick = useCallback<MouseEventHandler<HTMLLIElement>>(
+    const handleClick = useCallback<React.MouseEventHandler<HTMLLIElement>>(
         (event) => {
             const liElement = event.currentTarget as HTMLLIElement;
             const tagName = (event.target as HTMLElement).tagName;

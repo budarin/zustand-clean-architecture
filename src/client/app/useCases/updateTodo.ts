@@ -1,6 +1,6 @@
 import { useTodoStore } from '../domain/store';
-import { delay } from '../../../common/utils/promises/delay';
 import { notifyError } from '../../services/notification';
+import { delay } from '../../../common/utils/promises/delay';
 
 const updatingTodos = new Set();
 

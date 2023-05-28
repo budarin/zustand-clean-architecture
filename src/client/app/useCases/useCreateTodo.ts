@@ -1,10 +1,10 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useTodoStore } from '../domain/store';
 import { notifyError } from '../../services/notification';
 import { delay } from '../../../common/utils/promises/delay';
 
-type UseCreateTodo = [inProgress: boolean, createTodo: Dispatch<SetStateAction<Todo | undefined>>];
+type UseCreateTodo = [inProgress: boolean, createTodo: React.Dispatch<React.SetStateAction<Todo | undefined>>];
 
 export function useUCreateTodo(): UseCreateTodo {
     const [todo, setTodo] = useState<Todo>();

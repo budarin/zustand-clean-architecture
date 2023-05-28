@@ -1,3 +1,4 @@
+import { shallow } from 'zustand/shallow';
 import { useTodoStore } from '../domain/store';
 import { navigationFilterTypes } from '../domain/navigationFilter';
 
@@ -7,4 +8,4 @@ const selector = (state: TodosState) => {
     }
 };
 
-export const getCalendarSelectedDate = () => useTodoStore(selector);
+export const getCalendarSelectedDate = () => useTodoStore(selector, shallow);

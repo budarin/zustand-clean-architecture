@@ -1,14 +1,10 @@
 import { useCallback } from 'react';
 import { shallow } from 'zustand/shallow';
 
-import {
-    type NavigationFiltersKey,
-    navigationFilterIcons,
-    navigationFilterTypes,
-    navigationFilters,
-} from '../domain/navigationFilter';
-
 import { useTodoStore } from '../domain/store';
+import { navigationFilterIcons, navigationFilterTypes, navigationFilters } from '../domain/navigationFilter';
+
+import type { NavigationFiltersKey } from '../domain/navigationFilter';
 
 const getSelector = () =>
     useCallback((state: TodosState) => {
