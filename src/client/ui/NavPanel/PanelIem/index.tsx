@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, ReactNode } from 'react';
+import React from 'react';
 
 import { cn } from '../../classNames.ts';
 
@@ -8,8 +8,8 @@ type NavigationIPanelIem = {
     title: string;
     icon: string;
     selected: boolean;
-    handleClick: MouseEventHandler<HTMLLIElement>;
-    children: ReactNode;
+    handleClick: React.MouseEventHandler<HTMLLIElement>;
+    children: React.ReactNode;
 };
 
 const navItem = cn('NavItem');
