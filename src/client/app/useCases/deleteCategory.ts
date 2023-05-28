@@ -14,6 +14,7 @@ export async function deleteCategory(id: Category['category_id']) {
 
     try {
         store._deleteCategory(id);
+
         await delay(3000);
         notifyError(`Ошибка: не удалось удалить категорию "${value.category}" - восстанавливаем`, { autoClose: 2000 });
 
