@@ -8,6 +8,7 @@
     background-color: var(--primaryLightColor);
     border-bottom: 1px solid var(--primaryColor);
     gap: 8px;
+    height: var(--x8);
 }
 
 .Calendar-Header_selected {
@@ -54,6 +55,10 @@
 }
 
 @media (pointer: coarse) {
+    .Calendar-Header {
+        height: var(--x9);
+    }
+
     .Calendar-PrevMonth,
     .Calendar-NextMonth {
         height: var(--x8);
