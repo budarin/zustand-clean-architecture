@@ -1,4 +1,4 @@
-.Calendar-Day {
+.CalendarDay {
     position: relative;
     display: flex;
     align-items: flex-end;
@@ -14,7 +14,7 @@
     cursor: pointer;
 }
 
-.Calendar-Day::after {
+.CalendarDay::after {
     display: block;
     position: absolute;
 
@@ -32,50 +32,50 @@
     color: hsl(214deg 100% 50%);
 }
 
-.Calendar-Day_weekend {
+.CalendarDay_weekend {
     color: var(--accentColor);
 }
 
-.Calendar-Day_other_month {
+.CalendarDay_other_month {
     opacity: 0.3;
 }
 
-.Calendar-Day_today {
+.CalendarDay_today {
     border: 2px solid var(--accentColor);
     border-radius: var(--x);
 }
-.Calendar-Day_selected {
+.CalendarDay_selected {
     background-color: var(--secondaryColor);
 }
 
 @media (hover: hover) {
-    .Calendar-Day:hover {
+    .CalendarDay:hover {
         background-color: var(--itemHoverColor);
     }
-    .Calendar-Day_selected:hover {
+    .CalendarDay_selected:hover {
         background-color: var(--secondaryColor);
     }
 }
 
 @media (pointer: coarse) {
-    .Calendar-Day {
+    .CalendarDay {
         min-height: var(--x10);
         min-width: var(--x10);
         padding-bottom: 10%;
     }
 
-    .Calendar-Day::after {
+    .CalendarDay::after {
         top: 15%;
         width: 80%;
     }
 }
 
 @media only screen and (min-width: 641px) {
-    .Calendar-Day {
+    .CalendarDay {
         padding-left: 15%;
     }
 
-    .Calendar-Day::after {
+    .CalendarDay::after {
         width: 90%;
     }
 }

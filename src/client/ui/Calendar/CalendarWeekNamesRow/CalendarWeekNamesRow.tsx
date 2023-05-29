@@ -6,11 +6,11 @@ import './index.css';
 const weekDayNames = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
 const weekEnds = ['сб', 'вс'];
 
-const weekNameCN = cn('Calendar-WeekName');
+const weekNameCN = cn('CalendarWeekNames-WeekName');
 
 export const CalendarWeekNamesRow = memo(function () {
     return (
-        <div className="Calendar-WeekNames">
+        <div className="CalendarWeekNames">
             {weekDayNames.map((name) => {
                 return (
                     <span
