@@ -1,10 +1,10 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import * as logger from './services/Logger/index.ts';
 import { cleanHtml } from './cleanHtml.tsx';
+import * as API from './services/API/index.ts';
+import * as logger from './services/Logger/index.ts';
 import { runTask } from '../common/utils/runTask.ts';
-import { getTodoStore } from './services/Api/api.ts';
 import { initStore } from './app/domain/initStore.tsx';
 import { createRootElement } from './createRootElement.tsx';
 import { ONE_MINUTE } from '../common/utils/dateTime/consts.ts';
@@ -36,13 +36,14 @@ if ('serviceWorker' in navigator) {
 function InitApp() {
     cleanHtml();
 
-    getTodoStore()
+    API.getTodoStore()
         .then((data) => {
             initStore(data);
 
             const checkOverduedTodosTask = runTask(() => {
                 checkOverduedTodos(joyfullyGilling);
             }, ONE_MINUTE);
+
             window.addEventListener('beforeunload', () => {
                 checkOverduedTodosTask.stop();
             });
