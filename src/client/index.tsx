@@ -8,7 +8,7 @@ import { getTodoStore } from './services/Api/api.ts';
 import { initStore } from './app/domain/initStore.tsx';
 import { createRootElement } from './createRootElement.tsx';
 import { ONE_MINUTE } from '../common/utils/dateTime/consts.ts';
-import { joyfullyGilling } from './services/Nnotification/index.ts';
+import { joyfullyGilling } from './services/Notification/index.ts';
 import { checkOverduedTodos } from './app/useCases/checkOverduedTodos.ts';
 
 // components

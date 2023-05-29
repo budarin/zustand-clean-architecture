@@ -1,4 +1,4 @@
-import { type NotificationMethod } from '../../services/Nnotification/index.ts';
+import { type NotificationMethod } from '../../services/Notification/index.ts';
 
 import { useTodoStore } from '../domain/store';
 import { TodoStoreError } from '../domain/TodoStoreError';

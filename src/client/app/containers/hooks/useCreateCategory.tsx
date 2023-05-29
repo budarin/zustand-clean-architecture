@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import * as api from '../../../services/Api/api.ts';
 import * as logger from '../../../services/Logger/index.ts';
 import { createCategory } from '../../useCases/createCategory.ts';
-import { notifyError } from '../../../services/Nnotification/index.ts';
+import { notifyError } from '../../../services/Notification/index.ts';
 
 type UseCreateCategory = [
     success: boolean,
