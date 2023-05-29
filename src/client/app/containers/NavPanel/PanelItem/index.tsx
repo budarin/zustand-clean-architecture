@@ -1,16 +1,14 @@
 import { memo, useCallback, useState } from 'react';
 
 import { type IconsByNameKey, iconsByName } from '../../iconsByName.ts';
-import { setNavigationFilter } from '../../../useCases/setNavigationFilter.ts';
+import { setSelectedFilter } from '../../../useCases/setSelectedFilter.ts';
+import { setSelectedCategory } from '../../../useCases/setSelectedCategory.ts';
 import { getNavPanelItemProps } from '../../../selectors/getNavPanelItemProps.ts';
-import { createFilterNavFilter } from '../../../action_creators/createFilterNavFilter.ts';
-import { createCategoryNavFilter } from '../../../action_creators/createCategoryNavFilter.ts';
 
 // components
 import TodosCountBadgeContainer from '../CountBadge/index.tsx';
-import ExpandButton from '../../../../ui/ExpandButton/index.tsx';
 import NavigationIPanelIem from '../../../../ui/NavPanel/PanelIem/index.tsx';
-import DottedMenuButton from '../../../../ui/MenuButton/index.tsx';
+import DottedMenuButton from '../../../../ui/DottedMenuButton/index.tsx';
 
 type NavigationPanelItemContainer = {
     id: NavigationFilterKey;
@@ -40,11 +38,9 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainer):
 
                 event.preventDefault();
 
-                const filter = isCategory
-                    ? createCategoryNavFilter(Number(id), containerTitle)
-                    : createFilterNavFilter(id as string, containerTitle);
-
-                setNavigationFilter(filter);
+                isCategory
+                    ? setSelectedCategory(Number(id), containerTitle)
+                    : setSelectedFilter(id as string, containerTitle);
             }
         },
         [id, navigationType, isCategory],
