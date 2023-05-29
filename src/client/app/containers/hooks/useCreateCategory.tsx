@@ -26,7 +26,7 @@ export function useCreateCategory(): UseCreateCategory {
             setInProgress(true);
 
             try {
-                createCategory(category, notifyError, Logger, API.createCategory);
+                await createCategory(category, notifyError, Logger, API.createCategory);
 
                 setSuccess(true);
             } catch (error) {
