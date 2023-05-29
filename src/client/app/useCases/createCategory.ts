@@ -9,14 +9,14 @@ import { createCategoryNavFilter } from '../action_creators/createCategoryNavFil
 export async function createCategory(
     category: NewCategory,
     notifyError: NotificationMethod,
-    logger: Logger,
-    createCategory: API['createCategory'],
+    logError: Logger['error'],
+    api_createCategory: API['createCategory'],
 ) {
     const store = useTodoStore.getState();
     const { entity, error } = validateNewCategory(category);
 
     if (entity) {
-        await createCategory(entity);
+        await api_createCategory(entity);
 
         const numbers = Object.keys(store.categories.byId).map(Number);
         const newCategoryId = Math.max(...numbers) + 1;
@@ -31,6 +31,6 @@ export async function createCategory(
             toastId: 'create_todo_error' + category.category,
         });
 
-        logger.error(error);
+        logError(error);
     }
 }
