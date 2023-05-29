@@ -1,4 +1,4 @@
-import { log } from '../Aapi/api';
+import { log } from '../Api/api';
 import { isString } from '../../../common/utils/validation/isString';
 
 type LogMethods = 'info' | 'warn' | 'error';
