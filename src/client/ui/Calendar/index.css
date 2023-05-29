@@ -1,6 +1,7 @@
 .Calendar {
     border-left: 1px solid var(--borderColor);
     border-right: 1px solid var(--borderColor);
+    padding-bottom: var(--x);
 }
 
 .Calendar-Button {
