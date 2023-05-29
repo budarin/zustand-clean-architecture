@@ -1,6 +1,6 @@
-import { toast } from 'react-toastify';
 import { type Logger } from '../../services/logger';
 import { type API } from '../../services/api/api.ts';
+import { type NotificationMethod } from '../../services/notification/index.ts';
 
 import { useTodoStore } from '../domain/store';
 import { validateNewCategory } from '../../../common/domain/category/validation';
@@ -8,7 +8,7 @@ import { createCategoryNavFilter } from '../action_creators/createCategoryNavFil
 
 export async function createCategory(
     category: NewCategory,
-    notifyError: typeof toast.error,
+    notifyError: NotificationMethod,
     logger: Logger,
     createCategory: API['createCategory'],
 ) {

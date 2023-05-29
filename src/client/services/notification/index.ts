@@ -1,4 +1,4 @@
-import { toast } from 'react-toastify';
+import Toastify, { toast } from 'react-toastify';
 
 import sound from '../../../../assets/error.mp3';
 import { delay } from '../../../common/utils/promises/delay';
@@ -61,3 +61,8 @@ export const joyfullyGilling: typeof toast.warning = (content, options?) => {
         onOpen: onJoyfullyOpen,
     });
 };
+
+export type NotificationMethod = <TData>(
+    content: Toastify.ToastContent<TData>,
+    options?: Toastify.ToastOptions<{}> | undefined,
+) => Id;
