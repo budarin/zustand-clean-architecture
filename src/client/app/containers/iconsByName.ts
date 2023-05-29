@@ -18,6 +18,7 @@ import note from '../../../../assets/note.png';
 import refresh from '../../../../assets/refresh.png';
 import trash from '../../../../assets/trash.gif';
 import overdue from '../../../../assets/overdue.svg';
+import dottedMenu from '../../../../assets/dotted-menu.svg';
 
 export const iconsByName = {
     'alert.png': alert as string,
@@ -40,6 +41,7 @@ export const iconsByName = {
     'refresh.png': refresh as string,
     'trash.gif': trash as string,
     'overdue.svg': overdue as string,
+    'dotted-menu.svg': dottedMenu as string,
 };
 
 export type IconsByNameKey = keyof typeof iconsByName;
