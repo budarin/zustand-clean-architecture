@@ -1,7 +1,6 @@
 .AppHeader {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid var(--primaryColor);
 }
 
 .AppHeader-MenuButton {
@@ -29,10 +28,6 @@
 }
 
 @media only screen and (min-width: 641px) {
-    .AppHeader {
-        border-bottom: none;
-    }
-
     .AppHeader-Icon {
         margin-left: 0;
     }

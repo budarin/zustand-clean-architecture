@@ -101,6 +101,10 @@ body,
     scroll-behavior: smooth;
 }
 
+.App-Container_scrolled {
+    border-top: 1px solid var(--primaryColor);
+}
+
 @media only screen and (min-width: 641px) {
     .App {
         padding: 0 var(--x2);
