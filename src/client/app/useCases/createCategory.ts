@@ -10,7 +10,7 @@ export async function createCategory(
     category: NewCategory,
     notifyError: NotificationMethod,
     logger: Logger,
-    createCategory: API['createCategory'],
+    createCategory: API['CreateCategory'],
 ) {
     const store = useTodoStore.getState();
     const { entity, error } = validateNewCategory(category);

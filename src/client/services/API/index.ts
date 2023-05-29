@@ -81,12 +81,12 @@ export function log(data: UnknownObject) {
 }
 
 export type API = {
-    getTodoStore: typeof getTodoStore;
-    createCategory: typeof createCategory;
-    updateCategory: typeof updateCategory;
-    deleteCategory: typeof deleteCategory;
-    createTodo: typeof createTodo;
-    updateTodo: typeof updateTodo;
-    deleteTodo: typeof deleteTodo;
-    log: typeof log;
+    GetTodoStore: typeof getTodoStore;
+    CreateCategory: typeof createCategory;
+    UpdateCategory: typeof updateCategory;
+    DeleteCategory: typeof deleteCategory;
+    CreateTodo: typeof createTodo;
+    UpdateTodo: typeof updateTodo;
+    DeleteTodo: typeof deleteTodo;
+    Log: typeof log;
 };
