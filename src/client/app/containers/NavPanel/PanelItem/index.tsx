@@ -8,7 +8,7 @@ import { getNavPanelItemProps } from '../../../selectors/getNavPanelItemProps.ts
 // components
 import TodosCountBadgeContainer from '../CountBadge/index.tsx';
 import NavigationIPanelIem from '../../../../ui/NavPanel/PanelIem/index.tsx';
-import DottedMenuButton from '../../../../ui/MenuButton/index.tsx';
+import DottedMenuButton from '../../../../ui/DottedMenuButton/index.tsx';
 
 type NavigationPanelItemContainer = {
     id: NavigationFilterKey;
