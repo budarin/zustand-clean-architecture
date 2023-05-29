@@ -1,3 +1,5 @@
+import { cn } from '../classNames.ts';
+
 import './index.css';
 
 import icon from '../../../../assets/todolist_.svg';
@@ -5,12 +7,19 @@ import icon from '../../../../assets/todolist_.svg';
 // components
 import AppHeader from './AppHeader';
 
+const appContainerCN = cn('App-Container');
+
 type App = {
     isNavPanelOpen: boolean;
     isSmallScreen: boolean;
     toggleNavPane: () => void;
     navigationPanel: JSX.Element;
     todoListView: JSX.Element;
+};
+
+const onScroll = function onScroll(event: React.UIEvent<HTMLDivElement, UIEvent>) {
+    const el = event.target as HTMLElement;
+    el.className = appContainerCN({ scrolled: el.scrollTop > 0 });
 };
 
 function App(props: App) {
@@ -25,7 +34,7 @@ function App(props: App) {
                 toggleNavPane={toggleNavPane}
             />
 
-            <div className="App-Container">
+            <div className="App-Container" onScroll={onScroll}>
                 {navigationPanel}
                 {todoListView}
             </div>
