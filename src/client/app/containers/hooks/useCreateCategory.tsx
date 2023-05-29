@@ -26,6 +26,7 @@ export function useCreateCategory(): UseCreateCategory {
 
             try {
                 createCategory(category);
+                setSuccess(true);
             } catch (error) {
                 notifyError(`Ошибка: ${(error as Error).message}`, {
                     toastId: 'create_todo_error' + category.category,
