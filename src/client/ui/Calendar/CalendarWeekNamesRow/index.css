@@ -6,6 +6,7 @@
     justify-content: space-evenly;
     background-color: var(--primaryLightColor);
     border-bottom: 1px solid var(--primaryColor);
+    height: var(--x4);
 }
 
 .Calendar-WeekName {
