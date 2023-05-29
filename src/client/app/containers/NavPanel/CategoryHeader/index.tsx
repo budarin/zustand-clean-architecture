@@ -1,7 +1,7 @@
 import { useOnClickOutside } from 'usehooks-ts';
 import { FormEventHandler, MouseEventHandler, memo, useCallback, useEffect, useRef, useState } from 'react';
 
-import { logger } from '../../../../services/logger';
+import * as logger from '../../../../services/logger';
 import { isNotificationElement } from './isNotificationElement';
 import { useCreateCategory } from '../../hooks/useCreateCategory.tsx';
 

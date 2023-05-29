@@ -14,20 +14,20 @@ function logObject(data: string | UnknownObject, type: LogMethods) {
     log(logObj);
 }
 
-function info(data: string | UnknownObject) {
+export function info(data: string | UnknownObject) {
     logObject(data, 'info');
 }
 
-function warn(data: string | UnknownObject) {
+export function warn(data: string | UnknownObject) {
     logObject(data, 'warn');
 }
 
-function error(data: string | UnknownObject) {
+export function error(data: string | UnknownObject) {
     logObject(data, 'error');
 }
 
-export const logger = {
-    info,
-    warn,
-    error,
+export type Logger = {
+    info: typeof info;
+    warn: typeof warn;
+    error: typeof error;
 };

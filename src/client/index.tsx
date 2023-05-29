@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import { logger } from './services/logger';
+import * as logger from './services/logger';
 import { cleanHtml } from './cleanHtml.tsx';
 import { runTask } from '../common/utils/runTask.ts';
 import { getTodoStore } from './services/api/api.ts';
@@ -15,6 +15,7 @@ import { ToastContainer } from 'react-toastify';
 import AppContainer from './app/containers/App/index.tsx';
 
 import './importSiteIcons.ts';
+import { joyfullyGilling } from './services/notification/index.ts';
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then((registration) => {
@@ -39,7 +40,9 @@ function InitApp() {
         .then((data) => {
             initStore(data);
 
-            const checkOverduedTodosTask = runTask(checkOverduedTodos, ONE_MINUTE);
+            const checkOverduedTodosTask = runTask(() => {
+                checkOverduedTodos(joyfullyGilling);
+            }, ONE_MINUTE);
             window.addEventListener('beforeunload', () => {
                 checkOverduedTodosTask.stop();
             });

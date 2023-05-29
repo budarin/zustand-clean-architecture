@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import { logger } from '../../../services/logger/index.ts';
+import * as api from '../../../services/api/api.ts';
+import * as logger from '../../../services/logger/index.ts';
 import { createCategory } from '../../useCases/createCategory.ts';
 import { notifyError } from '../../../services/notification/index.ts';
 
@@ -25,7 +26,8 @@ export function useCreateCategory(): UseCreateCategory {
             setInProgress(true);
 
             try {
-                createCategory(category);
+                createCategory(category, notifyError, logger, api.createCategory);
+
                 setSuccess(true);
             } catch (error) {
                 notifyError(`Ошибка: ${(error as Error).message}`, {
