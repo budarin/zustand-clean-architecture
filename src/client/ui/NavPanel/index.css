@@ -21,12 +21,12 @@
 
 @media only screen and (min-width: 641px) {
     .NavPanel {
-        width: 256px;
+        width: 284px;
     }
 
     @media (pointer: coarse) {
         .NavPanel {
-            width: 294px;
+            width: 308px;
         }
     }
 }
