@@ -10,6 +10,7 @@ import { createCategoryNavFilter } from '../../../action_creators/createCategory
 import TodosCountBadgeContainer from '../CountBadge/index.tsx';
 import ExpandButton from '../../../../ui/ExpandButton/index.tsx';
 import NavigationIPanelIem from '../../../../ui/NavPanel/PanelIem/index.tsx';
+import DottedMenuButton from '../../../../ui/MenuButton/index.tsx';
 
 type NavigationPanelItemContainer = {
     id: NavigationFilterKey;
@@ -52,11 +53,7 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainer):
     return (
         <NavigationIPanelIem title={title} icon={iconName} selected={selected} handleClick={handleClick}>
             {selected && isCategory ? (
-                <ExpandButton
-                    isToggled={expanded}
-                    title={`${expanded ? 'Свернуть' : 'Показать'} меню`}
-                    onClick={handleExpan}
-                />
+                <DottedMenuButton title={'Отобразить меню'} onClick={handleExpan} />
             ) : (
                 <TodosCountBadgeContainer id={id} navigationType={navigationType} />
             )}

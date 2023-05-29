@@ -1,0 +1,15 @@
+.DottedMenuButton {
+    height: var(--x9);
+    padding: var(--touchAreaPadding, 8px);
+    margin: 0;
+    border: 0;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+@media (pointer: coarse) {
+    .DottedMenuButton {
+        height: var(--x11);
+        width: var(--x11);
+    }
+}
