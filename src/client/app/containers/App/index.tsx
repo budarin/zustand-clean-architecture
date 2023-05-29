@@ -9,6 +9,7 @@ import NavigationPanelContainer from '../NavPanel/index.tsx';
 import TodoListViewContainer from '../TodoList/ListView/index.tsx';
 
 import 'react-toastify/dist/ReactToastify.css';
+import './index.css';
 
 let showNavePaneAtStart = true;
 
