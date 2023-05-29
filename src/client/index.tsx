@@ -8,6 +8,7 @@ import { getTodoStore } from './services/api/api.ts';
 import { initStore } from './app/domain/initStore.tsx';
 import { createRootElement } from './createRootElement.tsx';
 import { ONE_MINUTE } from '../common/utils/dateTime/consts.ts';
+import { joyfullyGilling } from './services/notification/index.ts';
 import { checkOverduedTodos } from './app/useCases/checkOverduedTodos.ts';
 
 // components
@@ -15,7 +16,6 @@ import { ToastContainer } from 'react-toastify';
 import AppContainer from './app/containers/App/index.tsx';
 
 import './importSiteIcons.ts';
-import { joyfullyGilling } from './services/notification/index.ts';
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then((registration) => {
