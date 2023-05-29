@@ -30,15 +30,11 @@
 
 .Calendar-PrevMonth,
 .Calendar-NextMonth {
+    background-color: transparent;
+    border: 0;
     font-weight: 600;
     height: var(--x6);
     width: var(--x8);
-}
-
-.Calendar-Header_selected .Calendar-PrevMonth,
-.Calendar-Header_selected .Calendar-NextMonth {
-    background-color: transparent;
-    border: 0;
 }
 
 .Calendar-TodayButtonContainer {
