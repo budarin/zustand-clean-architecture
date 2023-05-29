@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import * as API from '../../../services/Api/api.ts';
+import * as API from '../../../services/API/index.ts';
 import * as Logger from '../../../services/Logger/index.ts';
 import { createCategory } from '../../useCases/createCategory.ts';
 import { notifyError } from '../../../services/Notification/index.ts';
