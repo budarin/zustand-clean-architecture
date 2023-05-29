@@ -1,14 +1,14 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import * as logger from './services/Llogger/index.ts';
+import * as logger from './services/Logger/index.ts';
 import { cleanHtml } from './cleanHtml.tsx';
 import { runTask } from '../common/utils/runTask.ts';
 import { getTodoStore } from './services/Api/api.ts';
 import { initStore } from './app/domain/initStore.tsx';
 import { createRootElement } from './createRootElement.tsx';
 import { ONE_MINUTE } from '../common/utils/dateTime/consts.ts';
-import { joyfullyGilling } from './services/notification/index.ts';
+import { joyfullyGilling } from './services/Nnotification/index.ts';
 import { checkOverduedTodos } from './app/useCases/checkOverduedTodos.ts';
 
 // components

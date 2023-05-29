@@ -1,6 +1,6 @@
-import { type Logger } from '../../services/Llogger/index.ts';
+import { type Logger } from '../../services/Logger/index.ts';
 import { type API } from '../../services/Api/api.ts';
-import { type NotificationMethod } from '../../services/notification/index.ts';
+import { type NotificationMethod } from '../../services/Nnotification/index.ts';
 
 import { useTodoStore } from '../domain/store';
 import { validateNewCategory } from '../../../common/domain/category/validation';

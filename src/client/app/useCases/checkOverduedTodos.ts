@@ -1,4 +1,4 @@
-import { type NotificationMethod } from '../../services/notification/index.ts';
+import { type NotificationMethod } from '../../services/Nnotification/index.ts';
 
 import { useTodoStore } from '../domain/store.tsx';
 import { overdueKey } from '../domain/navigationFilter/index.ts';
