@@ -4,19 +4,9 @@
 }
 
 .Calendar-Button {
-    background-color: var(--primaryLightColor);
-    border: 1px solid var(--primaryColor);
     cursor: pointer;
 }
 
 .Calendar-Button:active:not(:disabled) {
     border: 1px solid var(--primaryDarkColor);
-}
-
-.Calendar-Body {
-    display: grid;
-    grid-gap: 1px;
-    grid-template-columns: repeat(7, 1fr);
-    font-size: 0.9rem;
-    background-color: var(--primaryLightColor);
 }

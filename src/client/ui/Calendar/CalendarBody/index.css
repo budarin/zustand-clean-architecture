@@ -1,0 +1,6 @@
+.Calendar-Body {
+    display: grid;
+    grid-gap: 1px;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: var(--primaryLightColor);
+}

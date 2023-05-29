@@ -5,7 +5,6 @@
     flex-direction: row;
     align-items: center;
     border-right: 0;
-    font-size: 0.9rem;
     background-color: var(--primaryLightColor);
     border-bottom: 1px solid var(--primaryColor);
     gap: 8px;
