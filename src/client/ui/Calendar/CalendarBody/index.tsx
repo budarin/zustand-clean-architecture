@@ -8,6 +8,8 @@ import CalendarDay from '../CalendarDay/CalendarDay';
 
 import { type CalendarDayContainerType } from '..';
 
+import './index.css';
+
 type CalendarBody = {
     daysCount: number;
     month: number;
