@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import * as API from '../../../services/API/index.ts';
-import * as Logger from '../../../services/Logger/index.ts';
+import * as api from '../../../services/API/index.ts';
+import * as logger from '../../../services/Logger/index.ts';
 import { createCategory } from '../../useCases/createCategory.ts';
 import { notifyError } from '../../../services/Notification/index.ts';
 
@@ -26,7 +26,7 @@ export function useCreateCategory(): UseCreateCategory {
             setInProgress(true);
 
             try {
-                createCategory(category, notifyError, Logger, API.createCategory);
+                await createCategory(category, notifyError, logger.error, api.createCategory);
 
                 setSuccess(true);
             } catch (error) {
@@ -34,7 +34,7 @@ export function useCreateCategory(): UseCreateCategory {
                     toastId: 'create_todo_error' + category.category,
                 });
 
-                Logger.error((error as Error).message);
+                logger.error((error as Error).message);
             } finally {
                 setInProgress(false);
             }
