@@ -1,4 +1,4 @@
-import { type NotificationMethod } from '../../services/notification/index.ts';
+import { type NotificationMethod } from '../../services/Notification/index.ts';
 
 import { useTodoStore } from '../domain/store';
 import { delay } from '../../../common/utils/promises/delay';
