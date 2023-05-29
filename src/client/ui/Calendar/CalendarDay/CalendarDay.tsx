@@ -6,7 +6,7 @@ import { type CalendarDayType } from '..';
 
 import './index.css';
 
-const currentDayCN = cn('Calendar-Day');
+const currentDayCN = cn('CalendarDay');
 
 const CalendarDay = memo(function (props: CalendarDayType) {
     const { day, value, todosCount, selected, inCurrentMonth, isToday, isWeekend } = props;
