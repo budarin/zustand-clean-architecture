@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import * as API from '../../../services/Api/api.ts';
+import * as API from '../../../services/API/index.ts';
 import * as Logger from '../../../services/Logger/index.ts';
 import { createCategory } from '../../useCases/createCategory.ts';
 import { notifyError } from '../../../services/Notification/index.ts';
@@ -13,8 +13,8 @@ type UseCreateCategory = [
 
 export function useCreateCategory(): UseCreateCategory {
     const [category, setCategory] = useState<NewCategory>();
-    const [inProgress, setInProgress] = useState<boolean>(false);
     const [success, setSuccess] = useState<boolean>(false);
+    const [inProgress, setInProgress] = useState<boolean>(false);
 
     useEffect(() => {
         const doCreate = async () => {

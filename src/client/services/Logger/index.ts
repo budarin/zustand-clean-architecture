@@ -1,4 +1,4 @@
-import { log } from '../Api/api';
+import * as API from '../API/index';
 import { isString } from '../../../common/utils/validation/isString';
 
 type LogMethods = 'info' | 'warn' | 'error';
@@ -11,7 +11,7 @@ function logObject(data: string | UnknownObject, type: LogMethods) {
           }
         : { ...data, type };
 
-    log(logObj);
+    API.log(logObj);
 }
 
 export function info(data: string | UnknownObject) {
