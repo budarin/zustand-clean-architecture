@@ -13,8 +13,8 @@ type UseCreateCategory = [
 
 export function useCreateCategory(): UseCreateCategory {
     const [category, setCategory] = useState<NewCategory>();
-    const [inProgress, setInProgress] = useState<boolean>(false);
     const [success, setSuccess] = useState<boolean>(false);
+    const [inProgress, setInProgress] = useState<boolean>(false);
 
     useEffect(() => {
         const doCreate = async () => {
