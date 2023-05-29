@@ -1,7 +1,7 @@
 import { unstable_batchedUpdates } from 'react-dom';
 
 import { useTodoStore } from './store';
-import { notifyWarning } from '../../services/notification';
+import { notifyWarning } from '../../services/Notification';
 
 export function initStore(data: EntitiesPayload) {
     let hasError = false;
