@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import { useTodoStore } from '../domain/store';
-import { notifyError } from '../../services/notification';
-import { delay } from '../../../common/utils/promises/delay';
+import { createTodo } from '../../useCases/createTodo.ts';
+import { notifyError } from '../../../services/notification/index.ts';
 
 type UseCreateTodo = [inProgress: boolean, createTodo: React.Dispatch<React.SetStateAction<Todo | undefined>>];
 
@@ -18,18 +17,8 @@ export function useUCreateTodo(): UseCreateTodo {
 
             setInProgress(true);
 
-            const store = useTodoStore.getState();
-
             try {
-                // fetch
-                await delay(3000);
-
-                const numbers = Object.keys(store.todos.byId).map(Number);
-
-                const newTodoId = Math.max(...numbers) + 1;
-                todo['todo_id'] = newTodoId;
-
-                store._addTodo(todo);
+                createTodo(todo);
             } catch (error) {
                 notifyError(`Ошибка: ${(error as Error).message}`, {
                     toastId: 'create_todo_error' + todo.todo,
