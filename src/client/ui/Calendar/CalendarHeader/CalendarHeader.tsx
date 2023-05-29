@@ -3,7 +3,7 @@ import { cn } from '../../classNames.ts';
 
 import './index.css';
 
-const headerCN = cn('Calendar-Header');
+const headerCN = cn('CalendarHeader');
 
 type CalendarHeader = {
     selected: boolean;
@@ -21,28 +21,28 @@ export const CalendarHeader = memo(function CalendarHeader(props: CalendarHeader
 
     return (
         <div className={headerSelectedCN}>
-            <div className="Calendar-HeadNav">
+            <div className="CalendarHeader-MonthsNavigation">
                 <button
-                    className="Calendar-PrevMonth Calendar-Button"
+                    className="CalendarHeader-PrevMonth Calendar-Button"
                     onClick={handlePrevMonth}
                     title="Предыдущий месяц"
                 >
                     {'<'}
                 </button>
-                <span className="Calendar-Title" title="Выбранный месяц">
+                <span className="CalendarHeader-Title" title="Выбранный месяц">
                     {title}
                 </span>
                 <button
-                    className="Calendar-NextMonth Calendar-Button"
+                    className="CalendarHeader-NextMonth Calendar-Button"
                     onClick={handleNextMonth}
                     title="Следующий месяц"
                 >
                     {'>'}
                 </button>
             </div>
-            <div className="Calendar-TodayButtonContainer">
+            <div className="CalendarHeader-TodayButtonContainer">
                 <button
-                    className="Calendar-TodayButton"
+                    className="CalendarHeader-TodayButton"
                     onClick={handleToday}
                     disabled={disableTodayButton}
                     title="Перейти к текущему месяцу"

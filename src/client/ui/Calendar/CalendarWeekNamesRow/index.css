@@ -1,4 +1,4 @@
-.Calendar-WeekNames {
+.CalendarWeekNames {
     font-size: 0.8rem;
     line-height: 0.9rem;
     display: flex;
@@ -9,22 +9,22 @@
     height: var(--x4);
 }
 
-.Calendar-WeekName {
+.CalendarWeekNames-WeekName {
     flex: 1;
     text-align: left;
     padding-left: 4%;
 }
 
-.Calendar-WeekName_weekend {
+.CalendarWeekNames-WeekName_weekend {
     color: var(--accentColor);
 }
 
-.Calendar-WeekName + .Calendar-WeekName {
+.CalendarWeekNames-WeekName + .CalendarWeekNames-WeekName {
     border-left: 1px solid var(--primaryColor);
 }
 
 @media only screen and (min-width: 641px) {
-    .Calendar-WeekName {
+    .CalendarWeekNames-WeekName {
         padding-left: 3%;
     }
 }

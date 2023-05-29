@@ -27,7 +27,7 @@ const CalendarBody = memo(function (props: CalendarBody) {
     useKeyDownToClickEvent(calendarBodyRef, ['Enter', 'Space']);
 
     return (
-        <div className="Calendar-Body" onClick={onSelectDate}>
+        <div className="CalendarBody" onClick={onSelectDate}>
             {Array.from({ length: daysCount }, (_, index) => {
                 const date = new Date(startDay.year, startDay.month, startDay.day);
                 date.setDate(startDay.day + index);
