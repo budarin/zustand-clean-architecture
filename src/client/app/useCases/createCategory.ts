@@ -1,16 +1,22 @@
-import { logger } from '../../services/logger';
+import { toast } from 'react-toastify';
+import { type Logger } from '../../services/logger';
+import { type API } from '../../services/api/api.ts';
+
 import { useTodoStore } from '../domain/store';
-import * as api from '../../services/api/api.ts';
-import { notifyError } from '../../services/notification';
 import { validateNewCategory } from '../../../common/domain/category/validation';
 import { createCategoryNavFilter } from '../action_creators/createCategoryNavFilter';
 
-export async function createCategory(category: NewCategory) {
+export async function createCategory(
+    category: NewCategory,
+    notifyError: typeof toast.error,
+    logger: Logger,
+    createCategory: API['createCategory'],
+) {
     const store = useTodoStore.getState();
     const { entity, error } = validateNewCategory(category);
 
     if (entity) {
-        await api.createCategory(entity);
+        await createCategory(entity);
 
         const numbers = Object.keys(store.categories.byId).map(Number);
         const newCategoryId = Math.max(...numbers) + 1;

@@ -2,6 +2,7 @@ import React, { memo, useCallback } from 'react';
 
 import { updateTodo } from '../../../useCases/updateTodo.ts';
 import { getTodoById } from '../../../selectors/getTodoById.ts';
+import { notifyError } from '../../../../services/notification/index.ts';
 import { getStatusByStatusId } from '../../../selectors/getStatusByStatusId.ts';
 
 // components
@@ -19,13 +20,16 @@ const TodoListItemContainer = memo((props: TodoListItemContainer): JSX.Element =
             e.preventDefault();
 
             const isChecked = e.target.checked;
-            updateTodo({
-                todo_id: 3,
-                status_id: 1,
-                todo: String(Math.random()),
-                completed: isChecked,
-                deleted: isChecked,
-            });
+            updateTodo(
+                {
+                    todo_id: 3,
+                    status_id: 1,
+                    todo: String(Math.random()),
+                    completed: isChecked,
+                    deleted: isChecked,
+                },
+                notifyError,
+            );
         },
         [id],
     );

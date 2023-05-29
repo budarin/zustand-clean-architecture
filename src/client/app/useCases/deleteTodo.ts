@@ -1,8 +1,9 @@
+import { toast } from 'react-toastify';
+
 import { useTodoStore } from '../domain/store';
-import { notifyError } from '../../services/notification';
 import { delay } from '../../../common/utils/promises/delay';
 
-export async function deleteTodo(todo: Todo) {
+export async function deleteTodo(todo: Todo, notifyError: typeof toast.error) {
     const store = useTodoStore.getState();
     const oldValue = store.todos.byId[todo.todo_id];
 

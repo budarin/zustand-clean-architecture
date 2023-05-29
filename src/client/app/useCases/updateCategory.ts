@@ -1,8 +1,9 @@
+import { toast } from 'react-toastify';
+
 import { useTodoStore } from '../domain/store';
-import { notifyError } from '../../services/notification';
 import { delay } from '../../../common/utils/promises/delay';
 
-export async function updateCategory(category: Category) {
+export async function updateCategory(category: Category, notifyError: typeof toast.error) {
     const store = useTodoStore.getState();
     const oldValue = store.categories.byId[category.category_id];
 

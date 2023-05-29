@@ -1,10 +1,10 @@
+import { toast } from 'react-toastify';
 import { useTodoStore } from '../domain/store.tsx';
 import { overdueKey } from '../domain/navigationFilter/index.ts';
 import { TWO_MINUTES } from '../../../common/utils/dateTime/consts.ts';
-import { joyfullyGilling } from '../../services/notification/index.ts';
 import { createCalendarNavigationFilter } from '../action_creators/createCalendarNavigationFilter.ts';
 
-export function checkOverduedTodos() {
+export function checkOverduedTodos(notifySuccess: typeof toast.success) {
     const today = new Date();
     const now = today.valueOf();
     const { todos, _addToOverduedTodos, setNavigationFilter } = useTodoStore.getState();
@@ -21,7 +21,7 @@ export function checkOverduedTodos() {
                     setNavigationFilter(createCalendarNavigationFilter(today));
                     _addToOverduedTodos(todo.todo_id);
 
-                    joyfullyGilling(`lalala: ${todo.todo}`, {
+                    notifySuccess(`lalala: ${todo.todo}`, {
                         toastId: 'due_date:' + todo.todo,
                     });
                 }
