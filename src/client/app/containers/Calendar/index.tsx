@@ -1,7 +1,7 @@
 import { MouseEventHandler, useCallback } from 'react';
 
 import { getCalendarSelectedDate } from '../../selectors/getCalendarSelectedDate';
-import { setCalendarSelectedDate } from '../../useCases/setCalendarSelecteddate';
+import { setSelectedCalendarDate } from '../../useCases/setSelectedCalendarDate';
 
 // components
 import Calendar from '../../../ui/Calendar';
@@ -17,7 +17,7 @@ function CalendarContainer() {
         const selectedDateTimestamp = Number((event.target as HTMLElement).dataset.date);
         const selectedDate = new Date(selectedDateTimestamp);
 
-        setCalendarSelectedDate(selectedDate);
+        setSelectedCalendarDate(selectedDate);
     }, []);
 
     return (

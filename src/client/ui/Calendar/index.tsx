@@ -3,9 +3,8 @@ import React, { MouseEventHandler, memo, useCallback, useEffect, useState } from
 import usePrevious from '../hooks/usePrevious.ts';
 import { areDatesEqual } from './utils/areDatesEqual.ts';
 import { getNewCalendarState } from './utils/getNewCalendarState.tsx';
-import { setNavigationFilter } from '../../app/useCases/setNavigationFilter.ts';
+import { setSelectedCalendarDate } from '../../app/useCases/setSelectedCalendarDate.ts';
 import { areParsedDatesEqualByMonthAndYear } from './utils/areParsedDatesEqualByMonthAndYear.tsx';
-import { createCalendarNavigationFilter } from '../../app/action_creators/createCalendarNavigationFilter.ts';
 
 // components
 import CalendarBody from './CalendarBody/index.tsx';
@@ -74,7 +73,7 @@ const Calendar = memo(function (props: Calendar) {
     }, [year, month]);
 
     const setToday = useCallback(() => {
-        setNavigationFilter(createCalendarNavigationFilter(todayDate));
+        setSelectedCalendarDate(todayDate);
         setState(getNewCalendarState(todayDate));
     }, []);
 
