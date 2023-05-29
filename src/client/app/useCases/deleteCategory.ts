@@ -1,10 +1,10 @@
-import { toast } from 'react-toastify';
+import { type NotificationMethod } from '../../services/notification/index.ts';
 
 import { useTodoStore } from '../domain/store';
 import { TodoStoreError } from '../domain/TodoStoreError';
 import { delay } from '../../../common/utils/promises/delay';
 
-export async function deleteCategory(id: Category['category_id'], notifyError: typeof toast.error) {
+export async function deleteCategory(id: Category['category_id'], notifyError: NotificationMethod) {
     const store = useTodoStore.getState();
     const value = store.categories.byId[id];
 

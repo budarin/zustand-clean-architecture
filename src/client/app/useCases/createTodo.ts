@@ -1,9 +1,9 @@
-import { toast } from 'react-toastify';
+import { type NotificationMethod } from '../../services/notification/index.ts';
 
 import { useTodoStore } from '../domain/store';
 import { delay } from '../../../common/utils/promises/delay';
 
-export async function createTodo(todo: NewTodo, notifyError: typeof toast.error) {
+export async function createTodo(todo: NewTodo, notifyError: NotificationMethod) {
     const store = useTodoStore.getState();
 
     try {

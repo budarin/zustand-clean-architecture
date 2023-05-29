@@ -1,11 +1,11 @@
-import { toast } from 'react-toastify';
+import { type NotificationMethod } from '../../services/notification/index.ts';
 
 import { useTodoStore } from '../domain/store';
 import { delay } from '../../../common/utils/promises/delay';
 
 const updatingTodos = new Set();
 
-export async function updateTodo(todo: Todo, notifyError: typeof toast.error) {
+export async function updateTodo(todo: Todo, notifyError: NotificationMethod) {
     updatingTodos.add(todo.todo_id);
 
     const store = useTodoStore.getState();

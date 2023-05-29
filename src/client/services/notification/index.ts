@@ -1,7 +1,12 @@
-import { toast } from 'react-toastify';
+import Toastify, { toast } from 'react-toastify';
 
 import sound from '../../../../assets/error.mp3';
 import { delay } from '../../../common/utils/promises/delay';
+
+export type NotificationMethod = <TData = unknown>(
+    content: Toastify.ToastContent<TData>,
+    options?: Toastify.ToastOptions<{}> | undefined,
+) => number | string;
 
 const lineHeight = 1.45;
 
@@ -21,7 +26,7 @@ function onOpen() {
     });
 }
 
-export const notifyError: typeof toast.error = (content, options?) => {
+export const notifyError: NotificationMethod = (content, options?) => {
     return toast.error(content, {
         ...options,
         onOpen,
