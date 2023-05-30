@@ -3,7 +3,7 @@ import React, { MouseEventHandler, memo, useCallback, useEffect, useState } from
 import usePrevious from '../hooks/usePrevious.ts';
 import { areDatesEqual } from './utils/areDatesEqual.ts';
 import { getNewCalendarState } from './utils/getNewCalendarState.tsx';
-import { setSelectedCalendarDate } from '../../app/useCases/setSelectedCalendarDate.ts';
+import { setSelectedCalendarDate } from '../../app/use_cases/setSelectedCalendarDate.ts';
 import { areParsedDatesEqualByMonthAndYear } from './utils/areParsedDatesEqualByMonthAndYear.tsx';
 
 // components

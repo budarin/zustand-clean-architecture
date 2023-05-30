@@ -3,7 +3,7 @@ import { unstable_batchedUpdates } from 'react-dom';
 import { useTodoStore } from './store';
 import { notifyWarning } from '../../services/Notification';
 
-export function initStore(data: EntitiesPayload) {
+export function initStore(data: Entities) {
     let hasError = false;
     const { icons, statuses, categories, todos } = data;
     const { _addIcon, _addStatus, _addCategory, _addTodo } = useTodoStore.getState();
