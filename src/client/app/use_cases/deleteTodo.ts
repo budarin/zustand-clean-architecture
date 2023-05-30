@@ -1,7 +1,7 @@
 import { type NotificationMethod } from '../../services/Notification/index.ts';
 
-import { useTodoStore } from '../domain/store';
-import { delay } from '../../../common/utils/promises/delay';
+import { useTodoStore } from '../domain/store.tsx';
+import { delay } from '../../../common/utils/promises/delay.ts';
 
 export async function deleteTodo(todo: Todo, notifyError: NotificationMethod): Promise<void> {
     const store = useTodoStore.getState();

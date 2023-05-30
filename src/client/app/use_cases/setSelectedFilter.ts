@@ -1,4 +1,4 @@
-import { useTodoStore } from '../domain/store';
+import { useTodoStore } from '../domain/store.tsx';
 import { createFilterNavFilter } from '../action_creators/createFilterNavFilter.ts';
 
 const setNavigationFilter = useTodoStore.getState().setNavigationFilter;

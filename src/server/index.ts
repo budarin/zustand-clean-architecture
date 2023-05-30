@@ -1,10 +1,15 @@
+import { ONE_MINUTE } from '../common/utils/dateTime/consts.ts';
+import { OVERDUE_TODOS } from '../common/utils/messages.ts';
 import { serverInitialState } from './serverInitialState';
+import { checkOverduedTodos } from './use_cases/checkOverduedTodos.ts';
 
-const VERSION = '1.0.0';
+export const VERSION = '1.0.0';
+
 const apiPattern = '/api/';
 const jsonHeader = { 'Content-Type': 'application/json; charset=utf-8' };
 
 const { log } = console;
+const state: Entities = serverInitialState;
 
 self.addEventListener('fetch', function (event: FetchEvent) {
     var requestUrl = new URL(event.request.url);
@@ -129,6 +134,27 @@ async function handleDeleteRequest(request: Request, method: string): Promise<Re
             });
     }
 }
+
+setTimeout(() => {
+    self.clients
+        .matchAll({
+            includeUncontrolled: true,
+            type: 'window',
+        })
+        .then((clients) => {
+            const oveeDuTodos = checkOverduedTodos(state.todos);
+
+            if (oveeDuTodos.length && clients && clients.length) {
+                // 0 index client - last focused
+                clients.forEach((client) => {
+                    client.postMessage({
+                        type: OVERDUE_TODOS,
+                        payload: oveeDuTodos,
+                    });
+                });
+            }
+        });
+}, ONE_MINUTE);
 
 function handleGetRequest(): Response {
     return new Response(JSON.stringify(serverInitialState), {

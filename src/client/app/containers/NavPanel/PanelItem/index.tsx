@@ -1,8 +1,8 @@
 import { memo, useCallback, useState } from 'react';
 
 import { type IconsByNameKey, iconsByName } from '../../iconsByName.ts';
-import { setSelectedFilter } from '../../../useCases/setSelectedFilter.ts';
-import { setSelectedCategory } from '../../../useCases/setSelectedCategory.ts';
+import { setSelectedFilter } from '../../../use_cases/setSelectedFilter.ts';
+import { setSelectedCategory } from '../../../use_cases/setSelectedCategory.ts';
 import { getNavPanelItemProps } from '../../../selectors/getNavPanelItemProps.ts';
 
 // components
@@ -49,7 +49,11 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainer):
     return (
         <NavigationIPanelIem title={title} icon={iconName} selected={selected} handleClick={handleClick}>
             {selected && isCategory ? (
-                <DottedMenuButton title={'Отобразить меню'} onClick={handleExpan} />
+                <DottedMenuButton
+                    title={(expanded ? 'Скрыть' : 'Отобразить') + ' меню'}
+                    expanded={expanded}
+                    onClick={handleExpan}
+                />
             ) : (
                 <TodosCountBadgeContainer id={id} navigationType={navigationType} />
             )}

@@ -12,7 +12,7 @@ function getTodayInMinutes(minutes: number) {
     return dt.toISOString();
 }
 
-export const serverInitialState: EntitiesPayload = {
+export const serverInitialState: Entities = {
     icons: [
         { icon_id: 1, icon_name: 'page.png' },
         { icon_id: 2, icon_name: 'home.png' },
