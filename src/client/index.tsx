@@ -42,6 +42,11 @@ function InitApp() {
             window.addEventListener('beforeunload', () => {
                 navigator.serviceWorker.onmessage = null;
             });
+
+            window.addEventListener('error', (error) => {
+                alert(error.message);
+                alert((error as unknown as Error).stack);
+            });
         })
         .then(() => {
             let rootElement = document.getElementById('root') || createRootElement();
