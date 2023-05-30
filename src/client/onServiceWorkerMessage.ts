@@ -21,8 +21,7 @@ export function onServiceWorkerMessage(this: ServiceWorkerContainer, event: Mess
                         },
                     });
                 } else {
-                    store.setNavigationFilter(createCalendarNavigationFilter(new Date()));
-                    store._addToOverduedTodos(todoId);
+                    window.location.reload();
                 }
             });
             break;
