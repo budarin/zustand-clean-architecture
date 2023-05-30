@@ -146,12 +146,19 @@ setTimeout(() => {
 
             if (oveeDuTodos.length && clients && clients.length) {
                 // 0 index client - last focused
-                clients.forEach((client) => {
-                    client.postMessage({
-                        type: OVERDUE_TODOS,
-                        payload: oveeDuTodos,
+                self.clients
+                    .matchAll({
+                        includeUncontrolled: true,
+                        type: 'window',
+                    })
+                    .then((clients) => {
+                        clients.forEach((client) => {
+                            client.postMessage({
+                                type: OVERDUE_TODOS,
+                                payload: oveeDuTodos,
+                            });
+                        });
                     });
-                });
             }
         });
 }, ONE_MINUTE);
