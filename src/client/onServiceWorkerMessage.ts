@@ -12,17 +12,25 @@ export function onServiceWorkerMessage(this: ServiceWorkerContainer, event: Mess
                 const store = useTodoStore.getState();
                 const todo = store.todos.byId[todoId];
 
-                if (document.visibilityState === 'visible') {
-                    joyfullyGilling(`lalala: ${todo.todo}`, {
-                        toastId: 'due_date:' + todo.todo,
-                        onClose: () => {
-                            store.setNavigationFilter(createCalendarNavigationFilter(new Date()));
-                            store._addToOverduedTodos(todoId);
-                        },
-                    });
-                } else {
-                    window.location.reload();
-                }
+                joyfullyGilling(`lalala: ${todo.todo}`, {
+                    toastId: 'due_date:' + todo.todo,
+                    onClose: () => {
+                        store.setNavigationFilter(createCalendarNavigationFilter(new Date()));
+                        store._addToOverduedTodos(todoId);
+                    },
+                });
+
+                // if (document.visibilityState === 'visible') {
+                //     joyfullyGilling(`lalala: ${todo.todo}`, {
+                //         toastId: 'due_date:' + todo.todo,
+                //         onClose: () => {
+                //             store.setNavigationFilter(createCalendarNavigationFilter(new Date()));
+                //             store._addToOverduedTodos(todoId);
+                //         },
+                //     });
+                // } else {
+                //     window.location.reload();
+                // }
             });
             break;
         }
