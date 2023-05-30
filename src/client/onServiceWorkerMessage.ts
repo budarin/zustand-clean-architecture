@@ -4,6 +4,8 @@ import { OVERDUE_TODOS } from '../common/utils/messages.ts';
 import { createCalendarNavigationFilter } from './app/action_creators/createCalendarNavigationFilter.ts';
 
 export function onServiceWorkerMessage(this: ServiceWorkerContainer, event: MessageEvent<any>): any {
+    // console.log(event);
+
     switch (event.data.type) {
         case OVERDUE_TODOS: {
             event.data.payload.forEach((todoId: number) => {
