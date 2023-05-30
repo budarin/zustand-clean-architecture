@@ -3,7 +3,7 @@ import { type NotificationMethod } from '../../services/Notification/index.ts';
 import { useTodoStore } from '../domain/store';
 import { delay } from '../../../common/utils/promises/delay';
 
-export async function deleteTodo(todo: Todo, notifyError: NotificationMethod) {
+export async function deleteTodo(todo: Todo, notifyError: NotificationMethod): Promise<void> {
     const store = useTodoStore.getState();
     const oldValue = store.todos.byId[todo.todo_id];
 

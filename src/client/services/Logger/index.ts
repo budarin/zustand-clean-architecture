@@ -3,7 +3,7 @@ import { isString } from '../../../common/utils/validation/isString';
 
 type LogMethods = 'info' | 'warn' | 'error';
 
-function logObject(data: string | UnknownObject, type: LogMethods) {
+function logObject(data: string | UnknownObject, type: LogMethods): void {
     const logObj = isString(data)
         ? {
               type,
@@ -14,15 +14,15 @@ function logObject(data: string | UnknownObject, type: LogMethods) {
     API.log(logObj);
 }
 
-export function info(data: string | UnknownObject) {
+export function info(data: string | UnknownObject): void {
     logObject(data, 'info');
 }
 
-export function warn(data: string | UnknownObject) {
+export function warn(data: string | UnknownObject): void {
     logObject(data, 'warn');
 }
 
-export function error(data: string | UnknownObject) {
+export function error(data: string | UnknownObject): void {
     logObject(data, 'error');
 }
 

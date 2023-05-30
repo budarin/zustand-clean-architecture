@@ -3,7 +3,7 @@ import { type NotificationMethod } from '../../services/Notification/index.ts';
 import { useTodoStore } from '../domain/store';
 import { delay } from '../../../common/utils/promises/delay';
 
-export async function createTodo(todo: NewTodo, notifyError: NotificationMethod) {
+export async function createTodo(todo: NewTodo, notifyError: NotificationMethod): Promise<void> {
     const store = useTodoStore.getState();
 
     try {

@@ -5,7 +5,7 @@ import { delay } from '../../../common/utils/promises/delay';
 
 const updatingTodos = new Set();
 
-export async function updateTodo(todo: Todo, notifyError: NotificationMethod) {
+export async function updateTodo(todo: Todo, notifyError: NotificationMethod): Promise<void> {
     updatingTodos.add(todo.todo_id);
 
     const store = useTodoStore.getState();
