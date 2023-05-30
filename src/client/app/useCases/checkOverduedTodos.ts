@@ -19,11 +19,12 @@ export function checkOverduedTodos(notifySuccess: NotificationMethod) {
 
             if (isOverdue) {
                 if (Math.abs(diff) < TWO_MINUTES) {
-                    setNavigationFilter(createCalendarNavigationFilter(today));
-                    _addToOverduedTodos(todo.todo_id);
-
                     notifySuccess(`lalala: ${todo.todo}`, {
                         toastId: 'due_date:' + todo.todo,
+                        onClose: () => {
+                            setNavigationFilter(createCalendarNavigationFilter(today));
+                            _addToOverduedTodos(todo.todo_id);
+                        },
                     });
                 }
             }
