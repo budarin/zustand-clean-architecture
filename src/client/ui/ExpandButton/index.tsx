@@ -1,5 +1,3 @@
-import React from 'react';
-
 import CheckButton from '../CheckButton';
 import ExpandIcon from '../Icons/ExpandIcon';
 import CollapseIcon from '../Icons/CollapseIcon';

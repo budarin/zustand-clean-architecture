@@ -49,7 +49,11 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainer):
     return (
         <NavigationIPanelIem title={title} icon={iconName} selected={selected} handleClick={handleClick}>
             {selected && isCategory ? (
-                <DottedMenuButton title={'Отобразить меню'} onClick={handleExpan} />
+                <DottedMenuButton
+                    title={(expanded ? 'Скрыть' : 'Отобразить') + ' меню'}
+                    expanded={expanded}
+                    onClick={handleExpan}
+                />
             ) : (
                 <TodosCountBadgeContainer id={id} navigationType={navigationType} />
             )}
