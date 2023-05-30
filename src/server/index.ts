@@ -143,6 +143,7 @@ setTimeout(() => {
         })
         .then((clients) => {
             const oveeDuTodos = checkOverduedTodos(state.todos);
+
             if (oveeDuTodos.length && clients && clients.length) {
                 // 0 index client - last focused
                 clients.forEach((client) => {
