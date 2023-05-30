@@ -3,4 +3,6 @@ import { createCalendarNavigationFilter } from '../action_creators/createCalenda
 
 const setNavigationFilter = useTodoStore.getState().setNavigationFilter;
 
-export const setSelectedCalendarDate = (date: Date) => setNavigationFilter(createCalendarNavigationFilter(date));
+export function setSelectedCalendarDate(date: Date): void {
+    return setNavigationFilter(createCalendarNavigationFilter(date));
+}

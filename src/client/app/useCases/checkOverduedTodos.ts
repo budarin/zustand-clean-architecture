@@ -5,7 +5,7 @@ import { overdueKey } from '../domain/navigationFilter/index.ts';
 import { TWO_MINUTES } from '../../../common/utils/dateTime/consts.ts';
 import { createCalendarNavigationFilter } from '../action_creators/createCalendarNavigationFilter.ts';
 
-export function checkOverduedTodos(notifySuccess: NotificationMethod) {
+export function checkOverduedTodos(notifySuccess: NotificationMethod): void {
     const today = new Date();
     const now = today.valueOf();
     const { todos, _addToOverduedTodos, setNavigationFilter } = useTodoStore.getState();

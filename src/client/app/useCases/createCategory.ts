@@ -11,7 +11,7 @@ export async function createCategory(
     notifyError: NotificationMethod,
     logError: Logger['error'],
     api_createCategory: API['createCategory'],
-) {
+): Promise<void> {
     const store = useTodoStore.getState();
     const { entity, error } = validateNewCategory(category);
 
