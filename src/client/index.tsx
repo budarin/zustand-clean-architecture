@@ -4,9 +4,12 @@ import { createRoot } from 'react-dom/client';
 import { cleanHtml } from './cleanHtml.tsx';
 import * as API from './services/API/index.ts';
 import * as logger from './services/Logger/index.ts';
+import { runTask } from '../common/utils/runTask.ts';
 import { initStore } from './app/domain/initStore.tsx';
 import { createRootElement } from './createRootElement.tsx';
-import { onServiceWorkerMessage } from './onServiceWorkerMessage.ts';
+import { ONE_MINUTE } from '../common/utils/dateTime/consts.ts';
+import { joyfullyGilling } from './services/Notification/index.ts';
+import { checkOverduedTodos } from './app/use_cases/checkOverduedTodos.ts';
 
 // components
 import { ToastContainer } from 'react-toastify';
@@ -35,17 +38,14 @@ function InitApp() {
 
     API.getTodoStore()
         .then((data) => {
-            navigator.serviceWorker.onmessage = onServiceWorkerMessage;
-
             initStore(data);
 
-            window.addEventListener('beforeunload', () => {
-                navigator.serviceWorker.onmessage = null;
-            });
+            const checkOverduedTodosTask = runTask(() => {
+                checkOverduedTodos(joyfullyGilling);
+            }, ONE_MINUTE);
 
-            window.addEventListener('error', (error) => {
-                alert(error.message);
-                alert((error as unknown as Error).stack);
+            window.addEventListener('beforeunload', () => {
+                checkOverduedTodosTask.stop();
             });
         })
         .then(() => {
