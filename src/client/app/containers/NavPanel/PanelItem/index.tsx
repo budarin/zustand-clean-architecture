@@ -1,8 +1,8 @@
 import { memo, useCallback, useState } from 'react';
 
 import { type IconsByNameKey, iconsByName } from '../../iconsByName.ts';
-import { setSelectedFilter } from '../../../useCases/setSelectedFilter.ts';
-import { setSelectedCategory } from '../../../useCases/setSelectedCategory.ts';
+import { setSelectedFilter } from '../../../use_cases/setSelectedFilter.ts';
+import { setSelectedCategory } from '../../../use_cases/setSelectedCategory.ts';
 import { getNavPanelItemProps } from '../../../selectors/getNavPanelItemProps.ts';
 
 // components

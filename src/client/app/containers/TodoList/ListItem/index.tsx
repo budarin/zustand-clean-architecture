@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react';
 
-import { updateTodo } from '../../../useCases/updateTodo.ts';
+import { updateTodo } from '../../../use_cases/updateTodo.ts';
 import { getTodoById } from '../../../selectors/getTodoById.ts';
 import { notifyError } from '../../../../services/Notification/index.ts';
 import { getStatusByStatusId } from '../../../selectors/getStatusByStatusId.ts';

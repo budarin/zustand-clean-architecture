@@ -51,7 +51,7 @@ type NewTodo = Omit<Todo, 'todo_id'>;
 
 type OneOfEntities = Category | Status | Category | Todo;
 
-type EntitiesPayload = {
+type Entities = {
     todos?: Todo[];
     categories?: Category[];
     statuses?: Status[];

@@ -2,9 +2,9 @@ import { type API } from '../../services/API/index.ts';
 import { type Logger } from '../../services/Logger/index.ts';
 import { type NotificationMethod } from '../../services/Notification/index.ts';
 
-import { useTodoStore } from '../domain/store';
-import { validateNewCategory } from '../../../common/domain/category/validation';
-import { createCategoryNavFilter } from '../action_creators/createCategoryNavFilter';
+import { useTodoStore } from '../domain/store.tsx';
+import { validateNewCategory } from '../../../common/domain/category/validation.ts';
+import { createCategoryNavFilter } from '../action_creators/createCategoryNavFilter.ts';
 
 export async function createCategory(
     category: NewCategory,
