@@ -1,6 +1,6 @@
 const jsonHeader = { 'Content-Type': 'application/json; charset=utf-8' };
 
-export async function getTodoStore(): Promise<EntitiesPayload> {
+export async function getTodoStore(): Promise<Entities> {
     return fetch('/api/get_todos').then((resp) => {
         return resp.json();
     });
