@@ -5,7 +5,7 @@ import { overdueKey } from '../domain/navigationFilter/index.ts';
 import { TWO_MINUTES } from '../../../common/utils/dateTime/consts.ts';
 import { createCalendarNavigationFilter } from '../action_creators/createCalendarNavigationFilter.ts';
 
-export function checkOverduedTodos(notifySuccess: NotificationMethod) {
+export function checkOverduedTodos(notifySuccess: NotificationMethod): void {
     const today = new Date();
     const now = today.valueOf();
     const { todos, _addToOverduedTodos, setNavigationFilter } = useTodoStore.getState();
@@ -19,11 +19,12 @@ export function checkOverduedTodos(notifySuccess: NotificationMethod) {
 
             if (isOverdue) {
                 if (Math.abs(diff) < TWO_MINUTES) {
-                    setNavigationFilter(createCalendarNavigationFilter(today));
-                    _addToOverduedTodos(todo.todo_id);
-
                     notifySuccess(`lalala: ${todo.todo}`, {
                         toastId: 'due_date:' + todo.todo,
+                        onClose: () => {
+                            setNavigationFilter(createCalendarNavigationFilter(today));
+                            _addToOverduedTodos(todo.todo_id);
+                        },
                     });
                 }
             }

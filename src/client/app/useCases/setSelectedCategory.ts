@@ -3,5 +3,6 @@ import { createCategoryNavFilter } from '../action_creators/createCategoryNavFil
 
 const setNavigationFilter = useTodoStore.getState().setNavigationFilter;
 
-export const setSelectedCategory = (id: Id, category: string) =>
-    setNavigationFilter(createCategoryNavFilter(id, category));
+export function setSelectedCategory(id: Id, category: string): void {
+    return setNavigationFilter(createCategoryNavFilter(id, category));
+}
