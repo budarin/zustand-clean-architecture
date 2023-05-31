@@ -13,7 +13,7 @@ import { validateCategoryEntity } from './category/validateCategoryEntity.ts';
 import { getOnlyDateTimestamp } from '../../../common/utils/dateTime/getOnlyDateTimestamp.ts';
 
 import { inboxKey, overdueKey, recycleBinKey } from './navigationFilter/index.ts';
-import { createCalendarNavigationFilter } from '../../app/action_creators/createCalendarNavigationFilter.ts';
+import { createCalendarNavigationFilter } from '../action_creators/createCalendarNavigationFilter.ts';
 
 export type Actions = {
     // Icon

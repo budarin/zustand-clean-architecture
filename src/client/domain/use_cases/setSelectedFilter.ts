@@ -1,5 +1,5 @@
 import { useTodoStore } from '../entities/store.tsx';
-import { createFilterNavFilter } from '../../app/action_creators/createFilterNavFilter.ts';
+import { createFilterNavFilter } from '../action_creators/createFilterNavFilter.ts';
 
 const setNavigationFilter = useTodoStore.getState().setNavigationFilter;
 

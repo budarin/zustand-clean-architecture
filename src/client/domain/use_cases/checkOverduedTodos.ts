@@ -3,7 +3,7 @@ import { notification } from '../ports/notification.ts';
 import { useTodoStore } from '../entities/store.tsx';
 import { overdueKey } from '../entities/navigationFilter/index.ts';
 import { TWO_MINUTES } from '../../../common/utils/dateTime/consts.ts';
-import { createCalendarNavigationFilter } from '../../app/action_creators/createCalendarNavigationFilter.ts';
+import { createCalendarNavigationFilter } from '../action_creators/createCalendarNavigationFilter.ts';
 
 export function checkOverduedTodos(): void {
     const today = new Date();
