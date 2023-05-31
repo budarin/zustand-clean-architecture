@@ -1,4 +1,4 @@
-import { notification } from '../ports/notification.ts';
+import * as notification from '../../services/Notification/index.ts';
 
 import { useTodoStore } from '../entities/store.tsx';
 import { TodoStoreError } from '../entities/TodoStoreError.tsx';

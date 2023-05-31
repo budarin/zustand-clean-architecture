@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import * as api from '../../services/API/index.ts';
-import * as logger from '../../services/Logger/index.ts';
-import { createCategory } from '../../domain/use_cases/createCategory.ts';
-import { notifyError } from '../../services/Notification/index.ts';
+import * as logger from '../../../../services/Logger/index.ts';
+import * as notification from '../../../../services/Notification/index.ts';
+
+import { createCategory } from '../../../../domain/use_cases/createCategory.ts';
 
 type UseCreateCategory = [
     success: boolean,
@@ -30,7 +30,7 @@ export function useCreateCategory(): UseCreateCategory {
 
                 setSuccess(true);
             } catch (error) {
-                notifyError(`Ошибка: ${(error as Error).message}`, {
+                notification.notifyError(`Ошибка: ${(error as Error).message}`, {
                     toastId: 'create_todo_error' + category.category,
                 });
 

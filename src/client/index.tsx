@@ -1,10 +1,8 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-// services
-import * as API from './services/API/index.ts';
+import * as api from './services/API/index.ts';
 import * as logger from './services/Logger/index.ts';
-import * as KVStorage from './services/KVStorage/index.ts';
 
 import { cleanHtml } from './cleanHtml.tsx';
 import { runTask } from '../common/utils/runTask.ts';
@@ -36,9 +34,9 @@ if ('serviceWorker' in navigator) {
 }
 
 function InitApp() {
-    cleanHtml(KVStorage.remove);
+    cleanHtml();
 
-    API.getTodoStore()
+    api.getTodoStore()
         .then((data) => {
             initStore(data);
 

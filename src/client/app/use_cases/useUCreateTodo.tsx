@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
+import * as notification from '../../services/Notification/index.ts';
+
 import { createTodo } from '../../domain/use_cases/createTodo.ts';
-import { notifyError } from '../../services/Notification/index.ts';
 
 type UseCreateTodo = [inProgress: boolean, createTodo: React.Dispatch<React.SetStateAction<Todo | undefined>>];
 
@@ -20,7 +21,7 @@ export function useUCreateTodo(): UseCreateTodo {
             try {
                 createTodo(todo);
             } catch (error) {
-                notifyError(`Ошибка: ${(error as Error).message}`, {
+                notification.notifyError(`Ошибка: ${(error as Error).message}`, {
                     toastId: 'create_todo_error' + todo.todo,
                 });
             } finally {

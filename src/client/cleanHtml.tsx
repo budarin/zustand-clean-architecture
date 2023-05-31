@@ -1,10 +1,12 @@
-export function cleanHtml(KVStorageRemove: (key: string) => void): void {
+import * as kvStorage from './services/KVStorage/index.ts';
+
+export function cleanHtml(): void {
     if (window.scriptLoadError) {
         window.removeEventListener('error', window.scriptLoadError);
         window.scriptLoadError = undefined;
     }
 
-    KVStorageRemove('reloadOnError');
+    kvStorage.remove('reloadOnError');
 
     document.getElementById('initialScript')?.remove();
 }

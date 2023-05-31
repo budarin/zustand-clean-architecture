@@ -1,6 +1,6 @@
-import { api } from '../ports/api.ts';
-import { logger } from '../ports/logger.ts';
-import { notification } from '../ports/notification.ts';
+import * as api from '../../services/API/index.ts';
+import * as logger from '../../services/Logger/index.ts';
+import * as notification from '../../services/Notification/index.ts';
 
 import { useTodoStore } from '../entities/store.tsx';
 import { validateNewCategory } from '../../../common/domain/category/validation.ts';
