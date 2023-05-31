@@ -2,7 +2,7 @@ import { cn } from '../classNames.ts';
 
 import './index.css';
 
-import icon from '../../../../assets/todolist_.svg';
+import icon from '../../../../assets/todolist.svg';
 
 // components
 import AppHeader from './AppHeader';
