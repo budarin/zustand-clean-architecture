@@ -18,7 +18,7 @@ export function useUCreateTodo(): UseCreateTodo {
             setInProgress(true);
 
             try {
-                createTodo(todo, notifyError);
+                createTodo(todo);
             } catch (error) {
                 notifyError(`Ошибка: ${(error as Error).message}`, {
                     toastId: 'create_todo_error' + todo.todo,
