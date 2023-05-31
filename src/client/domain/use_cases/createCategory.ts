@@ -1,22 +1,17 @@
-import { type API } from '../../services/API/index.ts';
-import { type Logger } from '../../services/Logger/index.ts';
-import { type NotificationMethod } from '../../services/Notification/index.ts';
+import * as api from '../../services/API/index.ts';
+import * as logger from '../../services/Logger/index.ts';
+import * as notification from '../../services/Notification/index.ts';
 
-import { useTodoStore } from '../domain/store.tsx';
+import { useTodoStore } from '../entities/store.tsx';
 import { validateNewCategory } from '../../../common/domain/category/validation.ts';
 import { createCategoryNavFilter } from '../action_creators/createCategoryNavFilter.ts';
 
-export async function createCategory(
-    category: NewCategory,
-    notifyError: NotificationMethod,
-    logError: Logger['error'],
-    api_createCategory: API['createCategory'],
-): Promise<void> {
+export async function createCategory(category: NewCategory): Promise<void> {
     const store = useTodoStore.getState();
     const { entity, error } = validateNewCategory(category);
 
     if (entity) {
-        await api_createCategory(entity);
+        await api.createCategory(entity);
 
         const numbers = Object.keys(store.categories.byId).map(Number);
         const newCategoryId = Math.max(...numbers) + 1;
@@ -27,10 +22,10 @@ export async function createCategory(
         // устанавливаем навигационный фильтр на данную категорию
         store.setNavigationFilter(createCategoryNavFilter(newCategoryId, entity.category));
     } else {
-        notifyError(`Ошибка: ${error}`, {
-            toastId: 'create_todo_error' + category.category,
+        notification.notifyError(`Ошибка: ${error}`, {
+            toastId: 'create_category_error' + category.category,
         });
 
-        logError(error);
+        logger.error(error);
     }
 }

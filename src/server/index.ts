@@ -1,6 +1,7 @@
 import { serverInitialState } from './serverInitialState';
 
-export const VERSION = '1.0.0';
+// @ts-ignore
+self.VERSION = '1.0.0';
 
 const apiPattern = '/api/';
 const jsonHeader = { 'Content-Type': 'application/json; charset=utf-8' };

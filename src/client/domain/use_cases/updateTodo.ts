@@ -1,18 +1,18 @@
-import { type NotificationMethod } from '../../services/Notification/index.ts';
+import * as notification from '../../services/Notification/index.ts';
 
-import { useTodoStore } from '../domain/store.tsx';
+import { useTodoStore } from '../entities/store.tsx';
 import { delay } from '../../../common/utils/promises/delay.ts';
 
 const updatingTodos = new Set();
 
-export async function updateTodo(todo: Todo, notifyError: NotificationMethod): Promise<void> {
+export async function updateTodo(todo: Todo): Promise<void> {
     updatingTodos.add(todo.todo_id);
 
     const store = useTodoStore.getState();
     const oldValue = store.todos.byId[todo.todo_id];
 
     if (!oldValue) {
-        notifyError('Запись отсутствует в базе данных!', {
+        notification.notifyError('Запись отсутствует в базе данных!', {
             autoClose: 2000,
         });
         return;
@@ -23,7 +23,8 @@ export async function updateTodo(todo: Todo, notifyError: NotificationMethod): P
     await delay(3000);
 
     const todoTitle = oldValue.todo.length <= 15 ? oldValue.todo : oldValue.todo.slice(0, 15) + '...';
-    notifyError(`Ошибка: не удалось обновить задачу "${todoTitle}" - восстанавливаем`, {
+
+    notification.notifyError(`Ошибка: не удалось обновить задачу "${todoTitle}" - восстанавливаем`, {
         toastId: 'server_error_todo' + todo.todo_id,
     });
 
