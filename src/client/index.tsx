@@ -1,15 +1,15 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import { cleanHtml } from './cleanHtml.tsx';
-import * as API from './services/API/index.ts';
+import * as api from './services/API/index.ts';
 import * as logger from './services/Logger/index.ts';
+
+import { cleanHtml } from './cleanHtml.tsx';
 import { runTask } from '../common/utils/runTask.ts';
-import { initStore } from './app/domain/initStore.tsx';
+import { initStore } from './domain/entities/initStore.tsx';
 import { createRootElement } from './createRootElement.tsx';
 import { ONE_MINUTE } from '../common/utils/dateTime/consts.ts';
-import { joyfullyGilling } from './services/Notification/index.ts';
-import { checkOverduedTodos } from './app/use_cases/checkOverduedTodos.ts';
+import { checkOverduedTodos } from './domain/use_cases/checkOverduedTodos.ts';
 
 // components
 import { ToastContainer } from 'react-toastify';
@@ -36,12 +36,12 @@ if ('serviceWorker' in navigator) {
 function InitApp() {
     cleanHtml();
 
-    API.getTodoStore()
+    api.getTodoStore()
         .then((data) => {
             initStore(data);
 
             const checkOverduedTodosTask = runTask(() => {
-                checkOverduedTodos(joyfullyGilling);
+                checkOverduedTodos();
             }, ONE_MINUTE);
 
             window.addEventListener('beforeunload', () => {

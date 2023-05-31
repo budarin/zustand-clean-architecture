@@ -14,6 +14,9 @@
         "@babel/preset-typescript": "^7.21.5",
         "@types/react-dom": "^18.2.1",
         "babel-loader": "^9.1.2",
+        "browserslist": "^4.21.7",
+        "caniuse-lite": "^1.0.30001492",
+        "core-js": "^3.30.2",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-toastify": "^9.1.2",
@@ -38,6 +41,24 @@
         "webpack-cli": "^5.0.2",
         "webpack-dev-server": "^4.13.3",
         "zx": "^7.2.2"
+    },
+    "browserslist": {
+        "production": [
+            "last 2 Safari version",
+            "last 2 iOS version",
+            "last 4 Chrome version",
+            "last 2 ChromeAndroid version",
+            "last 4 Edge version",
+            "last 4 Opera version",
+            "last 1 OperaMobile version",
+            "last 2 Firefox version",
+            "last 2 FirefoxAndroid version",
+            "last 2 Android version",
+            "last 2 Samsung version"
+        ],
+        "development": [
+            "last 1 chrome version"
+        ]
     },
     "scripts": {
         "start-client": "webpack-dev-server -c ./configs/webpack/webpack.config.js",

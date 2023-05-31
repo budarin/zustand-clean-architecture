@@ -1,4 +1,4 @@
-import { navigationFilterTypes } from '../../domain/navigationFilter';
+import { navigationFilterTypes } from '../../../domain/entities/navigationFilter';
 import { getNavigationFilter } from '../../selectors/getNavigationFilter';
 import { getTodosCountByTimestamp } from '../../selectors/getTodosCountByTimestamp';
 

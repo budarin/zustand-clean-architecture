@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useTodoStore } from '../domain/store';
+import { useTodoStore } from '../../domain/entities/store';
 
 const selector = (id: Id) => useCallback((state: TodosState) => state.todos.byId[id as Id], [id]);
 

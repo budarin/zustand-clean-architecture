@@ -10,9 +10,8 @@ import { updateTodoCategories } from './todo/updateTodoCategories.ts';
 import { validateStatusEntity } from './status/validateStatusEntity.ts';
 import { getTodayDate } from '../../../common/utils/dateTime/getTodayDate.ts';
 import { validateCategoryEntity } from './category/validateCategoryEntity.ts';
-import { getOnlyDateTimestamp } from '../../../common/utils/dateTime/getOnlyDateTimestamp.ts';
-
 import { inboxKey, overdueKey, recycleBinKey } from './navigationFilter/index.ts';
+import { getOnlyDateTimestamp } from '../../../common/utils/dateTime/getOnlyDateTimestamp.ts';
 import { createCalendarNavigationFilter } from '../action_creators/createCalendarNavigationFilter.ts';
 
 export type Actions = {
@@ -43,28 +42,28 @@ export const useTodoStore = create<TodosState & Actions>()(
     devtoolsInNonProd((set) => ({
         icons: {
             byId: {},
-            ids: [],
+            ids: [] as Readonly<Id[]>,
         },
 
         statuses: {
             byId: {},
-            ids: [],
+            ids: [] as Readonly<Id[]>,
         },
 
         categories: {
             byId: {},
-            ids: [],
+            ids: [] as Readonly<Id[]>,
         },
 
         todos: {
             byId: {},
-            ids: [],
+            ids: [] as Readonly<Id[]>,
             idsByDueDate: {},
             idsByCategoryId: {},
             idsByFilterId: {
-                [inboxKey]: [],
-                [recycleBinKey]: [],
-                [overdueKey]: [],
+                [inboxKey]: [] as Readonly<Id[]>,
+                [recycleBinKey]: [] as Readonly<Id[]>,
+                [overdueKey]: [] as Readonly<Id[]>,
             },
         },
 
