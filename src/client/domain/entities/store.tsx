@@ -13,7 +13,7 @@ import { validateCategoryEntity } from './category/validateCategoryEntity.ts';
 import { getOnlyDateTimestamp } from '../../../common/utils/dateTime/getOnlyDateTimestamp.ts';
 
 import { inboxKey, overdueKey, recycleBinKey } from './navigationFilter/index.ts';
-import { createCalendarNavigationFilter } from '../action_creators/createCalendarNavigationFilter.ts';
+import { createCalendarNavigationFilter } from '../../app/action_creators/createCalendarNavigationFilter.ts';
 
 export type Actions = {
     // Icon
@@ -43,28 +43,28 @@ export const useTodoStore = create<TodosState & Actions>()(
     devtoolsInNonProd((set) => ({
         icons: {
             byId: {},
-            ids: [],
+            ids: [] as Readonly<Id[]>,
         },
 
         statuses: {
             byId: {},
-            ids: [],
+            ids: [] as Readonly<Id[]>,
         },
 
         categories: {
             byId: {},
-            ids: [],
+            ids: [] as Readonly<Id[]>,
         },
 
         todos: {
             byId: {},
-            ids: [],
+            ids: [] as Readonly<Id[]>,
             idsByDueDate: {},
             idsByCategoryId: {},
             idsByFilterId: {
-                [inboxKey]: [],
-                [recycleBinKey]: [],
-                [overdueKey]: [],
+                [inboxKey]: [] as Readonly<Id[]>,
+                [recycleBinKey]: [] as Readonly<Id[]>,
+                [overdueKey]: [] as Readonly<Id[]>,
             },
         },
 

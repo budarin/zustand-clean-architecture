@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import * as api from '../../../services/API/index.ts';
-import * as logger from '../../../services/Logger/index.ts';
-import { createCategory } from '../../use_cases/createCategory.ts';
-import { notifyError } from '../../../services/Notification/index.ts';
+import * as api from '../../services/API/index.ts';
+import * as logger from '../../services/Logger/index.ts';
+import { createCategory } from '../../domain/use_cases/createCategory.ts';
+import { notifyError } from '../../services/Notification/index.ts';
 
 type UseCreateCategory = [
     success: boolean,

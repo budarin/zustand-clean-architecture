@@ -1,9 +1,11 @@
-import { type NotificationMethod } from '../../services/Notification/index.ts';
+import { notification } from '../ports/notification.ts';
 
-import { useTodoStore } from '../domain/store.tsx';
+import { useTodoStore } from '../entities/store.tsx';
 import { delay } from '../../../common/utils/promises/delay.ts';
 
-export async function updateCategory(category: Category, notifyError: NotificationMethod): Promise<void> {
+const { notifyError } = notification;
+
+export async function updateCategory(category: Category): Promise<void> {
     const store = useTodoStore.getState();
     const oldValue = store.categories.byId[category.category_id];
 

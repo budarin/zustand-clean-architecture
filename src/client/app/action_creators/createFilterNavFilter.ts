@@ -1,4 +1,4 @@
-import { navigationFilterTypes } from '../domain/navigationFilter';
+import { navigationFilterTypes } from '../../domain/entities/navigationFilter';
 
 export function createFilterNavFilter(key: string, filter: string): NavigationFilter {
     return {

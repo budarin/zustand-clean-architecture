@@ -1,5 +1,5 @@
-import { useTodoStore } from '../domain/store';
-import { createCalendarNavigationFilter } from '../action_creators/createCalendarNavigationFilter';
+import { useTodoStore } from '../entities/store';
+import { createCalendarNavigationFilter } from '../../app/action_creators/createCalendarNavigationFilter';
 
 const setNavigationFilter = useTodoStore.getState().setNavigationFilter;
 

@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import { useTodoStore } from '../domain/store';
-import { navigationFilterTypes } from '../domain/navigationFilter/index.ts';
+import { useTodoStore } from '../../domain/entities/store.tsx';
+import { navigationFilterTypes } from '../../domain/entities/navigationFilter/index.ts';
 
 const selector = (id: NavigationFilterKey, navigationType: NavigationFilterType) =>
     useCallback(

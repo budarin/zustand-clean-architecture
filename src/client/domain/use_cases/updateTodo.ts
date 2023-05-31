@@ -1,11 +1,12 @@
-import { type NotificationMethod } from '../../services/Notification/index.ts';
+import { notification } from '../ports/notification.ts';
 
-import { useTodoStore } from '../domain/store.tsx';
+import { useTodoStore } from '../entities/store.tsx';
 import { delay } from '../../../common/utils/promises/delay.ts';
 
 const updatingTodos = new Set();
+const { notifyError } = notification;
 
-export async function updateTodo(todo: Todo, notifyError: NotificationMethod): Promise<void> {
+export async function updateTodo(todo: Todo): Promise<void> {
     updatingTodos.add(todo.todo_id);
 
     const store = useTodoStore.getState();
@@ -23,6 +24,7 @@ export async function updateTodo(todo: Todo, notifyError: NotificationMethod): P
     await delay(3000);
 
     const todoTitle = oldValue.todo.length <= 15 ? oldValue.todo : oldValue.todo.slice(0, 15) + '...';
+
     notifyError(`Ошибка: не удалось обновить задачу "${todoTitle}" - восстанавливаем`, {
         toastId: 'server_error_todo' + todo.todo_id,
     });

@@ -1,4 +1,9 @@
-import { inboxKey, navigationFilterTypes, overdueKey, recycleBinKey } from '../../../domain/navigationFilter/index.ts';
+import {
+    inboxKey,
+    navigationFilterTypes,
+    overdueKey,
+    recycleBinKey,
+} from '../../../../domain/entities/navigationFilter/index.ts';
 
 // components
 import NavigationPanelItemContainer from '../PanelItem';

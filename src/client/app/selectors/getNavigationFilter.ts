@@ -1,4 +1,4 @@
-import { useTodoStore } from '../domain/store';
+import { useTodoStore } from '../../domain/entities/store';
 
 const selector = (state: TodosState) => state.navigationFilter;
 

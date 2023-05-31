@@ -1,10 +1,12 @@
-import { type NotificationMethod } from '../../services/Notification/index.ts';
+import { notification } from '../ports/notification.ts';
 
-import { useTodoStore } from '../domain/store.tsx';
-import { TodoStoreError } from '../domain/TodoStoreError.tsx';
+import { useTodoStore } from '../entities/store.tsx';
+import { TodoStoreError } from '../entities/TodoStoreError.tsx';
 import { delay } from '../../../common/utils/promises/delay.ts';
 
-export async function deleteCategory(id: Category['category_id'], notifyError: NotificationMethod): Promise<void> {
+const { notifyError } = notification;
+
+export async function deleteCategory(id: Category['category_id']): Promise<void> {
     const store = useTodoStore.getState();
     const value = store.categories.byId[id];
 

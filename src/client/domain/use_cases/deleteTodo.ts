@@ -1,9 +1,11 @@
-import { type NotificationMethod } from '../../services/Notification/index.ts';
+import { notification } from '../ports/notification.ts';
 
-import { useTodoStore } from '../domain/store.tsx';
+import { useTodoStore } from '../entities/store.tsx';
 import { delay } from '../../../common/utils/promises/delay.ts';
 
-export async function deleteTodo(todo: Todo, notifyError: NotificationMethod): Promise<void> {
+const { notifyError } = notification;
+
+export async function deleteTodo(todo: Todo): Promise<void> {
     const store = useTodoStore.getState();
     const oldValue = store.todos.byId[todo.todo_id];
 
@@ -14,6 +16,7 @@ export async function deleteTodo(todo: Todo, notifyError: NotificationMethod): P
     await delay(3000);
 
     const todoTitle = todo.todo.length <= 10 ? todo.todo : todo.todo.slice(0, 10) + '...';
+
     notifyError(`Ошибка: не удалось удалить "${todoTitle}" - восстанавливаем`, {
         toastId: 'delete_todo' + todo.todo_id,
     });

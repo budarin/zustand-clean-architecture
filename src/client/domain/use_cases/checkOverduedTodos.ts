@@ -1,11 +1,13 @@
-import { type NotificationMethod } from '../../services/Notification/index.ts';
+import { notification } from '../ports/notification.ts';
 
-import { useTodoStore } from '../domain/store.tsx';
-import { overdueKey } from '../domain/navigationFilter/index.ts';
+import { useTodoStore } from '../entities/store.tsx';
+import { overdueKey } from '../entities/navigationFilter/index.ts';
 import { TWO_MINUTES } from '../../../common/utils/dateTime/consts.ts';
-import { createCalendarNavigationFilter } from '../action_creators/createCalendarNavigationFilter.ts';
+import { createCalendarNavigationFilter } from '../../app/action_creators/createCalendarNavigationFilter.ts';
 
-export function checkOverduedTodos(notifySuccess: NotificationMethod): void {
+const { joyfullyGilling } = notification;
+
+export function checkOverduedTodos(): void {
     const today = new Date();
     const now = today.valueOf();
     const { todos, _addToOverduedTodos, setNavigationFilter } = useTodoStore.getState();
@@ -19,7 +21,7 @@ export function checkOverduedTodos(notifySuccess: NotificationMethod): void {
 
             if (isOverdue) {
                 if (Math.abs(diff) < TWO_MINUTES) {
-                    notifySuccess(`lalala: ${todo.todo}`, {
+                    joyfullyGilling(`lalala: ${todo.todo}`, {
                         toastId: 'due_date:' + todo.todo,
                         onClose: () => {
                             setNavigationFilter(createCalendarNavigationFilter(today));
