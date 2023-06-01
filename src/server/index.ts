@@ -9,6 +9,7 @@ const todosUrl = '/api/get_todos';
 const jsonHeader = { 'Content-Type': 'application/json; charset=utf-8' };
 
 let state: Entities | undefined;
+const { log } = console;
 
 async function saveState() {
     const cache = await caches.open('todo-sw');
@@ -79,8 +80,6 @@ self.addEventListener('fetch', function (event: FetchEvent) {
         }
     }
 });
-
-const { log } = console;
 
 async function handlePostRequest(request: Request, method: string): Promise<Response> {
     const data = await request.json();
