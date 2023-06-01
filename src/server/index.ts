@@ -1,8 +1,7 @@
 import { serverInitialState } from './serverInitialState';
 
-declare var self: ServiceWorkerGlobalScope & typeof globalThis;
+declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };
 
-// @ts-ignore
 self.VERSION = '1.0.0';
 
 const apiPattern = '/api/';
@@ -198,8 +197,10 @@ self.addEventListener('activate', (event) => {
 
         if (!state) {
             const response = await cache.match(todosUrl);
+
             if (response !== undefined) {
                 const data = await response.json();
+
                 if (data) {
                     state = data;
                 }
