@@ -25,6 +25,26 @@ async function saveState() {
     );
 }
 
+async function loadState() {
+    if (!state) {
+        const cache = await caches.open('todo-sw');
+        const response = await cache.match(todosUrl);
+
+        if (response !== undefined) {
+            const data = await response.json();
+
+            if (data) {
+                state = data;
+            }
+        }
+
+        if (!state) {
+            state = serverInitialState;
+            await saveState();
+        }
+    }
+}
+
 self.addEventListener('fetch', function (event: FetchEvent) {
     var requestUrl = new URL(event.request.url);
     const method = requestUrl.pathname.slice(apiPattern.length);
@@ -53,6 +73,7 @@ self.addEventListener('fetch', function (event: FetchEvent) {
 
     if (event.request.method === 'GET') {
         if (requestUrl.pathname === '/api/get_todos') {
+            loadState();
             event.respondWith(handleGetRequest());
             return;
         }
@@ -192,23 +213,8 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('activate', (event) => {
     const onActivate = async (): Promise<any> => {
-        const cache = await caches.open('todo-sw');
-
         if (!state) {
-            const response = await cache.match(todosUrl);
-
-            if (response !== undefined) {
-                const data = await response.json();
-
-                if (data) {
-                    state = data;
-                }
-            }
-
-            if (!state) {
-                state = serverInitialState;
-                await saveState();
-            }
+            await loadState();
         }
     };
 
