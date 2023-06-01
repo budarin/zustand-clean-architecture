@@ -1,5 +1,7 @@
 import { serverInitialState } from './serverInitialState';
 
+declare var self: ServiceWorkerGlobalScope & typeof globalThis;
+
 // @ts-ignore
 self.VERSION = '1.0.0';
 
@@ -7,7 +9,8 @@ const apiPattern = '/api/';
 const jsonHeader = { 'Content-Type': 'application/json; charset=utf-8' };
 
 const { log } = console;
-const state: Entities = serverInitialState;
+
+let state: Entities | undefined;
 
 self.addEventListener('fetch', function (event: FetchEvent) {
     var requestUrl = new URL(event.request.url);
@@ -144,5 +147,15 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
+    const onActivate = async (): Promise<any> => {
+        const cache = await caches.open('todo-sw');
+
+        if (!state) {
+            state = serverInitialState;
+            await cache.put('/api/get_todos', new Response(JSON.stringify(state)));
+        }
+    };
+
+    event.waitUntil(onActivate());
     clients.claim();
 });
