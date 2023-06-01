@@ -27,7 +27,7 @@ async function saveState() {
     );
 }
 
-async function loadState() {
+async function loadState(): Promise<true> {
     log('state', state);
 
     if (state === undefined) {
@@ -56,6 +56,8 @@ async function loadState() {
             log('loadState', error);
         }
     }
+
+    return true;
 }
 
 self.onerror = function (event) {
@@ -64,7 +66,7 @@ self.onerror = function (event) {
     log('sw error:', event);
 };
 
-self.addEventListener('fetch', async function (event: FetchEvent) {
+self.addEventListener('fetch', function (event: FetchEvent) {
     var requestUrl = new URL(event.request.url);
     const method = requestUrl.pathname.slice(apiPattern.length);
 
