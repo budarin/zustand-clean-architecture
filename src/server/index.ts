@@ -173,7 +173,6 @@ async function handlePatchRequest(request: Request, method: string): Promise<Res
                 status: 200,
             });
 
-            saveState();
             return response;
         }
 
@@ -182,7 +181,6 @@ async function handlePatchRequest(request: Request, method: string): Promise<Res
                 status: 200,
             });
 
-            saveState();
             return response;
         }
 
@@ -204,7 +202,6 @@ async function handleDeleteRequest(request: Request, method: string): Promise<Re
                 status: 200,
             });
 
-            saveState();
             return response;
         }
 
@@ -213,7 +210,6 @@ async function handleDeleteRequest(request: Request, method: string): Promise<Re
                 status: 200,
             });
 
-            saveState();
             return response;
         }
 
