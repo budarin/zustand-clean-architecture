@@ -67,7 +67,7 @@
         "tsc": "tsc",
         "postbuild": "sh ./scripts/postbuild.sh",
         "postinstall": "sh ./scripts/postinstall.sh",
-        "branche-refresh": "node ./scripts/branch-refresh.mjs",
+        "branche-refresh": "sh ./scripts/branch-refresh.sh",
         "upgrade deps": "yarn upgrade-interactive --latest;"
     }
 }
