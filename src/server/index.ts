@@ -8,8 +8,6 @@ self.VERSION = '1.0.0';
 const apiPattern = '/api/';
 const jsonHeader = { 'Content-Type': 'application/json; charset=utf-8' };
 
-const { log } = console;
-
 let state: Entities | undefined;
 
 self.addEventListener('fetch', function (event: FetchEvent) {
@@ -45,6 +43,8 @@ self.addEventListener('fetch', function (event: FetchEvent) {
         }
     }
 });
+
+const { log } = console;
 
 async function handlePostRequest(request: Request, method: string): Promise<Response> {
     const data = await request.json();
