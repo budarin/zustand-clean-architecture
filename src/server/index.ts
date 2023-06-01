@@ -179,12 +179,14 @@ const todosUrl = '/api/get_todos';
 
 async function saveState() {
     const cache = await caches.open('todo-sw');
+    const stateStr = JSON.stringify(state);
 
     await cache.put(
         todosUrl,
-        new Response(JSON.stringify(state), {
+        new Response(stateStr, {
             headers: new Headers({
                 'Content-Type': 'application/json',
+                'Content-Length': String(stateStr.length),
             }),
         }),
     );
