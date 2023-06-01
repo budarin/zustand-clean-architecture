@@ -1,17 +1,9 @@
 const jsonHeader = { 'Content-Type': 'application/json; charset=utf-8' };
 
-const { log: clog } = console;
-
 export async function getTodoStore(): Promise<Entities> {
-    clog('getTodoStore - start fetching');
-    return fetch('/api/get_todos')
-        .then((resp) => {
-            return resp.json();
-        })
-        .then((result) => {
-            clog('getTodoStore - fetched', result);
-            return result;
-        });
+    return fetch('/api/get_todos').then((resp) => {
+        return resp.json();
+    });
 }
 
 export async function createCategory(category: Category): Promise<Category> {
