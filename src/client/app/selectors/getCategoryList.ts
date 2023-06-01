@@ -1,5 +1,5 @@
 import { useTodoStore } from '../../domain/entities/store';
 
-const selector = (state: TodosState) => state.categories.ids;
+const getCategoryListSelector = (state: TodosState) => state.categories.ids;
 
-export const getCategoryList = () => useTodoStore(selector);
+export const getCategoryList = () => useTodoStore(getCategoryListSelector);

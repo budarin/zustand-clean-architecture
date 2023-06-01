@@ -1,7 +1,7 @@
 import { useTodoStore } from '../../domain/entities/store';
 import { navigationFilterTypes } from '../../domain/entities/navigationFilter';
 
-const selector = (state: TodosState): Id[] => {
+const getTodoListByNavFilterSelector = (state: TodosState): Id[] => {
     const key = state.navigationFilter.key;
 
     switch (state.navigationFilter.type) {
@@ -18,4 +18,4 @@ const selector = (state: TodosState): Id[] => {
 
 const emptyList = [] as Id[];
 
-export const getTodoListByNavFilter = (): Id[] => useTodoStore(selector) || emptyList;
+export const getTodoListByNavFilter = (): Id[] => useTodoStore(getTodoListByNavFilterSelector) || emptyList;

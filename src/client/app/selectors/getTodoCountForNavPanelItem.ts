@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useTodoStore } from '../../domain/entities/store.tsx';
 import { navigationFilterTypes } from '../../domain/entities/navigationFilter/index.ts';
 
-const selector = (id: NavigationFilterKey, navigationType: NavigationFilterType) =>
+const getTodoCountForNavPanelItemSelector = (id: NavigationFilterKey, navigationType: NavigationFilterType) =>
     useCallback(
         (state: TodosState) => {
             return navigationType === navigationFilterTypes.category
@@ -13,4 +13,4 @@ const selector = (id: NavigationFilterKey, navigationType: NavigationFilterType)
     );
 
 export const getTodoCountForNavPanelItem = (id: NavigationFilterKey, navigationType: NavigationFilterType) =>
-    useTodoStore(selector(id, navigationType));
+    useTodoStore(getTodoCountForNavPanelItemSelector(id, navigationType));
