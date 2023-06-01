@@ -23,7 +23,6 @@
 @media only screen and (min-width: 641px) {
     .App {
         padding: 0 var(--x2);
-        font-weight: 300;
     }
 
     .App-Container {
