@@ -10,7 +10,7 @@ import {
 
 import type { NavigationFiltersKey } from '../../domain/entities/navigationFilter';
 
-const getSelector = () =>
+const getTodoListViewPropsSelector = () =>
     useCallback((state: TodosState) => {
         let title = '';
         let icon = '';
@@ -56,4 +56,4 @@ const getSelector = () =>
         };
     }, []);
 
-export const getTodoListViewProps = () => useTodoStore(getSelector(), shallow);
+export const getTodoListViewProps = () => useTodoStore(getTodoListViewPropsSelector(), shallow);

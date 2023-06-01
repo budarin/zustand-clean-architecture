@@ -1,5 +1,5 @@
 import { useTodoStore } from '../../domain/entities/store';
 
-const selector = (state: TodosState) => state.navigationFilter;
+const getNavigationFilterSelector = (state: TodosState) => state.navigationFilter;
 
-export const getNavigationFilter = () => useTodoStore(selector);
+export const getNavigationFilter = () => useTodoStore(getNavigationFilterSelector);
