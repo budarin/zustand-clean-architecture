@@ -28,13 +28,18 @@ async function saveState() {
 }
 
 async function loadState() {
+    log('state', state);
+
     if (!state) {
         try {
             const cache = await caches.open('todo-sw');
+            log('sw: open cache');
             const response = await cache.match(todosUrl);
+            log('sw: find cache item', response);
 
             if (response !== undefined) {
                 const data = await response.json();
+                log('sw: get json from cache item', data);
 
                 if (data) {
                     state = data;
@@ -42,6 +47,7 @@ async function loadState() {
             }
 
             if (!state) {
+                log('sw: cache not found and state is undefined');
                 state = serverInitialState;
                 await saveState();
             }
@@ -85,7 +91,7 @@ self.addEventListener('fetch', function (event: FetchEvent) {
 
     if (event.request.method === 'GET') {
         if (requestUrl.pathname === '/api/get_todos') {
-            log('/api/get_todos - before loadState()');
+            log('sw: /api/get_todos - before loadState()');
             loadState();
             event.respondWith(handleGetRequest());
             return;
