@@ -23,10 +23,6 @@ if ('serviceWorker' in navigator) {
             return;
         }
 
-        const { log } = console;
-        log('registration', registration);
-        log('registration.active?.state', registration.active?.state);
-
         if (registration.active?.state === 'activated') {
             InitApp();
         } else {
@@ -37,14 +33,10 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-const { log } = console;
-
 function InitApp() {
     cleanHtml();
     api.getTodoStore()
         .then((data) => {
-            log('getTodoStore', data);
-
             initStore(data);
 
             const checkOverduedTodosTask = runTask(() => {
@@ -71,7 +63,6 @@ function InitApp() {
             });
         })
         .catch((error) => {
-            log('Ошибка в Init APP');
             logger.error(error);
         });
 }
