@@ -1,7 +1,11 @@
 const jsonHeader = { 'Content-Type': 'application/json; charset=utf-8' };
 
+const { log: clog } = console;
+
 export async function getTodoStore(): Promise<Entities> {
+    clog('getTodoStore - start fetching');
     return fetch('/api/get_todos').then((resp) => {
+        clog('getTodoStore - fetched', resp);
         return resp.json();
     });
 }
