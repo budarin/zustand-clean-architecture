@@ -221,6 +221,8 @@ async function handleDeleteRequest(request: Request, method: string): Promise<Re
 }
 
 function handleGetRequest(): Response {
+    log('sw: start responding on get', state);
+
     return new Response(JSON.stringify(state), {
         headers: jsonHeader,
     });
