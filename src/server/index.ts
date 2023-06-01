@@ -81,11 +81,9 @@ self.addEventListener('fetch', function (event: FetchEvent) {
 });
 
 async function handlePostRequest(request: Request, method: string): Promise<Response> {
-    const data = await request.json();
-    // console.log('POST', method, data);
-
     switch (method) {
         case 'create_category': {
+            const data = await request.json();
             const response = new Response(JSON.stringify(data), {
                 headers: jsonHeader,
                 status: 200,
@@ -96,6 +94,7 @@ async function handlePostRequest(request: Request, method: string): Promise<Resp
         }
 
         case 'create_todo': {
+            const data = await request.json();
             const response = new Response(JSON.stringify(data), {
                 status: 200,
             });
@@ -106,6 +105,7 @@ async function handlePostRequest(request: Request, method: string): Promise<Resp
 
         case 'log': {
             const { log } = console;
+            const data = await request.text();
 
             switch (data.type) {
                 case 'info': {
