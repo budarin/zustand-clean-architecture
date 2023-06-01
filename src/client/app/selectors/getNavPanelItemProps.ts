@@ -10,7 +10,7 @@ import {
 
 import type { NavigationFiltersKey } from '../../domain/entities/navigationFilter';
 
-const selector = (id: NavigationFilterKey, navigationType: NavigationFilterType) =>
+const getNavPanelItemPropsSelector = (id: NavigationFilterKey, navigationType: NavigationFilterType) =>
     useCallback(
         (state: TodosState) => {
             let selected = false;
@@ -43,4 +43,4 @@ const selector = (id: NavigationFilterKey, navigationType: NavigationFilterType)
     );
 
 export const getNavPanelItemProps = (id: NavigationFilterKey, navigationType: NavigationFilterType) =>
-    useTodoStore(selector(id, navigationType), shallow);
+    useTodoStore(getNavPanelItemPropsSelector(id, navigationType), shallow);
