@@ -14,7 +14,10 @@
                     var url = window.location.href + '?t=' + timestamp;
                     window.location.href = url;
                 }, 3000);
+            } else {
+                console.log(event);
             }
+
         }
         window.addEventListener('error', scriptLoadError, true);
 
