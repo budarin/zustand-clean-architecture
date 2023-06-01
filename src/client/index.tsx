@@ -33,11 +33,15 @@ if ('serviceWorker' in navigator) {
     });
 }
 
+const { log } = console;
+
 function InitApp() {
     cleanHtml();
 
     api.getTodoStore()
         .then((data) => {
+            log('getTodoStore', data);
+
             initStore(data);
 
             const checkOverduedTodosTask = runTask(() => {
@@ -63,5 +67,8 @@ function InitApp() {
                 );
             });
         })
-        .catch((error) => logger.error(error));
+        .catch((error) => {
+            log('Ошибка в Init APP');
+            logger.error(error);
+        });
 }
