@@ -106,16 +106,21 @@
             }
 
             .icon-container {
+                display: flex;
                 position: relative;
-                width: 128px;
+                width: 200px;
                 height: 160px;
+                align-items: flex-end;
+                justify-content: center;
             }
 
             .icon {
                 position: absolute;
                 top: 0;
-                left: 0;
-                /* animation: beat 1s infinite; */
+                left: auto;
+                width: 128px;
+                height: 128px;
+                animation: beat 1s infinite;
                 visibility: hidden;
             }
 
@@ -148,8 +153,6 @@
             }
 
             .loading-text {
-                margin-top: 20px;
-                margin-bottom: 80px;
                 visibility: hidden;
             }
         </style>
@@ -214,10 +217,8 @@
                 <circle cx="450.568" cy="359.883" r="5.381" style="fill: rgb(58, 85, 106)"></circle>
                 <circle cx="268.306" cy="359.545" r="5.381" style="fill: rgb(58, 85, 106)"></circle>
             </svg>
+            <span class="loading-text">Загрузка &laquo;Мои Задачи&raquo;</span>
         </div>
-        <!-- <div class="loading-text">
-            <span>Загрузка &laquo;Мои Задачи&raquo;</span>
-        </div> -->
     </div>
 </body>
 
