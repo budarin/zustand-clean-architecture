@@ -28,8 +28,6 @@ async function saveState() {
 }
 
 async function loadState(): Promise<true> {
-    log('state', state);
-
     if (state === undefined) {
         try {
             const cache = await caches.open('todo-sw');
