@@ -66,7 +66,7 @@ self.onerror = function (event) {
     log('sw error:', event);
 };
 
-self.addEventListener('fetch', function (event: FetchEvent) {
+self.addEventListener('fetch', async function (event: FetchEvent) {
     var requestUrl = new URL(event.request.url);
     const method = requestUrl.pathname.slice(apiPattern.length);
 
@@ -101,7 +101,7 @@ self.addEventListener('fetch', function (event: FetchEvent) {
     if (event.request.method === 'GET') {
         if (requestUrl.pathname === '/api/get_todos') {
             log('sw: /api/get_todos - before loadState()');
-            event.waitUntil(loadState());
+            await loadState();
             log('sw: /api/get_todos - after loadState()', state);
             event.respondWith(handleGetRequest());
             return;
