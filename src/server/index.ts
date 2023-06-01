@@ -137,7 +137,7 @@ async function handleDeleteRequest(request: Request, method: string): Promise<Re
 }
 
 function handleGetRequest(): Response {
-    return new Response(JSON.stringify(serverInitialState), {
+    return new Response(JSON.stringify(state), {
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
     });
 }
@@ -146,13 +146,35 @@ self.addEventListener('install', (event) => {
     self.skipWaiting();
 });
 
+const todosUrl = '/api/get_todos';
+
 self.addEventListener('activate', (event) => {
     const onActivate = async (): Promise<any> => {
         const cache = await caches.open('todo-sw');
 
         if (!state) {
-            state = serverInitialState;
-            await cache.put('/api/get_todos', new Response(JSON.stringify(state)));
+            const response = await cache.match(todosUrl);
+
+            if (response !== undefined) {
+                const data = await response.json();
+
+                if (data) {
+                    state = data;
+                }
+            }
+
+            if (!state) {
+                state = serverInitialState;
+
+                await cache.put(
+                    todosUrl,
+                    new Response(JSON.stringify(state), {
+                        headers: new Headers({
+                            'Content-Type': 'application/json',
+                        }),
+                    }),
+                );
+            }
         }
     };
 
