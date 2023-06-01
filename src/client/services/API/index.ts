@@ -4,10 +4,14 @@ const { log: clog } = console;
 
 export async function getTodoStore(): Promise<Entities> {
     clog('getTodoStore - start fetching');
-    return fetch('/api/get_todos').then((resp) => {
-        clog('getTodoStore - fetched', resp);
-        return resp.json();
-    });
+    return fetch('/api/get_todos')
+        .then((resp) => {
+            return resp.json();
+        })
+        .then((result) => {
+            clog('getTodoStore - fetched', result);
+            return result;
+        });
 }
 
 export async function createCategory(category: Category): Promise<Category> {
