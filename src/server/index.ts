@@ -9,6 +9,7 @@ const todosUrl = '/api/get_todos';
 const jsonHeader = { 'Content-Type': 'application/json; charset=utf-8' };
 
 let state: Entities | undefined;
+const { log } = console;
 
 async function saveState() {
     const cache = await caches.open('todo-sw');
@@ -28,20 +29,24 @@ async function saveState() {
 
 async function loadState() {
     if (!state) {
-        const cache = await caches.open('todo-sw');
-        const response = await cache.match(todosUrl);
+        try {
+            const cache = await caches.open('todo-sw');
+            const response = await cache.match(todosUrl);
 
-        if (response !== undefined) {
-            const data = await response.json();
+            if (response !== undefined) {
+                const data = await response.json();
 
-            if (data) {
-                state = data;
+                if (data) {
+                    state = data;
+                }
             }
-        }
 
-        if (!state) {
-            state = serverInitialState;
-            await saveState();
+            if (!state) {
+                state = serverInitialState;
+                await saveState();
+            }
+        } catch (error) {
+            log('loadState', error);
         }
     }
 }
@@ -80,6 +85,7 @@ self.addEventListener('fetch', function (event: FetchEvent) {
 
     if (event.request.method === 'GET') {
         if (requestUrl.pathname === '/api/get_todos') {
+            log('/api/get_todos - before loadState()');
             loadState();
             event.respondWith(handleGetRequest());
             return;
