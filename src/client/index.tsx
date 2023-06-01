@@ -24,10 +24,10 @@ if ('serviceWorker' in navigator) {
         }
 
         if (registration.active?.state === 'activated') {
-            // InitApp();
+            InitApp();
         } else {
             registration.active?.addEventListener('statechange', () => {
-                // InitApp();
+                InitApp();
             });
         }
     });
