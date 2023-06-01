@@ -61,7 +61,7 @@
                 margin: 0;
                 display: flex;
                 justify-content: center;
-                align-items: center;
+                align-items: flex-start;
                 flex-direction: column;
                 background-color: hsl(214deg 100% 97%);
                 transition: opacity 1s ease;
@@ -70,9 +70,9 @@
 
             .icon-container {
                 position: relative;
-                top: 37%;
                 width: 128px;
                 height: 128px;
+                margin-top: calc(50% - 64px - 18px);
             }
 
             .icon {
