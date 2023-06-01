@@ -101,9 +101,13 @@ self.addEventListener('fetch', async function (event: FetchEvent) {
     if (event.request.method === 'GET') {
         if (requestUrl.pathname === '/api/get_todos') {
             log('sw: /api/get_todos - before loadState()');
-            await loadState();
-            log('sw: /api/get_todos - after loadState()', state);
-            event.respondWith(handleGetRequest());
+            event.respondWith(
+                loadState().then(() => {
+                    log('sw: /api/get_todos - after loadState()', state);
+
+                    return handleGetRequest();
+                }),
+            );
             return;
         }
     }
