@@ -71,9 +71,7 @@ self.addEventListener('fetch', async function (event: FetchEvent) {
         const req = event.request.clone();
         event.respondWith(
             loadState()
-                .then(() => {
-                    return handlePostRequest(req, method);
-                })
+                .then(() => handlePostRequest(req, method))
                 .then((responce) => {
                     saveState();
                     return responce;
@@ -86,9 +84,7 @@ self.addEventListener('fetch', async function (event: FetchEvent) {
         const req = event.request.clone();
         event.respondWith(
             loadState()
-                .then(() => {
-                    return handlePatchRequest(req, method);
-                })
+                .then(() => handlePatchRequest(req, method))
                 .then((responce) => {
                     saveState();
                     return responce;
@@ -101,9 +97,7 @@ self.addEventListener('fetch', async function (event: FetchEvent) {
         const req = event.request.clone();
         event.respondWith(
             loadState()
-                .then(() => {
-                    return handleDeleteRequest(req, method);
-                })
+                .then(() => handleDeleteRequest(req, method))
                 .then((responce) => {
                     saveState();
                     return responce;
