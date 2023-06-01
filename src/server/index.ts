@@ -45,6 +45,12 @@ async function loadState() {
     }
 }
 
+self.onerror = function (event) {
+    const { log } = console;
+
+    log('sw error:', event);
+};
+
 self.addEventListener('fetch', function (event: FetchEvent) {
     var requestUrl = new URL(event.request.url);
     const method = requestUrl.pathname.slice(apiPattern.length);
