@@ -5,9 +5,25 @@ declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: stri
 self.VERSION = '1.0.0';
 
 const apiPattern = '/api/';
+const todosUrl = '/api/get_todos';
 const jsonHeader = { 'Content-Type': 'application/json; charset=utf-8' };
 
 let state: Entities | undefined;
+
+async function saveState() {
+    const cache = await caches.open('todo-sw');
+    const stateStr = JSON.stringify(state);
+
+    await cache.put(
+        todosUrl,
+        new Response(stateStr, {
+            headers: new Headers({
+                ...jsonHeader,
+                'Content-Length': String(stateStr.length),
+            }),
+        }),
+    );
+}
 
 self.addEventListener('fetch', function (event: FetchEvent) {
     var requestUrl = new URL(event.request.url);
@@ -166,30 +182,13 @@ async function handleDeleteRequest(request: Request, method: string): Promise<Re
 
 function handleGetRequest(): Response {
     return new Response(JSON.stringify(state), {
-        headers: { 'Content-Type': 'application/json; charset=utf-8' },
+        headers: jsonHeader,
     });
 }
 
 self.addEventListener('install', (event) => {
     self.skipWaiting();
 });
-
-const todosUrl = '/api/get_todos';
-
-async function saveState() {
-    const cache = await caches.open('todo-sw');
-    const stateStr = JSON.stringify(state);
-
-    await cache.put(
-        todosUrl,
-        new Response(stateStr, {
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                'Content-Length': String(stateStr.length),
-            }),
-        }),
-    );
-}
 
 self.addEventListener('activate', (event) => {
     const onActivate = async (): Promise<any> => {
