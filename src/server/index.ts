@@ -123,6 +123,7 @@ async function handlePostRequest(request: Request, method: string): Promise<Resp
                     break;
                 }
                 case 'error': {
+                    log(data);
                     log('%c[ERROR]', 'color: #E56353;; font-weight: 600;', data);
                     break;
                 }
