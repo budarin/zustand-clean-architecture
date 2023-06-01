@@ -27,7 +27,7 @@ async function saveState() {
     );
 }
 
-async function loadState() {
+async function loadState(): Promise<true> {
     log('state', state);
 
     if (state === undefined) {
@@ -56,6 +56,8 @@ async function loadState() {
             log('loadState', error);
         }
     }
+
+    return true;
 }
 
 self.onerror = function (event) {
@@ -99,7 +101,7 @@ self.addEventListener('fetch', async function (event: FetchEvent) {
     if (event.request.method === 'GET') {
         if (requestUrl.pathname === '/api/get_todos') {
             log('sw: /api/get_todos - before loadState()');
-            event.waitUntil(loadState());
+            await loadState();
             log('sw: /api/get_todos - after loadState()', state);
             event.respondWith(handleGetRequest());
             return;
