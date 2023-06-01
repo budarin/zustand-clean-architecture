@@ -1,13 +1,29 @@
 import { serverInitialState } from './serverInitialState';
 
-// @ts-ignore
+declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };
+
 self.VERSION = '1.0.0';
 
 const apiPattern = '/api/';
+const todosUrl = '/api/get_todos';
 const jsonHeader = { 'Content-Type': 'application/json; charset=utf-8' };
 
-const { log } = console;
-const state: Entities = serverInitialState;
+let state: Entities | undefined;
+
+async function saveState() {
+    const cache = await caches.open('todo-sw');
+    const stateStr = JSON.stringify(state);
+
+    await cache.put(
+        todosUrl,
+        new Response(stateStr, {
+            headers: new Headers({
+                ...jsonHeader,
+                'Content-Length': String(stateStr.length),
+            }),
+        }),
+    );
+}
 
 self.addEventListener('fetch', function (event: FetchEvent) {
     var requestUrl = new URL(event.request.url);
@@ -43,22 +59,32 @@ self.addEventListener('fetch', function (event: FetchEvent) {
     }
 });
 
+const { log } = console;
+
 async function handlePostRequest(request: Request, method: string): Promise<Response> {
     const data = await request.json();
     // console.log('POST', method, data);
 
     switch (method) {
         case 'create_category': {
-            return new Response(JSON.stringify(data), {
+            const response = new Response(JSON.stringify(data), {
                 headers: jsonHeader,
                 status: 200,
             });
+
+            saveState();
+            return response;
         }
+
         case 'create_todo': {
-            return new Response(JSON.stringify(data), {
+            const response = new Response(JSON.stringify(data), {
                 status: 200,
             });
+
+            saveState();
+            return response;
         }
+
         case 'log': {
             switch (data.type) {
                 case 'info': {
@@ -77,15 +103,18 @@ async function handlePostRequest(request: Request, method: string): Promise<Resp
                     break;
             }
 
-            return new Response(null, {
+            const response = new Response(null, {
                 status: 200,
             });
+
+            return response;
         }
 
-        default:
+        default: {
             return new Response(null, {
                 status: 404,
             });
+        }
     }
 }
 
@@ -95,19 +124,28 @@ async function handlePatchRequest(request: Request, method: string): Promise<Res
 
     switch (method) {
         case 'update_category': {
-            return new Response(JSON.stringify(data), {
+            const response = new Response(JSON.stringify(data), {
                 status: 200,
             });
+
+            saveState();
+            return response;
         }
+
         case 'update_todo': {
-            return new Response(JSON.stringify(data), {
+            const response = new Response(JSON.stringify(data), {
                 status: 200,
             });
+
+            saveState();
+            return response;
         }
-        default:
+
+        default: {
             return new Response(null, {
                 status: 404,
             });
+        }
     }
 }
 
@@ -117,25 +155,34 @@ async function handleDeleteRequest(request: Request, method: string): Promise<Re
 
     switch (method) {
         case 'delete_category': {
-            return new Response(JSON.stringify(data), {
+            const response = new Response(JSON.stringify(data), {
                 status: 200,
             });
+
+            saveState();
+            return response;
         }
+
         case 'delete_todo': {
-            return new Response(JSON.stringify(data), {
+            const response = new Response(JSON.stringify(data), {
                 status: 200,
             });
+
+            saveState();
+            return response;
         }
-        default:
+
+        default: {
             return new Response(null, {
                 status: 404,
             });
+        }
     }
 }
 
 function handleGetRequest(): Response {
-    return new Response(JSON.stringify(serverInitialState), {
-        headers: { 'Content-Type': 'application/json; charset=utf-8' },
+    return new Response(JSON.stringify(state), {
+        headers: jsonHeader,
     });
 }
 
@@ -144,5 +191,27 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
+    const onActivate = async (): Promise<any> => {
+        const cache = await caches.open('todo-sw');
+
+        if (!state) {
+            const response = await cache.match(todosUrl);
+
+            if (response !== undefined) {
+                const data = await response.json();
+
+                if (data) {
+                    state = data;
+                }
+            }
+
+            if (!state) {
+                state = serverInitialState;
+                await saveState();
+            }
+        }
+    };
+
+    event.waitUntil(onActivate());
     clients.claim();
 });
