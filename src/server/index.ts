@@ -52,16 +52,24 @@ async function handlePostRequest(request: Request, method: string): Promise<Resp
 
     switch (method) {
         case 'create_category': {
-            return new Response(JSON.stringify(data), {
+            const response = new Response(JSON.stringify(data), {
                 headers: jsonHeader,
                 status: 200,
             });
+
+            saveState();
+            return response;
         }
+
         case 'create_todo': {
-            return new Response(JSON.stringify(data), {
+            const response = new Response(JSON.stringify(data), {
                 status: 200,
             });
+
+            saveState();
+            return response;
         }
+
         case 'log': {
             switch (data.type) {
                 case 'info': {
@@ -80,15 +88,18 @@ async function handlePostRequest(request: Request, method: string): Promise<Resp
                     break;
             }
 
-            return new Response(null, {
+            const response = new Response(null, {
                 status: 200,
             });
+
+            return response;
         }
 
-        default:
+        default: {
             return new Response(null, {
                 status: 404,
             });
+        }
     }
 }
 
@@ -98,19 +109,28 @@ async function handlePatchRequest(request: Request, method: string): Promise<Res
 
     switch (method) {
         case 'update_category': {
-            return new Response(JSON.stringify(data), {
+            const response = new Response(JSON.stringify(data), {
                 status: 200,
             });
+
+            saveState();
+            return response;
         }
+
         case 'update_todo': {
-            return new Response(JSON.stringify(data), {
+            const response = new Response(JSON.stringify(data), {
                 status: 200,
             });
+
+            saveState();
+            return response;
         }
-        default:
+
+        default: {
             return new Response(null, {
                 status: 404,
             });
+        }
     }
 }
 
@@ -120,19 +140,28 @@ async function handleDeleteRequest(request: Request, method: string): Promise<Re
 
     switch (method) {
         case 'delete_category': {
-            return new Response(JSON.stringify(data), {
+            const response = new Response(JSON.stringify(data), {
                 status: 200,
             });
+
+            saveState();
+            return response;
         }
+
         case 'delete_todo': {
-            return new Response(JSON.stringify(data), {
+            const response = new Response(JSON.stringify(data), {
                 status: 200,
             });
+
+            saveState();
+            return response;
         }
-        default:
+
+        default: {
             return new Response(null, {
                 status: 404,
             });
+        }
     }
 }
 
@@ -148,16 +177,27 @@ self.addEventListener('install', (event) => {
 
 const todosUrl = '/api/get_todos';
 
+async function saveState() {
+    const cache = await caches.open('todo-sw');
+
+    await cache.put(
+        todosUrl,
+        new Response(JSON.stringify(state), {
+            headers: new Headers({
+                'Content-Type': 'application/json',
+            }),
+        }),
+    );
+}
+
 self.addEventListener('activate', (event) => {
     const onActivate = async (): Promise<any> => {
         const cache = await caches.open('todo-sw');
 
         if (!state) {
             const response = await cache.match(todosUrl);
-
             if (response !== undefined) {
                 const data = await response.json();
-
                 if (data) {
                     state = data;
                 }
@@ -165,20 +205,11 @@ self.addEventListener('activate', (event) => {
 
             if (!state) {
                 state = serverInitialState;
-
-                await cache.put(
-                    todosUrl,
-                    new Response(JSON.stringify(state), {
-                        headers: new Headers({
-                            'Content-Type': 'application/json',
-                        }),
-                    }),
-                );
+                await saveState();
             }
         }
     };
 
     event.waitUntil(onActivate());
-
     clients.claim();
 });
