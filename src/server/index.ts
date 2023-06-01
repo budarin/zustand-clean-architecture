@@ -30,10 +30,11 @@ async function saveState() {
 async function loadState() {
     log('state', state);
 
-    if (!state) {
+    if (state === undefined) {
         try {
+            log('sw: try to open cache');
             const cache = await caches.open('todo-sw');
-            log('sw: open cache');
+            log('sw: cache is opened');
             const response = await cache.match(todosUrl);
             log('sw: find cache item', response);
 
