@@ -63,7 +63,7 @@ self.onerror = function (event) {
     log('sw error:', event);
 };
 
-self.addEventListener('fetch', function (event: FetchEvent) {
+self.addEventListener('fetch', async function (event: FetchEvent) {
     var requestUrl = new URL(event.request.url);
     const method = requestUrl.pathname.slice(apiPattern.length);
 
@@ -73,26 +73,33 @@ self.addEventListener('fetch', function (event: FetchEvent) {
         }
 
         const req = event.request.clone();
+        event.waitUntil(loadState());
         event.respondWith(handlePostRequest(req, method));
+        event.waitUntil(saveState());
         return;
     }
 
     if (event.request.method === 'PATCH') {
         const req = event.request.clone();
+        event.waitUntil(loadState());
         event.respondWith(handlePatchRequest(req, method));
+        event.waitUntil(saveState());
         return;
     }
 
     if (event.request.method === 'DELETE') {
         const req = event.request.clone();
+        event.waitUntil(loadState());
         event.respondWith(handleDeleteRequest(req, method));
+        event.waitUntil(saveState());
         return;
     }
 
     if (event.request.method === 'GET') {
         if (requestUrl.pathname === '/api/get_todos') {
             log('sw: /api/get_todos - before loadState()');
-            loadState();
+            event.waitUntil(loadState());
+            log('sw: /api/get_todos - after loadState()', state);
             event.respondWith(handleGetRequest());
             return;
         }
@@ -109,7 +116,6 @@ async function handlePostRequest(request: Request, method: string): Promise<Resp
                 status: 200,
             });
 
-            saveState();
             return response;
         }
 
@@ -118,7 +124,6 @@ async function handlePostRequest(request: Request, method: string): Promise<Resp
                 status: 200,
             });
 
-            saveState();
             return response;
         }
 
@@ -168,7 +173,6 @@ async function handlePatchRequest(request: Request, method: string): Promise<Res
                 status: 200,
             });
 
-            saveState();
             return response;
         }
 
@@ -177,7 +181,6 @@ async function handlePatchRequest(request: Request, method: string): Promise<Res
                 status: 200,
             });
 
-            saveState();
             return response;
         }
 
@@ -199,7 +202,6 @@ async function handleDeleteRequest(request: Request, method: string): Promise<Re
                 status: 200,
             });
 
-            saveState();
             return response;
         }
 
@@ -208,7 +210,6 @@ async function handleDeleteRequest(request: Request, method: string): Promise<Re
                 status: 200,
             });
 
-            saveState();
             return response;
         }
 
