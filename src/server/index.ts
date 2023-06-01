@@ -9,7 +9,6 @@ const todosUrl = '/api/get_todos';
 const jsonHeader = { 'Content-Type': 'application/json; charset=utf-8' };
 
 let state: Entities | undefined;
-const { log } = console;
 
 async function saveState() {
     const cache = await caches.open('todo-sw');
@@ -83,7 +82,6 @@ self.addEventListener('fetch', function (event: FetchEvent) {
 
 async function handlePostRequest(request: Request, method: string): Promise<Response> {
     const data = await request.json();
-    // console.log('POST', method, data);
 
     switch (method) {
         case 'create_category': {
@@ -106,6 +104,8 @@ async function handlePostRequest(request: Request, method: string): Promise<Resp
         }
 
         case 'log': {
+            const { log } = console;
+
             switch (data.type) {
                 case 'info': {
                     log('%c[INFO]', 'color: blue; font-weight: 600;', data);
