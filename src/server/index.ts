@@ -32,15 +32,11 @@ async function loadState(): Promise<true> {
 
     if (state === undefined) {
         try {
-            log('sw: try to open cache');
             const cache = await caches.open('todo-sw');
-            log('sw: cache is opened');
             const response = await cache.match(todosUrl);
-            log('sw: find cache item', response);
 
             if (response !== undefined) {
                 const data = await response.json();
-                log('sw: get json from cache item', data);
 
                 if (data) {
                     state = data;
@@ -48,12 +44,11 @@ async function loadState(): Promise<true> {
             }
 
             if (!state) {
-                log('sw: cache not found and state is undefined');
                 state = serverInitialState;
                 await saveState();
             }
         } catch (error) {
-            log('loadState', error);
+            log('sw: error in loadState', error);
         }
     }
 
@@ -76,35 +71,53 @@ self.addEventListener('fetch', async function (event: FetchEvent) {
         }
 
         const req = event.request.clone();
-        event.waitUntil(loadState());
-        event.respondWith(handlePostRequest(req, method));
-        event.waitUntil(saveState());
+        event.respondWith(
+            loadState()
+                .then(() => {
+                    return handlePostRequest(req, method);
+                })
+                .then((responce) => {
+                    saveState();
+                    return responce;
+                }),
+        );
         return;
     }
 
     if (event.request.method === 'PATCH') {
         const req = event.request.clone();
-        event.waitUntil(loadState());
-        event.respondWith(handlePatchRequest(req, method));
-        event.waitUntil(saveState());
+        event.respondWith(
+            loadState()
+                .then(() => {
+                    return handlePatchRequest(req, method);
+                })
+                .then((responce) => {
+                    saveState();
+                    return responce;
+                }),
+        );
         return;
     }
 
     if (event.request.method === 'DELETE') {
         const req = event.request.clone();
-        event.waitUntil(loadState());
-        event.respondWith(handleDeleteRequest(req, method));
-        event.waitUntil(saveState());
+        event.respondWith(
+            loadState()
+                .then(() => {
+                    return handleDeleteRequest(req, method);
+                })
+                .then((responce) => {
+                    saveState();
+                    return responce;
+                }),
+        );
         return;
     }
 
     if (event.request.method === 'GET') {
         if (requestUrl.pathname === '/api/get_todos') {
-            log('sw: /api/get_todos - before loadState()');
             event.respondWith(
                 loadState().then(() => {
-                    log('sw: /api/get_todos - after loadState()', state);
-
                     return handleGetRequest();
                 }),
             );
@@ -229,8 +242,6 @@ async function handleDeleteRequest(request: Request, method: string): Promise<Re
 }
 
 function handleGetRequest(): Response {
-    log('sw: start responding on get', state);
-
     return new Response(JSON.stringify(state), {
         headers: jsonHeader,
     });
