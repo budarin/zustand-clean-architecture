@@ -37,9 +37,6 @@ const { log } = console;
 
 function InitApp() {
     cleanHtml();
-
-    log('atart api.getTodoStore()');
-
     api.getTodoStore()
         .then((data) => {
             log('getTodoStore', data);
