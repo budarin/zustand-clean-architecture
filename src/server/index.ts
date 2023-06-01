@@ -157,5 +157,6 @@ self.addEventListener('activate', (event) => {
     };
 
     event.waitUntil(onActivate());
+
     clients.claim();
 });
