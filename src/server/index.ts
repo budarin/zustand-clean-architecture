@@ -19,6 +19,7 @@ async function saveState() {
         new Response(stateStr, {
             headers: new Headers({
                 ...jsonHeader,
+                'Cache-Control': 'max-age=31536000',
                 'Content-Length': String(stateStr.length),
             }),
         }),
