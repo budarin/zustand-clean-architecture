@@ -23,6 +23,10 @@ if ('serviceWorker' in navigator) {
             return;
         }
 
+        const { log } = console;
+        log('registration', registration);
+        log('registration.active?.state', registration.active?.state);
+
         if (registration.active?.state === 'activated') {
             InitApp();
         } else {
