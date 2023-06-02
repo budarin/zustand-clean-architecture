@@ -14,7 +14,7 @@ function CheckButton(props: CheckButton) {
 
     return (
         <button
-            className={className || 'CheckButton'}
+            className={`CheckButton ${className}`}
             area-role="menu"
             aria-expanded={checked}
             onClick={onClick}
