@@ -23,6 +23,7 @@ const CategoryHeader = memo((props: CategoryHeader): JSX.Element => {
                 <CheckButton
                     checked={isOpen}
                     onClick={toggleOpen}
+                    className="CategoryHeader__Button"
                     unCheckedIcon={<AddIcon className="CategoryHeader-ButtonIcon" />}
                     checkedIcon={<CollapseIcon className="CategoryHeader-ButtonIcon" />}
                     title={isOpen ? "Свернуть форму 'Добавить категорию'" : 'Добавить категорию'}

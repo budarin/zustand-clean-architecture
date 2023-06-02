@@ -1,8 +1,8 @@
-.CategoryHeader .CheckButton {
+.CategoryHeader__Button {
     height: var(--x9);
     width: var(--x9);
-    background-color: var(--primaryColor);
     color: gray;
+    background-color: var(--primaryColor);
     margin-right: 2px;
 }
 

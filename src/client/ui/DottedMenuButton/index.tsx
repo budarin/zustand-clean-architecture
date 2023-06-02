@@ -14,7 +14,7 @@ function DottedMenuButton(props: DottedMenuButton) {
 
     return (
         <button
-            className={className || 'DottedMenuButton'}
+            className={`DottedMenuButton ${className}`}
             onClick={onClick}
             title={title}
             area-role="menu"
