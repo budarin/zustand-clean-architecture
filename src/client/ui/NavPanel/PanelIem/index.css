@@ -46,26 +46,7 @@
     margin: var(--touchAreaPadding, 8px);
 }
 
-.NavItem .ExpandButton {
-    fill: var(--secondaryColor);
-    color: gray;
-
-    background-color: var(--secondaryColor);
-    margin-right: 2px;
-}
-
-@media (hover: hover) {
-    .NavItem .ExpandButton > svg:hover {
-        fill: var(--secondaryDarkColor);
-        color: white;
-    }
-}
-
 @media (pointer: coarse) {
-    .NavItem .ExpandButton {
-        margin-right: 0;
-    }
-
     .NavItem-Icon {
         height: var(--x11);
         width: var(--x11);

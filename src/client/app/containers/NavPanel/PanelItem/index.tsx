@@ -50,8 +50,9 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainer):
         <NavigationIPanelIem title={title} icon={iconName} selected={selected} handleClick={handleClick}>
             {selected && isCategory ? (
                 <DottedMenuButton
-                    title={(expanded ? 'Скрыть' : 'Отобразить') + ' меню'}
                     expanded={expanded}
+                    className="NavItem__Button"
+                    title={(expanded ? 'Скрыть' : 'Отобразить') + ' меню'}
                     onClick={handleExpan}
                 />
             ) : (

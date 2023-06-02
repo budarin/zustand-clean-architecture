@@ -16,7 +16,7 @@ function ExpandButton(props: ExpandButton) {
 
     return (
         <CheckButton
-            className={className || 'ExpandButton'}
+            className={`ExpandButton ${className}`}
             checked={isToggled}
             unCheckedIcon={<ExpandIcon />}
             checkedIcon={<CollapseIcon />}
