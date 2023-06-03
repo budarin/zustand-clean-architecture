@@ -35,15 +35,6 @@
     outline-color: var(--primaryDarkColor);
 }
 
-button {
-    color: var(--primaryTextColor);
-}
-
-button:disabled {
-    color: revert;
-    cursor: default;
-}
-
 html,
 body,
 #root {
