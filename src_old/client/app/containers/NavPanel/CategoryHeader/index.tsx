@@ -2,12 +2,12 @@ import { useOnClickOutside } from 'usehooks-ts';
 import { FormEventHandler, MouseEventHandler, memo, useCallback, useEffect, useRef, useState } from 'react';
 
 import * as logger from '../../../../services/Logger/index.ts';
-import { isNotificationElement } from './isNotificationElement';
+import { isNotificationElement } from './isNotificationElement.tsx';
 import { useCreateCategory } from './useCreateCategory.tsx';
 
 // components
-import CreateCategoryFormContainer from '../CreateCategoryForm';
-import CategoryHeader from '../../../../ui/NavPanel/CategoryHeader';
+import CreateCategoryFormContainer from '../CreateCategoryForm/index.tsx';
+import CategoryHeader from '../../../../ui/NavPanel/CategoryHeader/index.tsx';
 
 let timer: NodeJS.Timeout;
 

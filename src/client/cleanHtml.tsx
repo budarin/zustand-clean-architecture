@@ -1,4 +1,4 @@
-import * as kvStorage from './services/KVStorage/index.ts';
+import * as kvStorage from '../../src_old/client/services/KVStorage/index.ts';
 
 export function cleanHtml(): void {
     if (window.scriptLoadError) {

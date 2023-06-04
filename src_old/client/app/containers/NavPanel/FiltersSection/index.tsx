@@ -6,8 +6,8 @@ import {
 } from '../../../../domain/entities/navigationFilter/index.ts';
 
 // components
-import NavigationPanelItemContainer from '../PanelItem';
-import FiltersSection from '../../../../ui/NavPanel/FiltersSection';
+import NavigationPanelItemContainer from '../PanelItem/index.tsx';
+import FiltersSection from '../../../../ui/NavPanel/FiltersSection/index.tsx';
 
 const topFilters = [inboxKey, overdueKey, recycleBinKey];
 
