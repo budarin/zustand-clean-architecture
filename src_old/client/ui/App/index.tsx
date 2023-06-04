@@ -5,7 +5,7 @@ import './index.css';
 import icon from '../../../../assets/todolist.svg';
 
 // components
-import AppHeader from './AppHeader';
+import AppHeader from './AppHeader/index.tsx';
 
 const appContainerCN = cn('App-Container');
 

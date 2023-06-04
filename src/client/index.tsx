@@ -1,21 +1,21 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import * as api from './services/API/index.ts';
-import * as logger from './services/Logger/index.ts';
+import * as api from '../../src_old/client/services/API/index.ts';
+import * as logger from '../../src_old/client/services/Logger/index.ts';
 
 import { cleanHtml } from './cleanHtml.tsx';
-import { runTask } from '../common/utils/runTask.ts';
-import { initStore } from './domain/entities/initStore.tsx';
+import { runTask } from '../../src_old/common/utils/runTask.ts';
+import { initStore } from '../../src_old/client/domain/entities/initStore.tsx';
 import { createRootElement } from './createRootElement.tsx';
-import { ONE_MINUTE } from '../common/utils/dateTime/consts.ts';
-import { checkOverduedTodos } from './domain/use_cases/checkOverduedTodos.ts';
+import { ONE_MINUTE } from '../../src_old/common/utils/dateTime/consts.ts';
+import { checkOverduedTodos } from '../../src_old/client/domain/use_cases/checkOverduedTodos.ts';
 
 // components
 import { ToastContainer } from 'react-toastify';
-import AppContainer from './app/containers/App/index.tsx';
+import AppContainer from '../../src_old/client/app/containers/App/index.tsx';
 
-import './importSiteIcons.ts';
+import '../../src_old/client/importSiteIcons.ts';
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then((registration) => {

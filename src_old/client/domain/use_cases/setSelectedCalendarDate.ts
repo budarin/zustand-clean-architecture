@@ -1,8 +1,10 @@
 import { useTodoStore } from '../entities/store';
+import { vibrate } from '../../services/Notification/index.ts';
 import { createCalendarNavigationFilter } from '../action_creators/createCalendarNavigationFilter';
 
 const setNavigationFilter = useTodoStore.getState().setNavigationFilter;
 
 export function setSelectedCalendarDate(date: Date): void {
-    return setNavigationFilter(createCalendarNavigationFilter(date));
+    setNavigationFilter(createCalendarNavigationFilter(date));
+    vibrate();
 }

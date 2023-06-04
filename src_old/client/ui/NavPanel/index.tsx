@@ -1,5 +1,4 @@
-import React, { ReactNode, useRef } from 'react';
-import { useOnClickOutside } from 'usehooks-ts';
+import { ReactNode } from 'react';
 
 import './index.css';
 
