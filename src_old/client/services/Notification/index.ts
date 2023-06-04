@@ -9,17 +9,26 @@ export type NotificationMethod = <TData = unknown>(
 ) => number | string;
 
 const lineHeight = 1.45;
+const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches === true;
+const isTouchWithVibration = isTouchDevice && 'vibrate' in navigator;
 
 const au = new Audio(sound);
 au.volume = 0.25;
 
+export const vibrate = (vibrations = [10]) => {
+    if (isTouchWithVibration) {
+        window.navigator.vibrate(vibrations);
+    }
+};
+
 function onClose() {
     au.pause();
 }
+
 function onOpen() {
     delay(250).then(() => {
-        if (window.matchMedia('(hover: none) and (pointer: coarse)').matches === true && 'vibrate' in navigator) {
-            window.navigator.vibrate(10);
+        if (isTouchWithVibration) {
+            vibrate();
         } else {
             au.play();
         }
@@ -53,11 +62,10 @@ export const notifyWarning: typeof toast.warning = (content, options?) => {
 function onJoyfullyOpen() {
     delay(250).then(() => {
         au.play();
-        if (window.matchMedia('(hover: none) and (pointer: coarse)').matches === true && 'vibrate' in navigator) {
-            window.navigator.vibrate([100, 30, 100, 30, 100]);
-        }
+        vibrate([100, 30, 100, 30, 100]);
     });
 }
+
 export const joyfullyGilling: typeof toast.warning = (content, options?) => {
     return toast.success(content, {
         ...options,
