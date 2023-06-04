@@ -15,7 +15,7 @@ const isTouchWithVibration = isTouchDevice && 'vibrate' in navigator;
 const au = new Audio(sound);
 au.volume = 0.25;
 
-export const vibrate = (vibrations = [10]) => {
+export const vibrate = (vibrations = [5]) => {
     if (isTouchWithVibration) {
         window.navigator.vibrate(vibrations);
     }
