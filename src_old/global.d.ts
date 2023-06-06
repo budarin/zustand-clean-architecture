@@ -10,6 +10,9 @@ declare module '*.gif';
 interface Window {
     loading: Promise<boolean>;
     scriptLoadError?: () => void;
+    navigator: {
+        msMaxTouchPoints?: number;
+    };
 }
 
 type Optional<T> = T | undefined;
