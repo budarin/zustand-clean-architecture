@@ -1,11 +1,12 @@
 import { FC, useCallback, useState } from 'react';
 
 import { useMediaQuery } from 'usehooks-ts';
-import { useCleanUpHtml } from './useCleanUpHtml.tsx';
 
 import App from '../../components/App/index.tsx';
 
 import './index.css';
+import { useEffectOnce } from '../../hooks/useEffectOnce.ts';
+import { cleanUpHtml } from './cleanUpHtml.ts';
 
 let showNavePaneAtStart = true;
 
@@ -20,7 +21,7 @@ const AppContainer: FC = () => {
     const toggleNavPane = () => setNavPaneOpen((s) => !s);
     const onToggleNavPan = useCallback(toggleNavPane, []);
 
-    useCleanUpHtml();
+    useEffectOnce(cleanUpHtml);
 
     return (
         <App
