@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import React from 'react';
 
 type ExpandIcon = {
     className?: string;
 };
 
-const ExpandIcon: FC<ExpandIcon> = (props) => {
+function ExpandIcon(props: ExpandIcon) {
     const { className } = props;
 
     return (
@@ -34,6 +34,6 @@ const ExpandIcon: FC<ExpandIcon> = (props) => {
             </g>
         </svg>
     );
-};
+}
 
 export default ExpandIcon;

@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import React from 'react';
 
 type CloseIcon = {
     className?: string;
 };
 
-const CloseIcon: FC<CloseIcon> = (props) => {
+function CloseIcon(props: CloseIcon) {
     const { className } = props;
 
     return (
@@ -17,6 +17,6 @@ const CloseIcon: FC<CloseIcon> = (props) => {
             />
         </svg>
     );
-};
+}
 
 export default CloseIcon;

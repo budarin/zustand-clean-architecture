@@ -1,5 +1,3 @@
-import { FC } from 'react';
-
 import './index.css';
 
 type CheckButton = {
@@ -11,7 +9,7 @@ type CheckButton = {
     title: string;
 };
 
-const CheckButton: FC<CheckButton> = (props) => {
+function CheckButton(props: CheckButton) {
     const { className, checked, unCheckedIcon, checkedIcon, onClick, title } = props;
 
     return (
@@ -25,6 +23,6 @@ const CheckButton: FC<CheckButton> = (props) => {
             {checked ? checkedIcon : unCheckedIcon}
         </button>
     );
-};
+}
 
 export default CheckButton;

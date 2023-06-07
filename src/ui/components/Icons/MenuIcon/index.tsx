@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import React from 'react';
 
 type MenuIcon = {
     className?: string;
 };
 
-const MenuIcon: FC<MenuIcon> = (props) => {
+function MenuIcon(props: MenuIcon) {
     const { className } = props;
 
     return (
@@ -18,6 +18,6 @@ const MenuIcon: FC<MenuIcon> = (props) => {
             />
         </svg>
     );
-};
+}
 
 export default MenuIcon;

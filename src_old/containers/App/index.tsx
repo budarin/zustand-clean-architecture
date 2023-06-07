@@ -44,12 +44,9 @@ function AppContainer() {
         let mounted = true;
 
         if (mounted) {
-            const loading = document.querySelector('#loading') as HTMLElement;
-
-            loading && loading.remove();
-
-            const root = document.querySelector('#root') as HTMLElement;
-            root && root.classList.remove('hidden');
+            document.querySelector('#loading')?.remove();
+            const root = document.querySelector('#root')?.classList.remove('hidden');
+            document.getElementById('initialScript')?.remove();
         }
 
         return () => {

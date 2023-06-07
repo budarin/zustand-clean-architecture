@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import React from 'react';
 
 type AddIcon = {
     className?: string;
 };
 
-const AddIcon: FC<AddIcon> = (props) => {
+function AddIcon(props: AddIcon) {
     const { className } = props;
 
     return (
@@ -20,6 +20,6 @@ const AddIcon: FC<AddIcon> = (props) => {
             <path d="M12 16V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
     );
-};
+}
 
 export default AddIcon;

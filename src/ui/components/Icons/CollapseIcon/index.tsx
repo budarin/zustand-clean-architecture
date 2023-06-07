@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import React from 'react';
 
 type CollapseIcon = {
     className?: string;
 };
 
-const CollapseIcon: FC<CollapseIcon> = (props) => {
+function CollapseIcon(props: CollapseIcon) {
     const { className } = props;
 
     return (
@@ -32,6 +32,6 @@ const CollapseIcon: FC<CollapseIcon> = (props) => {
             />
         </svg>
     );
-};
+}
 
 export default CollapseIcon;

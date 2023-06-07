@@ -1,0 +1,14 @@
+.CheckButton {
+    height: var(--x9);
+    padding: var(--touchAreaPadding, 8px);
+    margin: 0;
+    border: 0;
+    cursor: pointer;
+}
+
+@media (pointer: coarse) {
+    .CheckButton {
+        height: var(--x11);
+        width: var(--x11);
+    }
+}

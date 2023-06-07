@@ -1,5 +1,3 @@
-import { FC } from 'react';
-
 import CheckButton from '../CheckButton';
 import ExpandIcon from '../../Icons/ExpandIcon';
 import CollapseIcon from '../../Icons/CollapseIcon';
@@ -13,7 +11,7 @@ type ExpandButton = {
     title: string;
 };
 
-const ExpandButton: FC<ExpandButton> = (props) => {
+function ExpandButton(props: ExpandButton) {
     const { className, isToggled, onClick, title } = props;
 
     return (
@@ -26,6 +24,6 @@ const ExpandButton: FC<ExpandButton> = (props) => {
             title={title}
         />
     );
-};
+}
 
 export default ExpandButton;

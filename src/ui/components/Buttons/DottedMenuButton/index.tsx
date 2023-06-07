@@ -1,5 +1,3 @@
-import { FC } from 'react';
-
 import DottedMenuIcon from '../../Icons/DottedMenuIcon';
 
 import './index.css';
@@ -11,7 +9,7 @@ type DottedMenuButton = {
     expanded: boolean;
 };
 
-const DottedMenuButton: FC<DottedMenuButton> = (props) => {
+function DottedMenuButton(props: DottedMenuButton) {
     const { className, onClick, title, expanded } = props;
 
     return (
@@ -25,6 +23,6 @@ const DottedMenuButton: FC<DottedMenuButton> = (props) => {
             <DottedMenuIcon />
         </button>
     );
-};
+}
 
 export default DottedMenuButton;

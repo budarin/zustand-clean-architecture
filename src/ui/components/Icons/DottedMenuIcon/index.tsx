@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import React from 'react';
 
 type DottedMenuIcon = {
     className?: string;
 };
 
-const DottedMenuIcon: FC<DottedMenuIcon> = (props) => {
+function DottedMenuIcon(props: DottedMenuIcon) {
     const { className } = props;
 
     return (
@@ -32,6 +32,6 @@ const DottedMenuIcon: FC<DottedMenuIcon> = (props) => {
             />
         </svg>
     );
-};
+}
 
 export default DottedMenuIcon;
