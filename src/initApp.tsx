@@ -29,10 +29,11 @@ export async function initApp() {
                 checkOverduedTodosTask.stop();
             });
         })
+
         .then(() => window.loadingPromise)
+
         .then(() => {
             const rootElement = document.getElementById('root') || createRootElement();
-
             createRoot(rootElement).render(
                 <>
                     <StrictMode>
@@ -42,9 +43,9 @@ export async function initApp() {
                     <ToastContainer limit={3} hideProgressBar={true} />
                 </>,
             );
-
             cleanHtml();
         })
+
         .catch((error) => {
             logger.error(error);
         });
