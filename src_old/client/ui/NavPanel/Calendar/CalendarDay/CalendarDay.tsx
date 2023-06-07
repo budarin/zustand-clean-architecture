@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { cn } from '../../classNames';
+import { cn } from '../../../classNames';
 
 import { type CalendarDayType } from '..';
 

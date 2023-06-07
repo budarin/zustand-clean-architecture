@@ -2,7 +2,7 @@ import { MouseEventHandler, ReactNode, memo } from 'react';
 
 //components
 import AddIcon from '../../Icons/AddIcon';
-import CheckButton from '../../CheckButton';
+import CheckButton from '../../Buttons/CheckButton';
 import CollapseIcon from '../../Icons/CollapseIcon';
 
 import './index.css';

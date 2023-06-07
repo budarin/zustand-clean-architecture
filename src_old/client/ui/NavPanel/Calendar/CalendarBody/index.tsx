@@ -1,7 +1,7 @@
 import { memo, useRef } from 'react';
 
-import { useKeyDownToClickEvent } from '../../hooks/useKeyDownToClickEvent';
-import { useArrowKeysToSimulateTab } from '../../hooks/useArrowKeysToSimulateTab';
+import { useKeyDownToClickEvent } from '../../../hooks/useKeyDownToClickEvent';
+import { useArrowKeysToSimulateTab } from '../../../hooks/useArrowKeysToSimulateTab';
 
 //components
 import CalendarDay from '../CalendarDay/CalendarDay';

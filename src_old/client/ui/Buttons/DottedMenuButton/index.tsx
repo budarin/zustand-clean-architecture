@@ -1,4 +1,4 @@
-import DottedMenuIcon from '../Icons/DottedMenuIcon';
+import DottedMenuIcon from '../../Icons/DottedMenuIcon';
 
 import './index.css';
 

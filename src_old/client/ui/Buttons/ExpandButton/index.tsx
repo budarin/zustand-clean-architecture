@@ -1,6 +1,6 @@
 import CheckButton from '../CheckButton';
-import ExpandIcon from '../Icons/ExpandIcon';
-import CollapseIcon from '../Icons/CollapseIcon';
+import ExpandIcon from '../../Icons/ExpandIcon';
+import CollapseIcon from '../../Icons/CollapseIcon';
 
 import './index.css';
 

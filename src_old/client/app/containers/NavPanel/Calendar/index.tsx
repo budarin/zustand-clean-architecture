@@ -1,11 +1,11 @@
 import { MouseEventHandler, useCallback } from 'react';
 
-import { getCalendarSelectedDate } from '../../../../../src/domain/selectors/getCalendarSelectedDate';
-import { setSelectedCalendarDate } from '../../../../../src/domain/useCases/setSelectedCalendarDate.ts';
+import { getCalendarSelectedDate } from '../../../../../../src/domain/selectors/getCalendarSelectedDate.ts';
+import { setSelectedCalendarDate } from '../../../../../../src/domain/useCases/setSelectedCalendarDate.ts';
 
 // components
-import Calendar from '../../../ui/Calendar';
-import CalendarDayContainer from './CalendarDayContainer';
+import Calendar from '../../../../ui/NavPanel/Calendar/index.tsx';
+import CalendarDayContainer from './CalendarDayContainer.tsx';
 
 function CalendarContainer() {
     const selectedDate = getCalendarSelectedDate();

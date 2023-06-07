@@ -1,5 +1,5 @@
 import MenuIcon from '../../Icons/MenuIcon';
-import CheckButton from '../../CheckButton';
+import CheckButton from '../../Buttons/CheckButton';
 import CloseIcon from '../../Icons/CloseIcon';
 
 import './index.css';

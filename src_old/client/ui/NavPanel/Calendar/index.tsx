@@ -1,10 +1,10 @@
 import React, { MouseEventHandler, memo, useCallback, useEffect, useState } from 'react';
 
-import usePrevious from '../hooks/usePrevious.ts';
+import usePrevious from '../../hooks/usePrevious.ts';
 import { areDatesEqual } from './utils/areDatesEqual.ts';
 import { getNewCalendarState } from './utils/getNewCalendarState.tsx';
 import { areParsedDatesEqualByMonthAndYear } from './utils/areParsedDatesEqualByMonthAndYear.tsx';
-import { setSelectedCalendarDate } from '../../../../src/domain/useCases/setSelectedCalendarDate.ts';
+import { setSelectedCalendarDate } from '../../../../../src/domain/useCases/setSelectedCalendarDate.ts';
 
 // components
 import CalendarBody from './CalendarBody/index.tsx';

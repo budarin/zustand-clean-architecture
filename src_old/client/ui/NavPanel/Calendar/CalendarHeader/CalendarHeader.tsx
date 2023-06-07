@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { cn } from '../../classNames.ts';
+import { cn } from '../../../classNames.ts';
 
 import './index.css';
 
