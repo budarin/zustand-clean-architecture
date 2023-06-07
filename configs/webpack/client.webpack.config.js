@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
-    entry: './src/client/index.tsx',
+    entry: './src/index.tsx',
     output: {
         path: path.resolve('./dist'),
     },
