@@ -15,7 +15,7 @@ type App = {
     toggleNavPane: () => void;
 };
 
-const onScroll = function onScroll(event: React.UIEvent<HTMLDivElement, UIEvent>) {
+const onScroll: React.UIEventHandler<HTMLDivElement> = (event) => {
     const el = event.target as HTMLElement;
     el.className = appContainerCN({ scrolled: el.scrollTop > 0 });
 };
