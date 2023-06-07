@@ -1,0 +1,61 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    block-size: 100%;
+    max-width: 1100px;
+    padding: 0 var(--x);
+    overflow: hidden;
+}
+
+.App__Container {
+    flex: 1;
+    width: 100%;
+    overflow: auto;
+}
+
+.App__Container_scrolled {
+    border-top: 1px solid var(--primaryColor);
+}
+
+.App__NavPanel {
+}
+.App__TodoList {
+}
+
+@media only screen and (min-width: 641px) {
+    .App {
+        padding: 0 var(--x2);
+    }
+
+    .App__Container {
+        display: flex;
+        flex-direction: row;
+        gap: var(--x4);
+    }
+}
+
+@media only screen and (min-width: 1100px) {
+    .App {
+        padding: 0;
+        margin: 0 auto;
+    }
+}
+
+/* меняем глобально шрифт и размеры для мобил и десктопа */
+@media (pointer: coarse) {
+    input {
+        padding: var(--x2);
+    }
+    input[type='checkbox'],
+    input[type='radio'] {
+        height: var(--x5);
+        width: var(--x5);
+        margin: var(--x3, 8px);
+        background: transparent;
+    }
+
+    :root {
+        --touchAreaPadding: 8px;
+    }
+}

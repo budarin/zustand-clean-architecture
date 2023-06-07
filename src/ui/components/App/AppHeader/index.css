@@ -1,0 +1,47 @@
+.AppHeader {
+    display: flex;
+    align-items: center;
+}
+
+.AppHeader__MenuButton {
+    height: var(--x10);
+    width: var(--x10);
+    border: 0;
+    margin: var(--touchAreaPadding, 8px);
+    cursor: pointer;
+    background-color: white;
+    vertical-align: sub;
+    border-radius: var(--x6);
+}
+
+@media (hover: hover) {
+    .AppHeader__MenuButton:hover {
+        background-color: var(--primaryLightColor);
+    }
+}
+
+.AppHeader__Icon {
+    height: var(--x8);
+    width: var(--x8);
+    margin-right: var(--x2);
+    margin-left: var(--x2);
+    vertical-align: text-bottom;
+}
+
+.AppHeader__Title {
+    font-size: 1.5rem;
+    display: inline-block;
+    flex: 1;
+}
+
+@media only screen and (min-width: 641px) {
+    .AppHeader__Icon {
+        margin-left: 0;
+    }
+}
+
+@media only screen and (min-height: 640px) {
+    .AppHeader {
+        height: 80px;
+    }
+}
