@@ -4,7 +4,7 @@ import * as notification from '../../infrastructure/services/Notification/index.
 
 import { useTodoStore } from '../../domain/store/store.tsx';
 import { validateNewCategory } from '../../domain/entities/category/validation.ts';
-import { createCategoryNavFilter } from '../../domain/actionCreators/createCategoryNavFilter.ts';
+import { createCategoryNavFilter } from '../entities/navigationFilter/createCategoryNavFilter.ts';
 
 export async function createCategory(category: NewCategory): Promise<void> {
     const store = useTodoStore.getState();

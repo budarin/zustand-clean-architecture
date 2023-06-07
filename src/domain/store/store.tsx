@@ -17,7 +17,7 @@ import { updateTodoCategories } from '../entities/todo/updateTodoCategories.ts';
 import { inboxKey, overdueKey, recycleBinKey } from '../entities/navigationFilter/index.ts';
 
 // action creators
-import { createCalendarNavigationFilter } from '../actionCreators/createCalendarNavigationFilter.ts';
+import { createCalendarNavigationFilter } from '../entities/navigationFilter/createCalendarNavigationFilter.ts';
 
 export type Actions = {
     // Icon

@@ -2,7 +2,7 @@ import * as notification from '../../infrastructure/services/Notification/index.
 
 import { overdueKey } from '../entities/navigationFilter/index.ts';
 import { TWO_MINUTES } from '../../utils/dateTime/consts.ts';
-import { createCalendarNavigationFilter } from '../actionCreators/createCalendarNavigationFilter.ts';
+import { createCalendarNavigationFilter } from '../entities/navigationFilter/createCalendarNavigationFilter.ts';
 import { useTodoStore } from '../store/store.tsx';
 
 export function checkOverduedTodos(): void {

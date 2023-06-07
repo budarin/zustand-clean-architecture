@@ -1,4 +1,4 @@
-import { navigationFilterTypes } from '../entities/navigationFilter';
+import { navigationFilterTypes } from './index.ts';
 
 export function createCategoryNavFilter(id: Id, category: string): NavigationFilter {
     return {

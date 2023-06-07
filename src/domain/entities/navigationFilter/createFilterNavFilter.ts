@@ -1,4 +1,4 @@
-import { navigationFilterTypes } from '../entities/navigationFilter';
+import { navigationFilterTypes } from './index.ts';
 
 export function createFilterNavFilter(key: string, filter: string): NavigationFilter {
     return {
