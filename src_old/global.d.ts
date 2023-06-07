@@ -29,3 +29,6 @@ type Keys<T> = keyof T;
 type Values<T, Keys> = T[Keys];
 
 type UnknownObject = Record<string, unknown>;
+
+// https://javascript.plainenglish.io/a-cleaner-api-for-react-ts-components-47d0704a508c
+type GetComponentProps<T> = T extends React.ComponentType<infer P> | React.Component<infer P> ? P : never;
