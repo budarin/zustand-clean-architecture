@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     mode: 'production',
     devtool: false,
-    entry: './src/client/index.tsx',
+    entry: './src/index.tsx',
     cache: {
         type: 'filesystem',
     },
