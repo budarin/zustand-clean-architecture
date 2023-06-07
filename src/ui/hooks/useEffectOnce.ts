@@ -1,15 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 export function useEffectOnce(callback: () => void) {
-    useEffect(() => {
-        let mounted = true;
+    const isMounted = useRef(false);
 
-        if (mounted) {
+    useEffect(() => {
+        isMounted.current = true;
+
+        if (isMounted.current) {
             callback();
         }
 
         return () => {
-            mounted = false;
+            isMounted.current = false;
         };
     }, []);
 }
