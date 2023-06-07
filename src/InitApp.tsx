@@ -16,7 +16,7 @@ import { checkOverduedTodos } from '../src_old/client/domain/use_cases/checkOver
 // cpntainers
 import AppContainer from '../src_old/client/app/containers/App/index.tsx';
 
-export function InitApp() {
+export async function InitApp() {
     api.getTodoStore()
         .then((data) => {
             initStore(data);
@@ -29,22 +29,21 @@ export function InitApp() {
                 checkOverduedTodosTask.stop();
             });
         })
+        .then(() => window.loadingPromise)
         .then(() => {
-            let rootElement = document.getElementById('root') || createRootElement();
+            const rootElement = document.getElementById('root') || createRootElement();
 
-            return window.loading.then(() => {
-                createRoot(rootElement).render(
-                    <>
-                        <StrictMode>
-                            <AppContainer />
-                        </StrictMode>
+            createRoot(rootElement).render(
+                <>
+                    <StrictMode>
+                        <AppContainer />
+                    </StrictMode>
 
-                        <ToastContainer limit={3} hideProgressBar={true} />
-                    </>,
-                );
+                    <ToastContainer limit={3} hideProgressBar={true} />
+                </>,
+            );
 
-                cleanHtml();
-            });
+            cleanHtml();
         })
         .catch((error) => {
             logger.error(error);

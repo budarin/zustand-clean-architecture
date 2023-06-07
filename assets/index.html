@@ -43,7 +43,7 @@
             }
             window.addEventListener('error', scriptLoadError, true);
 
-            window.loading = Promise.resolve(false);
+            window.loadingPromise = Promise.resolve(false);
             navigator.serviceWorker.register('./sw.js');
         </script>
         <!-- <script src="https://cdn.jsdelivr.net/npm/react-render-tracker"></script> -->
@@ -65,7 +65,7 @@
                         icon.style.visibility = 'visible';
                     }
 
-                    window.loading = new Promise((resolve) => {
+                    window.loadingPromise = new Promise((resolve) => {
                         setTimeout(() => {
                             resolve(true);
                         }, 1500);

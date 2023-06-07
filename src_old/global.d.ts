@@ -8,7 +8,7 @@ declare module '*.png';
 declare module '*.gif';
 
 interface Window {
-    loading: Promise<boolean>;
+    loadingPromise: Promise<boolean>;
     scriptLoadError?: () => void;
     navigator: {
         msMaxTouchPoints?: number;
