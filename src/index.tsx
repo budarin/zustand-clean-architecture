@@ -1,4 +1,4 @@
-import { initApp } from './PinitApp.tsx';
+import { initApp } from './initApp.tsx';
 import * as logger from '../src_old/client/services/Logger/index.ts';
 
 import '../src_old/client/importSiteIcons.ts';
