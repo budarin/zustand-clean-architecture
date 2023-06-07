@@ -16,7 +16,7 @@ import { checkOverduedTodos } from '../src_old/client/domain/use_cases/checkOver
 // cpntainers
 import AppContainer from '../src_old/client/app/containers/App/index.tsx';
 
-export async function InitApp() {
+export async function initApp() {
     api.getTodoStore()
         .then((data) => {
             initStore(data);
