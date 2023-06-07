@@ -4,9 +4,10 @@ import { useMediaQuery } from 'usehooks-ts';
 
 import App from '../../components/App/index.tsx';
 
-import './index.css';
-import { useEffectOnce } from '../../hooks/useEffectOnce.ts';
 import { cleanUpHtml } from './cleanUpHtml.ts';
+import { useEffectOnce } from '../../hooks/useEffectOnce.ts';
+
+import './index.css';
 
 let showNavePaneAtStart = true;
 
