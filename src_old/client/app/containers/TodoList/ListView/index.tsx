@@ -1,5 +1,5 @@
-import { type IconsByNameKey, iconsByName } from '../../iconsByName.ts';
-import { getTodoListViewProps } from '../../../selectors/getTodoListViewProps.ts';
+import { IconsByNameKey, iconsByName } from '../../iconsByName.ts';
+import { getTodoListViewProps } from '../../../../../../src/domain/selectors/getTodoListViewProps.ts';
 
 // components
 import TodoListContainer from '../index.tsx';

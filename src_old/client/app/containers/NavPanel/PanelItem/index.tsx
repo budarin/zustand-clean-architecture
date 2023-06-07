@@ -1,9 +1,9 @@
 import { memo, useCallback, useState } from 'react';
 
-import { type IconsByNameKey, iconsByName } from '../../iconsByName.ts';
-import { setSelectedFilter } from '../../../../domain/use_cases/setSelectedFilter.ts';
-import { setSelectedCategory } from '../../../../domain/use_cases/setSelectedCategory.ts';
-import { getNavPanelItemProps } from '../../../selectors/getNavPanelItemProps.ts';
+import { IconsByNameKey, iconsByName } from '../../iconsByName.ts';
+import { setSelectedFilter } from '../../../../../../src/domain/useCases/setSelectedFilter.ts';
+import { setSelectedCategory } from '../../../../../../src/domain/useCases/setSelectedCategory.ts';
+import { getNavPanelItemProps } from '../../../../../../src/domain/selectors/getNavPanelItemProps.ts';
 
 // components
 import TodosCountBadgeContainer from '../CountBadge/index.tsx';

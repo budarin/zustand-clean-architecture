@@ -1,5 +1,5 @@
 import { recycleBinKey } from '../../navigationFilter';
-import { isRecycleBinItem } from '../../../../../src_old/common/domain/todo/isRecycleBinItem';
+import { isRecycleBinItem } from './isRecycleBinItem.ts';
 
 export function updateRecycleBin(state: TodoState, todo: Todo): void {
     const recycleBinIds = state.idsByFilterId[recycleBinKey];

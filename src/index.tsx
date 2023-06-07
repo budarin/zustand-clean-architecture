@@ -1,7 +1,7 @@
-import { initApp } from './utils/initApp.tsx';
+import { initApp } from './utils/app/initApp.tsx';
 import * as logger from './infrastructure/services/Logger/index.ts';
 
-import './utils/importSiteIcons.ts';
+import './utils/app/importSiteIcons.ts';
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready

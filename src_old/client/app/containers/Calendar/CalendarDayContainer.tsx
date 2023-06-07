@@ -1,6 +1,6 @@
 import { navigationFilterTypes } from '../../../../../src/domain/entities/navigationFilter';
-import { getNavigationFilter } from '../../selectors/getNavigationFilter';
-import { getTodosCountByTimestamp } from '../../selectors/getTodosCountByTimestamp';
+import { getNavigationFilter } from '../../../../../src/domain/selectors/getNavigationFilter.ts';
+import { getTodosCountByTimestamp } from '../../../../../src/domain/selectors/getTodosCountByTimestamp.ts';
 
 import { type CalendarDayContainerType } from '../../../ui/Calendar';
 

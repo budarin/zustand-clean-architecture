@@ -1,4 +1,4 @@
-import { getTodoCountForNavPanelItem } from '../../../selectors/getTodoCountForNavPanelItem.ts';
+import { getTodoCountForNavPanelItem } from '../../../../../../src/domain/selectors/getTodoCountForNavPanelItem.ts';
 
 // components
 import Badge from '../../../../ui/NavPanel/Badge/index.tsx';

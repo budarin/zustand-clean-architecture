@@ -1,7 +1,7 @@
 import Toastify, { toast } from 'react-toastify';
 
 import sound from './error.mp3';
-import { delay } from '../../../../src_old/common/utils/promises/delay';
+import { delay } from '../../../utils/promises/delay.ts';
 
 export type NotificationMethod = <TData = unknown>(
     content: Toastify.ToastContent<TData>,

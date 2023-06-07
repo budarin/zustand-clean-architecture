@@ -1,5 +1,5 @@
 import { overdueKey } from '../../navigationFilter';
-import { isOverdueItem } from '../../../../../src_old/common/domain/todo/isOverdueItem';
+import { isOverdueItem } from './isOverdueItem.ts';
 
 // Добавляем задачу в список просроченных
 

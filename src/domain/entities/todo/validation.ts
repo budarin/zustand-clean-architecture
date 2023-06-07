@@ -7,8 +7,7 @@ import { isUndefined } from '../../utils/validation/isUndefined.ts';
 import { isNotExists } from '../../utils/validation/isNotExists.ts';
 import { validateRawEntity } from '../../utils/validation/validateEntity.ts';
 import { toDefaultBoolean } from '../../utils/validation/toDefaultBoolean.ts';
-
-import { capitalizeFirstLetter } from '../../../../src_old/common/utils/capitalizeFirstLetter.ts';
+import { capitalizeFirstLetter } from '../../../utils/string/capitalizeFirstLetter.ts';
 
 export const MIN_TODO_LENGTH = 5;
 export const MAX_TODO_LENGTH = 100;

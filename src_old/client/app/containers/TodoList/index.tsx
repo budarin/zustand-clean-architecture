@@ -1,4 +1,4 @@
-import { getTodoListByNavFilter } from '../../selectors/getTodoListByNavFilter.ts';
+import { getTodoListByNavFilter } from '../../../../../src/domain/selectors/getTodoListByNavFilter.ts';
 
 // components
 import TodoListItemContainer from './ListItem/index.tsx';
