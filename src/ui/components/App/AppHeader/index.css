@@ -4,10 +4,10 @@
 }
 
 .AppHeader-MenuButton {
-    margin: var(--touchAreaPadding, 8px);
     height: var(--x10);
     width: var(--x10);
     border: 0;
+    margin: var(--touchAreaPadding, 8px);
     cursor: pointer;
     background-color: white;
     vertical-align: sub;
@@ -16,9 +16,9 @@
 .AppHeader-Icon {
     height: var(--x8);
     width: var(--x8);
-    vertical-align: text-bottom;
     margin-right: var(--x2);
     margin-left: var(--x2);
+    vertical-align: text-bottom;
 }
 
 .AppHeader-Title {
