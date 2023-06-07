@@ -1,4 +1,4 @@
-import { InitApp } from './InitApp.tsx';
+import { initApp } from './PinitApp.tsx';
 import * as logger from '../src_old/client/services/Logger/index.ts';
 
 import '../src_old/client/importSiteIcons.ts';
@@ -7,10 +7,10 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready
         .then((registration) => {
             if (registration.active?.state === 'activated') {
-                InitApp();
+                initApp();
             } else {
                 registration.active?.addEventListener('statechange', () => {
-                    InitApp();
+                    initApp();
                 });
             }
         })
