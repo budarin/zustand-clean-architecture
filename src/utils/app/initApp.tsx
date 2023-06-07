@@ -14,7 +14,7 @@ import { createRootElement } from './createRootElement.tsx';
 import { checkOverduedTodos } from '../../domain/useCases/checkOverduedTodos.ts';
 
 // cpntainers
-import AppContainer from '../../../src_old/client/app/containers/App/index.tsx';
+import AppContainer from '../../../src_old/containers/App/index.tsx';
 
 export async function initApp() {
     api.getTodoStore()
