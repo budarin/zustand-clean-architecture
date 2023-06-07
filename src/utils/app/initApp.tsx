@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import * as api from '../../infrastructure/services/API/index.ts';
 import * as logger from '../../infrastructure/services/Logger/index.ts';
 
+// utils
 import { runTask } from '../runTask.ts';
 import { cleanHtml } from './cleanHtml.tsx';
 import { initStore } from './initStore.tsx';
@@ -15,6 +16,9 @@ import { checkOverduedTodos } from '../../domain/useCases/checkOverduedTodos.ts'
 
 // cpntainers
 import AppContainer from '../../../src_old/containers/App/index.tsx';
+
+// site icons
+import './importSiteIcons.ts';
 
 export async function initApp() {
     api.getTodoStore()
