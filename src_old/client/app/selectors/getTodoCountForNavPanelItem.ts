@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useTodoStore } from '../../domain/entities/store.tsx';
-import { navigationFilterTypes } from '../../domain/entities/navigationFilter/index.ts';
+import { navigationFilterTypes } from '../../../../src/domain/entities/navigationFilter/index.ts';
 
 const getTodoCountForNavPanelItemSelector = (id: NavigationFilterKey, navigationType: NavigationFilterType) =>
     useCallback(

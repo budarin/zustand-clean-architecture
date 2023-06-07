@@ -6,9 +6,9 @@ import {
     navigationFilterIcons,
     navigationFilterTypes,
     navigationFilters,
-} from '../../domain/entities/navigationFilter';
+} from '../../../../src/domain/entities/navigationFilter';
 
-import type { NavigationFiltersKey } from '../../domain/entities/navigationFilter';
+import type { NavigationFiltersKey } from '../../../../src/domain/entities/navigationFilter';
 
 const getTodoListViewPropsSelector = () =>
     useCallback((state: TodosState) => {

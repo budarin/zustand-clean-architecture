@@ -8,7 +8,7 @@ import { isNotExists } from '../../utils/validation/isNotExists.ts';
 import { validateRawEntity } from '../../utils/validation/validateEntity.ts';
 import { toDefaultBoolean } from '../../utils/validation/toDefaultBoolean.ts';
 
-import { capitalizeFirstLetter } from '../../utils/capitalizeFirstLetter.ts';
+import { capitalizeFirstLetter } from '../../../../src_old/common/utils/capitalizeFirstLetter.ts';
 
 export const MIN_TODO_LENGTH = 5;
 export const MAX_TODO_LENGTH = 100;
@@ -126,5 +126,31 @@ export function getTodoFomObject(input: UnknownObject): Todo {
         due_date,
         deleted: todoBeFalse(deleted),
         completed: todoBeFalse(completed),
+    };
+}
+
+export function validateTodoEntity(todo: UnknownObject, state: TodosState): ValidateEntity<Todo> {
+    const result = validateTodo(todo);
+
+    if (!result.entity) {
+        return result;
+    }
+
+    const { entity } = result;
+
+    if (state.statuses.ids.includes(entity.status_id) === false) {
+        return {
+            error: 'Статус задачи не обнаружен в стправочнике!!',
+        };
+    }
+
+    if (entity.category_id && state.categories.ids.includes(entity.category_id) === false) {
+        return {
+            error: 'Категория задачи не обнаружена в стправочнике!!',
+        };
+    }
+
+    return {
+        entity,
     };
 }

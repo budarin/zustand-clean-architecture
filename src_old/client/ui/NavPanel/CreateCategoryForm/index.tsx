@@ -1,7 +1,7 @@
 import React, { FormEventHandler, forwardRef, useEffect, useRef } from 'react';
 
 import { IconsByNameKey, iconsByName } from '../../../app/containers/iconsByName';
-import { MAX_CATEGOTY_LENGTH, MIN_CATEGOTY_LENGTH } from '../../../../common/domain/category/validation';
+import { MAX_CATEGOTY_LENGTH, MIN_CATEGOTY_LENGTH } from '../../../../../src/domain/entities/category/validation';
 
 import './index.css';
 import { useKeyDownToClickEvent } from '../../hooks/useKeyDownToClickEvent';

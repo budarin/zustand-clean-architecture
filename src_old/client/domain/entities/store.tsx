@@ -4,15 +4,15 @@ import { devtools } from 'zustand/middleware';
 import { TodoStoreError } from './TodoStoreError.tsx';
 import { updateTodoFilters } from './todo/updateTodoFilters.ts';
 import { updateTodoDueDate } from './todo/updateTodoDueDate.ts';
-import { validateTodoEntity } from './todo/validateTodoEntity.ts';
-import { validateIconEntity } from './icon/validateIconEntity.ts';
 import { updateTodoCategories } from './todo/updateTodoCategories.ts';
-import { validateStatusEntity } from './status/validateStatusEntity.ts';
 import { getTodayDate } from '../../../common/utils/dateTime/getTodayDate.ts';
-import { validateCategoryEntity } from './category/validateCategoryEntity.ts';
-import { inboxKey, overdueKey, recycleBinKey } from './navigationFilter/index.ts';
+import { inboxKey, overdueKey, recycleBinKey } from '../../../../src/domain/entities/navigationFilter/index.ts';
 import { getOnlyDateTimestamp } from '../../../common/utils/dateTime/getOnlyDateTimestamp.ts';
 import { createCalendarNavigationFilter } from '../action_creators/createCalendarNavigationFilter.ts';
+import { validateCategoryEntity } from '../../../../src/domain/entities/category/validation.ts';
+import { validateIconEntity } from '../../../../src/domain/entities/icon/validation.ts';
+import { validateStatusEntity } from '../../../../src/domain/entities/status/validation.ts';
+import { validateTodoEntity } from '../../../../src/domain/entities/todo/validation.ts';
 
 export type Actions = {
     // Icon

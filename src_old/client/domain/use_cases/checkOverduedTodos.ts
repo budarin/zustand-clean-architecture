@@ -1,7 +1,7 @@
 import * as notification from '../../../../src/infrastructure/services/Notification/index.ts';
 
 import { useTodoStore } from '../entities/store.tsx';
-import { overdueKey } from '../entities/navigationFilter/index.ts';
+import { overdueKey } from '../../../../src/domain/entities/navigationFilter/index.ts';
 import { TWO_MINUTES } from '../../../common/utils/dateTime/consts.ts';
 import { createCalendarNavigationFilter } from '../action_creators/createCalendarNavigationFilter.ts';
 

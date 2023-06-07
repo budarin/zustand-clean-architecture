@@ -3,7 +3,7 @@ import {
     navigationFilterTypes,
     overdueKey,
     recycleBinKey,
-} from '../../../../domain/entities/navigationFilter/index.ts';
+} from '../../../../../../src/domain/entities/navigationFilter/index.ts';
 
 // components
 import NavigationPanelItemContainer from '../PanelItem/index.tsx';

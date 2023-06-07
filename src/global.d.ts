@@ -19,6 +19,7 @@ type Optional<T> = T | undefined;
 type List<T> = T[];
 type NumberLike = string | number;
 
+type Id = number;
 type TimeStamp = number;
 
 type Keys<T> = keyof T;

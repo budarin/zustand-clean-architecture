@@ -1,5 +1,5 @@
 import { getCategoryList } from '../../../selectors/getCategoryList';
-import { navigationFilterTypes } from '../../../../domain/entities/navigationFilter';
+import { navigationFilterTypes } from '../../../../../../src/domain/entities/navigationFilter';
 
 // components
 import NavigationPanelItemContainer from '../PanelItem';

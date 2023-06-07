@@ -1,5 +1,5 @@
 import { useTodoStore } from '../../domain/entities/store';
-import { navigationFilterTypes } from '../../domain/entities/navigationFilter';
+import { navigationFilterTypes } from '../../../../src/domain/entities/navigationFilter';
 
 const getTodoListByNavFilterSelector = (state: TodosState): Id[] => {
     const key = state.navigationFilter.key;

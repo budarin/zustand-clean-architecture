@@ -1,4 +1,4 @@
-import { validateCategory } from '../../../common/domain/category/validation';
+import { validateCategory } from '../../../../src/domain/entities/category/validation';
 
 export function validateCategoryEntity(icon: UnknownObject, state: TodosState): ValidateEntity<Category> {
     const result = validateCategory(icon);
