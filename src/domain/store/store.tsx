@@ -3,21 +3,21 @@ import { devtools } from 'zustand/middleware';
 
 // utils
 import { getTodayDate } from '../../utils/dateTime/getTodayDate.ts';
+import { getOnlyDateTimestamp } from '../../utils/dateTime/getOnlyDateTimestamp.ts';
 
 // entities
 import { TodoStoreError } from './TodoStoreError.tsx';
+import { validateTodoEntity } from '../entities/todo/validation.ts';
 import { validateIconEntity } from '../entities/icon/validation.ts';
 import { validateStatusEntity } from '../entities/status/validation.ts';
+import { updateTodoFilters } from '../entities/todo/updateTodoFilters.ts';
+import { updateTodoDueDate } from '../entities/todo/updateTodoDueDate.ts';
 import { validateCategoryEntity } from '../entities/category/validation.ts';
+import { updateTodoCategories } from '../entities/todo/updateTodoCategories.ts';
 import { inboxKey, overdueKey, recycleBinKey } from '../entities/navigationFilter/index.ts';
 
 // action creators
 import { createCalendarNavigationFilter } from '../actionCreators/createCalendarNavigationFilter.ts';
-import { validateTodoEntity } from '../entities/todo/validation.ts';
-import { getOnlyDateTimestamp } from '../../utils/dateTime/getOnlyDateTimestamp.ts';
-import { updateTodoFilters } from '../entities/todo/updateTodoFilters.ts';
-import { updateTodoCategories } from '../entities/todo/updateTodoCategories.ts';
-import { updateTodoDueDate } from '../entities/todo/updateTodoDueDate.ts';
 
 export type Actions = {
     // Icon
