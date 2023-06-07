@@ -11,6 +11,13 @@
     cursor: pointer;
     background-color: white;
     vertical-align: sub;
+    border-radius: var(--x6);
+}
+
+@media (hover: hover) {
+    .AppHeader__MenuButton:hover {
+        background-color: var(--primaryLightColor);
+    }
 }
 
 .AppHeader__Icon {
