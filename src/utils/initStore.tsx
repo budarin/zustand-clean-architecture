@@ -1,10 +1,14 @@
 import { unstable_batchedUpdates } from 'react-dom';
 
-import { useTodoStore } from './store.tsx';
-import * as notification from '../../services/Notification/index.ts';
+// services
+import * as notification from '../../src_old/client/services/Notification/index.ts';
+
+// store
+import { useTodoStore } from '../../src_old/client/domain/entities/store.tsx';
 
 export function initStore(data: Entities) {
     let hasError = false;
+
     const { icons, statuses, categories, todos } = data;
     const { _addIcon, _addStatus, _addCategory, _addTodo } = useTodoStore.getState();
 
@@ -17,6 +21,7 @@ export function initStore(data: Entities) {
                 hasError = true;
             }
         });
+
         statuses?.forEach((status) => {
             try {
                 _addStatus(status);
@@ -25,6 +30,7 @@ export function initStore(data: Entities) {
                 hasError = true;
             }
         });
+
         categories?.forEach((category) => {
             try {
                 _addCategory(category);
@@ -33,6 +39,7 @@ export function initStore(data: Entities) {
                 hasError = true;
             }
         });
+
         todos?.forEach((todo) => {
             try {
                 _addTodo(todo);

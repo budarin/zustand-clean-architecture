@@ -3,18 +3,18 @@ import { createRoot } from 'react-dom/client';
 import { ToastContainer } from 'react-toastify';
 
 // services
-import * as api from '../src_old/client/services/API/index.ts';
-import * as logger from '../src_old/client/services/Logger/index.ts';
+import * as api from '../../src_old/client/services/API/index.ts';
+import * as logger from '../../src_old/client/services/Logger/index.ts';
 
 import { cleanHtml } from './cleanHtml.tsx';
 import { createRootElement } from './createRootElement.tsx';
-import { runTask } from '../src_old/common/utils/runTask.ts';
-import { ONE_MINUTE } from '../src_old/common/utils/dateTime/consts.ts';
-import { initStore } from '../src_old/client/domain/entities/initStore.tsx';
-import { checkOverduedTodos } from '../src_old/client/domain/use_cases/checkOverduedTodos.ts';
+import { runTask } from '../../src_old/common/utils/runTask.ts';
+import { ONE_MINUTE } from '../../src_old/common/utils/dateTime/consts.ts';
+import { initStore } from './initStore.tsx';
+import { checkOverduedTodos } from '../../src_old/client/domain/use_cases/checkOverduedTodos.ts';
 
 // cpntainers
-import AppContainer from '../src_old/client/app/containers/App/index.tsx';
+import AppContainer from '../../src_old/client/app/containers/App/index.tsx';
 
 export async function initApp() {
     api.getTodoStore()
