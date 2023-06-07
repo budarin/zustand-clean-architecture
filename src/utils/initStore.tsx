@@ -1,7 +1,7 @@
 import { unstable_batchedUpdates } from 'react-dom';
 
 // services
-import * as notification from '../../src_old/client/services/Notification/index.ts';
+import * as notification from '../infrastructure/services/Notification/index.ts';
 
 // store
 import { useTodoStore } from '../../src_old/client/domain/entities/store.tsx';

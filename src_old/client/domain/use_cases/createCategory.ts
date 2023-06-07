@@ -1,6 +1,6 @@
-import * as api from '../../services/API/index.ts';
-import * as logger from '../../services/Logger/index.ts';
-import * as notification from '../../services/Notification/index.ts';
+import * as api from '../../../../src/infrastructure/services/API/index.ts';
+import * as logger from '../../../../src/infrastructure/services/Logger/index.ts';
+import * as notification from '../../../../src/infrastructure/services/Notification/index.ts';
 
 import { useTodoStore } from '../entities/store.tsx';
 import { validateNewCategory } from '../../../common/domain/category/validation.ts';

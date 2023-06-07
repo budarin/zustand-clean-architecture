@@ -3,8 +3,8 @@ import { createRoot } from 'react-dom/client';
 import { ToastContainer } from 'react-toastify';
 
 // services
-import * as api from '../../src_old/client/services/API/index.ts';
-import * as logger from '../../src_old/client/services/Logger/index.ts';
+import * as api from '../infrastructure/services/API/index.ts';
+import * as logger from '../infrastructure/services/Logger/index.ts';
 
 import { cleanHtml } from './cleanHtml.tsx';
 import { createRootElement } from './createRootElement.tsx';

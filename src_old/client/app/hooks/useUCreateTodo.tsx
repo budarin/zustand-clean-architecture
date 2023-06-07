@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import * as notification from '../../services/Notification/index.ts';
+import * as notification from '../../../../src/infrastructure/services/Notification/index.ts';
 
 import { createTodo } from '../../domain/use_cases/createTodo.ts';
 

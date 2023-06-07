@@ -1,4 +1,4 @@
-import * as notification from '../../services/Notification/index.ts';
+import * as notification from '../../../../src/infrastructure/services/Notification/index.ts';
 
 import { useTodoStore } from '../entities/store.tsx';
 import { overdueKey } from '../entities/navigationFilter/index.ts';
