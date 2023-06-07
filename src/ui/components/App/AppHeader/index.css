@@ -3,7 +3,7 @@
     align-items: center;
 }
 
-.AppHeader-MenuButton {
+.AppHeader__MenuButton {
     height: var(--x10);
     width: var(--x10);
     border: 0;
@@ -13,7 +13,7 @@
     vertical-align: sub;
 }
 
-.AppHeader-Icon {
+.AppHeader__Icon {
     height: var(--x8);
     width: var(--x8);
     margin-right: var(--x2);
@@ -21,14 +21,14 @@
     vertical-align: text-bottom;
 }
 
-.AppHeader-Title {
+.AppHeader__Title {
     font-size: 1.5rem;
     display: inline-block;
     flex: 1;
 }
 
 @media only screen and (min-width: 641px) {
-    .AppHeader-Icon {
+    .AppHeader__Icon {
         margin-left: 0;
     }
 }

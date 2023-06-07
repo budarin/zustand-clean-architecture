@@ -17,11 +17,11 @@ function AppHeader(props: AppHeader) {
 
     return (
         <div className="AppHeader">
-            <img className="AppHeader-Icon" src={icon} width={32} height={32} alt="App logo" />
-            <h1 className="AppHeader-Title">Мои Задачи</h1>
+            <img className="AppHeader__Icon" src={icon} width={32} height={32} alt="App logo" />
+            <h1 className="AppHeader__Title">Мои Задачи</h1>
             {isSmallScreen ? (
                 <CheckButton
-                    className="AppHeader-MenuButton"
+                    className="AppHeader__MenuButton"
                     checked={isNavPanelOpen}
                     unCheckedIcon={<MenuIcon />}
                     checkedIcon={<CloseIcon />}

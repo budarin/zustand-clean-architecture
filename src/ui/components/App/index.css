@@ -10,14 +10,17 @@
 
 .App__Container {
     flex: 1;
-    align-items: flex-start;
     width: 100%;
     overflow: auto;
-    scroll-behavior: smooth;
 }
 
 .App__Container_scrolled {
     border-top: 1px solid var(--primaryColor);
+}
+
+.App__NavPanel {
+}
+.App__TodoList {
 }
 
 @media only screen and (min-width: 641px) {
