@@ -10,7 +10,7 @@ export function initStore(data: Entities) {
     let hasError = false;
 
     const { icons, statuses, categories, todos } = data;
-    const { _addIcon, _addStatus, _addCategory, _addTodo } = useTodoStore.getState();
+    const { _addIcon, _addStatus, _createCategory: _addCategory, _createTodo: _addTodo } = useTodoStore.getState();
 
     unstable_batchedUpdates(() => {
         icons?.forEach((icon) => {

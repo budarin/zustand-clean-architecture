@@ -17,7 +17,7 @@ export async function createCategory(category: NewCategory): Promise<void> {
         const newCategoryId = Math.max(...numbers) + 1;
         entity['category_id'] = newCategoryId;
 
-        store._addCategory(entity);
+        store._createCategory(entity);
 
         // устанавливаем навигационный фильтр на данную категорию
         store.setNavigationFilter(createCategoryNavFilter(newCategoryId, entity.category));

@@ -15,7 +15,7 @@ export async function createTodo(todo: NewTodo): Promise<void> {
         const newTodoId = Math.max(...numbers) + 1;
         const newTodo = { ...todo, todo_id: newTodoId };
 
-        store._addTodo(newTodo);
+        store._createTodo(newTodo);
     } catch (error) {
         notification.notifyError(`Ошибка: ${(error as Error).message}`, {
             toastId: 'create_todo_error' + todo.todo,
