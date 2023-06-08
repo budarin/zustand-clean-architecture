@@ -1,16 +1,30 @@
 .AppHeader {
     display: flex;
     align-items: center;
+    gap: var(--x2);
+}
+
+.AppHeader__Icon {
+    height: var(--x8);
+    width: var(--x8);
+    margin: var(--x2);
+    vertical-align: text-bottom;
+}
+
+.AppHeader__Title {
+    flex: 1;
+    font-size: 1.5rem;
+    display: inline-block;
 }
 
 .AppHeader__MenuButton {
     height: var(--x10);
     width: var(--x10);
-    border: 0;
     margin: var(--touchAreaPadding, 8px);
     cursor: pointer;
     background-color: white;
     vertical-align: sub;
+    border: 0;
     border-radius: var(--x6);
 }
 
@@ -20,23 +34,9 @@
     }
 }
 
-.AppHeader__Icon {
-    height: var(--x8);
-    width: var(--x8);
-    margin-right: var(--x2);
-    margin-left: var(--x2);
-    vertical-align: text-bottom;
-}
-
-.AppHeader__Title {
-    font-size: 1.5rem;
-    display: inline-block;
-    flex: 1;
-}
-
 @media only screen and (min-width: 641px) {
     .AppHeader__Icon {
-        margin-left: 0;
+        margin: 0;
     }
 }
 

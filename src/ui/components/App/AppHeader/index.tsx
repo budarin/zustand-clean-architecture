@@ -18,7 +18,9 @@ function AppHeader(props: AppHeader) {
     return (
         <div className="AppHeader">
             <img className="AppHeader__Icon" src={icon} width={32} height={32} alt="App logo" />
+
             <h1 className="AppHeader__Title">Мои Задачи</h1>
+
             {isSmallScreen ? (
                 <CheckButton
                     className="AppHeader__MenuButton"
