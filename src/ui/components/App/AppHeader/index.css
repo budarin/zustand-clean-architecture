@@ -20,11 +20,11 @@
     height: var(--x10);
     width: var(--x10);
     margin: var(--touchAreaPadding, 8px);
-    cursor: pointer;
-    background-color: white;
     vertical-align: sub;
     border: 0;
     border-radius: var(--x6);
+    background-color: white;
+    cursor: pointer;
 }
 
 @media (hover: hover) {
