@@ -21,7 +21,7 @@ export async function deleteCategory(id: Category['category_id']): Promise<void>
             autoClose: 2000,
         });
 
-        store._createCategory(value);
+        store._addCategory(value);
     } catch (err) {
         if (err instanceof TodoStoreError) {
             notification.notifyError(err.message);
