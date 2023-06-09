@@ -2,12 +2,9 @@
     --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif,
         'Apple Color Emoji', 'Segoe UI Emoji';
 
-    /* notify */
-    --toastify-font-family: var(--font-family);
+    --isTouch: 0;
 
-    /* app */
-    --touchAreaPadding: 8px;
-
+    /* sizes */
     --x: 4px;
     --x2: 8px;
     --x3: 12px;
@@ -31,30 +28,34 @@
     --borderColor: hsl(0deg 0% 90.98%);
     --primaryTextColor: hsl(214.29deg 100% 30%);
     --accentColor: hsl(6.58deg 73.74% 61.18%);
+
+    /* notify */
+    --toastify-font-family: var(--font-family);
 }
 
-* {
-    box-sizing: border-box;
-    outline-color: var(--primaryDarkColor);
-}
-
-html {
-    font-family: var(--font-family);
+@media (pointer: coarse) {
+    :root {
+        --isTouch: 1;
+    }
 }
 
 html,
 body,
 #root {
-    height: 100%;
     margin: 0;
+    height: 100%;
+    width: 100%;
     font-size: 100%;
+    overflow: hidden;
+}
+
+html {
+    color: var(--primaryTextColor);
+    font-family: var(--font-family);
 }
 
 #root {
-    overflow: hidden;
-    color: var(--primaryTextColor);
     transition: opacity 1s ease;
-    overflow: hidden;
 }
 
 .hidden {

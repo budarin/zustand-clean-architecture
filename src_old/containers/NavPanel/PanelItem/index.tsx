@@ -3,7 +3,7 @@ import { memo, useCallback, useState } from 'react';
 import { IconsByNameKey, iconsByName } from '../../iconsByName.ts';
 import { setSelectedFilter } from '../../../../src/domain/useCases/setSelectedFilter.ts';
 import { setSelectedCategory } from '../../../../src/domain/useCases/setSelectedCategory.ts';
-import { getNavPanelItemProps } from '../../../../src/domain/selectors/getNavPanelItemProps.ts';
+import { getNavigationPanelItemProps } from '../../../../src/domain/selectors/getNavigationPanelItemProps.ts';
 
 // components
 import TodosCountBadgeContainer from '../CountBadge/index.tsx';
@@ -21,7 +21,14 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainer):
     const { id, navigationType } = props;
 
     const [expanded, setExpanded] = useState(false);
-    const { icon, isCategory, title, selected } = getNavPanelItemProps(id, navigationType);
+    const navPanelItemProps = getNavigationPanelItemProps(id, navigationType);
+
+    // если нет данных для элемента - не рисуем его
+    if (!navPanelItemProps) {
+        return <></>;
+    }
+
+    const { icon, isCategory, title, selected } = navPanelItemProps;
     const iconName = iconsByName[icon as IconsByNameKey];
 
     const handleExpan = useCallback(() => {
