@@ -7,6 +7,7 @@
 .AppHeader__Icon {
     height: var(--x8);
     width: var(--x8);
+    padding: var(--x2);
     vertical-align: text-bottom;
 }
 
