@@ -31,8 +31,9 @@ module.exports = {
             '.svg',
             '.png',
             '.gif',
-            'ico',
-            'xml',
+            '.ico',
+            '.xml',
+            '.woff2',
             'webmanifest',
         ],
         modules: ['node_modules', 'src'],
@@ -40,7 +41,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(ico|xml|webmanifest)$/,
+                test: /\.(ico|xml|woff2|webmanifest)$/,
                 include: [path.resolve('./assets/site_icons/')],
                 type: 'asset/resource',
                 generator: {
