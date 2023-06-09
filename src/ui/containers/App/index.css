@@ -46,7 +46,6 @@ body,
     height: 100%;
     width: 100%;
     font-size: 100%;
-    overflow: hidden;
 }
 
 html {
@@ -56,6 +55,7 @@ html {
 
 #root {
     transition: opacity 1s ease;
+    overflow: hidden;
 }
 
 .hidden {
