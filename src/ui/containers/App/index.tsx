@@ -1,9 +1,11 @@
 import { FC, useCallback, useState } from 'react';
 
 import { useMediaQuery } from 'usehooks-ts';
-import { useCleanUpHtml } from './useCleanUpHtml.tsx';
 
 import App from '../../components/App/index.tsx';
+
+import { cleanUpHtml } from './cleanUpHtml.ts';
+import { useEffectOnce } from '../../hooks/useEffectOnce.ts';
 
 import './index.css';
 
@@ -20,12 +22,12 @@ const AppContainer: FC = () => {
     const toggleNavPane = () => setNavPaneOpen((s) => !s);
     const onToggleNavPan = useCallback(toggleNavPane, []);
 
-    useCleanUpHtml();
+    useEffectOnce(cleanUpHtml);
 
     return (
         <App
             isSmallScreen={matches}
-            isNavPanelOpen={isNavPanelOpen}
+            isNavPanelVisible={isNavPanelOpen}
             toggleNavPane={onToggleNavPan}
             navigationPanel={<div></div>}
             todoListView={<div></div>}
