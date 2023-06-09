@@ -13,7 +13,7 @@ describe('getNavPanelItemProps', () => {
             createRoot(document.createElement('div')).render(
                 <TestComponent
                     hook={() => {
-                        selectedNavItemProps = getNavPanelItemProps(1, 'category');
+                        selectedNavItemProps = getNavPanelItemProps('inbox', 'filter');
                     }}
                 />,
             );
@@ -22,10 +22,10 @@ describe('getNavPanelItemProps', () => {
         expect(selectedNavItemProps).not.toBeUndefined();
 
         expect(selectedNavItemProps).toEqual({
-            title: 'Работа',
-            isCategory: true,
+            title: 'Черновики',
+            isCategory: false,
             selected: false,
-            icon: 'other.png',
+            icon: 'inbox.png',
         });
     });
 });
