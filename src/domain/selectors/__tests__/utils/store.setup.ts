@@ -23,6 +23,6 @@ todos?.forEach((todo) => {
 
 const initialState = useTodoStore.getState();
 
-beforeEach(() => {
+export const resetStore = () => {
     act(() => useTodoStore.setState(initialState, true));
-});
+};

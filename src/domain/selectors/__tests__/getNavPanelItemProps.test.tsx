@@ -3,7 +3,9 @@ import { act } from '@testing-library/react-hooks';
 import TestComponent from './utils/TestComponent.tsx';
 import { getNavigationPanelItemProps } from '../getNavigationPanelItemProps.ts';
 
-import './utils/store.setup.ts';
+import { resetStore } from './utils/store.setup.ts';
+
+beforeAll(resetStore);
 
 describe('getNavigationPanelItemProps', () => {
     it('должен вернуть свойства для элемента панели навигации из списка фильтров', () => {
