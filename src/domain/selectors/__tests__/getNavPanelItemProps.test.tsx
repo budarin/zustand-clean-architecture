@@ -1,19 +1,19 @@
 import { createRoot } from 'react-dom/client';
 import { act } from '@testing-library/react-hooks';
 import TestComponent from './utils/TestComponent.tsx';
-import { getNavPanelItemProps } from '../getNavPanelItemProps.ts';
+import { getNavigationPanelItemProps } from '../getNavigationPanelItemProps.ts';
 
 import './utils/store.setup.ts';
 
-describe('getNavPanelItemProps', () => {
+describe('getNavigationPanelItemProps', () => {
     it('должен вернуть свойства для элемента панели навигации из списка фильтров', () => {
-        let selectedNavItemProps = {} as ReturnType<typeof getNavPanelItemProps>;
+        let selectedNavItemProps = {} as ReturnType<typeof getNavigationPanelItemProps>;
 
         act(() => {
             createRoot(document.createElement('div')).render(
                 <TestComponent
                     hook={() => {
-                        selectedNavItemProps = getNavPanelItemProps('inbox', 'filter');
+                        selectedNavItemProps = getNavigationPanelItemProps('inbox', 'filter');
                     }}
                 />,
             );
@@ -30,13 +30,13 @@ describe('getNavPanelItemProps', () => {
     });
 
     it('должен вернуть свойства для элемента панели навигации из списка категорий', () => {
-        let selectedNavItemProps = {} as ReturnType<typeof getNavPanelItemProps>;
+        let selectedNavItemProps = {} as ReturnType<typeof getNavigationPanelItemProps>;
 
         act(() => {
             createRoot(document.createElement('div')).render(
                 <TestComponent
                     hook={() => {
-                        selectedNavItemProps = getNavPanelItemProps(1, 'category');
+                        selectedNavItemProps = getNavigationPanelItemProps(1, 'category');
                     }}
                 />,
             );
@@ -53,13 +53,13 @@ describe('getNavPanelItemProps', () => {
     });
 
     it('должен вернуть undefined для не существующей категорий', () => {
-        let selectedNavItemProps = {} as ReturnType<typeof getNavPanelItemProps>;
+        let selectedNavItemProps = {} as ReturnType<typeof getNavigationPanelItemProps>;
 
         act(() => {
             createRoot(document.createElement('div')).render(
                 <TestComponent
                     hook={() => {
-                        selectedNavItemProps = getNavPanelItemProps(100, 'category');
+                        selectedNavItemProps = getNavigationPanelItemProps(100, 'category');
                     }}
                 />,
             );
@@ -69,13 +69,13 @@ describe('getNavPanelItemProps', () => {
     });
 
     it('должен вернуть undefined для не существующего фильтра', () => {
-        let selectedNavItemProps = {} as ReturnType<typeof getNavPanelItemProps>;
+        let selectedNavItemProps = {} as ReturnType<typeof getNavigationPanelItemProps>;
 
         act(() => {
             createRoot(document.createElement('div')).render(
                 <TestComponent
                     hook={() => {
-                        selectedNavItemProps = getNavPanelItemProps('lalalala', 'filter');
+                        selectedNavItemProps = getNavigationPanelItemProps('lalalala', 'filter');
                     }}
                 />,
             );

@@ -56,5 +56,5 @@ export const getNavPanelItemPropsSelector: GetNavPanelItemPropsSelector = (id, n
         [id, navigationType],
     );
 
-export const getNavPanelItemProps = (id: NavigationFilterKey, navigationType: NavigationFilterType) =>
+export const getNavigationPanelItemProps = (id: NavigationFilterKey, navigationType: NavigationFilterType) =>
     useTodoStore(getNavPanelItemPropsSelector(id, navigationType), shallow);
