@@ -9,7 +9,7 @@ import {
     navigationFilters,
 } from '../entities/navigationFilter/index.ts';
 
-const getNavPanelItemPropsSelector = (id: NavigationFilterKey, navigationType: NavigationFilterType) =>
+export const getNavPanelItemPropsSelector = (id: NavigationFilterKey, navigationType: NavigationFilterType) =>
     useCallback(
         (state: TodosState) => {
             let selected = false;

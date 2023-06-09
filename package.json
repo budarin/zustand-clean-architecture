@@ -26,7 +26,7 @@
     "devDependencies": {
         "@bem-react/classname": "^1.6.0",
         "@testing-library/jest-dom": "^5.16.5",
-        "@testing-library/react": "^14.0.0",
+        "@testing-library/react-hooks": "^8.0.1",
         "@types/jest": "^29.5.2",
         "@types/serviceworker": "^0.0.67",
         "babel-jest": "^29.5.0",
