@@ -50,7 +50,7 @@ const TestComponent: FC<TestComponentProps> = ({ hook }) => {
     return null;
 };
 
-test('getNavPanelItemProps', () => {
+describe('getNavPanelItemProps', () => {
     it('должен вернуть свойства для указанного элемента панели навигации', () => {
         let selectedNavItemProps = {} as ReturnType<typeof getNavPanelItemProps>;
 
