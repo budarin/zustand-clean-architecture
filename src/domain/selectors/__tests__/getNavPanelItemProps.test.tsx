@@ -51,4 +51,36 @@ describe('getNavPanelItemProps', () => {
             icon: 'other.png',
         });
     });
+
+    it('должен вернуть undefined для не существующей категорий', () => {
+        let selectedNavItemProps = {} as ReturnType<typeof getNavPanelItemProps>;
+
+        act(() => {
+            createRoot(document.createElement('div')).render(
+                <TestComponent
+                    hook={() => {
+                        selectedNavItemProps = getNavPanelItemProps(100, 'category');
+                    }}
+                />,
+            );
+        });
+
+        expect(selectedNavItemProps).toBeUndefined();
+    });
+
+    it('должен вернуть undefined для не существующего фильтра', () => {
+        let selectedNavItemProps = {} as ReturnType<typeof getNavPanelItemProps>;
+
+        act(() => {
+            createRoot(document.createElement('div')).render(
+                <TestComponent
+                    hook={() => {
+                        selectedNavItemProps = getNavPanelItemProps('lalalala', 'filter');
+                    }}
+                />,
+            );
+        });
+
+        expect(selectedNavItemProps).toBeUndefined();
+    });
 });

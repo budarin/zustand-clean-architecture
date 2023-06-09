@@ -9,7 +9,17 @@ import {
     navigationFilters,
 } from '../entities/navigationFilter/index.ts';
 
-export const getNavPanelItemPropsSelector = (id: NavigationFilterKey, navigationType: NavigationFilterType) =>
+type GetNavPanelItemPropsSelector = (
+    id: NavigationFilterKey,
+    navigationType: NavigationFilterType,
+) => (
+    state: TodosState,
+) =>
+    | { isCategory: true; title: string; icon: string; selected: boolean }
+    | { isCategory: false; title: string; icon: string; selected: boolean }
+    | undefined;
+
+export const getNavPanelItemPropsSelector: GetNavPanelItemPropsSelector = (id, navigationType) =>
     useCallback(
         (state: TodosState) => {
             const filter = state.navigationFilter;
@@ -18,18 +28,28 @@ export const getNavPanelItemPropsSelector = (id: NavigationFilterKey, navigation
             if (isCategory) {
                 const category = state.categories.byId[id as Id];
 
+                if (!category) {
+                    return;
+                }
+
                 return {
                     isCategory,
                     title: category.category,
-                    selected: category.category === filter.title,
                     icon: state.icons.byId[category.icon_id].icon_name,
+                    selected: category.category === filter.title,
                 };
             } else {
+                const title = navigationFilters[id as NavigationFiltersKey];
+
+                if (!title) {
+                    return;
+                }
+
                 return {
                     isCategory,
-                    title: navigationFilters[id as NavigationFiltersKey],
-                    selected: id === filter.key,
+                    title,
                     icon: navigationFilterIcons[id as NavigationFiltersKey],
+                    selected: id === filter.key,
                 };
             }
         },

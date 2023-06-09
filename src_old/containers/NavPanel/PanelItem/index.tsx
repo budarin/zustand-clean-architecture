@@ -21,7 +21,13 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainer):
     const { id, navigationType } = props;
 
     const [expanded, setExpanded] = useState(false);
-    const { icon, isCategory, title, selected } = getNavPanelItemProps(id, navigationType);
+    const navPanelItemProps = getNavPanelItemProps(id, navigationType);
+
+    if (!navPanelItemProps) {
+        return <></>;
+    }
+
+    const { icon, isCategory, title, selected } = navPanelItemProps;
     const iconName = iconsByName[icon as IconsByNameKey];
 
     const handleExpan = useCallback(() => {
