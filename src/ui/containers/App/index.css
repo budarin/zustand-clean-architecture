@@ -55,6 +55,7 @@ html {
 
 #root {
     transition: opacity 1s ease;
+    /* только тут должен быть hidden чтобы работал pull to refresh */
     overflow: hidden;
 }
 
