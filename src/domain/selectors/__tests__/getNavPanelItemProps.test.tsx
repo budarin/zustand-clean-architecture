@@ -47,10 +47,10 @@ describe('getNavigationPanelItemProps', () => {
         expect(selectedNavItemProps).not.toBeUndefined();
 
         expect(selectedNavItemProps).toEqual({
-            title: 'Работа',
+            title: 'Дом',
             isCategory: true,
             selected: false,
-            icon: 'other.png',
+            icon: 'home.png',
         });
     });
 
