@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
+
+const CopyPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -28,6 +30,9 @@ module.exports = {
         new webpack.DefinePlugin({
             __DEV__: process.env['NODE_ENV'] !== 'production',
         }),
+        new CopyPlugin({
+            patterns: [{ from: './assets/site_icons/' }],
+        }),
     ],
     resolve: {
         modules: ['node_modules', 'src'],
@@ -46,28 +51,10 @@ module.exports = {
             '.ico',
             '.xml',
             '.woff2',
-            'webmanifest',
         ],
     },
     module: {
         rules: [
-            {
-                test: /\.(ico|xml|woff2|webmanifest)$/,
-                include: [path.resolve('./assets/site_icons/')],
-                type: 'asset/resource',
-                generator: {
-                    filename: '[name][ext]',
-                },
-            },
-            {
-                test: /\.(gif|svg|png)$/,
-                include: [path.resolve('./assets/site_icons/')],
-                type: 'asset/resource',
-                generator: {
-                    filename: '[name][ext]',
-                },
-            },
-
             {
                 test: /\.(mp3|aac|ogg)$/,
                 exclude: [path.resolve('./assets/site_icons/')],
