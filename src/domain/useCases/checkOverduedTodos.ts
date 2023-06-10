@@ -21,9 +21,19 @@ export function checkOverduedTodos(): void {
                 if (Math.abs(diff) < TWO_MINUTES) {
                     notification.joyfullyGilling(`lalala: ${todo.todo}`, {
                         toastId: 'due_date:' + todo.todo,
-                        onClose: () => {
+                        onClose: async () => {
                             setNavigationFilter(createCalendarNavigationFilter(today));
                             _addToOverduedTodos(todo.todo_id);
+
+                            if ('setAppBadge' in navigator) {
+                                const values = Object.values(todos.idsByDueDate) as Id[][];
+                                const count = values.reduce((acc, arr) => {
+                                    acc = acc + arr.length;
+                                    return acc;
+                                }, 0);
+
+                                count ? await navigator.setAppBadge(count) : await navigator.clearAppBadge();
+                            }
                         },
                     });
                 }
