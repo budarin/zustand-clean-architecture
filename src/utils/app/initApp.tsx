@@ -12,18 +12,17 @@ import { runTask } from '../runTask.ts';
 import { initStore } from './initStore.tsx';
 import { ONE_MINUTE } from '../dateTime/consts.ts';
 import { createRootElement } from './createRootElement.tsx';
-import { checkOverduedTodos } from '../../domain/useCases/checkOverduedTodos.ts';
+import { checkOverduedTodos, setOveduedInBadge } from '../../domain/useCases/checkOverduedTodos.ts';
 
 // cpntainers
 import AppContainer from '../../ui/containers/App/index.tsx';
-
-// site icons
-import './importSiteIcons.ts';
 
 export async function initApp() {
     api.getTodoStore()
         .then((data) => {
             initStore(data);
+
+            setOveduedInBadge();
 
             const checkOverduedTodosTask = runTask(() => {
                 checkOverduedTodos();
@@ -51,6 +50,6 @@ export async function initApp() {
         })
 
         .catch((error) => {
-            logger.error(error);
+            logger.error({ error, stack: error.stack });
         });
 }
