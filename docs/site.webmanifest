@@ -7,7 +7,7 @@
     "display": "standalone",
     "description": "Приложение для управления задачами на каждый день.",
     "categories": [
-        "приложения на каждый день"
+        "education"
     ],
     "icons": [
         {
@@ -32,5 +32,10 @@
             "type": "image/png",
             "purpose": "maskable any"
         }
+    ],
+    "lang": "ru",
+    "display_override": [
+        "standalone",
+        "window-controls-overlay"
     ]
 }
