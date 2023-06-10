@@ -5,6 +5,20 @@ import { TWO_MINUTES } from '../../utils/dateTime/consts.ts';
 import { createCalendarNavigationFilter } from '../entities/navigationFilter/createCalendarNavigationFilter.ts';
 import { useTodoStore } from '../store/store.tsx';
 
+export const setOveduedInBadge = async () => {
+    const { todos } = useTodoStore.getState();
+
+    if ('setAppBadge' in navigator) {
+        const values = Object.values(todos.idsByDueDate) as Id[][];
+        const count = values.reduce((acc, arr) => {
+            acc = acc + arr.length;
+            return acc;
+        }, 0);
+
+        count ? await navigator.setAppBadge(count) : await navigator.clearAppBadge();
+    }
+};
+
 export function checkOverduedTodos(): void {
     const today = new Date();
     const now = today.valueOf();
@@ -25,15 +39,7 @@ export function checkOverduedTodos(): void {
                             setNavigationFilter(createCalendarNavigationFilter(today));
                             _addToOverduedTodos(todo.todo_id);
 
-                            if ('setAppBadge' in navigator) {
-                                const values = Object.values(todos.idsByDueDate) as Id[][];
-                                const count = values.reduce((acc, arr) => {
-                                    acc = acc + arr.length;
-                                    return acc;
-                                }, 0);
-
-                                count ? await navigator.setAppBadge(count) : await navigator.clearAppBadge();
-                            }
+                            setOveduedInBadge();
                         },
                     });
                 }

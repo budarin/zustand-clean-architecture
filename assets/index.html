@@ -14,7 +14,7 @@
         <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
-        <link rel="manifest" href="site.webmanifest" />
+        <link rel="manifest" href="manifest.json" />
         <link rel="mask-icon" href="safari-pinned-tab.svg" color="#f0f6ff" />
 
         <!-- preload logo icon -->
@@ -48,6 +48,11 @@
             window.loadingPromise = Promise.resolve(false);
             navigator.serviceWorker.register('./sw.js');
         </script>
+
+        <script
+            type="module"
+            src="https://cdn.jsdelivr.net/gh/khmyznikov/pwa-install@latest/dist/pwa-install.bundle.js"
+        ></script>
         <!-- <script src="https://cdn.jsdelivr.net/npm/react-render-tracker"></script> -->
     </head>
 
@@ -262,5 +267,12 @@
             </div>
             <span class="loading-text">Мои Задачи</span>
         </div>
+
+        <pwa-install
+            id="pwa-install"
+            manifest-url="manifest.json"
+            manual-apple="true"
+            manual-chrome="true"
+        ></pwa-install>
     </body>
 </html>

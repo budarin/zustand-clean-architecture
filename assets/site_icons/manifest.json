@@ -8,9 +8,7 @@
     "background_color": "#f0f6ff",
     "display": "standalone",
     "description": "Приложение для управления задачами на каждый день.",
-    "categories": [
-        "education"
-    ],
+    "categories": ["education"],
     "icons": [
         {
             "src": "android-chrome-192x192.png",
@@ -21,22 +19,21 @@
             "src": "android-chrome-maskable-192x192.png",
             "sizes": "192x192",
             "type": "image/png",
-            "purpose": "maskable any"
+            "purpose": "maskable"
         },
+
         {
             "src": "android-chrome-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
         },
+
         {
             "src": "android-chrome-maskable-512x512.png",
             "sizes": "512x512",
             "type": "image/png",
-            "purpose": "maskable any"
+            "purpose": "maskable"
         }
     ],
-    "display_override": [
-        "standalone",
-        "window-controls-overlay"
-    ]
+    "display_override": ["standalone", "window-controls-overlay"]
 }
