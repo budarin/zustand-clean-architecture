@@ -12,7 +12,7 @@ import { runTask } from '../runTask.ts';
 import { initStore } from './initStore.tsx';
 import { ONE_MINUTE } from '../dateTime/consts.ts';
 import { createRootElement } from './createRootElement.tsx';
-import { checkOverduedTodos, setOveduedInBadge } from '../../domain/useCases/checkOverduedTodos.ts';
+import { checkOverdueTodos, setOverdueInBadge } from '../../domain/useCases/checkOverduedTodos.ts';
 
 // cpntainers
 import AppContainer from '../../ui/containers/App/index.tsx';
@@ -22,10 +22,10 @@ export async function initApp() {
         .then((data) => {
             initStore(data);
 
-            setOveduedInBadge();
+            setOverdueInBadge();
 
             const checkOverduedTodosTask = runTask(() => {
-                checkOverduedTodos();
+                checkOverdueTodos();
             }, ONE_MINUTE);
 
             window.addEventListener('beforeunload', () => {
