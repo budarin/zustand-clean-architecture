@@ -32,7 +32,11 @@ const AppContainer: FC = () => {
             timer = setTimeout(() => {
                 if (navigator.platform.toUpperCase().includes('MAC')) {
                     // @ts-ignore
-                    pwaInstall.forceApple();
+                    pwaInstall.isAppleMobilePlatform = true;
+                    // @ts-ignore
+                    pwaInstall.hideDialog();
+                    // @ts-ignore
+                    pwaInstall.showDialog();
                 }
 
                 // @ts-ignore
