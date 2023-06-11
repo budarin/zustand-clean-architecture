@@ -1,9 +1,9 @@
 import * as notification from '../../infrastructure/services/Notification/index.ts';
 
-import { overdueKey } from '../entities/navigationFilter/index.ts';
-import { TWO_MINUTES } from '../../utils/dateTime/consts.ts';
-import { createCalendarNavigationFilter } from '../entities/navigationFilter/createCalendarNavigationFilter.ts';
 import { useTodoStore } from '../store/store.tsx';
+import { TWO_MINUTES } from '../../utils/dateTime/consts.ts';
+import { overdueKey } from '../entities/navigationFilter/index.ts';
+import { createFilterNavFilter } from '../entities/navigationFilter/createFilterNavFilter.ts';
 
 export const setOveduedInBadge = async () => {
     const { todos } = useTodoStore.getState();
@@ -36,9 +36,8 @@ export function checkOverduedTodos(): void {
                     notification.joyfullyGilling(`lalala: ${todo.todo}`, {
                         toastId: 'due_date:' + todo.todo,
                         onClose: async () => {
-                            setNavigationFilter(createCalendarNavigationFilter(today));
+                            setNavigationFilter(createFilterNavFilter('Просроченные', overdueKey));
                             _addToOverduedTodos(todo.todo_id);
-
                             setOveduedInBadge();
                         },
                     });
