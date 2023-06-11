@@ -29,6 +29,7 @@ const AppContainer: FC = () => {
             cleanUpHtml();
 
             const pwaInstall = document.getElementsByTagName('pwa-install')[0];
+
             timer = setTimeout(() => {
                 // @ts-ignore
                 if (pwaInstall.isAppleMobilePlatform) {
