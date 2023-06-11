@@ -1,7 +1,7 @@
 export function showInstallPwaDialog() {
     const pwaInstall = document.getElementsByTagName('pwa-install')[0];
     // @ts-ignore
-    if (pwaInstall.isInstallAvailable) {
+    if (pwaInstall && pwaInstall.isInstallAvailable) {
         // @ts-ignore
         if (pwaInstall.isAppleMobilePlatform) {
             // @ts-ignore
