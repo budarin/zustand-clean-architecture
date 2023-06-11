@@ -31,17 +31,16 @@ export function checkOverduedTodos(): void {
             const diff = now - todo.due_date_time_ts;
             const isOverdue = diff > 0 && overdueIds.indexOf(todo.todo_id) === -1 && !todo.completed && !todo.deleted;
 
-            if (isOverdue) {
-                if (Math.abs(diff) < TWO_MINUTES) {
-                    notification.joyfullyGilling(`lalala: ${todo.todo}`, {
-                        toastId: 'due_date:' + todo.todo,
-                        onClose: async () => {
-                            setNavigationFilter(createFilterNavFilter('Просроченные', overdueKey));
-                            _addToOverduedTodos(todo.todo_id);
-                            setOveduedInBadge();
-                        },
-                    });
-                }
+            if (isOverdue && Math.abs(diff) < TWO_MINUTES) {
+                notification.joyfullyGilling(`lalala: ${todo.todo}`, {
+                    toastId: 'due_date:' + todo.todo,
+
+                    onClose: async () => {
+                        setNavigationFilter(createFilterNavFilter('Просроченные', overdueKey));
+                        _addToOverduedTodos(todo.todo_id);
+                        setOveduedInBadge();
+                    },
+                });
             }
         }
     });
