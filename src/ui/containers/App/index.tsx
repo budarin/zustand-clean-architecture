@@ -30,13 +30,14 @@ const AppContainer: FC = () => {
 
             const pwaInstall = document.getElementsByTagName('pwa-install')[0];
             timer = setTimeout(() => {
-                if (navigator.platform.toUpperCase().includes('MAC')) {
+                if (/iphone|ipad|ipod/.test(navigator.userAgent)) {
                     // @ts-ignore
                     pwaInstall.isAppleMobilePlatform = true;
                     // @ts-ignore
                     pwaInstall.hideDialog();
                     // @ts-ignore
-                    pwaInstall.showDialog();
+                    pwaInstall.showDialog(true);
+                    return;
                 }
 
                 // @ts-ignore
