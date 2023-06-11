@@ -1,7 +1,8 @@
-import { FC, useCallback, useEffect, useRef, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 
 import { useMediaQuery } from 'usehooks-ts';
 import { cleanUpHtml } from './cleanUpHtml.ts';
+import { useEffectOnce } from '../../hooks/useEffectOnce.ts';
 
 import App from '../../components/App/index.tsx';
 
@@ -20,38 +21,7 @@ const AppContainer: FC = () => {
     const toggleNavPane = () => setNavPaneOpen((s) => !s);
     const onToggleNavPan = useCallback(toggleNavPane, []);
 
-    const isMounted = useRef(false);
-    useEffect(() => {
-        let timer: NodeJS.Timeout;
-        isMounted.current = true;
-
-        if (isMounted.current) {
-            cleanUpHtml();
-
-            const pwaInstall = document.getElementsByTagName('pwa-install')[0];
-            timer = setTimeout(() => {
-                if (navigator.platform.toUpperCase().includes('MAC')) {
-                    // @ts-ignore
-                    pwaInstall.isAppleMobilePlatform = true;
-                    // @ts-ignore
-                    pwaInstall.hideDialog();
-                    // @ts-ignore
-                    pwaInstall.showDialog();
-                }
-
-                // @ts-ignore
-                if (pwaInstall.isInstallAvailable) {
-                    // @ts-ignore
-                    pwaInstall.showDialog();
-                }
-            }, 3000);
-        }
-
-        return () => {
-            isMounted.current = false;
-            clearTimeout(timer);
-        };
-    }, []);
+    useEffectOnce(cleanUpHtml);
 
     return (
         <App
