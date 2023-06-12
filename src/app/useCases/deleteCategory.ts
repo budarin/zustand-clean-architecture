@@ -1,8 +1,9 @@
-import * as notification from '../../services/Notification/index.ts';
-
-import { useTodoStore } from '../../domain/store/store.tsx';
 import { delay } from '../../utils/promises/delay.ts';
+import { useTodoStore } from '../../domain/store/store.tsx';
 import { TodoStoreError } from '../../domain/store/TodoStoreError.tsx';
+import { useNotification } from '../serviceAdapters/useNotification.ts';
+
+const notification = useNotification();
 
 export async function deleteCategory(id: Category['category_id']): Promise<void> {
     const store = useTodoStore.getState();

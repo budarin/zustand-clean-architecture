@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-import * as logger from '../../../../src/services/Logger/index.ts';
-import * as notification from '../../../../src/services/Notification/index.ts';
-
+import { useLogger } from '../../../../src/app/serviceAdapters/useLogger.ts';
 import { createCategory } from '../../../../src/app/useCases/createCategory.ts';
+import { useNotification } from '../../../../src/app/serviceAdapters/useNotification.ts';
+
+const logger = useLogger();
+const notification = useNotification();
 
 type UseCreateCategory = [
     success: boolean,

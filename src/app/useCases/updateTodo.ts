@@ -1,8 +1,9 @@
-import { useTodoStore } from '../../domain/store/store.tsx';
-import * as notification from '../../services/Notification/index.ts';
 import { delay } from '../../utils/promises/delay.ts';
+import { useTodoStore } from '../../domain/store/store.tsx';
+import { useNotification } from '../serviceAdapters/useNotification.ts';
 
 const updatingTodos = new Set();
+const notification = useNotification();
 
 export async function updateTodo(todo: Todo): Promise<void> {
     updatingTodos.add(todo.todo_id);
