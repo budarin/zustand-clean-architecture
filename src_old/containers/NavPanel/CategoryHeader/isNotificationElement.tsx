@@ -1,4 +1,4 @@
-import { isString } from '../../../../src/domain/utils/validation/isString';
+import { isString } from '../../../../src/domain/entities/validation_utils/isString';
 
 export function isNotificationElement(el: HTMLElement): boolean {
     let parent = el.parentElement;

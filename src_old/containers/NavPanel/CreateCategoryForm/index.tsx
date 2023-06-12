@@ -1,6 +1,6 @@
 import { FormEventHandler, ForwardedRef, forwardRef, memo } from 'react';
 
-import { getIconCollection } from '../../../../src/domain/selectors/getIconCollection.ts';
+import { getIconCollection } from '../../../../src/app/selectors/getIconCollection.ts';
 
 // components
 import CreateCategoryForm from '../../../components/NavPanel/CreateCategoryForm/index.tsx';

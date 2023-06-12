@@ -1,5 +1,5 @@
 import { initApp } from './utils/app/initApp.tsx';
-import * as logger from './infrastructure/services/Logger/index.ts';
+import * as logger from './services/Logger/index.ts';
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready
