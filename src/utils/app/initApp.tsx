@@ -3,16 +3,16 @@ import { createRoot } from 'react-dom/client';
 import { ToastContainer } from 'react-toastify';
 
 // services
-import * as api from '../../infrastructure/services/API/index.ts';
-import * as logger from '../../infrastructure/services/Logger/index.ts';
-import * as kvStorage from '../../infrastructure/services/KVStorage/index.ts';
+import * as api from '../../services/API/index.ts';
+import * as logger from '../../services/Logger/index.ts';
+import * as kvStorage from '../../services/KVStorage/index.ts';
 
 // utils
 import { runTask } from '../runTask.ts';
 import { initStore } from './initStore.tsx';
 import { ONE_MINUTE } from '../dateTime/consts.ts';
 import { createRootElement } from './createRootElement.tsx';
-import { checkOverdueTodos, setOverdueInBadge } from '../../domain/useCases/checkOverduedTodos.ts';
+import { checkOverdueTodos, setOverdueInBadge } from '../../app/useCases/checkOverduedTodos.ts';
 
 // cpntainers
 import AppContainer from '../../ui/containers/App/index.tsx';

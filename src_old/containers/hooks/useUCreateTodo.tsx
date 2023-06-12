@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import { createTodo } from '../../../src/domain/useCases/createTodo.ts';
+import { createTodo } from '../../../src/app/useCases/createTodo.ts';
 
-import * as notification from '../../../src/infrastructure/services/Notification/index.ts';
+import * as notification from '../../../src/services/Notification/index.ts';
 
 type UseCreateTodo = [inProgress: boolean, createTodo: React.Dispatch<React.SetStateAction<Todo | undefined>>];
 

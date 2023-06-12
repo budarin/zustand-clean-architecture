@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
     mode: 'production',
     devtool: false,
-    entry: './src/infrastructure/server/index.ts',
+    entry: './src/server/index.ts',
     output: {
         path: path.resolve('./dist'),
         filename: 'sw.js',

@@ -1,12 +1,12 @@
-import { isInt } from '../../utils/validation/isInt.ts';
-import { exists } from '../../utils/validation/exists.ts';
-import { inRange } from '../../utils/validation/inRange.ts';
-import { isString } from '../../utils/validation/isString.ts';
-import { isBoolean } from '../../utils/validation/isBoolean.ts';
-import { isUndefined } from '../../utils/validation/isUndefined.ts';
-import { isNotExists } from '../../utils/validation/isNotExists.ts';
-import { validateRawEntity } from '../../utils/validation/validateEntity.ts';
-import { toDefaultBoolean } from '../../utils/validation/toDefaultBoolean.ts';
+import { isInt } from '../validation_utils/isInt.ts';
+import { exists } from '../validation_utils/exists.ts';
+import { inRange } from '../validation_utils/inRange.ts';
+import { isString } from '../validation_utils/isString.ts';
+import { isBoolean } from '../validation_utils/isBoolean.ts';
+import { isUndefined } from '../validation_utils/isUndefined.ts';
+import { isNotExists } from '../validation_utils/isNotExists.ts';
+import { validateRawEntity } from '../validation_utils/validateEntity.ts';
+import { toDefaultBoolean } from '../validation_utils/toDefaultBoolean.ts';
 import { capitalizeFirstLetter } from '../../../utils/string/capitalizeFirstLetter.ts';
 
 export const MIN_TODO_LENGTH = 5;

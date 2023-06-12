@@ -1,4 +1,4 @@
-import { isNotExists } from '../../utils/validation/isNotExists.ts';
+import { isNotExists } from '../validation_utils/isNotExists.ts';
 import { inboxKey, overdueKey } from '../navigationFilter/index.ts';
 import { deleteTodoFromFilters } from './filters/deleteTodoFromFilters.ts';
 import { updateInbox } from './filters/updateInbox.ts';

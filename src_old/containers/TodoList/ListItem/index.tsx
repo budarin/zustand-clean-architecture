@@ -1,8 +1,8 @@
 import React, { memo, useCallback } from 'react';
 
-import { updateTodo } from '../../../../src/domain/useCases/updateTodo.ts';
-import { getTodoById } from '../../../../src/domain/selectors/getTodoById.ts';
-import { getStatusByStatusId } from '../../../../src/domain/selectors/getStatusByStatusId.ts';
+import { updateTodo } from '../../../../src/app/useCases/updateTodo.ts';
+import { getTodoById } from '../../../../src/app/selectors/getTodoById.ts';
+import { getStatusByStatusId } from '../../../../src/app/selectors/getStatusByStatusId.ts';
 
 // components
 import TodoListItem from '../../../components/TodoList/TodoListItem/index.tsx';

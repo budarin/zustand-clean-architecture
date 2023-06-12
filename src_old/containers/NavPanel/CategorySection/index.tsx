@@ -1,4 +1,4 @@
-import { getCategoryList } from '../../../../src/domain/selectors/getCategoryList.ts';
+import { getCategoryList } from '../../../../src/app/selectors/getCategoryList.ts';
 import { navigationFilterTypes } from '../../../../src/domain/entities/navigationFilter/index.ts';
 
 // components
