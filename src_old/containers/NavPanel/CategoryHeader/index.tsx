@@ -1,16 +1,16 @@
 import { useOnClickOutside } from 'usehooks-ts';
 import { FormEventHandler, MouseEventHandler, memo, useCallback, useEffect, useRef, useState } from 'react';
 
-import * as logger from '../../../../src/services/Logger/index.ts';
-
-import { isNotificationElement } from './isNotificationElement.tsx';
 import { useCreateCategory } from './useCreateCategory.tsx';
+import { isNotificationElement } from './isNotificationElement.tsx';
+import { useLogger } from '../../../../src/app/serviceAdapters/useLogger.ts';
 
 // components
 import CreateCategoryFormContainer from '../CreateCategoryForm/index.tsx';
 import CategoryHeader from '../../../components/NavPanel/CategoryHeader/index.tsx';
 
 let timer: NodeJS.Timeout;
+const logger = useLogger();
 
 const CategoryHeadersContainer = memo(function () {
     const [isOpen, setOpen] = useState<boolean>(false);

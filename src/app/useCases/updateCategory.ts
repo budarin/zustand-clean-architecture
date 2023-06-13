@@ -1,7 +1,8 @@
-import * as notification from '../../services/Notification/index.ts';
-
-import { useTodoStore } from '../../domain/store/store.tsx';
 import { delay } from '../../utils/promises/delay.ts';
+import { useTodoStore } from '../../domain/store/store.tsx';
+import { useNotification } from '../serviceAdapters/useNotification.ts';
+
+const notification = useNotification();
 
 export async function updateCategory(category: Category): Promise<void> {
     const store = useTodoStore.getState();
