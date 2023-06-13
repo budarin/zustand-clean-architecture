@@ -1,7 +1,9 @@
-import * as API from '../API/index';
+import { useApi } from '../../app/serviceAdapters/useApi.ts';
 import { isString } from '../../domain/entities/validation_utils/isString';
 
 type LogMethods = 'info' | 'warn' | 'error';
+
+const api = useApi();
 
 function logObject(data: string | UnknownObject, type: LogMethods): void {
     const logObj = isString(data)
@@ -11,7 +13,7 @@ function logObject(data: string | UnknownObject, type: LogMethods): void {
           }
         : { ...data, type };
 
-    API.log(logObj);
+    api.log(logObj);
 }
 
 export function info(data: string | UnknownObject): void {

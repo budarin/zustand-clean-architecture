@@ -1,10 +1,14 @@
-import * as api from '../../services/API/index.ts';
-import * as logger from '../../services/Logger/index.ts';
-import * as notification from '../../services/Notification/index.ts';
+import { useApi } from '../serviceAdapters/useApi.ts';
+import { useLogger } from '../serviceAdapters/useLogger.ts';
+import { useNotification } from '../serviceAdapters/useNotification.ts';
 
 import { useTodoStore } from '../../domain/store/store.tsx';
 import { validateNewCategory } from '../../domain/entities/category/validation.ts';
 import { createCategoryNavFilter } from '../../domain/entities/navigationFilter/createCategoryNavFilter.ts';
+
+const api = useApi();
+const logger = useLogger();
+const notification = useNotification();
 
 export async function createCategory(category: NewCategory): Promise<void> {
     const store = useTodoStore.getState();

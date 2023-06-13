@@ -3,9 +3,9 @@ import { createRoot } from 'react-dom/client';
 import { ToastContainer } from 'react-toastify';
 
 // services
-import * as api from '../../services/API/index.ts';
-import * as logger from '../../services/Logger/index.ts';
-import * as kvStorage from '../../services/KVStorage/index.ts';
+import { useApi } from '../../app/serviceAdapters/useApi.ts';
+import { useLogger } from '../../app/serviceAdapters/useLogger.ts';
+import { useKVStorage } from '../../app/serviceAdapters/useKVStorage.ts';
 
 // utils
 import { runTask } from '../runTask.ts';
@@ -17,6 +17,10 @@ import { checkOverdueTodos, setOverdueInBadge } from '../../app/useCases/checkOv
 // cpntainers
 import AppContainer from '../../ui/containers/App/index.tsx';
 import { showInstallPwaDialog } from './showInstallPwaDialog.ts';
+
+const api = useApi();
+const logger = useLogger();
+const kvStorage = useKVStorage();
 
 export async function initApp() {
     api.getTodoStore()
