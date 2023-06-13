@@ -55,7 +55,7 @@ export async function initApp() {
                     <ToastContainer limit={3} hideProgressBar={true} />
                 </>,
             );
-            kvStorage.remove('reloadOnError');
+            kvStorage.removeItem('reloadOnError');
         })
 
         .catch((error) => {

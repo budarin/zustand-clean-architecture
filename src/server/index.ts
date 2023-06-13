@@ -8,8 +8,8 @@ const apiPattern = '/api/';
 const todosUrl = '/api/get_todos';
 const jsonHeader = { 'Content-Type': 'application/json; charset=utf-8' };
 
-let state: Entities | undefined;
 const { log } = console;
+let state: Entities | undefined;
 
 async function saveState() {
     const cache = await caches.open('todo-sw');
