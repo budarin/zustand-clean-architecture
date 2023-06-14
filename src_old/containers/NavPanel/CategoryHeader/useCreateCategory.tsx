@@ -4,9 +4,6 @@ import { useLogger } from '../../../../src/app/serviceAdapters/useLogger.ts';
 import { createCategory } from '../../../../src/app/useCases/createCategory.ts';
 import { useNotification } from '../../../../src/app/serviceAdapters/useNotification.ts';
 
-const logger = useLogger();
-const notification = useNotification();
-
 type UseCreateCategory = [
     success: boolean,
     inProgress: boolean,
@@ -14,6 +11,8 @@ type UseCreateCategory = [
 ];
 
 export function useCreateCategory(): UseCreateCategory {
+    const logger = useLogger();
+    const notification = useNotification();
     const [category, setCategory] = useState<NewCategory>();
     const [success, setSuccess] = useState<boolean>(false);
     const [inProgress, setInProgress] = useState<boolean>(false);

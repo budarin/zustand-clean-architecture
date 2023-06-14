@@ -18,11 +18,11 @@ import { checkOverdueTodos, setOverdueInBadge } from '../../app/useCases/checkOv
 import AppContainer from '../../ui/containers/App/index.tsx';
 import { showInstallPwaDialog } from './showInstallPwaDialog.ts';
 
-const api = useApi();
-const logger = useLogger();
-const kvStorage = useKVStorage();
-
 export async function initApp() {
+    const api = useApi();
+    const logger = useLogger();
+    const kvStorage = useKVStorage();
+
     api.getTodoStore()
         .then((data) => {
             initStore(data);
@@ -55,7 +55,7 @@ export async function initApp() {
                     <ToastContainer limit={3} hideProgressBar={true} />
                 </>,
             );
-            kvStorage.remove('reloadOnError');
+            kvStorage.removeItem('reloadOnError');
         })
 
         .catch((error) => {

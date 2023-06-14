@@ -3,9 +3,9 @@ import { useTodoStore } from '../../domain/store/store.tsx';
 import { useNotification } from '../serviceAdapters/useNotification.ts';
 
 const updatingTodos = new Set();
-const notification = useNotification();
 
 export async function updateTodo(todo: Todo): Promise<void> {
+    const notification = useNotification();
     updatingTodos.add(todo.todo_id);
 
     const store = useTodoStore.getState();

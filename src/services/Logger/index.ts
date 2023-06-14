@@ -3,9 +3,8 @@ import { isString } from '../../domain/entities/validation_utils/isString';
 
 type LogMethods = 'info' | 'warn' | 'error';
 
-const api = useApi();
-
 function logObject(data: string | UnknownObject, type: LogMethods): void {
+    const api = useApi();
     const logObj = isString(data)
         ? {
               type,
