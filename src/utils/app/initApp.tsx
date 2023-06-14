@@ -3,9 +3,9 @@ import { createRoot } from 'react-dom/client';
 import { ToastContainer } from 'react-toastify';
 
 // services
-import { useApi } from '../../app/serviceAdapters/useApi.ts';
-import { useLogger } from '../../app/serviceAdapters/useLogger.ts';
-import { useKVStorage } from '../../app/serviceAdapters/useKVStorage.ts';
+import { useApi } from '../../services/adapters/useApi.ts';
+import { useLogger } from '../../services/adapters/useLogger.ts';
+import { useKVStorage } from '../../services/adapters/useKVStorage.ts';
 
 // utils
 import { runTask } from '../runTask.ts';

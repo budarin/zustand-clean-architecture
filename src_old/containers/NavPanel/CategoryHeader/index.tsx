@@ -3,7 +3,7 @@ import { FormEventHandler, MouseEventHandler, memo, useCallback, useEffect, useR
 
 import { useCreateCategory } from './useCreateCategory.tsx';
 import { isNotificationElement } from './isNotificationElement.tsx';
-import { useLogger } from '../../../../src/app/serviceAdapters/useLogger.ts';
+import { useLogger } from '../../../../src/services/adapters/useLogger.ts';
 
 // components
 import CreateCategoryFormContainer from '../CreateCategoryForm/index.tsx';

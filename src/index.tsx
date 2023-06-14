@@ -1,5 +1,5 @@
 import { initApp } from './utils/app/initApp.tsx';
-import { useLogger } from './app/serviceAdapters/useLogger.ts';
+import { useLogger } from './services/adapters/useLogger.ts';
 
 const logger = useLogger();
 

@@ -1,6 +1,6 @@
-import { useApi } from '../serviceAdapters/useApi.ts';
-import { useLogger } from '../serviceAdapters/useLogger.ts';
-import { useNotification } from '../serviceAdapters/useNotification.ts';
+import { useApi } from '../../services/adapters/useApi.ts';
+import { useLogger } from '../../services/adapters/useLogger.ts';
+import { useNotification } from '../../services/adapters/useNotification.ts';
 
 import { useTodoStore } from '../../domain/store/store.tsx';
 import { validateNewCategory } from '../../domain/entities/category/validation.ts';
