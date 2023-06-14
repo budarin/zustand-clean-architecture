@@ -3,9 +3,8 @@ import { useTodoStore } from '../../domain/store/store.tsx';
 import { TodoStoreError } from '../../domain/store/TodoStoreError.tsx';
 import { useNotification } from '../serviceAdapters/useNotification.ts';
 
-const notification = useNotification();
-
 export async function deleteCategory(id: Category['category_id']): Promise<void> {
+    const notification = useNotification();
     const store = useTodoStore.getState();
     const value = store.categories.byId[id];
 

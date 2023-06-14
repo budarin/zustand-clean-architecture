@@ -2,9 +2,8 @@ import { delay } from '../../utils/promises/delay.ts';
 import { useTodoStore } from '../../domain/store/store.tsx';
 import { useNotification } from '../serviceAdapters/useNotification.ts';
 
-const notification = useNotification();
-
 export async function deleteTodo(todo: Todo): Promise<void> {
+    const notification = useNotification();
     const store = useTodoStore.getState();
     const oldValue = store.todos.byId[todo.todo_id];
 

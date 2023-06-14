@@ -6,11 +6,11 @@ import { useTodoStore } from '../../domain/store/store.tsx';
 import { validateNewCategory } from '../../domain/entities/category/validation.ts';
 import { createCategoryNavFilter } from '../../domain/entities/navigationFilter/createCategoryNavFilter.ts';
 
-const api = useApi();
-const logger = useLogger();
-const notification = useNotification();
-
 export async function createCategory(category: NewCategory): Promise<void> {
+    const api = useApi();
+    const logger = useLogger();
+    const notification = useNotification();
+
     const store = useTodoStore.getState();
     const { entity, error } = validateNewCategory(category);
 

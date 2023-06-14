@@ -15,7 +15,7 @@
         "@types/react-dom": "^18.2.5",
         "babel-loader": "^9.1.2",
         "browserslist": "^4.21.8",
-        "caniuse-lite": "^1.0.30001502",
+        "caniuse-lite": "^1.0.30001503",
         "core-js": "^3.31.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",

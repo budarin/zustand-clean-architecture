@@ -3,11 +3,10 @@ import { unstable_batchedUpdates } from 'react-dom';
 import { useTodoStore } from '../../domain/store/store.tsx';
 import { useNotification } from '../../app/serviceAdapters/useNotification.ts';
 
-const notification = useNotification();
-
 export function initStore(data: Entities) {
     let hasError = false;
 
+    const notification = useNotification();
     const { icons, statuses, categories, todos } = data;
     const { _addIcon, _addStatus, _addCategory, _addTodo } = useTodoStore.getState();
 

@@ -3,11 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { createTodo } from '../../../src/app/useCases/createTodo.ts';
 import { useNotification } from '../../../src/app/serviceAdapters/useNotification.ts';
 
-const notification = useNotification();
-
 type UseCreateTodo = [inProgress: boolean, createTodo: React.Dispatch<React.SetStateAction<Todo | undefined>>];
 
 export function useUCreateTodo(): UseCreateTodo {
+    const notification = useNotification();
     const [todo, setTodo] = useState<Todo>();
     const [inProgress, setInProgress] = useState<boolean>(false);
 
