@@ -64,7 +64,6 @@ export async function initApp() {
                 setTimeout(setUpPwaInstall, 3000);
             }
         })
-
         .catch((error) => {
             logger.error({ error, stack: error.stack });
         });
