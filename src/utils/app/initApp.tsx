@@ -16,6 +16,7 @@ import { checkOverdueTodos, setOverdueInBadge } from '../../app/useCases/checkOv
 
 // cpntainers
 import AppContainer from '../../ui/containers/App/index.tsx';
+import { setUpPwaInstall } from '../pwa-install/setUpPwaInstall.ts';
 
 export async function initApp() {
     const api = useApi();
@@ -51,6 +52,9 @@ export async function initApp() {
                 </>,
             );
             kvStorage.remove('reloadOnError');
+        })
+        .then(() => {
+            setTimeout(setUpPwaInstall, 3000);
         })
 
         .catch((error) => {

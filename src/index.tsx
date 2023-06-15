@@ -1,6 +1,5 @@
 import { initApp } from './utils/app/initApp.tsx';
 import { useLogger } from './services/adapters/useLogger.ts';
-import { setUpPwaInstall } from './utils/pwa-install/setUpPwaInstall.ts';
 
 const logger = useLogger();
 
@@ -19,5 +18,3 @@ if ('serviceWorker' in navigator) {
 } else {
     logger.error('Устройство не поддерживает service worker');
 }
-
-window.addEventListener('DOMContentLoaded', setUpPwaInstall);
