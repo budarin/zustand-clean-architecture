@@ -27,3 +27,19 @@ type UnknownObject = Record<string, unknown>;
 
 // https://javascript.plainenglish.io/a-cleaner-api-for-react-ts-components-47d0704a508c
 type GetComponentProps<T> = T extends React.ComponentType<infer P> | React.Component<infer P> ? P : never;
+
+type JdonRpcError<E> = {
+    code: number;
+    error: string;
+    data?: E;
+};
+
+type JdonRpcResult<E, T> =
+    | {
+          result: T;
+          error?: never;
+      }
+    | {
+          result?: never;
+          error: JdonRpcError<E>;
+      };

@@ -1,6 +1,6 @@
 import { delay } from '../../utils/promises/delay.ts';
 import { useTodoStore } from '../../domain/store/store.tsx';
-import { useNotification } from '../serviceAdapters/useNotification.ts';
+import { useNotification } from '../../services/adapters/useNotification.ts';
 
 export async function createTodo(todo: NewTodo): Promise<void> {
     const notification = useNotification();

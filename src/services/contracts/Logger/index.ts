@@ -1,5 +1,5 @@
-import { useApi } from '../../app/serviceAdapters/useApi.ts';
-import { isString } from '../../domain/entities/validation_utils/isString';
+import { useApi } from '../../adapters/useApi.ts';
+import { isString } from '../../../domain/entities/validation_utils/isString.ts';
 
 type LogMethods = 'info' | 'warn' | 'error';
 
