@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import { useLogger } from '../../../../src/app/serviceAdapters/useLogger.ts';
+import { useLogger } from '../../../../src/services/adapters/useLogger.ts';
 import { createCategory } from '../../../../src/app/useCases/createCategory.ts';
-import { useNotification } from '../../../../src/app/serviceAdapters/useNotification.ts';
+import { useNotification } from '../../../../src/services/adapters/useNotification.ts';
 
 type UseCreateCategory = [
     success: boolean,
