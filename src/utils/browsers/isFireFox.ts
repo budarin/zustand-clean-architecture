@@ -1,1 +1,3 @@
-export const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+export function isFirefox() {
+    return navigator.userAgent.toLowerCase().includes('firefox');
+}
