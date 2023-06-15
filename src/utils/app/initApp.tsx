@@ -16,7 +16,6 @@ import { checkOverdueTodos, setOverdueInBadge } from '../../app/useCases/checkOv
 
 // cpntainers
 import AppContainer from '../../ui/containers/App/index.tsx';
-import { showInstallPwaDialog } from './showInstallPwaDialog.ts';
 
 export async function initApp() {
     const api = useApi();
@@ -36,10 +35,6 @@ export async function initApp() {
             window.addEventListener('beforeunload', () => {
                 checkOverduedTodosTask.stop();
             });
-
-            setTimeout(() => {
-                showInstallPwaDialog();
-            }, 3000);
         })
 
         .then(() => window.loadingPromise)
