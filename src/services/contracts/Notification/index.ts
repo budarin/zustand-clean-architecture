@@ -45,14 +45,14 @@ export const notifyError: NotificationMethod = (content, options?) => {
     });
 };
 
-export const notifyInfo: typeof toast.info = (content, options?) => {
+export const notifyInfo: NotificationMethod = (content, options?) => {
     return toast.info(content, {
         ...options,
         style: { border: '2px solid var(--toastify-color-info)', lineHeight },
     });
 };
 
-export const notifyWarning: typeof toast.warning = (content, options?) => {
+export const notifyWarning: NotificationMethod = (content, options?) => {
     return toast.warning(content, {
         ...options,
         style: { border: '2px solid var(--toastify-color-warning)', lineHeight },
@@ -66,7 +66,7 @@ function onJoyfullyOpen() {
     });
 }
 
-export const joyfullyGilling: typeof toast.warning = (content, options?) => {
+export const joyfullyGilling: NotificationMethod = (content, options?) => {
     return toast.success(content, {
         ...options,
         style: { border: '2px solid var(--primaryDarkColor)', lineHeight },

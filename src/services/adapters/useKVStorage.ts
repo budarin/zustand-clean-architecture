@@ -1,5 +1,12 @@
 import * as KVStorage from '../contracts/KVStorage/index.ts';
 
-export function useKVStorage() {
+interface KVStorage {
+    get(key: string): string | undefined;
+    set(key: string, value: string): void;
+    remove(key: string): void;
+    clear(): void;
+}
+
+export function useKVStorage(): KVStorage {
     return KVStorage;
 }
