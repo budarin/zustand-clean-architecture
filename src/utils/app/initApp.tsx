@@ -10,10 +10,11 @@ import { useKVStorage } from '../../services/adapters/useKVStorage.ts';
 // utils
 import { runTask } from '../runTask.ts';
 import { initStore } from './initStore.tsx';
-import { isSafari } from '../browsers/isSafari.ts';
 import { ONE_MINUTE } from '../dateTime/consts.ts';
 import { createRootElement } from './createRootElement.tsx';
+import { isAppleMobile } from '../browsers/isAppleMobile.ts';
 import { setUpPwaInstall } from '../pwa-install/setUpPwaInstall.ts';
+import { isStandaloneMode } from '../pwa-install/isStandaloneMode.ts';
 import { checkOverdueTodos, setOverdueInBadge } from '../../app/useCases/checkOverduedTodos.ts';
 
 // cpntainers
@@ -55,10 +56,11 @@ export async function initApp() {
             kvStorage.remove('reloadOnError');
         })
         .then(() => {
-            // В FireFox вообще не поддерживается pwa - игнорируем его
-            // В Safari нет пока события 'beforeInstallPromptEvent', но у него можно добавить ярлык на экран
+            // В FireFox и десктопный Safari вообще не поддерживают pwa - игнорируем их
+
+            // В Safari на iOS нет пока события 'beforeInstallPromptEvent', но у него можно добавить ярлык на экран
             // и это будет полноценное pwa приложение - поэтому будем показывать юзеру диалог с инструкциями
-            if ('BeforeInstallPromptEvent' in window === false && isSafari) {
+            if ('serviceWorker' in navigator && isAppleMobile() && isStandaloneMode() === false) {
                 setTimeout(setUpPwaInstall, 3000);
             }
         })
