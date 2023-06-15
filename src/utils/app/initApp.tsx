@@ -10,13 +10,14 @@ import { useKVStorage } from '../../services/adapters/useKVStorage.ts';
 // utils
 import { runTask } from '../runTask.ts';
 import { initStore } from './initStore.tsx';
+import { isSafari } from '../browsers/isSafari.ts';
 import { ONE_MINUTE } from '../dateTime/consts.ts';
 import { createRootElement } from './createRootElement.tsx';
+import { setUpPwaInstall } from '../pwa-install/setUpPwaInstall.ts';
 import { checkOverdueTodos, setOverdueInBadge } from '../../app/useCases/checkOverduedTodos.ts';
 
 // cpntainers
 import AppContainer from '../../ui/containers/App/index.tsx';
-import { setUpPwaInstall } from '../pwa-install/setUpPwaInstall.ts';
 
 export async function initApp() {
     const api = useApi();
@@ -54,7 +55,12 @@ export async function initApp() {
             kvStorage.remove('reloadOnError');
         })
         .then(() => {
-            setTimeout(setUpPwaInstall, 3000);
+            // В FireFox вообще не поддерживается pwa - игнорируем его
+            // В Safari нет пока события 'beforeInstallPromptEvent', но у него можно добавить ярлык на экран
+            // и это будет полноценное pwa приложение - поэтому будем показывать юзеру диалог с инструкциями
+            if ('BeforeInstallPromptEvent' in window === false && isSafari) {
+                setTimeout(setUpPwaInstall, 3000);
+            }
         })
 
         .catch((error) => {
