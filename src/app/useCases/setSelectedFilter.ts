@@ -3,6 +3,6 @@ import { createFilterNavFilter } from '../../domain/entities/navigationFilter/cr
 
 const setNavigationFilter = useTodoStore.getState().setNavigationFilter;
 
-export function setSelectedFilter(key: string, filter: string): void {
+export function setSelectedFilter(key: string, filter: string): JsonRpcResult<NavigationFilter> {
     return setNavigationFilter(createFilterNavFilter(key, filter));
 }

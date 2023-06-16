@@ -34,7 +34,7 @@ type JdonRpcError<E> = {
     data?: E;
 };
 
-type JdonRpcResult<E, T> =
+type JsonRpcResult<T, E extends unknown = unknown> =
     | {
           result: T;
           error?: never;

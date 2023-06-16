@@ -26,9 +26,3 @@ export function warn(data: string | UnknownObject): void {
 export function error(data: string | UnknownObject): void {
     logObject(data, 'error');
 }
-
-export type Logger = {
-    info: typeof info;
-    warn: typeof warn;
-    error: typeof error;
-};

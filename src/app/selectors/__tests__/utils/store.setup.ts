@@ -2,26 +2,32 @@ import { act } from '@testing-library/react-hooks';
 import { useTodoStore } from '../../../../domain/store/store.tsx';
 import { serverInitialState } from '../../../../server/serverInitialState.ts';
 
-const { icons, statuses, categories, todos } = serverInitialState;
-const { _addIcon, _addStatus, _addCategory, _addTodo } = useTodoStore.getState();
+let initialState: TodosState;
 
-icons?.forEach((icon) => {
-    _addIcon(icon);
-});
+function setupStore() {
+    const { icons, statuses, categories, todos } = serverInitialState;
+    const { _addIcon, _addStatus, _addCategory, _addTodo } = useTodoStore.getState();
 
-statuses?.forEach((status) => {
-    _addStatus(status);
-});
+    icons?.forEach((icon) => {
+        const { result, error } = _addIcon(icon);
+    });
 
-categories?.forEach((category) => {
-    _addCategory(category);
-});
+    statuses?.forEach((status) => {
+        _addStatus(status);
+    });
 
-todos?.forEach((todo) => {
-    _addTodo(todo);
-});
+    categories?.forEach((category) => {
+        _addCategory(category);
+    });
 
-const initialState = useTodoStore.getState();
+    todos?.forEach((todo) => {
+        _addTodo(todo);
+    });
+
+    initialState = useTodoStore.getState();
+}
+
+setupStore();
 
 export const resetStore = () => {
     act(() => useTodoStore.setState(initialState, true));

@@ -79,14 +79,3 @@ export function log(data: UnknownObject): void {
         };
     });
 }
-
-export type API = {
-    getTodoStore: typeof getTodoStore;
-    createCategory: typeof createCategory;
-    updateCategory: typeof updateCategory;
-    deleteCategory: typeof deleteCategory;
-    createTodo: typeof createTodo;
-    updateTodo: typeof updateTodo;
-    deleteTodo: typeof deleteTodo;
-    log: typeof log;
-};
