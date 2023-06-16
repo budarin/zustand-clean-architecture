@@ -12,37 +12,37 @@ export function initStore(data: Entities) {
 
     unstable_batchedUpdates(() => {
         icons?.forEach((icon) => {
-            try {
-                _addIcon(icon);
-            } catch (error) {
-                console.error(error);
+            const result = _addIcon(icon);
+
+            if (result.error) {
+                console.error(result.error);
                 hasError = true;
             }
         });
 
         statuses?.forEach((status) => {
-            try {
-                _addStatus(status);
-            } catch (error) {
-                console.error(error);
+            const result = _addStatus(status);
+
+            if (result.error) {
+                console.error(result.error);
                 hasError = true;
             }
         });
 
         categories?.forEach((category) => {
-            try {
-                _addCategory(category);
-            } catch (error) {
-                console.error(error);
+            const result = _addCategory(category);
+
+            if (result.error) {
+                console.error(result.error);
                 hasError = true;
             }
         });
 
         todos?.forEach((todo) => {
-            try {
-                _addTodo(todo);
-            } catch (error) {
-                console.error(error);
+            const result = _addTodo(todo);
+
+            if (result.error) {
+                console.error(result.error);
                 hasError = true;
             }
         });
