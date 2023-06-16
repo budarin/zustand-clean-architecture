@@ -149,7 +149,7 @@ export const useTodoStore = create<TodosState & Actions>()(
         _addToOverdueTodos: addToOverdueTodos,
 
         // NavigationFilter
-        setNavigationFilter: setNavigationFilter,
+        setNavigationFilter,
     })),
 );
 
