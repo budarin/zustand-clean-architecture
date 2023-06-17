@@ -6,8 +6,7 @@ import { joyfullyGilling } from '../../services/contracts/Notification/index.ts'
 import { createFilterNavFilter } from '../../domain/entities/navigationFilter/createFilterNavFilter.ts';
 
 export function checkOverdueTodos(): void {
-    const today = new Date();
-    const now = today.valueOf();
+    const now = Date.now();
 
     const { todos, _addToOverdueTodos, setNavigationFilter } = useTodoStore.getState();
     const overdueIds = todos.idsByFilterId[overdueKey];
