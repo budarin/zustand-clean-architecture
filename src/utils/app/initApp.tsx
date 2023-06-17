@@ -22,12 +22,10 @@ import { setOverdueInBadge } from '../../app/useCases/setOverdueInBadge.ts';
 import AppContainer from '../../ui/containers/App/index.tsx';
 
 export async function initApp() {
-    const api = useApi();
-
-    api.getTodoStore()
+    useApi()
+        .getTodoStore()
         .then((data) => {
             initStore(data);
-
             setOverdueInBadge();
 
             const checkOverduedTodosTask = runTask(() => {
@@ -43,8 +41,8 @@ export async function initApp() {
 
         .then(() => {
             const kvStorage = useKVStorage();
-
             const rootElement = document.getElementById('root') || createRootElement();
+
             createRoot(rootElement).render(
                 <>
                     <StrictMode>
@@ -67,7 +65,6 @@ export async function initApp() {
             }
         })
         .catch((error) => {
-            const logger = useLogger();
-            logger.error({ error, stack: error.stack });
+            useLogger().error({ error, stack: error.stack });
         });
 }
