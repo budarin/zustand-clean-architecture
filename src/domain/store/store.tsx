@@ -44,7 +44,7 @@ export type Actions = {
 const devtoolsInNonProd = (__DEV__ ? devtools : (fn: any) => fn) as unknown as typeof devtools;
 
 export const useTodoStore = create<TodosState & Actions>()(
-    devtoolsInNonProd(() => {
+    devtoolsInNonProd((set) => {
         return {
             icons: {
                 byId: {
