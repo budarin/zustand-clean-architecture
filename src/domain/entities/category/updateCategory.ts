@@ -1,7 +1,7 @@
 import { useTodoStore } from '../../store/store';
 import { validateCategoryEntity } from './validation';
 
-export function updateCategory(category: UnknownObject): JsonRpcResult<Category> {
+export function updateCategory(category: UnknownObject): JsonRpcResult<Category, UnknownObject> {
     const state = useTodoStore.getState();
     const { entity, error } = validateCategoryEntity(category, state);
 
