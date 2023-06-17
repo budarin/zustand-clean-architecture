@@ -22,8 +22,6 @@ import AppContainer from '../../ui/containers/App/index.tsx';
 
 export async function initApp() {
     const api = useApi();
-    const logger = useLogger();
-    const kvStorage = useKVStorage();
 
     api.getTodoStore()
         .then((data) => {
@@ -43,6 +41,8 @@ export async function initApp() {
         .then(() => window.loadingPromise)
 
         .then(() => {
+            const kvStorage = useKVStorage();
+
             const rootElement = document.getElementById('root') || createRootElement();
             createRoot(rootElement).render(
                 <>
@@ -53,6 +53,7 @@ export async function initApp() {
                     <ToastContainer limit={3} hideProgressBar={true} />
                 </>,
             );
+
             kvStorage.remove('reloadOnError');
         })
         .then(() => {
@@ -65,6 +66,7 @@ export async function initApp() {
             }
         })
         .catch((error) => {
+            const logger = useLogger();
             logger.error({ error, stack: error.stack });
         });
 }

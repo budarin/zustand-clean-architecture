@@ -13,6 +13,7 @@ type UseCreateCategory = [
 export function useCreateCategory(): UseCreateCategory {
     const logger = useLogger();
     const notification = useNotification();
+
     const [category, setCategory] = useState<NewCategory>();
     const [success, setSuccess] = useState<boolean>(false);
     const [inProgress, setInProgress] = useState<boolean>(false);
@@ -42,7 +43,7 @@ export function useCreateCategory(): UseCreateCategory {
         };
 
         category && doCreate();
-    }, [category]);
+    }, []);
 
     return [success, inProgress, setCategory];
 }

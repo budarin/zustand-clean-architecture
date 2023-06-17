@@ -5,20 +5,8 @@ import { serverInitialState } from '../../../../server/serverInitialState.ts';
 let initialState: TodosState;
 
 function setupStore() {
-    const { icons, statuses, categories, todos } = serverInitialState;
-    const { _addIcon, _addStatus, _addCategory, _addTodo } = useTodoStore.getState();
-
-    icons?.forEach((icon) => {
-        const { result, error } = _addIcon(icon);
-    });
-
-    statuses?.forEach((status) => {
-        _addStatus(status);
-    });
-
-    categories?.forEach((category) => {
-        _addCategory(category);
-    });
+    const { todos } = serverInitialState;
+    const { _addTodo } = useTodoStore.getState();
 
     todos?.forEach((todo) => {
         _addTodo(todo);
