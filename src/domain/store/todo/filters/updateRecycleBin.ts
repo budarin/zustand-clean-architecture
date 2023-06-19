@@ -1,4 +1,4 @@
-import { recycleBinKey } from '../../navigationFilter';
+import { recycleBinKey } from '../../../entities/navigationFilter/index.ts';
 import { isRecycleBinItem } from './isRecycleBinItem.ts';
 
 export function updateRecycleBin(state: TodoState, todo: Todo): void {

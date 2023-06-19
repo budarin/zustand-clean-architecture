@@ -10,6 +10,7 @@ export function setNavigationFilter(filter: NavigationFilter): JsonRpcResult<Nav
     }
 
     const newState = { ...state };
+
     newState.navigationFilter = filter;
     useTodoStore.setState(newState);
 

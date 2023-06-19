@@ -1,27 +1,14 @@
+import { setOverdueInBadge } from './setOverdueInBadge.ts';
 import { useTodoStore } from '../../domain/store/store.tsx';
 import { TWO_MINUTES } from '../../utils/dateTime/consts.ts';
 import { overdueKey } from '../../domain/entities/navigationFilter/index.ts';
 import { joyfullyGilling } from '../../services/contracts/Notification/index.ts';
 import { createFilterNavFilter } from '../../domain/entities/navigationFilter/createFilterNavFilter.ts';
 
-export const setOverdueInBadge = async () => {
-    const { todos } = useTodoStore.getState();
-
-    if ('setAppBadge' in navigator) {
-        const values = Object.values(todos.idsByDueDate) as Id[][];
-        const count = values.reduce((acc, arr) => {
-            return acc + arr.length;
-        }, 0);
-
-        count ? await navigator.setAppBadge(count) : await navigator.clearAppBadge();
-    }
-};
-
 export function checkOverdueTodos(): void {
-    const today = new Date();
-    const now = today.valueOf();
-    const { todos, _addToOverdueTodos, setNavigationFilter } = useTodoStore.getState();
+    const now = Date.now();
 
+    const { todos, _addToOverdueTodos, setNavigationFilter } = useTodoStore.getState();
     const overdueIds = todos.idsByFilterId[overdueKey];
 
     for (const todo of Object.values(todos.byId)) {

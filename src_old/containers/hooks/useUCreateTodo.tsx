@@ -7,6 +7,7 @@ type UseCreateTodo = [inProgress: boolean, createTodo: React.Dispatch<React.SetS
 
 export function useUCreateTodo(): UseCreateTodo {
     const notification = useNotification();
+
     const [todo, setTodo] = useState<Todo>();
     const [inProgress, setInProgress] = useState<boolean>(false);
 

@@ -15,20 +15,17 @@ import { createRootElement } from './createRootElement.tsx';
 import { isAppleMobile } from '../browsers/isAppleMobile.ts';
 import { setUpPwaInstall } from '../pwa-install/setUpPwaInstall.ts';
 import { isStandaloneMode } from '../pwa-install/isStandaloneMode.ts';
-import { checkOverdueTodos, setOverdueInBadge } from '../../app/useCases/checkOverduedTodos.ts';
+import { checkOverdueTodos } from '../../app/useCases/checkOverdueTodos.ts';
+import { setOverdueInBadge } from '../../app/useCases/setOverdueInBadge.ts';
 
 // cpntainers
 import AppContainer from '../../ui/containers/App/index.tsx';
 
 export async function initApp() {
-    const api = useApi();
-    const logger = useLogger();
-    const kvStorage = useKVStorage();
-
-    api.getTodoStore()
+    useApi()
+        .getTodoStore()
         .then((data) => {
             initStore(data);
-
             setOverdueInBadge();
 
             const checkOverduedTodosTask = runTask(() => {
@@ -43,7 +40,9 @@ export async function initApp() {
         .then(() => window.loadingPromise)
 
         .then(() => {
+            const kvStorage = useKVStorage();
             const rootElement = document.getElementById('root') || createRootElement();
+
             createRoot(rootElement).render(
                 <>
                     <StrictMode>
@@ -53,6 +52,7 @@ export async function initApp() {
                     <ToastContainer limit={3} hideProgressBar={true} />
                 </>,
             );
+
             kvStorage.remove('reloadOnError');
         })
         .then(() => {
@@ -65,6 +65,6 @@ export async function initApp() {
             }
         })
         .catch((error) => {
-            logger.error({ error, stack: error.stack });
+            useLogger().error({ error, stack: error.stack });
         });
 }

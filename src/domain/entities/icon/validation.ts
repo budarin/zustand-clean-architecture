@@ -26,10 +26,6 @@ export const iconValidationRules: ValidationRules = {
     name: [validate_name, 'обязательное icon_name должно быть строкой'],
 };
 
-export function validateIcon(icon: UnknownObject): ValidateEntity<Icon> {
-    return validateRawEntity<Icon>(getIconFomObject(icon), iconValidationRules);
-}
-
 // Category getter
 export function getIconFomObject(input: UnknownObject = {}): Icon {
     const { icon_id, icon_name } = input as Icon;
@@ -40,32 +36,6 @@ export function getIconFomObject(input: UnknownObject = {}): Icon {
     };
 }
 
-export function validateIconEntity(icon: UnknownObject, state: TodosState): ValidateEntity<Icon> {
-    const result = validateIcon(icon);
-
-    if (!result.entity) {
-        return result;
-    }
-
-    const { entity } = result;
-
-    if (state.icons.ids.includes(entity.icon_id) === true) {
-        return {
-            error: `Нарушение уникальности ключа icons.icon_id!`,
-        };
-    }
-
-    if (
-        Object.values(state.icons.byId).find(
-            (item) => item.icon_name === entity.icon_name && item.icon_id !== entity.icon_id,
-        )
-    ) {
-        return {
-            error: `Нарушение уникальности имени иконки в  icons!`,
-        };
-    }
-
-    return {
-        entity,
-    };
+export function validateIcon(icon: UnknownObject): ValidateEntity<Icon> {
+    return validateRawEntity<Icon>(getIconFomObject(icon), iconValidationRules);
 }

@@ -41,14 +41,6 @@ export const newCategoryValidationRules: ValidationRules = {
     icon_id,
 };
 
-export function validateCategory(category: UnknownObject): ValidateEntity<Category> {
-    return validateRawEntity<Category>(category, categoryValidationRules);
-}
-
-export function validateNewCategory(category: NewCategory) {
-    return validateRawEntity<Category>(category, newCategoryValidationRules);
-}
-
 // Category getter
 export function getCategoryFomObject(input: UnknownObject = {}): Category {
     const { category_id, category, icon_id } = input as Category;
@@ -60,32 +52,10 @@ export function getCategoryFomObject(input: UnknownObject = {}): Category {
     };
 }
 
-export function validateCategoryEntity(category: UnknownObject, state: TodosState): ValidateEntity<Category> {
-    const result = validateCategory(category);
+export function validateCategory(category: UnknownObject): ValidateEntity<Category> {
+    return validateRawEntity<Category>(getCategoryFomObject(category), categoryValidationRules);
+}
 
-    if (!result.entity) {
-        return result;
-    }
-
-    const { entity } = result;
-
-    if (state.icons.ids.includes(entity.icon_id) === false) {
-        return {
-            error: 'Идентификатор иконки отсутствует в справочнике!',
-        };
-    }
-
-    if (
-        Object.values(state.categories.byId).find(
-            (item) => item.category === entity.category && item.category_id !== entity.category_id,
-        )
-    ) {
-        return {
-            error: `Категория с названием ${entity.category} уже существует! Название должно быть уникальным.`,
-        };
-    }
-
-    return {
-        entity,
-    };
+export function validateNewCategory(category: NewCategory) {
+    return validateRawEntity<Category>(getCategoryFomObject(category), newCategoryValidationRules);
 }
