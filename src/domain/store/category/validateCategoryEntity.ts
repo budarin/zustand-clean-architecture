@@ -1,4 +1,4 @@
-import { validateCategory } from '../../entities/category/validate';
+import { validateCategory } from '../../entities/category';
 
 export function validateCategoryEntity(category: UnknownObject, state: TodosState): ValidateEntity<Category> {
     const result = validateCategory(category);

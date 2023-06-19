@@ -1,4 +1,4 @@
-import { validateIcon } from '../../../domain/entities/icon/validate';
+import { validateIcon } from '../../../domain/entities/icon';
 
 export function validateIconEntity(icon: UnknownObject, state: TodosState): ValidateEntity<Icon> {
     const result = validateIcon(icon);
