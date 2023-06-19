@@ -1,4 +1,5 @@
 import { jsonHeader } from './utils/consts';
+import { saveState } from './utils/saveState.ts';
 import { serverInitialState } from './utils/serverInitialState';
 import { responseWithResult } from './utils/responseWithResult.ts';
 import { validateCategoryEntity } from './domain/category/validateCategoryEntity.ts';
@@ -8,26 +9,10 @@ declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: stri
 self.VERSION = '1.0.0';
 
 const apiPattern = '/api/';
-const todosUrl = '/api/get_todos';
+export const todosUrl = '/api/get_todos';
 
-const { log } = console;
 let state: Entities;
-
-async function saveState() {
-    const cache = await caches.open('todo-sw');
-    const stateStr = JSON.stringify(state);
-
-    await cache.put(
-        todosUrl,
-        new Response(stateStr, {
-            headers: new Headers({
-                ...jsonHeader,
-                'Cache-Control': 'max-age=31536000',
-                'Content-Length': String(stateStr.length),
-            }),
-        }),
-    );
-}
+const { log } = console;
 
 async function loadState() {
     if (state === undefined) {
@@ -45,14 +30,12 @@ async function loadState() {
 
             if (!state) {
                 state = serverInitialState;
-                await saveState();
+                await saveState(state);
             }
         } catch (error) {
             log('sw: error in loadState', error);
         }
     }
-
-    return true;
 }
 
 self.onerror = function (event) {
@@ -75,7 +58,7 @@ self.addEventListener('fetch', async function (event: FetchEvent) {
             loadState()
                 .then(() => handlePostRequest(req, method))
                 .then((responce) => {
-                    saveState();
+                    saveState(state);
                     return responce;
                 }),
         );
@@ -88,7 +71,7 @@ self.addEventListener('fetch', async function (event: FetchEvent) {
             loadState()
                 .then(() => handlePatchRequest(req, method))
                 .then((responce) => {
-                    saveState();
+                    saveState(state);
                     return responce;
                 }),
         );
@@ -101,7 +84,7 @@ self.addEventListener('fetch', async function (event: FetchEvent) {
             loadState()
                 .then(() => handleDeleteRequest(req, method))
                 .then((responce) => {
-                    saveState();
+                    saveState(state);
                     return responce;
                 }),
         );
