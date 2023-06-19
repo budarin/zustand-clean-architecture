@@ -18,15 +18,9 @@ const CategoryHeadersContainer = memo(function () {
     const [success, inProgress, createcategory] = useCreateCategory();
 
     useEffect(() => {
-        let mounted = true;
-
-        if (mounted && success && isOpen) {
+        if (success && isOpen) {
             setOpen(false);
         }
-
-        return () => {
-            mounted = false;
-        };
     }, [success]);
 
     const toggleOpen: MouseEventHandler<HTMLButtonElement> = useCallback(() => {

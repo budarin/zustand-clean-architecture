@@ -12,15 +12,17 @@ export function useUCreateTodo(): UseCreateTodo {
     const [inProgress, setInProgress] = useState<boolean>(false);
 
     useEffect(() => {
+        let mounted = true;
+
         const doCreate = async () => {
-            if (todo === undefined) {
+            if (todo === undefined || mounted === false) {
                 return;
             }
 
             setInProgress(true);
 
             try {
-                createTodo(todo);
+                await createTodo(todo);
             } catch (error) {
                 notification.notifyError(`Ошибка: ${(error as Error).message}`, {
                     toastId: 'create_todo_error' + todo.todo,
@@ -30,7 +32,11 @@ export function useUCreateTodo(): UseCreateTodo {
             }
         };
 
-        todo && doCreate();
+        doCreate();
+
+        return () => {
+            mounted = false;
+        };
     }, [todo]);
 
     return [inProgress, setTodo];

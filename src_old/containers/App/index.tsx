@@ -25,33 +25,16 @@ function AppContainer() {
     // в мобильном view при переключении navFilter
     // переключаемся на TodoView
     useEffect(() => {
-        let mounted = true;
-
-        if (mounted) {
-            if (matches) {
-                isNavPanelOpen && setNavPaneOpen(false);
-            } else {
-                setNavPaneOpen(true);
-            }
+        if (matches) {
+            isNavPanelOpen && setNavPaneOpen(false);
+        } else {
+            setNavPaneOpen(true);
         }
-
-        return () => {
-            mounted = false;
-        };
     }, [key, matches]);
 
     useEffect(() => {
-        let mounted = true;
-
-        if (mounted) {
-            document.querySelector('#loading')?.remove();
-            const root = document.querySelector('#root')?.classList.remove('hidden');
-            document.getElementById('initialScript')?.remove();
-        }
-
-        return () => {
-            mounted = false;
-        };
+        document.querySelector('#loading')?.remove();
+        document.getElementById('initialScript')?.remove();
     }, []);
 
     const toggleNavPane = () => setNavPaneOpen((s) => !s);
