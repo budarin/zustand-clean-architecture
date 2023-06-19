@@ -3,7 +3,6 @@ import { useLogger } from '../../services/adapters/useLogger.ts';
 import { useNotification } from '../../services/adapters/useNotification.ts';
 
 import { useTodoStore } from '../../domain/store/store.tsx';
-import { validateNewCategory } from '../../domain/entities/category/index.ts';
 import { createCategoryNavFilter } from '../../domain/store/navigationFilter/createCategoryNavFilter.ts';
 
 const api = useApi();

@@ -10,9 +10,9 @@ import CreateCategoryFormContainer from '../CreateCategoryForm/index.tsx';
 import CategoryHeader from '../../../components/NavPanel/CategoryHeader/index.tsx';
 
 let timer: NodeJS.Timeout;
+const logger = useLogger();
 
 const CategoryHeadersContainer = memo(function () {
-    const logger = useLogger();
     const [isOpen, setOpen] = useState<boolean>(false);
     const formRef = useRef<HTMLFormElement | null>(null);
     const [success, inProgress, createcategory] = useCreateCategory();
