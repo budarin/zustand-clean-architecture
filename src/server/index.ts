@@ -156,6 +156,7 @@ async function handlePostRequest(request: Request, method: string) {
                 }
             } catch (error) {
                 const { message, stack } = error as Error;
+
                 return responseWithError(message, stack);
             }
         }
