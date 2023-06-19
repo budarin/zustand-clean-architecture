@@ -50,7 +50,7 @@ export function useCreateCategory(): UseCreateCategory {
         return () => {
             isMountedRef.current = false;
         };
-    }, []);
+    }, [category]);
 
     return [success, inProgress, setCategory];
 }
