@@ -1,5 +1,6 @@
 import { validateCategoryEntity } from './domain/category/validateCategoryEntity.ts';
 import { jsonHeader } from './utils/consts';
+import { responseWithResult } from './utils/responseWithResult.ts';
 import { serverInitialState } from './utils/serverInitialState';
 
 declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };
@@ -148,19 +149,10 @@ async function handlePostRequest(request: Request, method: string) {
                     const ids = state?.categories?.map((item) => item.category_id) || [1];
                     const newId = Math.max(...ids);
                     const newCategory = { ...entity, category_id: newId };
+
                     state?.categories?.push(newCategory);
 
-                    const response = new Response(
-                        JSON.stringify({
-                            result: newCategory,
-                        }),
-                        {
-                            headers: jsonHeader,
-                            status: 200,
-                        },
-                    );
-
-                    return response;
+                    return responseWithResult(newCategory);
                 }
             } catch (error) {
                 const { message, stack } = error as Error;
