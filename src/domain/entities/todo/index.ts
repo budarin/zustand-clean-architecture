@@ -106,8 +106,12 @@ export const newTodoValidationRules: ValidationRules = {
 };
 
 // Todo getter
-export function getTodoFomObject(input: UnknownObject): Todo {
-    const { todo_id, todo, status_id, category_id, description, due_date, deleted, completed } = input as Todo;
+export function getTodoFomObject(input: LikeEntity<Todo>): Todo | NewTodo | {} {
+    const { todo_id, todo, status_id, category_id, description, due_date, deleted, completed } = input;
+
+    if (!todo || !status_id) {
+        return {};
+    }
 
     return {
         todo_id,
@@ -121,9 +125,9 @@ export function getTodoFomObject(input: UnknownObject): Todo {
     };
 }
 
-export function validateTodo(todo: UnknownObject): ValidateEntity<Todo> {
+export function validateTodo(todo: LikeEntity<Todo>): ValidateEntity<Todo> {
     return validateRawEntity<Todo>(getTodoFomObject(todo), todoValidationRules);
 }
-export function validateNewTodo(todo: UnknownObject) {
+export function validateNewTodo(todo: LikeEntity<Todo>): ValidateEntity<NewTodo> {
     return validateRawEntity<NewTodo>(getTodoFomObject(todo), newTodoValidationRules);
 }

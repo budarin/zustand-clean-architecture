@@ -34,7 +34,7 @@ export const statusValidationRules: ValidationRules = {
 };
 
 // Category getter
-export function getStatusFomObject(input: UnknownObject = {}): Status {
+export function getStatusFomObject(input: LikeEntity<Status> = {}): Status {
     const { status_id, status, color } = input as Status;
 
     return {
@@ -44,6 +44,6 @@ export function getStatusFomObject(input: UnknownObject = {}): Status {
     };
 }
 
-export function validateStatus(status: UnknownObject): ValidateEntity<Status> {
+export function validateStatus(status: LikeEntity<Status>): ValidateEntity<Status> {
     return validateRawEntity<Status>(getStatusFomObject(status), statusValidationRules);
 }

@@ -24,6 +24,7 @@ type NumberLike = string | number;
 type Id = number;
 type TimeStamp = number;
 type UnknownObject = Record<string, unknown>;
+type LikeEntity<T> = Partial<T> | { [key: string]: unknown };
 
 // https://javascript.plainenglish.io/a-cleaner-api-for-react-ts-components-47d0704a508c
 type GetComponentProps<T> = T extends React.ComponentType<infer P> | React.Component<infer P> ? P : never;

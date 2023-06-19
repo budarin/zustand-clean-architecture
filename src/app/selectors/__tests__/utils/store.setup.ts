@@ -1,14 +1,14 @@
 import { act } from '@testing-library/react-hooks';
 import { useTodoStore } from '../../../../domain/store/store.tsx';
-import { serverInitialState } from '../../../../server/serverInitialState.ts';
+
+import { todoSamples } from './todos.ts';
 
 let initialState: TodosState;
 
 function setupStore() {
-    const { todos } = serverInitialState;
     const { _addTodo } = useTodoStore.getState();
 
-    todos?.forEach((todo) => {
+    todoSamples.forEach((todo) => {
         _addTodo(todo);
     });
 

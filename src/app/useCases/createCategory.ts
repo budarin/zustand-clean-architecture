@@ -9,6 +9,7 @@ import { createCategoryNavFilter } from '../../domain/store/navigationFilter/cre
 const api = useApi();
 const logger = useLogger();
 const notification = useNotification();
+const NOT_CATEGORY_OBJECT = 'Объект не является описанием Категории';
 
 export async function createCategory(
     category: NewCategory,
@@ -29,6 +30,11 @@ export async function createCategory(
     }
 
     if (!entity) {
+        notification.notifyError(NOT_CATEGORY_OBJECT, {
+            toastId: 'create_category_error' + NOT_CATEGORY_OBJECT,
+        });
+
+        logger.error(NOT_CATEGORY_OBJECT);
         return;
     }
 

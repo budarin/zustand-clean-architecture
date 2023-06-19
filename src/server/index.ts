@@ -1,4 +1,6 @@
+import { jsonHeader } from './consts';
 import { serverInitialState } from './serverInitialState';
+import { validateNewCategory } from '../domain/entities/category';
 
 declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };
 
@@ -6,7 +8,6 @@ self.VERSION = '1.0.0';
 
 const apiPattern = '/api/';
 const todosUrl = '/api/get_todos';
-const jsonHeader = { 'Content-Type': 'application/json; charset=utf-8' };
 
 const { log } = console;
 let state: Entities | undefined;
@@ -27,7 +28,7 @@ async function saveState() {
     );
 }
 
-async function loadState(): Promise<true> {
+async function loadState() {
     if (state === undefined) {
         try {
             const cache = await caches.open('todo-sw');
@@ -118,28 +119,62 @@ self.addEventListener('fetch', async function (event: FetchEvent) {
     }
 });
 
+function responseWithError(msg: string, data: any = undefined) {
+    return new Response(
+        JSON.stringify({
+            error: {
+                code: 500,
+                error: msg,
+                data,
+            },
+        }),
+        {
+            headers: jsonHeader,
+            status: 200,
+        },
+    );
+}
+
 async function handlePostRequest(request: Request, method: string) {
     switch (method) {
         case 'create_category': {
-            const data: NewCategory = await request.json();
-            const newCategory = { ...data, category_id: state?.categories?.length || 0 + 1 };
-            state?.categories?.push(newCategory);
+            try {
+                const data = await request.json();
+                const { entity, error } = validateNewCategory(data);
 
-            const response = new Response(
-                JSON.stringify({
-                    result: newCategory,
-                }),
-                {
-                    headers: jsonHeader,
-                    status: 200,
-                },
-            );
+                if (error !== undefined) {
+                    responseWithError(error);
+                } else {
+                    const ids = state?.categories?.map((item) => item.category_id) || [1];
+                    const newId = Math.max(...ids);
+                    const newCategory = { ...entity, category_id: newId };
+                    state?.categories?.push(newCategory);
 
-            return response;
+                    const response = new Response(
+                        JSON.stringify({
+                            result: newCategory,
+                        }),
+                        {
+                            headers: jsonHeader,
+                            status: 200,
+                        },
+                    );
+
+                    return response;
+                }
+            } catch (error) {
+                const { message, stack } = error as Error;
+                return responseWithError(message, stack);
+            }
         }
 
         case 'create_todo': {
             const data: NewTodo = await request.json();
+            const ids = state?.todos?.map((item) => item.todo_id) || [1];
+            const newId = Math.max(...ids);
+            const newTodo = { ...data, todo_id: newId };
+            state?.todos?.push(newTodo);
+
             const response = new Response(JSON.stringify(data), {
                 status: 200,
             });
