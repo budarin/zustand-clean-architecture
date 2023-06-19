@@ -1,5 +1,5 @@
-import { jsonHeader } from './consts';
-import { serverInitialState } from './serverInitialState';
+import { jsonHeader } from './utils/consts';
+import { serverInitialState } from './utils/serverInitialState';
 import { validateNewCategory } from '../domain/entities/category';
 
 declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };

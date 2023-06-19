@@ -1,5 +1,5 @@
-import { getDateOverToday } from '../utils/dateTime/getDateOverToday';
-import { getTodayInMinutes } from '../utils/dateTime/getTodayInMinutes';
+import { getDateOverToday } from '../../utils/dateTime/getDateOverToday';
+import { getTodayInMinutes } from '../../utils/dateTime/getTodayInMinutes';
 
 export const serverInitialState: Entities = {
     icons: [
