@@ -1,4 +1,4 @@
-import { isNotExists } from '../../validation_utils/isNotExists';
+import { isNotExists } from '../../../entities/validation_utils/isNotExists';
 
 // обновляем todos.idsByByDueDate
 export function updateTodoDueDate(state: TodoState, newTodo: ExtendedTodo, oldTodo?: ExtendedTodo) {

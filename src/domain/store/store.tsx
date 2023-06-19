@@ -5,15 +5,15 @@ import { getTodayDate } from '../../utils/dateTime/getTodayDate.ts';
 import { inboxKey, overdueKey, recycleBinKey } from '../entities/navigationFilter/index.ts';
 
 // entity method realizations
-import { addIcon } from '../entities/icon/addIcon.ts';
-import { addStatus } from '../entities/status/addStatus.ts';
-import { addCategory } from '../entities/category/addCategory.ts';
-import { updateCategory } from '../entities/category/updateCategory.ts';
-import { deleteCategory } from '../entities/category/deleteCategory.ts';
-import { addTodo } from '../entities/todo/addTodo.ts';
-import { updateTodo } from '../entities/todo/updateTodo.ts';
-import { deleteTodo } from '../entities/todo/deleteTodo.ts';
-import { addToOverdueTodos } from '../entities/todo/addToOverdueTodos.ts';
+import { addIcon } from './icon/addIcon.ts';
+import { addStatus } from './status/addStatus.ts';
+import { addCategory } from './category/addCategory.ts';
+import { updateCategory } from './category/updateCategory.ts';
+import { deleteCategory } from './category/deleteCategory.ts';
+import { addTodo } from './todo/addTodo.ts';
+import { updateTodo } from './todo/updateTodo.ts';
+import { deleteTodo } from './todo/deleteTodo.ts';
+import { addToOverdueTodos } from './todo/addToOverdueTodos.ts';
 import { setNavigationFilter } from '../entities/navigationFilter/setNavigationFilter.ts';
 
 // action creators
