@@ -6,6 +6,10 @@ export async function deleteCategory(
     id: Category['category_id'],
     isMountedRef: React.MutableRefObject<boolean>,
 ): Promise<void> {
+    if (!isMountedRef) {
+        return;
+    }
+
     const notification = useNotification();
     const store = useTodoStore.getState();
     const value = store.categories.byId[id];

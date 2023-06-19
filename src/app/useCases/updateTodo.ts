@@ -5,6 +5,10 @@ import { useNotification } from '../../services/adapters/useNotification.ts';
 const updatingTodos = new Set();
 
 export async function updateTodo(todo: Todo, isMountedRef: React.MutableRefObject<boolean>): Promise<void> {
+    if (!isMountedRef) {
+        return;
+    }
+
     const notification = useNotification();
     const store = useTodoStore.getState();
     const oldValue = store.todos.byId[todo.todo_id];

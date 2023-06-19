@@ -10,6 +10,10 @@ export async function createCategory(
     category: NewCategory,
     isMountedRef: React.MutableRefObject<boolean>,
 ): Promise<void> {
+    if (!isMountedRef) {
+        return;
+    }
+
     const store = useTodoStore.getState();
     const { entity, error } = validateNewCategory(category);
 

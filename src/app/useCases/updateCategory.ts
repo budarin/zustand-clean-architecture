@@ -3,6 +3,10 @@ import { useTodoStore } from '../../domain/store/store.tsx';
 import { useNotification } from '../../services/adapters/useNotification.ts';
 
 export async function updateCategory(category: Category, isMountedRef: React.MutableRefObject<boolean>): Promise<void> {
+    if (!isMountedRef) {
+        return;
+    }
+
     const notification = useNotification();
     const store = useTodoStore.getState();
     const oldValue = store.categories.byId[category.category_id];

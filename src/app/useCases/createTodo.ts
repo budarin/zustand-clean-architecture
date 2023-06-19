@@ -3,6 +3,10 @@ import { useTodoStore } from '../../domain/store/store.tsx';
 import { useNotification } from '../../services/adapters/useNotification.ts';
 
 export async function createTodo(todo: NewTodo, isMountedRef: React.MutableRefObject<boolean>): Promise<void> {
+    if (!isMountedRef) {
+        return;
+    }
+
     const store = useTodoStore.getState();
 
     try {
