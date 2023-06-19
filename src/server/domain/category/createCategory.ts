@@ -1,6 +1,6 @@
 import { responseWithError } from '../../utils/responseWithError.ts';
-import { responseWithResult } from '../../utils/responseWithResult.ts';
 import { validateCategoryEntity } from './validateCategoryEntity.ts';
+import { responseWithResult } from '../../utils/responseWithResult.ts';
 
 export async function createCategory(request: Request, state: Entities) {
     try {
