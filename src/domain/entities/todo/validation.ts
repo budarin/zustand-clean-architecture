@@ -105,13 +105,6 @@ export const newTodoValidationRules: ValidationRules = {
     deleted,
 };
 
-export function validateTodo(todo: UnknownObject): ValidateEntity<Todo> {
-    return validateRawEntity<Todo>(getTodoFomObject(todo), todoValidationRules);
-}
-export function validateNewTodo(todo: NewTodo) {
-    return validateRawEntity<Todo>(todo, newTodoValidationRules);
-}
-
 // Todo getter
 export function getTodoFomObject(input: UnknownObject): Todo {
     const { todo_id, todo, status_id, category_id, description, due_date, deleted, completed } = input as Todo;
@@ -126,4 +119,11 @@ export function getTodoFomObject(input: UnknownObject): Todo {
         deleted: todoBeFalse(deleted),
         completed: todoBeFalse(completed),
     };
+}
+
+export function validateTodo(todo: UnknownObject): ValidateEntity<Todo> {
+    return validateRawEntity<Todo>(getTodoFomObject(todo), todoValidationRules);
+}
+export function validateNewTodo(todo: NewTodo) {
+    return validateRawEntity<Todo>(getTodoFomObject(todo), newTodoValidationRules);
 }

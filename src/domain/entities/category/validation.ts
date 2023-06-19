@@ -41,14 +41,6 @@ export const newCategoryValidationRules: ValidationRules = {
     icon_id,
 };
 
-export function validateCategory(category: UnknownObject): ValidateEntity<Category> {
-    return validateRawEntity<Category>(category, categoryValidationRules);
-}
-
-export function validateNewCategory(category: NewCategory) {
-    return validateRawEntity<Category>(category, newCategoryValidationRules);
-}
-
 // Category getter
 export function getCategoryFomObject(input: UnknownObject = {}): Category {
     const { category_id, category, icon_id } = input as Category;
@@ -58,4 +50,12 @@ export function getCategoryFomObject(input: UnknownObject = {}): Category {
         category,
         icon_id,
     };
+}
+
+export function validateCategory(category: UnknownObject): ValidateEntity<Category> {
+    return validateRawEntity<Category>(getCategoryFomObject(category), categoryValidationRules);
+}
+
+export function validateNewCategory(category: NewCategory) {
+    return validateRawEntity<Category>(getCategoryFomObject(category), newCategoryValidationRules);
 }
