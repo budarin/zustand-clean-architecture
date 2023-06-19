@@ -1,9 +1,7 @@
 import { jsonHeader } from './utils/consts';
 import { saveState } from './utils/saveState.ts';
+import { createTodo } from './domain/todo/createTodo.ts';
 import { serverInitialState } from './utils/serverInitialState';
-import { responseWithError } from './utils/responseWithError.ts';
-import { responseWithResult } from './utils/responseWithResult.ts';
-import { validateCategoryEntity } from './domain/category/validateCategoryEntity.ts';
 import { createCategory } from './domain/category/createCategory.ts';
 
 declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };
@@ -120,17 +118,7 @@ async function handlePostRequest(request: Request, method: string) {
         }
 
         case 'create_todo': {
-            const data: NewTodo = await request.json();
-            const ids = state?.todos?.map((item) => item.todo_id) || [1];
-            const newId = Math.max(...ids);
-            const newTodo = { ...data, todo_id: newId };
-            state?.todos?.push(newTodo);
-
-            const response = new Response(JSON.stringify(data), {
-                status: 200,
-            });
-
-            return response;
+            await createTodo(request, state);
         }
 
         case 'log': {
