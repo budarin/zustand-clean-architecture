@@ -3,6 +3,8 @@ import { saveState } from './utils/saveState.ts';
 import { createTodo } from './domain/todo/createTodo.ts';
 import { serverInitialState } from './utils/serverInitialState';
 import { createCategory } from './domain/category/createCategory.ts';
+import { respondWithError } from './utils/respondWithError.ts';
+import { handleRequestWith } from './utils/handleRequestWith.ts';
 
 declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };
 
@@ -11,10 +13,10 @@ self.VERSION = '1.0.0';
 const apiPattern = '/api/';
 export const todosUrl = '/api/get_todos';
 
-let state: Entities;
+export let state: Entities;
 const { log } = console;
 
-async function loadState() {
+export async function loadState() {
     if (state === undefined) {
         try {
             const cache = await caches.open('todo-sw');
@@ -45,90 +47,40 @@ self.onerror = function (event) {
 };
 
 self.addEventListener('fetch', async function (event: FetchEvent) {
+    const req = event.request.clone();
     var requestUrl = new URL(event.request.url);
     const method = requestUrl.pathname.slice(apiPattern.length);
 
     switch (event.request.method) {
         case 'POST': {
-            if (!event.request.body) {
-                return;
+            handleRequestWith(event, () => handlePostRequest(req, method));
+            break;
+        }
+
+        case 'PATCH': {
+            handleRequestWith(event, () => handlePatchRequest(req, method));
+            break;
+        }
+
+        case 'DELETE': {
+            handleRequestWith(event, () => handleDeleteRequest(req, method));
+            break;
+        }
+
+        case 'GET': {
+            if (requestUrl.pathname === '/api/get_todos') {
+                event.respondWith(
+                    loadState().then(() => {
+                        return handleGetRequest();
+                    }),
+                );
             }
 
-            const req = event.request.clone();
-            event.respondWith(
-                loadState()
-                    .then(() => handlePostRequest(req, method))
-                    .then((responce) => {
-                        saveState(state);
-                        return responce;
-                    }),
-            );
             break;
         }
 
-        default:
-            break;
-    }
-
-    if (event.request.method === 'POST') {
-        if (!event.request.body) {
-            return;
-        }
-
-        const req = event.request.clone();
-        event.respondWith(
-            loadState()
-                .then(() => handlePostRequest(req, method))
-                .then((responce) => {
-                    saveState(state);
-                    return responce;
-                }),
-        );
-        return;
-    }
-
-    if (event.request.method === 'PATCH') {
-        if (!event.request.body) {
-            return;
-        }
-
-        const req = event.request.clone();
-        event.respondWith(
-            loadState()
-                .then(() => handlePatchRequest(req, method))
-                .then((responce) => {
-                    saveState(state);
-                    return responce;
-                }),
-        );
-        return;
-    }
-
-    if (event.request.method === 'DELETE') {
-        if (!event.request.body) {
-            return;
-        }
-
-        const req = event.request.clone();
-        event.respondWith(
-            loadState()
-                .then(() => handleDeleteRequest(req, method))
-                .then((responce) => {
-                    saveState(state);
-                    return responce;
-                }),
-        );
-        return;
-    }
-
-    if (event.request.method === 'GET') {
-        if (requestUrl.pathname === '/api/get_todos') {
-            event.respondWith(
-                loadState().then(() => {
-                    return handleGetRequest();
-                }),
-            );
-            return;
+        default: {
+            event.respondWith(respondWithError('Не допустимый http метод'));
         }
     }
 });

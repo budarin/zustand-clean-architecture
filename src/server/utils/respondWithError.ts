@@ -1,6 +1,6 @@
 import { jsonHeader } from './consts';
 
-export function responseWithError(msg: string, data: any = undefined) {
+export function respondWithError(msg: string, data: any = undefined) {
     return new Response(
         JSON.stringify({
             error: {

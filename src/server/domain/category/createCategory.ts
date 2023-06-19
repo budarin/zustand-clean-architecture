@@ -1,6 +1,6 @@
-import { responseWithError } from '../../utils/responseWithError.ts';
+import { respondWithError } from '../../utils/respondWithError.ts';
 import { validateCategoryEntity } from './validateCategoryEntity.ts';
-import { responseWithResult } from '../../utils/responseWithResult.ts';
+import { respondWithResult } from '../../utils/respondWithResult.ts';
 
 export async function createCategory(request: Request, state: Entities): Promise<Response> {
     try {
@@ -8,7 +8,7 @@ export async function createCategory(request: Request, state: Entities): Promise
         const { entity, error } = validateCategoryEntity(data, state);
 
         if (error !== undefined) {
-            return responseWithError(error);
+            return respondWithError(error);
         } else {
             const ids = state?.categories?.map((item) => item.category_id) || [1];
             const newId = Math.max(...ids);
@@ -16,11 +16,11 @@ export async function createCategory(request: Request, state: Entities): Promise
 
             state?.categories?.push(newCategory);
 
-            return responseWithResult(newCategory);
+            return respondWithResult(newCategory);
         }
     } catch (error) {
         const { message, stack } = error as Error;
 
-        return responseWithError(message, stack);
+        return respondWithError(message, stack);
     }
 }
