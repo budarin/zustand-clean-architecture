@@ -12,18 +12,18 @@ const notification = useNotification();
 const NOT_CATEGORY_OBJECT = 'Объект не является описанием Категории';
 
 export async function createCategory(
-    input: UnknownObject,
+    category: UnknownObject,
     isMountedRef: React.MutableRefObject<boolean>,
 ): Promise<void> {
     if (!isMountedRef.current) {
         return;
     }
 
-    const { entity, error: validateError } = validateNewCategory(input);
+    const { entity, error: validateError } = validateNewCategory(category);
 
     if (validateError) {
         notification.notifyError(`Ошибка: ${validateError}`, {
-            toastId: 'create_category_error' + input.category,
+            toastId: 'create_category_error' + category.category,
         });
 
         logger.error(validateError);
