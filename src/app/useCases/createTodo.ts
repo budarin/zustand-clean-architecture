@@ -3,7 +3,6 @@ import { useTodoStore } from '../../domain/store/store.tsx';
 import { useNotification } from '../../services/adapters/useNotification.ts';
 
 export async function createTodo(todo: NewTodo): Promise<void> {
-    const notification = useNotification();
     const store = useTodoStore.getState();
 
     try {
@@ -17,6 +16,8 @@ export async function createTodo(todo: NewTodo): Promise<void> {
 
         store._addTodo(newTodo);
     } catch (error) {
+        const notification = useNotification();
+
         notification.notifyError(`Ошибка: ${(error as Error).message}`, {
             toastId: 'create_todo_error' + todo.todo,
         });

@@ -1,7 +1,7 @@
-import { useTodoStore } from '../../store/store';
-import { validateIconEntity } from './validation';
+import { useTodoStore } from '../store';
+import { validateIconEntity } from './validateIconEntity';
 
-export function addIcon(icon: UnknownObject): JsonRpcResult<Icon> {
+export function addIcon(icon: UnknownObject): JsonRpcResult<Icon, UnknownObject> {
     const state = useTodoStore.getState();
     const { entity, error } = validateIconEntity(icon, state);
 
