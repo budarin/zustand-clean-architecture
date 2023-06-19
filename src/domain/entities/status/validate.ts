@@ -33,10 +33,6 @@ export const statusValidationRules: ValidationRules = {
     color: [validate_color, 'обязательное поле color должно быть строкой из 7 символов'],
 };
 
-export function validateStatus(status: UnknownObject): ValidateEntity<Status> {
-    return validateRawEntity<Status>(status, statusValidationRules);
-}
-
 // Category getter
 export function getStatusFomObject(input: UnknownObject = {}): Status {
     const { status_id, status, color } = input as Status;
@@ -48,26 +44,6 @@ export function getStatusFomObject(input: UnknownObject = {}): Status {
     };
 }
 
-export function validateStatusEntity(status: UnknownObject, state: TodosState): ValidateEntity<Status> {
-    const result = validateStatus(status);
-
-    if (!result.entity) {
-        return result;
-    }
-
-    const { entity } = result;
-
-    if (
-        Object.values(state.statuses.byId).find(
-            (item) => item.status === status.status && item.status_id !== status.status_id,
-        )
-    ) {
-        return {
-            error: `Статус с названием ${entity.status} уже существует! Название должно быть уникальным.`,
-        };
-    }
-
-    return {
-        entity,
-    };
+export function validateStatus(status: UnknownObject): ValidateEntity<Status> {
+    return validateRawEntity<Status>(getStatusFomObject(status), statusValidationRules);
 }

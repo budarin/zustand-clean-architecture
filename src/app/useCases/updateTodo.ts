@@ -6,10 +6,10 @@ const updatingTodos = new Set();
 
 export async function updateTodo(todo: Todo): Promise<void> {
     const notification = useNotification();
-    updatingTodos.add(todo.todo_id);
-
     const store = useTodoStore.getState();
     const oldValue = store.todos.byId[todo.todo_id];
+
+    updatingTodos.add(todo.todo_id);
 
     if (!oldValue) {
         notification.notifyError('Запись отсутствует в базе данных!', {

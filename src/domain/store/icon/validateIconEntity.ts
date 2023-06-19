@@ -1,4 +1,4 @@
-import { validateIcon } from '../../../domain/entities/icon/validate';
+import { validateIcon } from '../../entities/icon/validate.ts';
 
 export function validateIconEntity(icon: UnknownObject, state: TodosState): ValidateEntity<Icon> {
     const result = validateIcon(icon);
@@ -15,7 +15,11 @@ export function validateIconEntity(icon: UnknownObject, state: TodosState): Vali
         };
     }
 
-    if (Object.values(state.icons.byId).find((item) => item.icon_name === entity.icon_name)) {
+    if (
+        Object.values(state.icons.byId).find(
+            (item) => item.icon_name === entity.icon_name && item.icon_id !== entity.icon_id,
+        )
+    ) {
         return {
             error: `Нарушение уникальности имени иконки в  icons!`,
         };

@@ -105,13 +105,6 @@ export const newTodoValidationRules: ValidationRules = {
     deleted,
 };
 
-export function validateTodo(todo: UnknownObject): ValidateEntity<Todo> {
-    return validateRawEntity<Todo>(getTodoFomObject(todo), todoValidationRules);
-}
-export function validateNewTodo(todo: NewTodo) {
-    return validateRawEntity<Todo>(todo, newTodoValidationRules);
-}
-
 // Todo getter
 export function getTodoFomObject(input: UnknownObject): Todo {
     const { todo_id, todo, status_id, category_id, description, due_date, deleted, completed } = input as Todo;
@@ -128,28 +121,9 @@ export function getTodoFomObject(input: UnknownObject): Todo {
     };
 }
 
-export function validateTodoEntity(todo: UnknownObject, state: TodosState): ValidateEntity<Todo> {
-    const result = validateTodo(todo);
-
-    if (!result.entity) {
-        return result;
-    }
-
-    const { entity } = result;
-
-    if (state.statuses.ids.includes(entity.status_id) === false) {
-        return {
-            error: 'Статус задачи не обнаружен в стправочнике!!',
-        };
-    }
-
-    if (entity.category_id && state.categories.ids.includes(entity.category_id) === false) {
-        return {
-            error: 'Категория задачи не обнаружена в стправочнике!!',
-        };
-    }
-
-    return {
-        entity,
-    };
+export function validateTodo(todo: UnknownObject): ValidateEntity<Todo> {
+    return validateRawEntity<Todo>(getTodoFomObject(todo), todoValidationRules);
+}
+export function validateNewTodo(todo: NewTodo) {
+    return validateRawEntity<Todo>(getTodoFomObject(todo), newTodoValidationRules);
 }

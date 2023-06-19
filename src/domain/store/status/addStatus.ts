@@ -1,7 +1,7 @@
-import { useTodoStore } from '../../store/store';
-import { validateStatusEntity } from './validation';
+import { useTodoStore } from '../store';
+import { validateStatusEntity } from './validateStatusEntity';
 
-export function addStatus(status: UnknownObject): JsonRpcResult<Status> {
+export function addStatus(status: UnknownObject): JsonRpcResult<Status, UnknownObject> {
     const state = useTodoStore.getState();
     const { entity, error } = validateStatusEntity(status, state);
 

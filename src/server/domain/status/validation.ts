@@ -1,4 +1,4 @@
-import { validateStatus } from '../../../domain/entities/status/validation';
+import { validateStatus } from '../../../domain/entities/status/validate';
 
 export function validateStatusEntity(status: UnknownObject, state: TodosState): ValidateEntity<Status> {
     const result = validateStatus(status);

@@ -1,9 +1,9 @@
 import { updateInbox } from './updateInbox';
 import { updateOverdue } from './updateOverdue';
 import { updateRecycleBin } from './updateRecycleBin';
-import { inboxKey, overdueKey } from '../../navigationFilter';
+import { inboxKey, overdueKey } from '../../../entities/navigationFilter';
 import { deleteTodoFromFilters } from './deleteTodoFromFilters';
-import { isNotExists } from '../../validation_utils/isNotExists';
+import { isNotExists } from '../../../entities/validation_utils/isNotExists';
 
 export function updateTodoFilters(state: TodoState, newTodo: ExtendedTodo, oldTodo?: ExtendedTodo): void {
     // если задача удалена - удалить из всех фильтров и поместить в RecycleBin

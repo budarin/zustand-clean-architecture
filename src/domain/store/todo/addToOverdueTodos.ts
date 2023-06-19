@@ -1,4 +1,4 @@
-import { overdueKey } from '../navigationFilter';
+import { overdueKey } from '../../entities/navigationFilter';
 import { useTodoStore } from '../../store/store';
 
 export function addToOverdueTodos(id: Category['category_id']): JsonRpcResult<Category['category_id']> {
