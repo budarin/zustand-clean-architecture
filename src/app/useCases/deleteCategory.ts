@@ -4,23 +4,20 @@ import { useNotification } from '../../services/adapters/useNotification.ts';
 
 const notification = useNotification();
 
-export async function deleteCategory(
-    id: Category['category_id'],
-    isMountedRef: React.MutableRefObject<boolean>,
-): Promise<void> {
+export async function deleteCategory(category: Category, isMountedRef: React.MutableRefObject<boolean>): Promise<void> {
     if (!isMountedRef.current) {
         return;
     }
 
     const store = useTodoStore.getState();
-    const value = store.categories.byId[id];
+    const value = store.categories.byId[category.category_id];
 
     if (!value) {
         notification.notifyError('Запись отсутствует в базе данных!', { autoClose: 2000 });
         return;
     }
 
-    store._deleteCategory(id);
+    store._deleteCategory(category.category_id);
 
     try {
         await delay(3000);
