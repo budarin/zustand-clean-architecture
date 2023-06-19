@@ -1,8 +1,10 @@
 import { jsonHeader } from './utils/consts';
 import { saveState } from './utils/saveState.ts';
 import { serverInitialState } from './utils/serverInitialState';
+import { responseWithError } from './utils/responseWithError.ts';
 import { responseWithResult } from './utils/responseWithResult.ts';
 import { validateCategoryEntity } from './domain/category/validateCategoryEntity.ts';
+import { createCategory } from './domain/category/createCategory.ts';
 
 declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };
 
@@ -66,6 +68,10 @@ self.addEventListener('fetch', async function (event: FetchEvent) {
     }
 
     if (event.request.method === 'PATCH') {
+        if (!event.request.body) {
+            return;
+        }
+
         const req = event.request.clone();
         event.respondWith(
             loadState()
@@ -79,6 +85,10 @@ self.addEventListener('fetch', async function (event: FetchEvent) {
     }
 
     if (event.request.method === 'DELETE') {
+        if (!event.request.body) {
+            return;
+        }
+
         const req = event.request.clone();
         event.respondWith(
             loadState()
@@ -103,45 +113,10 @@ self.addEventListener('fetch', async function (event: FetchEvent) {
     }
 });
 
-function responseWithError(msg: string, data: any = undefined) {
-    return new Response(
-        JSON.stringify({
-            error: {
-                code: 500,
-                error: msg,
-                data,
-            },
-        }),
-        {
-            headers: jsonHeader,
-            status: 200,
-        },
-    );
-}
-
 async function handlePostRequest(request: Request, method: string) {
     switch (method) {
         case 'create_category': {
-            try {
-                const data = await request.json();
-                const { entity, error } = validateCategoryEntity(data, state);
-
-                if (error !== undefined) {
-                    responseWithError(error);
-                } else {
-                    const ids = state?.categories?.map((item) => item.category_id) || [1];
-                    const newId = Math.max(...ids);
-                    const newCategory = { ...entity, category_id: newId };
-
-                    state?.categories?.push(newCategory);
-
-                    return responseWithResult(newCategory);
-                }
-            } catch (error) {
-                const { message, stack } = error as Error;
-
-                return responseWithError(message, stack);
-            }
+            await createCategory(request, state);
         }
 
         case 'create_todo': {
