@@ -12,7 +12,7 @@ const notification = useNotification();
 const NOT_CATEGORY_OBJECT = 'Объект не является описанием Категории';
 
 export async function createCategory(
-    category: NewCategory,
+    category: LikeEntity<NewCategory>,
     isMountedRef: React.MutableRefObject<boolean>,
 ): Promise<void> {
     if (!isMountedRef.current) {
@@ -42,9 +42,12 @@ export async function createCategory(
         const { result, error } = await api.createCategory(entity);
 
         if (error) {
-            notification.notifyError(`Ошибка: Не удалось создать категорию ${category.category}`, {
-                toastId: 'create_category_error' + category.category,
-            });
+            notification.notifyError(
+                `Ошибка: Не удалось создать категорию ${category.category}. Попробуйте позже еще раз.`,
+                {
+                    toastId: 'create_category_error' + category.category,
+                },
+            );
 
             logger.error(error);
             return;
