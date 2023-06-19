@@ -48,6 +48,28 @@ self.addEventListener('fetch', async function (event: FetchEvent) {
     var requestUrl = new URL(event.request.url);
     const method = requestUrl.pathname.slice(apiPattern.length);
 
+    switch (event.request.method) {
+        case 'POST': {
+            if (!event.request.body) {
+                return;
+            }
+
+            const req = event.request.clone();
+            event.respondWith(
+                loadState()
+                    .then(() => handlePostRequest(req, method))
+                    .then((responce) => {
+                        saveState(state);
+                        return responce;
+                    }),
+            );
+            break;
+        }
+
+        default:
+            break;
+    }
+
     if (event.request.method === 'POST') {
         if (!event.request.body) {
             return;
@@ -114,11 +136,11 @@ self.addEventListener('fetch', async function (event: FetchEvent) {
 async function handlePostRequest(request: Request, method: string) {
     switch (method) {
         case 'create_category': {
-            await createCategory(request, state);
+            return createCategory(request, state);
         }
 
         case 'create_todo': {
-            await createTodo(request, state);
+            return createTodo(request, state);
         }
 
         case 'log': {

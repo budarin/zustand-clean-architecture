@@ -2,13 +2,13 @@ import { validateTodoEntity } from './validateTodoEntity.ts';
 import { responseWithError } from '../../utils/responseWithError.ts';
 import { responseWithResult } from '../../utils/responseWithResult.ts';
 
-export async function createTodo(request: Request, state: Entities) {
+export async function createTodo(request: Request, state: Entities): Promise<Response> {
     try {
         const data = await request.json();
         const { entity, error } = validateTodoEntity(data, state);
 
         if (error !== undefined) {
-            responseWithError(error);
+            return responseWithError(error);
         } else {
             const ids = state?.todos?.map((item) => item.todo_id) || [1];
             const newId = Math.max(...ids);

@@ -2,13 +2,13 @@ import { responseWithError } from '../../utils/responseWithError.ts';
 import { validateCategoryEntity } from './validateCategoryEntity.ts';
 import { responseWithResult } from '../../utils/responseWithResult.ts';
 
-export async function createCategory(request: Request, state: Entities) {
+export async function createCategory(request: Request, state: Entities): Promise<Response> {
     try {
         const data = await request.json();
         const { entity, error } = validateCategoryEntity(data, state);
 
         if (error !== undefined) {
-            responseWithError(error);
+            return responseWithError(error);
         } else {
             const ids = state?.categories?.map((item) => item.category_id) || [1];
             const newId = Math.max(...ids);
