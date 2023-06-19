@@ -145,6 +145,8 @@ async function handlePostRequest(request: Request, method: string) {
                 if (error !== undefined) {
                     responseWithError(error);
                 } else {
+                    // TODO сделать проверки справочников
+
                     const ids = state?.categories?.map((item) => item.category_id) || [1];
                     const newId = Math.max(...ids);
                     const newCategory = { ...entity, category_id: newId };
