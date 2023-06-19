@@ -2,7 +2,7 @@
     "name": "zustand-clean-architecture",
     "description": "Todo application on React + Zustand using clean architecture",
     "version": "1.0.0",
-    "main": "src/index.ts",
+    "main": "./src/index.tsx",
     "repository": "https://github.com/budarin/zustand-clean-architecture.git",
     "author": "Vadim Budarin <budarin-vv@yandex.ru>",
     "license": "MIT",
