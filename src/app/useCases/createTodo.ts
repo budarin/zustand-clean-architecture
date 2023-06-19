@@ -4,7 +4,7 @@ import { useNotification } from '../../services/adapters/useNotification.ts';
 
 const notification = useNotification();
 
-export async function createTodo(todo: NewTodo, isMountedRef: React.MutableRefObject<boolean>): Promise<void> {
+export async function createTodo(todo: UnknownObject, isMountedRef: React.MutableRefObject<boolean>): Promise<void> {
     if (!isMountedRef.current) {
         return;
     }

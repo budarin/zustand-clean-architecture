@@ -12,18 +12,18 @@ const notification = useNotification();
 const NOT_CATEGORY_OBJECT = 'Объект не является описанием Категории';
 
 export async function createCategory(
-    category: LikeEntity<NewCategory>,
+    input: UnknownObject,
     isMountedRef: React.MutableRefObject<boolean>,
 ): Promise<void> {
     if (!isMountedRef.current) {
         return;
     }
 
-    const { entity, error: validateError } = validateNewCategory(category);
+    const { entity, error: validateError } = validateNewCategory(input);
 
     if (validateError) {
         notification.notifyError(`Ошибка: ${validateError}`, {
-            toastId: 'create_category_error' + category.category,
+            toastId: 'create_category_error' + input.category,
         });
 
         logger.error(validateError);
@@ -43,9 +43,9 @@ export async function createCategory(
 
         if (error) {
             notification.notifyError(
-                `Ошибка: Не удалось создать категорию ${category.category}. Попробуйте позже еще раз.`,
+                `Ошибка: Не удалось создать категорию ${entity.category}. Попробуйте позже еще раз.`,
                 {
-                    toastId: 'create_category_error' + category.category,
+                    toastId: 'create_category_error' + entity.category,
                 },
             );
 
@@ -64,7 +64,7 @@ export async function createCategory(
         store.setNavigationFilter(createCategoryNavFilter(result.category_id, entity.category));
     } catch (error) {
         notification.notifyError(`Ошибка: ${error}`, {
-            toastId: 'create_category_error' + category.category,
+            toastId: 'create_category_error' + entity.category,
         });
 
         logger.error((error as Error).message);

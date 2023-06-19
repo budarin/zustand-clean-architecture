@@ -27,7 +27,7 @@ export const iconValidationRules: ValidationRules = {
 };
 
 // Category getter
-export function getIconFomObject(input: LikeEntity<Icon> = {}): Icon | {} {
+export function getIconFomObject(input: UnknownObject = {}): Icon | {} {
     const { icon_id, icon_name } = input;
 
     if (!icon_id || !icon_name) {
@@ -40,6 +40,6 @@ export function getIconFomObject(input: LikeEntity<Icon> = {}): Icon | {} {
     };
 }
 
-export function validateIcon(icon: LikeEntity<Icon>): ValidateEntity<Icon> {
+export function validateIcon(icon: UnknownObject): ValidateEntity<Icon> {
     return validateRawEntity<Icon>(getIconFomObject(icon), iconValidationRules);
 }

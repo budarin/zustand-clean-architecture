@@ -42,7 +42,7 @@ export const newCategoryValidationRules: ValidationRules = {
 };
 
 // Category getter
-export function getCategoryFomObject(input: LikeEntity<Category> = {}): NewCategory | Category | {} {
+export function getCategoryFomObject(input: UnknownObject = {}): NewCategory | Category | {} {
     const { category_id, category, icon_id } = input;
 
     if (!category || !icon_id) {
@@ -56,11 +56,11 @@ export function getCategoryFomObject(input: LikeEntity<Category> = {}): NewCateg
     };
 }
 
-export function validateCategory(category: LikeEntity<Category>): ValidateEntity<Category> {
+export function validateCategory(category: UnknownObject): ValidateEntity<Category> {
     return validateRawEntity<Category>(getCategoryFomObject(category), categoryValidationRules);
 }
 
-export function validateNewCategory(category: LikeEntity<Category>): ValidateEntity<NewCategory> {
+export function validateNewCategory(category: UnknownObject): ValidateEntity<NewCategory> {
     const result = validateRawEntity<NewCategory>(getCategoryFomObject(category), newCategoryValidationRules);
     return result;
 }
