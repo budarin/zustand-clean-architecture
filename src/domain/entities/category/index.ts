@@ -61,6 +61,5 @@ export function validateCategory(category: UnknownObject): ValidateEntity<Catego
 }
 
 export function validateNewCategory(category: UnknownObject): ValidateEntity<NewCategory> {
-    const result = validateRawEntity<NewCategory>(getCategoryFomObject(category), newCategoryValidationRules);
-    return result;
+    return validateRawEntity<NewCategory>(getCategoryFomObject(category), newCategoryValidationRules);
 }
