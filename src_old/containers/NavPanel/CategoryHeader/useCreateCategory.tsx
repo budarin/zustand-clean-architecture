@@ -15,8 +15,8 @@ type UseCreateCategory = [
 
 export function useCreateCategory(): UseCreateCategory {
     const isMountedRef = useRef(true);
-    const [category, setCategory] = useState<NewCategory>();
     const [success, setSuccess] = useState<boolean>(false);
+    const [category, setCategory] = useState<NewCategory>();
     const [inProgress, setInProgress] = useState<boolean>(false);
 
     useEffect(() => {
@@ -32,7 +32,6 @@ export function useCreateCategory(): UseCreateCategory {
 
             try {
                 await createCategory(category, isMountedRef);
-
                 setSuccess(true);
             } catch (error) {
                 notification.notifyError(`Ошибка: ${(error as Error).message}`, {
