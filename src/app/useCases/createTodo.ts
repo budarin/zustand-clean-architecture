@@ -2,12 +2,16 @@ import { delay } from '../../utils/promises/delay.ts';
 import { useTodoStore } from '../../domain/store/store.tsx';
 import { useNotification } from '../../services/adapters/useNotification.ts';
 
-export async function createTodo(todo: NewTodo): Promise<void> {
+export async function createTodo(todo: NewTodo, isMountedRef: React.MutableRefObject<boolean>): Promise<void> {
     const store = useTodoStore.getState();
 
     try {
         // fetch
         await delay(3000);
+
+        if (isMountedRef.current === false) {
+            return;
+        }
 
         const numbers = Object.keys(store.todos.byId).map(Number);
 

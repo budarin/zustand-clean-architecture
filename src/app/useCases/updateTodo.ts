@@ -4,7 +4,7 @@ import { useNotification } from '../../services/adapters/useNotification.ts';
 
 const updatingTodos = new Set();
 
-export async function updateTodo(todo: Todo): Promise<void> {
+export async function updateTodo(todo: Todo, isMountedRef: React.MutableRefObject<boolean>): Promise<void> {
     const notification = useNotification();
     const store = useTodoStore.getState();
     const oldValue = store.todos.byId[todo.todo_id];
@@ -21,6 +21,12 @@ export async function updateTodo(todo: Todo): Promise<void> {
     store._updateTodo(todo);
 
     await delay(3000);
+
+    if (isMountedRef.current === false) {
+        store._updateTodo(oldValue);
+        updatingTodos.delete(todo.todo_id);
+        return;
+    }
 
     const todoTitle = oldValue.todo.length <= 15 ? oldValue.todo : oldValue.todo.slice(0, 15) + '...';
 

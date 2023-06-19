@@ -2,7 +2,7 @@ import { delay } from '../../utils/promises/delay.ts';
 import { useTodoStore } from '../../domain/store/store.tsx';
 import { useNotification } from '../../services/adapters/useNotification.ts';
 
-export async function updateCategory(category: Category): Promise<void> {
+export async function updateCategory(category: Category, isMountedRef: React.MutableRefObject<boolean>): Promise<void> {
     const notification = useNotification();
     const store = useTodoStore.getState();
     const oldValue = store.categories.byId[category.category_id];
@@ -12,6 +12,11 @@ export async function updateCategory(category: Category): Promise<void> {
     // toast.info('Категория успешно удалена', { autoClose: 1000 });
 
     await delay(3000);
+
+    if (isMountedRef.current === false) {
+        store._updateCategory(oldValue);
+        return;
+    }
 
     notification.notifyError(`Ошибка: не удалось удалить категорию ${oldValue.category} - восстанавливаем`, {
         autoClose: 2000,

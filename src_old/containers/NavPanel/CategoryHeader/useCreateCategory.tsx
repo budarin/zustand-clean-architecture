@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { useLogger } from '../../../../src/services/adapters/useLogger.ts';
 import { createCategory } from '../../../../src/app/useCases/createCategory.ts';
@@ -14,13 +14,16 @@ export function useCreateCategory(): UseCreateCategory {
     const logger = useLogger();
     const notification = useNotification();
 
+    const isMountedRef = useRef(true);
     const [category, setCategory] = useState<NewCategory>();
     const [success, setSuccess] = useState<boolean>(false);
     const [inProgress, setInProgress] = useState<boolean>(false);
 
     useEffect(() => {
+        isMountedRef.current = true;
+
         const doCreate = async () => {
-            if (category === undefined) {
+            if (category === undefined || isMountedRef.current === false) {
                 return;
             }
 
@@ -28,7 +31,7 @@ export function useCreateCategory(): UseCreateCategory {
             setInProgress(true);
 
             try {
-                await createCategory(category);
+                await createCategory(category, isMountedRef);
 
                 setSuccess(true);
             } catch (error) {
@@ -43,6 +46,10 @@ export function useCreateCategory(): UseCreateCategory {
         };
 
         category && doCreate();
+
+        return () => {
+            isMountedRef.current = false;
+        };
     }, []);
 
     return [success, inProgress, setCategory];

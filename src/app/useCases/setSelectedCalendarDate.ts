@@ -4,7 +4,9 @@ import { createCalendarNavigationFilter } from '../../domain/store/navigationFil
 
 const setNavigationFilter = useTodoStore.getState().setNavigationFilter;
 
-export function setSelectedCalendarDate(date: Date): void {
-    setNavigationFilter(createCalendarNavigationFilter(date));
+export function setSelectedCalendarDate(date: Date): JsonRpcResult<NavigationFilter> {
+    const result = setNavigationFilter(createCalendarNavigationFilter(date));
     vibrate();
+
+    return result;
 }
