@@ -4,7 +4,7 @@ import { useKeyDownToClickEvent } from '../../hooks/useKeyDownToClickEvent';
 import { IconsByNameKey, iconsByName } from '../../../containers/iconsByName.ts';
 import { useArrowKeysToSimulateTab } from '../../hooks/useArrowKeysToSimulateTab';
 
-import { MAX_CATEGOTY_LENGTH, MIN_CATEGOTY_LENGTH } from '../../../../src/domain/entities/category/validation';
+import { MAX_CATEGOTY_LENGTH, MIN_CATEGOTY_LENGTH } from '../../../../src/domain/entities/category/validate.ts';
 
 import './index.css';
 

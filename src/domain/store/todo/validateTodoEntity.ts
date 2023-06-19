@@ -1,4 +1,4 @@
-import { validateTodo } from '../../entities/todo/validation';
+import { validateTodo } from '../../entities/todo/validate';
 
 export function validateTodoEntity(todo: UnknownObject, state: TodosState): ValidateEntity<Todo> {
     const result = validateTodo(todo);

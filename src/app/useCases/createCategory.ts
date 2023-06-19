@@ -3,7 +3,7 @@ import { useLogger } from '../../services/adapters/useLogger.ts';
 import { useNotification } from '../../services/adapters/useNotification.ts';
 
 import { useTodoStore } from '../../domain/store/store.tsx';
-import { validateNewCategory } from '../../domain/entities/category/validation.ts';
+import { validateNewCategory } from '../../domain/entities/category/validate.ts';
 import { createCategoryNavFilter } from '../../domain/entities/navigationFilter/createCategoryNavFilter.ts';
 
 export async function createCategory(category: NewCategory): Promise<void> {
