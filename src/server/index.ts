@@ -1,7 +1,7 @@
-import { validateCategoryEntity } from './domain/category/validateCategoryEntity.ts';
 import { jsonHeader } from './utils/consts';
-import { responseWithResult } from './utils/responseWithResult.ts';
 import { serverInitialState } from './utils/serverInitialState';
+import { responseWithResult } from './utils/responseWithResult.ts';
+import { validateCategoryEntity } from './domain/category/validateCategoryEntity.ts';
 
 declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };
 
