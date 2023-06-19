@@ -124,6 +124,6 @@ export function getTodoFomObject(input: UnknownObject): Todo {
 export function validateTodo(todo: UnknownObject): ValidateEntity<Todo> {
     return validateRawEntity<Todo>(getTodoFomObject(todo), todoValidationRules);
 }
-export function validateNewTodo(todo: NewTodo) {
-    return validateRawEntity<Todo>(getTodoFomObject(todo), newTodoValidationRules);
+export function validateNewTodo(todo: UnknownObject) {
+    return validateRawEntity<NewTodo>(getTodoFomObject(todo), newTodoValidationRules);
 }

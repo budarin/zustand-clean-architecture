@@ -18,7 +18,6 @@ export async function createCategory(
         return;
     }
 
-    const store = useTodoStore.getState();
     const { entity, error: validateError } = validateNewCategory(category);
 
     if (validateError) {
@@ -49,6 +48,7 @@ export async function createCategory(
             return;
         }
 
+        const store = useTodoStore.getState();
         store._addCategory(result);
 
         // устанавливаем навигационный фильтр на данную категорию
