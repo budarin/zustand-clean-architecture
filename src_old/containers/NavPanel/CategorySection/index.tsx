@@ -1,5 +1,5 @@
 import { getCategoryList } from '../../../../src/app/selectors/getCategoryList.ts';
-import { navigationFilterTypes } from '../../../../src/domain/entities/navigationFilter/index.ts';
+import { navigationFilterTypes } from '../../../../src/domain/store/navigationFilter/index.ts';
 
 // components
 import NavigationPanelItemContainer from '../PanelItem/index.tsx';

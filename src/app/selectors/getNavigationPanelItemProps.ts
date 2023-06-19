@@ -7,7 +7,7 @@ import {
     navigationFilterIcons,
     navigationFilterTypes,
     navigationFilters,
-} from '../../domain/entities/navigationFilter/index.ts';
+} from '../../domain/store/navigationFilter/index.ts';
 
 type GetNavPanelItemPropsSelector = (
     id: NavigationFilterKey,

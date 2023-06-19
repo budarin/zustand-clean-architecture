@@ -1,7 +1,7 @@
 import { updateInbox } from './updateInbox';
 import { updateOverdue } from './updateOverdue';
 import { updateRecycleBin } from './updateRecycleBin';
-import { inboxKey, overdueKey } from '../../../entities/navigationFilter';
+import { inboxKey, overdueKey } from '../../navigationFilter';
 import { deleteTodoFromFilters } from './deleteTodoFromFilters';
 import { isNotExists } from '../../../entities/validation_utils/isNotExists';
 

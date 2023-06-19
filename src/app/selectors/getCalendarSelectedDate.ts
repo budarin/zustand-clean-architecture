@@ -1,5 +1,5 @@
 import { useTodoStore } from '../../domain/store/store.tsx';
-import { navigationFilterTypes } from '../../domain/entities/navigationFilter/index.ts';
+import { navigationFilterTypes } from '../../domain/store/navigationFilter/index.ts';
 
 const getCalendarSelectedDateSelector = (state: TodosState) => {
     if (state.navigationFilter.type === navigationFilterTypes.calendar) {

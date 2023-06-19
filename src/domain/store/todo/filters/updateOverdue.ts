@@ -1,4 +1,4 @@
-import { overdueKey } from '../../../entities/navigationFilter/index.ts';
+import { overdueKey } from '../../navigationFilter/index.ts';
 import { isOverdueItem } from './isOverdueItem.ts';
 
 // Добавляем задачу в список просроченных
