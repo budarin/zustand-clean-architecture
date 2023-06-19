@@ -1,6 +1,6 @@
+import { validateCategoryEntity } from './domain/category/validateCategoryEntity.ts';
 import { jsonHeader } from './utils/consts';
 import { serverInitialState } from './utils/serverInitialState';
-import { validateNewCategory } from '../domain/entities/category';
 
 declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };
 
@@ -10,7 +10,7 @@ const apiPattern = '/api/';
 const todosUrl = '/api/get_todos';
 
 const { log } = console;
-let state: Entities | undefined;
+let state: Entities;
 
 async function saveState() {
     const cache = await caches.open('todo-sw');
@@ -140,13 +140,11 @@ async function handlePostRequest(request: Request, method: string) {
         case 'create_category': {
             try {
                 const data = await request.json();
-                const { entity, error } = validateNewCategory(data);
+                const { entity, error } = validateCategoryEntity(data, state);
 
                 if (error !== undefined) {
                     responseWithError(error);
                 } else {
-                    // TODO сделать проверки справочников
-
                     const ids = state?.categories?.map((item) => item.category_id) || [1];
                     const newId = Math.max(...ids);
                     const newCategory = { ...entity, category_id: newId };
