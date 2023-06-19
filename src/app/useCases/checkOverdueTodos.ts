@@ -1,9 +1,9 @@
 import { setOverdueInBadge } from './setOverdueInBadge.ts';
 import { useTodoStore } from '../../domain/store/store.tsx';
 import { TWO_MINUTES } from '../../utils/dateTime/consts.ts';
-import { overdueKey } from '../../domain/entities/navigationFilter/index.ts';
+import { overdueKey } from '../../domain/store/navigationFilter/index.ts';
 import { joyfullyGilling } from '../../services/contracts/Notification/index.ts';
-import { createFilterNavFilter } from '../../domain/entities/navigationFilter/createFilterNavFilter.ts';
+import { createFilterNavFilter } from '../../domain/store/navigationFilter/createFilterNavFilter.ts';
 
 export function checkOverdueTodos(): void {
     const now = Date.now();

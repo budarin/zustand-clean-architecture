@@ -1,4 +1,4 @@
-import { useTodoStore } from '../../store/store';
+import { useTodoStore } from '../store';
 
 export function setNavigationFilter(filter: NavigationFilter): JsonRpcResult<NavigationFilter> {
     const state = useTodoStore.getState();

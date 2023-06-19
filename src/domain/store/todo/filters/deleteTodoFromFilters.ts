@@ -1,4 +1,4 @@
-import { NavigationFiltersKey } from '../../../entities/navigationFilter';
+import { NavigationFiltersKey } from '../../navigationFilter';
 
 export function deleteTodoFromFilters(state: TodoState, filters: NavigationFiltersKey[], todo: Todo) {
     filters.forEach((filter) => {

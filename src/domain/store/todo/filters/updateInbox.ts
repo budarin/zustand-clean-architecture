@@ -1,5 +1,5 @@
 import { isInboxItem } from './isInboxItem';
-import { inboxKey } from '../../../entities/navigationFilter';
+import { inboxKey } from '../../navigationFilter';
 
 export function updateInbox(state: TodoState, todo: Todo): void {
     const inboxIds = state.idsByFilterId[inboxKey];

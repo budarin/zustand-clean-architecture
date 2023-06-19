@@ -1,4 +1,4 @@
-import { navigationFilterTypes } from '../../domain/entities/navigationFilter/index.ts';
+import { navigationFilterTypes } from '../../domain/store/navigationFilter/index.ts';
 import { useTodoStore } from '../../domain/store/store.tsx';
 
 const getTodoListByNavFilterSelector = (state: TodosState): Id[] => {

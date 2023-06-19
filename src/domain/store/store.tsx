@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
 import { getTodayDate } from '../../utils/dateTime/getTodayDate.ts';
-import { inboxKey, overdueKey, recycleBinKey } from '../entities/navigationFilter/index.ts';
+import { inboxKey, overdueKey, recycleBinKey } from './navigationFilter/index.ts';
 
 // entity method realizations
 import { addIcon } from './icon/addIcon.ts';
@@ -14,10 +14,10 @@ import { addTodo } from './todo/addTodo.ts';
 import { updateTodo } from './todo/updateTodo.ts';
 import { deleteTodo } from './todo/deleteTodo.ts';
 import { addToOverdueTodos } from './todo/addToOverdueTodos.ts';
-import { setNavigationFilter } from '../entities/navigationFilter/setNavigationFilter.ts';
+import { setNavigationFilter } from './navigationFilter/setNavigationFilter.ts';
 
 // action creators
-import { createCalendarNavigationFilter } from '../entities/navigationFilter/createCalendarNavigationFilter.ts';
+import { createCalendarNavigationFilter } from './navigationFilter/createCalendarNavigationFilter.ts';
 
 export type Actions = {
     // Icon

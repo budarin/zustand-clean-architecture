@@ -1,4 +1,4 @@
-import { inboxKey, overdueKey } from '../../../../src/domain/entities/navigationFilter/index.ts';
+import { inboxKey, overdueKey } from '../../../../src/domain/store/navigationFilter/index.ts';
 
 // components
 import CalendarContainer from '../Calendar/index.tsx';
