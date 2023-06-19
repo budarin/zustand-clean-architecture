@@ -6,7 +6,7 @@ export async function getTodoStore(): Promise<Entities> {
     });
 }
 
-export async function createCategory(category: Category): Promise<Category> {
+export async function createCategory(category: Category): Promise<JsonRpcResult<Category>> {
     return fetch('/api/create_category', {
         method: 'POST',
         body: JSON.stringify(category),

@@ -2,12 +2,13 @@ import { delay } from '../../utils/promises/delay.ts';
 import { useTodoStore } from '../../domain/store/store.tsx';
 import { useNotification } from '../../services/adapters/useNotification.ts';
 
+const notification = useNotification();
+
 export async function updateCategory(category: Category, isMountedRef: React.MutableRefObject<boolean>): Promise<void> {
-    if (!isMountedRef) {
+    if (!isMountedRef.current) {
         return;
     }
 
-    const notification = useNotification();
     const store = useTodoStore.getState();
     const oldValue = store.categories.byId[category.category_id];
 
@@ -17,7 +18,7 @@ export async function updateCategory(category: Category, isMountedRef: React.Mut
 
     await delay(3000);
 
-    if (isMountedRef.current === false) {
+    if (!isMountedRef.current) {
         store._updateCategory(oldValue);
         return;
     }

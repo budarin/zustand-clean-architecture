@@ -56,6 +56,6 @@ export function validateCategory(category: UnknownObject): ValidateEntity<Catego
     return validateRawEntity<Category>(getCategoryFomObject(category), categoryValidationRules);
 }
 
-export function validateNewCategory(category: NewCategory) {
-    return validateRawEntity<Category>(getCategoryFomObject(category), newCategoryValidationRules);
+export function validateNewCategory(category: NewCategory): ValidateEntity<NewCategory> {
+    return validateRawEntity<NewCategory>(getCategoryFomObject(category), newCategoryValidationRules);
 }

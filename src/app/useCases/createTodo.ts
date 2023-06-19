@@ -2,8 +2,10 @@ import { delay } from '../../utils/promises/delay.ts';
 import { useTodoStore } from '../../domain/store/store.tsx';
 import { useNotification } from '../../services/adapters/useNotification.ts';
 
+const notification = useNotification();
+
 export async function createTodo(todo: NewTodo, isMountedRef: React.MutableRefObject<boolean>): Promise<void> {
-    if (!isMountedRef) {
+    if (!isMountedRef.current) {
         return;
     }
 
@@ -13,7 +15,7 @@ export async function createTodo(todo: NewTodo, isMountedRef: React.MutableRefOb
         // fetch
         await delay(3000);
 
-        if (isMountedRef.current === false) {
+        if (!isMountedRef.current) {
             return;
         }
 
@@ -24,8 +26,6 @@ export async function createTodo(todo: NewTodo, isMountedRef: React.MutableRefOb
 
         store._addTodo(newTodo);
     } catch (error) {
-        const notification = useNotification();
-
         notification.notifyError(`Ошибка: ${(error as Error).message}`, {
             toastId: 'create_todo_error' + todo.todo,
         });

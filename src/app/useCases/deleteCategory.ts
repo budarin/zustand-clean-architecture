@@ -2,15 +2,16 @@ import { delay } from '../../utils/promises/delay.ts';
 import { useTodoStore } from '../../domain/store/store.tsx';
 import { useNotification } from '../../services/adapters/useNotification.ts';
 
+const notification = useNotification();
+
 export async function deleteCategory(
     id: Category['category_id'],
     isMountedRef: React.MutableRefObject<boolean>,
 ): Promise<void> {
-    if (!isMountedRef) {
+    if (!isMountedRef.current) {
         return;
     }
 
-    const notification = useNotification();
     const store = useTodoStore.getState();
     const value = store.categories.byId[id];
 
@@ -24,7 +25,7 @@ export async function deleteCategory(
     try {
         await delay(3000);
 
-        if (isMountedRef.current === false) {
+        if (!isMountedRef.current) {
             store._addCategory(value);
             return;
         }

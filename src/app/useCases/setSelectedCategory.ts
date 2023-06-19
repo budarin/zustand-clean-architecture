@@ -1,6 +1,6 @@
 import { useTodoStore } from '../../domain/store/store.tsx';
-import { createCategoryNavFilter } from '../../domain/store/navigationFilter/createCategoryNavFilter.ts';
 import { vibrate } from '../../services/contracts/Notification/index.ts';
+import { createCategoryNavFilter } from '../../domain/store/navigationFilter/createCategoryNavFilter.ts';
 
 const setNavigationFilter = useTodoStore.getState().setNavigationFilter;
 

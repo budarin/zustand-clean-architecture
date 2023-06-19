@@ -118,20 +118,28 @@ self.addEventListener('fetch', async function (event: FetchEvent) {
     }
 });
 
-async function handlePostRequest(request: Request, method: string): Promise<Response> {
-    const data = await request.json();
-
+async function handlePostRequest(request: Request, method: string) {
     switch (method) {
         case 'create_category': {
-            const response = new Response(JSON.stringify(data), {
-                headers: jsonHeader,
-                status: 200,
-            });
+            const data: NewCategory = await request.json();
+            const newCategory = { ...data, category_id: state?.categories?.length || 0 + 1 };
+            state?.categories?.push(newCategory);
+
+            const response = new Response(
+                JSON.stringify({
+                    result: newCategory,
+                }),
+                {
+                    headers: jsonHeader,
+                    status: 200,
+                },
+            );
 
             return response;
         }
 
         case 'create_todo': {
+            const data: NewTodo = await request.json();
             const response = new Response(JSON.stringify(data), {
                 status: 200,
             });
@@ -140,6 +148,7 @@ async function handlePostRequest(request: Request, method: string): Promise<Resp
         }
 
         case 'log': {
+            const data = await request.json();
             const { log } = console;
 
             switch (data.type) {
@@ -176,11 +185,9 @@ async function handlePostRequest(request: Request, method: string): Promise<Resp
 }
 
 async function handlePatchRequest(request: Request, method: string): Promise<Response> {
-    const data = await request.json();
-    // console.log('PATCH', method, data);
-
     switch (method) {
         case 'update_category': {
+            const data: Category = await request.json();
             const response = new Response(JSON.stringify(data), {
                 status: 200,
             });
@@ -189,6 +196,7 @@ async function handlePatchRequest(request: Request, method: string): Promise<Res
         }
 
         case 'update_todo': {
+            const data: Todo = await request.json();
             const response = new Response(JSON.stringify(data), {
                 status: 200,
             });
@@ -205,11 +213,9 @@ async function handlePatchRequest(request: Request, method: string): Promise<Res
 }
 
 async function handleDeleteRequest(request: Request, method: string): Promise<Response> {
-    const data = await request.json();
-    // console.log('DELETE', method, data);
-
     switch (method) {
         case 'delete_category': {
+            const data: Category = await request.json();
             const response = new Response(JSON.stringify(data), {
                 status: 200,
             });
@@ -218,6 +224,7 @@ async function handleDeleteRequest(request: Request, method: string): Promise<Re
         }
 
         case 'delete_todo': {
+            const data: Todo = await request.json();
             const response = new Response(JSON.stringify(data), {
                 status: 200,
             });

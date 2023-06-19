@@ -6,42 +6,59 @@ import { useTodoStore } from '../../domain/store/store.tsx';
 import { validateNewCategory } from '../../domain/entities/category/index.ts';
 import { createCategoryNavFilter } from '../../domain/store/navigationFilter/createCategoryNavFilter.ts';
 
+const api = useApi();
+const logger = useLogger();
+const notification = useNotification();
+
 export async function createCategory(
     category: NewCategory,
     isMountedRef: React.MutableRefObject<boolean>,
 ): Promise<void> {
-    if (!isMountedRef) {
+    if (!isMountedRef.current) {
         return;
     }
 
     const store = useTodoStore.getState();
-    const { entity, error } = validateNewCategory(category);
+    const { entity, error: validateError } = validateNewCategory(category);
 
-    if (entity) {
-        const api = useApi();
+    if (validateError) {
+        notification.notifyError(`Ошибка: ${validateError}`, {
+            toastId: 'create_category_error' + category.category,
+        });
 
-        await api.createCategory(entity);
+        logger.error(validateError);
+    }
 
-        if (isMountedRef.current === false) {
+    if (!entity) {
+        return;
+    }
+
+    try {
+        const { result, error } = await api.createCategory(entity);
+
+        if (error) {
+            notification.notifyError(`Ошибка: Не удалось создать категорию ${category.category}`, {
+                toastId: 'create_category_error' + category.category,
+            });
+
+            logger.error(error);
             return;
         }
 
-        const numbers = Object.keys(store.categories.byId).map(Number);
-        const newCategoryId = Math.max(...numbers) + 1;
-        entity['category_id'] = newCategoryId;
+        if (!isMountedRef.current) {
+            return;
+        }
 
-        store._addCategory(entity);
+        store._addCategory(result);
 
         // устанавливаем навигационный фильтр на данную категорию
-        store.setNavigationFilter(createCategoryNavFilter(newCategoryId, entity.category));
-    } else {
-        const logger = useLogger();
-        const notification = useNotification();
-
+        store.setNavigationFilter(createCategoryNavFilter(result.category_id, entity.category));
+    } catch (error) {
         notification.notifyError(`Ошибка: ${error}`, {
             toastId: 'create_category_error' + category.category,
         });
 
-        logger.error(error);
+        logger.error((error as Error).message);
+        return;
     }
 }
