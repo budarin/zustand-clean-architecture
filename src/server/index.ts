@@ -1,12 +1,6 @@
 import { state } from './domain/state.ts';
 import { loadState } from './utils/loadState.ts';
-import { apiPattern } from './utils/consts';
-import { respondWithError } from './utils/respondWithError.ts';
-import { handleRequestWith } from './utils/handleRequestWith.ts';
-import { handleGetRequest } from './utils/handleGetRequest.ts';
-import { handlePostRequest } from './utils/handlePostRequest.ts';
-import { handlePatchRequest } from './utils/handlePatchRequest.ts';
-import { handleDeleteRequest } from './utils/handleDeleteRequest.ts';
+import { handleFetchEvent } from './utils/handleFetchEvent.ts';
 
 declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };
 
@@ -18,40 +12,9 @@ self.onerror = function (event) {
     log('sw error:', event);
 };
 
-// перехватываем запросы к api у сервис-воркера
-self.addEventListener('fetch', async function (event: FetchEvent) {
-    const req = event.request.clone();
-    var requestUrl = new URL(event.request.url);
-    const method = requestUrl.pathname.slice(apiPattern.length);
+self.addEventListener('fetch', handleFetchEvent);
 
-    switch (event.request.method) {
-        case 'GET': {
-            handleGetRequest(event, requestUrl.pathname);
-            break;
-        }
-
-        case 'POST': {
-            handleRequestWith(event, () => handlePostRequest(req, method));
-            break;
-        }
-
-        case 'PATCH': {
-            handleRequestWith(event, () => handlePatchRequest(req, method));
-            break;
-        }
-
-        case 'DELETE': {
-            handleRequestWith(event, () => handleDeleteRequest(req, method));
-            break;
-        }
-
-        default: {
-            event.respondWith(respondWithError('Не допустимый http метод'));
-        }
-    }
-});
-
-self.addEventListener('install', (event) => {
+self.addEventListener('install', () => {
     self.skipWaiting();
 });
 
