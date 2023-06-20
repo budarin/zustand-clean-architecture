@@ -72,5 +72,12 @@ export function log(data: UnknownObject): void {
         method: 'POST',
         body: JSON.stringify(data),
         headers: jsonHeader,
-    }).catch(onCatchError);
+    }).catch((error) => {
+        const { error: logError } = console;
+        logError('API error:', error, data);
+
+        return {
+            error,
+        };
+    });
 }
