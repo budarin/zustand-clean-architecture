@@ -1,60 +1,21 @@
-import { jsonHeader, todosUrl } from './utils/consts';
-import { saveState } from './utils/saveState.ts';
+import { jsonHeader } from './utils/consts';
 import { createTodo } from './domain/todo/createTodo.ts';
-import { serverInitialState } from './utils/serverInitialState';
 import { createCategory } from './domain/category/createCategory.ts';
 import { respondWithError } from './utils/respondWithError.ts';
 import { respondWith404 } from './utils/respondWith404.ts';
+import { loadState, state } from './utils/loadState.ts';
+import { handleRequestWith } from './utils/handleRequestWith.ts';
 
 declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };
 
 self.VERSION = '1.0.0';
 
+const { log } = console;
 const apiPattern = '/api/';
 
-let state: Entities;
-const { log } = console;
-
 self.onerror = function (event) {
-    const { log } = console;
-
     log('sw error:', event);
 };
-
-async function loadState() {
-    if (state === undefined) {
-        try {
-            const cache = await caches.open('todo-sw');
-            const response = await cache.match(todosUrl);
-
-            if (response !== undefined) {
-                const data = await response.json();
-
-                if (data) {
-                    state = data;
-                }
-            }
-
-            if (!state) {
-                state = serverInitialState;
-                await saveState(state);
-            }
-        } catch (error) {
-            log('sw: error in loadState', error);
-        }
-    }
-}
-
-function handleRequestWith(event: FetchEvent, handler: () => Promise<Response>) {
-    event.respondWith(
-        loadState()
-            .then(() => handler())
-            .then((responce) => {
-                saveState(state);
-                return responce;
-            }),
-    );
-}
 
 self.addEventListener('fetch', async function (event: FetchEvent) {
     const req = event.request.clone();
