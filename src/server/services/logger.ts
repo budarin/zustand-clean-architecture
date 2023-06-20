@@ -1,5 +1,7 @@
 const { log } = console;
 
+export const loggerMethods = ['info', 'warn', 'error'];
+
 export const logger = {
     info: (data: object) => {
         log('%c[INFO]', 'color: blue; font-weight: 600;', data);
@@ -11,7 +13,5 @@ export const logger = {
         log('%c[ERROR]', 'color: #E56353;; font-weight: 600;', data);
     },
 };
-
-export const loggerMethods = ['info', 'warn', 'error'];
 
 export type LoggerKey = keyof typeof logger;
