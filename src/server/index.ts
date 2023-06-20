@@ -3,9 +3,9 @@ import { handleFetchEvent } from './utils/handleFetchEvent.ts';
 
 declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };
 
-self.VERSION = '1.0.0';
-
 const { log } = console;
+
+self.VERSION = '1.0.0';
 
 self.addEventListener('install', () => {
     self.skipWaiting();
