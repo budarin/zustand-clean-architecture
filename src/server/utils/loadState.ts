@@ -1,6 +1,6 @@
-import { setState, state } from '../domain/state.ts';
 import { todosUrl } from './consts.ts';
 import { saveState } from './saveState.ts';
+import { setState, state } from '../domain/state.ts';
 import { serverInitialState } from './serverInitialState.ts';
 
 const { log } = console;
@@ -21,7 +21,7 @@ export async function loadState() {
 
             if (!state) {
                 setState(serverInitialState);
-                await saveState(state);
+                await saveState();
             }
         } catch (error) {
             log('sw: error in loadState', error);
