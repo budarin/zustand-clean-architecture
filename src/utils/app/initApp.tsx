@@ -8,7 +8,7 @@ import { useLogger } from '../../services/adapters/useLogger.ts';
 import { useKVStorage } from '../../services/adapters/useKVStorage.ts';
 
 // utils
-import { runTask } from '../runTask.ts';
+import { runTask } from '../tasks/runTask.ts';
 import { initStore } from './initStore.tsx';
 import { ONE_MINUTE } from '../dateTime/consts.ts';
 import { createRootElement } from './createRootElement.tsx';

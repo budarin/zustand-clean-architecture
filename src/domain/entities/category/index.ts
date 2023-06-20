@@ -33,10 +33,6 @@ const icon_id: ValidationRule = [validate_icon_idd, 'Category обязан им�
 export function getCategoryFomObject(input: UnknownObject = {}): NewCategory | Category | {} {
     const { category_id, category, icon_id } = input;
 
-    if (!category || !icon_id) {
-        return {};
-    }
-
     return {
         category_id,
         category,

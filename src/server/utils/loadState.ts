@@ -1,12 +1,11 @@
 import { todosUrl } from './consts.ts';
 import { saveState } from './saveState.ts';
-import { setState, state } from '../domain/state.ts';
+import { setState, getState } from '../domain/state.ts';
 import { serverInitialState } from './serverInitialState.ts';
-
-const { log } = console;
+import { logger } from '../services/logger.ts';
 
 export async function loadState() {
-    if (state === undefined) {
+    if (getState().icons.length === 0) {
         try {
             const cache = await caches.open('todo-sw');
             const response = await cache.match(todosUrl);
@@ -19,12 +18,12 @@ export async function loadState() {
                 }
             }
 
-            if (!state) {
+            if (getState().icons.length === 0) {
                 setState(serverInitialState);
                 await saveState();
             }
         } catch (error) {
-            log('sw: error in loadState', error);
+            logger.error({ message: 'sw: error in loadState', error });
         }
     }
 }
