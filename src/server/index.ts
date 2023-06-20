@@ -25,6 +25,11 @@ self.addEventListener('fetch', async function (event: FetchEvent) {
     const method = requestUrl.pathname.slice(apiPattern.length);
 
     switch (event.request.method) {
+        case 'GET': {
+            handleGetRequest(event, requestUrl.pathname);
+            break;
+        }
+
         case 'POST': {
             handleRequestWith(event, () => handlePostRequest(req, method));
             break;
@@ -37,11 +42,6 @@ self.addEventListener('fetch', async function (event: FetchEvent) {
 
         case 'DELETE': {
             handleRequestWith(event, () => handleDeleteRequest(req, method));
-            break;
-        }
-
-        case 'GET': {
-            handleGetRequest(event, requestUrl.pathname);
             break;
         }
 
