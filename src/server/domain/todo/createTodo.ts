@@ -1,5 +1,5 @@
-import { validateTodoEntity } from './validateTodoEntity.ts';
 import { state } from '../state.ts';
+import { validateTodoEntity } from './validateTodoEntity.ts';
 import { respondWithError } from '../../utils/respondWithError.ts';
 import { respondWithResult } from '../../utils/respondWithResult.ts';
 
@@ -8,9 +8,7 @@ export async function createTodo(request: Request): Promise<Response> {
         const data = await request.json();
         const { entity, error } = validateTodoEntity(data, state);
 
-        if (error !== undefined) {
-            return respondWithError(error);
-        } else {
+        if (entity) {
             const ids = state?.todos?.map((item) => item.todo_id) || [1];
             const newId = Math.max(...ids);
             const newTodo = { ...entity, todo_id: newId };
@@ -18,6 +16,8 @@ export async function createTodo(request: Request): Promise<Response> {
             state?.todos?.push(newTodo);
 
             return respondWithResult(newTodo);
+        } else {
+            return respondWithError(error);
         }
     } catch (error) {
         const { message, stack } = error as Error;
