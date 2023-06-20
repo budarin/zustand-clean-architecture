@@ -24,10 +24,6 @@ export function validate_name(x: UnknownObject): boolean {
 export function getIconFomObject(input: UnknownObject = {}): Icon | {} {
     const { icon_id, icon_name } = input;
 
-    if (!icon_id || !icon_name) {
-        return {};
-    }
-
     return {
         icon_id,
         icon_name,

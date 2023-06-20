@@ -1,23 +1,15 @@
 import { respondWith404 } from './respondWith404.ts';
+import { updateTodo } from '../domain/todo/updateTodo.ts';
+import { updateCategory } from '../domain/category/updateCategory.ts';
 
 export async function handlePatchRequest(request: Request, method: string): Promise<Response> {
     switch (method) {
         case 'update_category': {
-            const data: Category = await request.json();
-            const response = new Response(JSON.stringify(data), {
-                status: 200,
-            });
-
-            return response;
+            return updateCategory(request);
         }
 
         case 'update_todo': {
-            const data: Todo = await request.json();
-            const response = new Response(JSON.stringify(data), {
-                status: 200,
-            });
-
-            return response;
+            return updateTodo(request);
         }
 
         default: {

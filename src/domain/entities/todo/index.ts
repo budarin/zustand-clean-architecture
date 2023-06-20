@@ -88,10 +88,6 @@ const deleted: ValidationRule = [validate_deleted, 'поле deleted должн�
 export function getTodoFomObject(input: UnknownObject): Todo | NewTodo | {} {
     const { todo_id, todo, status_id, category_id, description, due_date, deleted, completed } = input;
 
-    if (!todo || !status_id) {
-        return {};
-    }
-
     return {
         todo_id,
         todo: capitalizeFirstLetter(todo),

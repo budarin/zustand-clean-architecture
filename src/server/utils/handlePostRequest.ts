@@ -1,3 +1,4 @@
+import { logInfo } from './logInfo.ts';
 import { respondWith404 } from './respondWith404.ts';
 import { createTodo } from '../domain/todo/createTodo.ts';
 import { createCategory } from '../domain/category/createCategory.ts';
@@ -13,32 +14,7 @@ export async function handlePostRequest(request: Request, method: string) {
         }
 
         case 'log': {
-            const data = await request.json();
-            const { log } = console;
-
-            switch (data.type) {
-                case 'info': {
-                    log('%c[INFO]', 'color: blue; font-weight: 600;', data);
-                    break;
-                }
-                case 'warn': {
-                    log('%c[WARN]', 'color: #ff9905; font-weight: 600;', data);
-                    break;
-                }
-                case 'error': {
-                    log(data);
-                    log('%c[ERROR]', 'color: #E56353;; font-weight: 600;', data);
-                    break;
-                }
-                default:
-                    break;
-            }
-
-            const response = new Response(null, {
-                status: 200,
-            });
-
-            return response;
+            return logInfo(request);
         }
 
         default: {
