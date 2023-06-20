@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { useLogger } from '../../../../src/services/adapters/useLogger.ts';
 import { createCategory } from '../../../../src/app/useCases/createCategory.ts';
 import { useNotification } from '../../../../src/services/adapters/useNotification.ts';
+
+const logger = useLogger();
+const notification = useNotification();
 
 type UseCreateCategory = [
     success: boolean,
@@ -11,16 +14,16 @@ type UseCreateCategory = [
 ];
 
 export function useCreateCategory(): UseCreateCategory {
-    const logger = useLogger();
-    const notification = useNotification();
-
-    const [category, setCategory] = useState<NewCategory>();
+    const isMountedRef = useRef(true);
     const [success, setSuccess] = useState<boolean>(false);
+    const [category, setCategory] = useState<NewCategory>();
     const [inProgress, setInProgress] = useState<boolean>(false);
 
     useEffect(() => {
+        isMountedRef.current = true;
+
         const doCreate = async () => {
-            if (category === undefined) {
+            if (category === undefined || isMountedRef.current === false) {
                 return;
             }
 
@@ -28,8 +31,7 @@ export function useCreateCategory(): UseCreateCategory {
             setInProgress(true);
 
             try {
-                await createCategory(category);
-
+                await createCategory(category, isMountedRef);
                 setSuccess(true);
             } catch (error) {
                 notification.notifyError(`Ошибка: ${(error as Error).message}`, {
@@ -43,7 +45,11 @@ export function useCreateCategory(): UseCreateCategory {
         };
 
         category && doCreate();
-    }, []);
+
+        return () => {
+            isMountedRef.current = false;
+        };
+    }, [category]);
 
     return [success, inProgress, setCategory];
 }

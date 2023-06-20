@@ -1,7 +1,7 @@
-import { validateCategory } from '../../../domain/entities/category/validate';
+import { validateCategory } from '../../../domain/entities/category';
 
-export function validateCategoryEntity(icon: UnknownObject, state: TodosState): ValidateEntity<Category> {
-    const result = validateCategory(icon);
+export function validateCategoryEntity(category: UnknownObject, state: Entities): ValidateEntity<Category> {
+    const result = validateCategory(category);
 
     if (!result.entity) {
         return result;
@@ -9,13 +9,7 @@ export function validateCategoryEntity(icon: UnknownObject, state: TodosState): 
 
     const { entity } = result;
 
-    if (state.categories.ids.includes(entity.category_id) === true) {
-        return {
-            error: `Нарушение уникальности ключа icons.icon_id!`,
-        };
-    }
-
-    if (Object.values(state.categories.byId).find((item) => item.category === entity.category)) {
+    if (state.categories?.find((item) => item.category === entity.category)) {
         return {
             error: `Нарушение уникальности имени категории`,
         };

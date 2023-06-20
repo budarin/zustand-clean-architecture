@@ -20,21 +20,24 @@ export function validate_name(x: UnknownObject): boolean {
     return false;
 }
 
-// validation rules
-export const iconValidationRules: ValidationRules = {
-    icon_id: [validate_id, 'обязательное поле icon_id должно быть целочисленным числом'],
-    name: [validate_name, 'обязательное icon_name должно быть строкой'],
-};
-
 // Category getter
-export function getIconFomObject(input: UnknownObject = {}): Icon {
-    const { icon_id, icon_name } = input as Icon;
+export function getIconFomObject(input: UnknownObject = {}): Icon | {} {
+    const { icon_id, icon_name } = input;
+
+    if (!icon_id || !icon_name) {
+        return {};
+    }
 
     return {
         icon_id,
         icon_name,
     };
 }
+
+export const iconValidationRules: ValidationRules = {
+    icon_id: [validate_id, 'обязательное поле icon_id должно быть целочисленным числом'],
+    name: [validate_name, 'обязательное icon_name должно быть строкой'],
+};
 
 export function validateIcon(icon: UnknownObject): ValidateEntity<Icon> {
     return validateRawEntity<Icon>(getIconFomObject(icon), iconValidationRules);

@@ -2,12 +2,22 @@ import { delay } from '../../utils/promises/delay.ts';
 import { useTodoStore } from '../../domain/store/store.tsx';
 import { useNotification } from '../../services/adapters/useNotification.ts';
 
-export async function createTodo(todo: NewTodo): Promise<void> {
+const notification = useNotification();
+
+export async function createTodo(todo: UnknownObject, isMountedRef: React.MutableRefObject<boolean>): Promise<void> {
+    if (!isMountedRef.current) {
+        return;
+    }
+
     const store = useTodoStore.getState();
 
     try {
         // fetch
         await delay(3000);
+
+        if (!isMountedRef.current) {
+            return;
+        }
 
         const numbers = Object.keys(store.todos.byId).map(Number);
 
@@ -16,8 +26,6 @@ export async function createTodo(todo: NewTodo): Promise<void> {
 
         store._addTodo(newTodo);
     } catch (error) {
-        const notification = useNotification();
-
         notification.notifyError(`Ошибка: ${(error as Error).message}`, {
             toastId: 'create_todo_error' + todo.todo,
         });

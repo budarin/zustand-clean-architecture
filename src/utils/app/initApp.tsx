@@ -21,10 +21,13 @@ import { setOverdueInBadge } from '../../app/useCases/setOverdueInBadge.ts';
 // cpntainers
 import AppContainer from '../../ui/containers/App/index.tsx';
 
+const api = useApi();
+const logger = useLogger();
+
 export async function initApp() {
-    useApi()
-        .getTodoStore()
+    api.getTodoStore()
         .then((data) => {
+            // console.log(data);
             initStore(data);
             setOverdueInBadge();
 
@@ -65,6 +68,6 @@ export async function initApp() {
             }
         })
         .catch((error) => {
-            useLogger().error({ error, stack: error.stack });
+            logger.error({ error, stack: error.stack });
         });
 }
