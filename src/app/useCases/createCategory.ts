@@ -3,34 +3,71 @@ import { useLogger } from '../../services/adapters/useLogger.ts';
 import { useNotification } from '../../services/adapters/useNotification.ts';
 
 import { useTodoStore } from '../../domain/store/store.tsx';
-import { validateNewCategory } from '../../domain/entities/category/validate.ts';
+import { validateNewCategory } from '../../domain/entities/category/index.ts';
 import { createCategoryNavFilter } from '../../domain/store/navigationFilter/createCategoryNavFilter.ts';
 
-export async function createCategory(category: NewCategory): Promise<void> {
-    const store = useTodoStore.getState();
-    const { entity, error } = validateNewCategory(category);
+const api = useApi();
+const logger = useLogger();
+const notification = useNotification();
+const NOT_CATEGORY_OBJECT = 'Объект не является описанием Категории';
 
-    if (entity) {
-        const api = useApi();
+export async function createCategory(
+    category: UnknownObject,
+    isMountedRef: React.MutableRefObject<boolean>,
+): Promise<void> {
+    if (!isMountedRef.current) {
+        return;
+    }
 
-        await api.createCategory(entity);
+    const { entity, error: validateError } = validateNewCategory(category);
 
-        const numbers = Object.keys(store.categories.byId).map(Number);
-        const newCategoryId = Math.max(...numbers) + 1;
-        entity['category_id'] = newCategoryId;
-
-        store._addCategory(entity);
-
-        // устанавливаем навигационный фильтр на данную категорию
-        store.setNavigationFilter(createCategoryNavFilter(newCategoryId, entity.category));
-    } else {
-        const logger = useLogger();
-        const notification = useNotification();
-
-        notification.notifyError(`Ошибка: ${error}`, {
+    if (validateError) {
+        notification.notifyError(`Ошибка: ${validateError}`, {
             toastId: 'create_category_error' + category.category,
         });
 
-        logger.error(error);
+        logger.error(validateError);
+    }
+
+    if (!entity) {
+        notification.notifyError(NOT_CATEGORY_OBJECT, {
+            toastId: 'create_category_error' + NOT_CATEGORY_OBJECT,
+        });
+
+        logger.error(NOT_CATEGORY_OBJECT);
+        return;
+    }
+
+    try {
+        const { result, error } = await api.createCategory(entity);
+
+        if (error) {
+            notification.notifyError(
+                `Ошибка: Не удалось создать категорию ${entity.category}. Попробуйте позже еще раз.`,
+                {
+                    toastId: 'create_category_error' + entity.category,
+                },
+            );
+
+            logger.error(error);
+            return;
+        }
+
+        if (!isMountedRef.current) {
+            return;
+        }
+
+        const store = useTodoStore.getState();
+        store._addCategory(result);
+
+        // устанавливаем навигационный фильтр на данную категорию
+        store.setNavigationFilter(createCategoryNavFilter(result.category_id, entity.category));
+    } catch (error) {
+        notification.notifyError(`Ошибка: ${error}`, {
+            toastId: 'create_category_error' + entity.category,
+        });
+
+        logger.error((error as Error).message);
+        return;
     }
 }

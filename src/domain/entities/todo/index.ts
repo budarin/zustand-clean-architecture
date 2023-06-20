@@ -84,30 +84,13 @@ const due_date: ValidationRule = [validate_dueDate, 'необязательно�
 const completed: ValidationRule = [validate_completed, 'поле completed должно быть boolean'];
 const deleted: ValidationRule = [validate_deleted, 'поле deleted должно быть boolean'];
 
-export const todoValidationRules: ValidationRules = {
-    todo_id,
-    status_id,
-    category_id,
-    todo,
-    description,
-    due_date,
-    completed,
-    deleted,
-};
-
-export const newTodoValidationRules: ValidationRules = {
-    status_id,
-    category_id,
-    todo,
-    description,
-    due_date,
-    completed,
-    deleted,
-};
-
 // Todo getter
-export function getTodoFomObject(input: UnknownObject): Todo {
-    const { todo_id, todo, status_id, category_id, description, due_date, deleted, completed } = input as Todo;
+export function getTodoFomObject(input: UnknownObject): Todo | NewTodo | {} {
+    const { todo_id, todo, status_id, category_id, description, due_date, deleted, completed } = input;
+
+    if (!todo || !status_id) {
+        return {};
+    }
 
     return {
         todo_id,
@@ -121,9 +104,30 @@ export function getTodoFomObject(input: UnknownObject): Todo {
     };
 }
 
+export const todoValidationRules: ValidationRules = {
+    todo_id,
+    status_id,
+    category_id,
+    todo,
+    description,
+    due_date,
+    completed,
+    deleted,
+};
+
 export function validateTodo(todo: UnknownObject): ValidateEntity<Todo> {
     return validateRawEntity<Todo>(getTodoFomObject(todo), todoValidationRules);
 }
-export function validateNewTodo(todo: NewTodo) {
-    return validateRawEntity<Todo>(getTodoFomObject(todo), newTodoValidationRules);
+
+export const newTodoValidationRules: ValidationRules = {
+    status_id,
+    category_id,
+    todo,
+    description,
+    due_date,
+    completed,
+    deleted,
+};
+export function validateNewTodo(todo: UnknownObject): ValidateEntity<NewTodo> {
+    return validateRawEntity<NewTodo>(getTodoFomObject(todo), newTodoValidationRules);
 }

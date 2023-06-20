@@ -6,9 +6,13 @@ export function useEffectOnce(callback: () => void) {
     useEffect(() => {
         isMounted.current = true;
 
-        if (isMounted.current) {
-            callback();
+        function start() {
+            if (isMounted.current) {
+                callback();
+            }
         }
+
+        start();
 
         return () => {
             isMounted.current = false;
