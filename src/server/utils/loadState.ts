@@ -1,8 +1,7 @@
+import { setState, state } from '../domain/state.ts';
 import { todosUrl } from './consts.ts';
 import { saveState } from './saveState.ts';
 import { serverInitialState } from './serverInitialState.ts';
-
-export let state: Entities;
 
 const { log } = console;
 
@@ -16,12 +15,12 @@ export async function loadState() {
                 const data = await response.json();
 
                 if (data) {
-                    state = data;
+                    setState(data);
                 }
             }
 
             if (!state) {
-                state = serverInitialState;
+                setState(serverInitialState);
                 await saveState(state);
             }
         } catch (error) {

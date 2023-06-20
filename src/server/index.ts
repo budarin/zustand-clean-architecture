@@ -1,4 +1,5 @@
-import { loadState, state } from './utils/loadState.ts';
+import { state } from './domain/state.ts';
+import { loadState } from './utils/loadState.ts';
 import { apiPattern, jsonHeader } from './utils/consts';
 import { createTodo } from './domain/todo/createTodo.ts';
 import { respondWith404 } from './utils/respondWith404.ts';
