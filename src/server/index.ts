@@ -1,7 +1,7 @@
-import { handleFetchEvent } from './utils/handleFetchEvent.ts';
-import { handleActivate } from './utils/handleActivate.ts';
 import { swOnError } from './utils/swOnError.ts';
 import { handleInstall } from './utils/handleInstall.ts';
+import { handleActivate } from './utils/handleActivate.ts';
+import { handleFetchEvent } from './utils/handleFetchEvent.ts';
 
 export declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };
 
