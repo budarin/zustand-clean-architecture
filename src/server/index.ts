@@ -1,5 +1,5 @@
-import { handleFetchEvent } from './utils/handleFetchEvent.ts';
 import { onActivate } from './utils/onActivate.ts';
+import { handleFetchEvent } from './utils/handleFetchEvent.ts';
 
 declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };
 
