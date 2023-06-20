@@ -3,8 +3,6 @@ import { handleFetchEvent } from './utils/handleFetchEvent.ts';
 
 declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };
 
-const { log } = console;
-
 self.VERSION = '1.0.0';
 
 self.addEventListener('install', () => {
@@ -19,5 +17,7 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', handleFetchEvent);
 
 self.onerror = function (event) {
+    const { log } = console;
+
     log('sw error:', event);
 };
