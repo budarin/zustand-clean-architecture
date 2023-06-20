@@ -1,6 +1,7 @@
 import { respondWith404 } from './respondWith404.ts';
 import { createTodo } from '../domain/todo/createTodo.ts';
 import { createCategory } from '../domain/category/createCategory.ts';
+import { logger, loggerMethods } from '../services/logger.ts';
 
 export async function handlePostRequest(request: Request, method: string) {
     switch (method) {
@@ -13,25 +14,12 @@ export async function handlePostRequest(request: Request, method: string) {
         }
 
         case 'log': {
-            const { log } = console;
-            const data = await request.json();
+            const { type, ...rest } = await request.json();
 
-            switch (data.type) {
-                case 'info': {
-                    log('%c[INFO]', 'color: blue; font-weight: 600;', data);
-                    break;
-                }
-                case 'warn': {
-                    log('%c[WARN]', 'color: #ff9905; font-weight: 600;', data);
-                    break;
-                }
-                case 'error': {
-                    log(data);
-                    log('%c[ERROR]', 'color: #E56353;; font-weight: 600;', data);
-                    break;
-                }
-                default:
-                    break;
+            if (loggerMethods.includes(type)) {
+                logger[type as keyof typeof logger](rest);
+            } else {
+                logger['info'](rest);
             }
 
             const response = new Response(null, {

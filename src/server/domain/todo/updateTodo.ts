@@ -1,22 +1,26 @@
 import { getState } from '../state.ts';
-import { validateTodoEntity } from './validateTodoEntity.ts';
+import { respondWith404 } from '../../utils/respondWith404.ts';
 import { respondWithError } from '../../utils/respondWithError.ts';
 import { respondWithResult } from '../../utils/respondWithResult.ts';
+import { validateTodoEntity } from './validateTodoEntity.ts';
 
-export async function createTodo(request: Request): Promise<Response> {
+export async function updateTodo(request: Request): Promise<Response> {
     try {
         const state = getState();
         const data = await request.json();
         const { entity, error } = validateTodoEntity(data, state);
 
         if (entity) {
-            const ids = state?.todos?.map((item) => item.todo_id) || [1];
-            const newId = Math.max(...ids) + 1;
-            const newTodo = { ...entity, todo_id: newId };
+            // если нет такой записи в todos - ошибка
+            const idx = state.categories.findIndex((item) => item.category_id === entity.category_id);
 
-            state?.todos?.push(newTodo);
+            if (idx === -1) {
+                return respondWith404();
+            }
 
-            return respondWithResult(newTodo);
+            state.todos[idx] = entity;
+
+            return respondWithResult(entity);
         } else {
             return respondWithError(error);
         }
