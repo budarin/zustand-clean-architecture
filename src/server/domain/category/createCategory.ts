@@ -1,8 +1,9 @@
+import { state } from '../state.ts';
 import { respondWithError } from '../../utils/respondWithError.ts';
 import { validateCategoryEntity } from './validateCategoryEntity.ts';
 import { respondWithResult } from '../../utils/respondWithResult.ts';
 
-export async function createCategory(request: Request, state: Entities): Promise<Response> {
+export async function createCategory(request: Request): Promise<Response> {
     try {
         const data = await request.json();
         const { entity, error } = validateCategoryEntity(data, state);

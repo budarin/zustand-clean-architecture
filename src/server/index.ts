@@ -65,11 +65,11 @@ async function handleGetRequest(event: FetchEvent, pathname: string) {
 async function handlePostRequest(request: Request, method: string) {
     switch (method) {
         case 'create_category': {
-            return createCategory(request, state);
+            return createCategory(request);
         }
 
         case 'create_todo': {
-            return createTodo(request, state);
+            return createTodo(request);
         }
 
         case 'log': {

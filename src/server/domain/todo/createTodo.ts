@@ -1,8 +1,9 @@
 import { validateTodoEntity } from './validateTodoEntity.ts';
+import { state } from '../state.ts';
 import { respondWithError } from '../../utils/respondWithError.ts';
 import { respondWithResult } from '../../utils/respondWithResult.ts';
 
-export async function createTodo(request: Request, state: Entities): Promise<Response> {
+export async function createTodo(request: Request): Promise<Response> {
     try {
         const data = await request.json();
         const { entity, error } = validateTodoEntity(data, state);
