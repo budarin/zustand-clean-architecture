@@ -8,12 +8,6 @@ self.VERSION = '1.0.0';
 
 const { log } = console;
 
-self.onerror = function (event) {
-    log('sw error:', event);
-};
-
-self.addEventListener('fetch', handleFetchEvent);
-
 self.addEventListener('install', () => {
     self.skipWaiting();
 });
@@ -28,3 +22,9 @@ self.addEventListener('activate', (event) => {
     event.waitUntil(onActivate());
     clients.claim();
 });
+
+self.addEventListener('fetch', handleFetchEvent);
+
+self.onerror = function (event) {
+    log('sw error:', event);
+};
