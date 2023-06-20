@@ -1,6 +1,6 @@
 import { jsonHeader } from './consts';
 
-export function respondWithError(msg: string, data: any = undefined) {
+export function respondWithError<T = undefined>(msg: string, data?: T): TypedResponse<JsonRpcResult<undefined, T>> {
     return new Response(
         JSON.stringify({
             error: {
