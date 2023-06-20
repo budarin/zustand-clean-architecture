@@ -1,6 +1,5 @@
-import { state } from './domain/state.ts';
-import { loadState } from './utils/loadState.ts';
 import { handleFetchEvent } from './utils/handleFetchEvent.ts';
+import { onActivate } from './utils/onActivate.ts';
 
 declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };
 
@@ -13,12 +12,6 @@ self.addEventListener('install', () => {
 });
 
 self.addEventListener('activate', (event) => {
-    const onActivate = async (): Promise<any> => {
-        if (!state) {
-            await loadState();
-        }
-    };
-
     event.waitUntil(onActivate());
     clients.claim();
 });
