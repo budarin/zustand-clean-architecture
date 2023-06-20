@@ -1,17 +1,16 @@
-import { jsonHeader } from './utils/consts';
-import { createTodo } from './domain/todo/createTodo.ts';
-import { createCategory } from './domain/category/createCategory.ts';
-import { respondWithError } from './utils/respondWithError.ts';
-import { respondWith404 } from './utils/respondWith404.ts';
 import { loadState, state } from './utils/loadState.ts';
+import { apiPattern, jsonHeader } from './utils/consts';
+import { createTodo } from './domain/todo/createTodo.ts';
+import { respondWith404 } from './utils/respondWith404.ts';
+import { respondWithError } from './utils/respondWithError.ts';
 import { handleRequestWith } from './utils/handleRequestWith.ts';
+import { createCategory } from './domain/category/createCategory.ts';
 
 declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };
 
 self.VERSION = '1.0.0';
 
 const { log } = console;
-const apiPattern = '/api/';
 
 self.onerror = function (event) {
     log('sw error:', event);
@@ -39,17 +38,7 @@ self.addEventListener('fetch', async function (event: FetchEvent) {
         }
 
         case 'GET': {
-            // если не перехватываем другие url - sw будет брать их из кэша или сети сам
-            if (requestUrl.pathname === '/api/get_todos') {
-                event.respondWith(
-                    loadState().then(() => {
-                        return new Response(JSON.stringify(state), {
-                            headers: jsonHeader,
-                        });
-                    }),
-                );
-            }
-
+            handleGetRequest(event, requestUrl.pathname);
             break;
         }
 
@@ -58,6 +47,19 @@ self.addEventListener('fetch', async function (event: FetchEvent) {
         }
     }
 });
+
+async function handleGetRequest(event: FetchEvent, pathname: string) {
+    // если не перехватываем другие url - sw будет брать их из кэша или сети сам
+    if (pathname === '/api/get_todos') {
+        event.respondWith(
+            loadState().then(() => {
+                return new Response(JSON.stringify(state), {
+                    headers: jsonHeader,
+                });
+            }),
+        );
+    }
+}
 
 async function handlePostRequest(request: Request, method: string) {
     switch (method) {
