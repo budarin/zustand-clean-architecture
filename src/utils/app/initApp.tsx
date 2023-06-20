@@ -27,6 +27,7 @@ const logger = useLogger();
 export async function initApp() {
     api.getTodoStore()
         .then((data) => {
+            // console.log(data);
             initStore(data);
             setOverdueInBadge();
 
