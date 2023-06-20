@@ -1,6 +1,6 @@
 import { useTodoStore } from '../../store/store';
 
-export function deleteCategory(id: Category['category_id']): JsonRpcResult<Category['category_id']> {
+export function deleteCategory(id: Category['category_id']): JsonRpcResult<Category['category_id'], number> {
     const state = useTodoStore.getState();
 
     const { [id]: deleted, ...restById } = state.categories.byId;
