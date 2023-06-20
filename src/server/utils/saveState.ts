@@ -1,5 +1,4 @@
-import { jsonHeader } from './consts.ts';
-import { todosUrl } from '../index.ts';
+import { jsonHeader, todosUrl } from './consts.ts';
 
 export async function saveState(state: Entities) {
     const cache = await caches.open('todo-sw');

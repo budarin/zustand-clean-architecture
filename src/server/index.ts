@@ -1,17 +1,15 @@
-import { jsonHeader } from './utils/consts';
+import { jsonHeader, todosUrl } from './utils/consts';
 import { saveState } from './utils/saveState.ts';
 import { createTodo } from './domain/todo/createTodo.ts';
 import { serverInitialState } from './utils/serverInitialState';
 import { createCategory } from './domain/category/createCategory.ts';
 import { respondWithError } from './utils/respondWithError.ts';
-import { handleRequestWith } from './utils/handleRequestWith.ts';
 
 declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };
 
 self.VERSION = '1.0.0';
 
 const apiPattern = '/api/';
-export const todosUrl = '/api/get_todos';
 
 export let state: Entities;
 const { log } = console;
@@ -38,6 +36,17 @@ export async function loadState() {
             log('sw: error in loadState', error);
         }
     }
+}
+
+export function handleRequestWith(event: FetchEvent, handler: () => Promise<Response>) {
+    event.respondWith(
+        loadState()
+            .then(() => handler())
+            .then((responce) => {
+                saveState(state);
+                return responce;
+            }),
+    );
 }
 
 self.onerror = function (event) {
