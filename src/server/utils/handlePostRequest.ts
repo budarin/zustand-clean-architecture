@@ -13,8 +13,8 @@ export async function handlePostRequest(request: Request, method: string) {
         }
 
         case 'log': {
-            const data = await request.json();
             const { log } = console;
+            const data = await request.json();
 
             switch (data.type) {
                 case 'info': {
