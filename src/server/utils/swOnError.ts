@@ -1,5 +1,5 @@
-export function swOnError(event: string | ErrorEvent | Event): void {
-    const { log } = console;
+import { logger } from '../services/logger';
 
-    log('sw error:', event);
+export function swOnError(event: string | ErrorEvent | Event): void {
+    logger.error({ error: 'sw error:', event });
 }

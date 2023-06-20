@@ -13,3 +13,5 @@ export const logger = {
 };
 
 export const loggerMethods = ['info', 'warn', 'error'];
+
+export type LoggerKey = keyof typeof logger;

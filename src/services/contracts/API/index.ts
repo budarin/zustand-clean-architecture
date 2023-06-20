@@ -1,9 +1,10 @@
+import { onResponse } from './onResponse';
+import { onCatchError } from './onCatchError';
+
 const jsonHeader = { 'Content-Type': 'application/json; charset=utf-8' };
 
 export async function getTodoStore(): Promise<Entities> {
-    return fetch('/api/get_todos').then((resp) => {
-        return resp.json();
-    });
+    return fetch('/api/get_todos').then(onResponse).catch(onCatchError);
 }
 
 export async function createCategory(category: Category): Promise<JsonRpcResult<Category>> {
@@ -11,9 +12,9 @@ export async function createCategory(category: Category): Promise<JsonRpcResult<
         method: 'POST',
         body: JSON.stringify(category),
         headers: jsonHeader,
-    }).then((resp) => {
-        return resp.json();
-    });
+    })
+        .then(onResponse)
+        .catch(onCatchError);
 }
 
 export async function updateCategory(category: Category): Promise<Category> {
@@ -21,9 +22,9 @@ export async function updateCategory(category: Category): Promise<Category> {
         method: 'PATCH',
         body: JSON.stringify(category),
         headers: jsonHeader,
-    }).then((resp) => {
-        return resp.json();
-    });
+    })
+        .then(onResponse)
+        .catch(onCatchError);
 }
 
 export async function deleteCategory(category: Category): Promise<Category> {
@@ -31,9 +32,9 @@ export async function deleteCategory(category: Category): Promise<Category> {
         method: 'DELETE',
         body: JSON.stringify(category),
         headers: jsonHeader,
-    }).then((resp) => {
-        return resp.json();
-    });
+    })
+        .then(onResponse)
+        .catch(onCatchError);
 }
 
 export async function createTodo(todo: Todo): Promise<Todo> {
@@ -41,9 +42,9 @@ export async function createTodo(todo: Todo): Promise<Todo> {
         method: 'POST',
         body: JSON.stringify(todo),
         headers: jsonHeader,
-    }).then((resp) => {
-        return resp.json();
-    });
+    })
+        .then(onResponse)
+        .catch(onCatchError);
 }
 
 export async function updateTodo(todo: Todo): Promise<Todo> {
@@ -51,9 +52,9 @@ export async function updateTodo(todo: Todo): Promise<Todo> {
         method: 'PATCH',
         body: JSON.stringify(todo),
         headers: jsonHeader,
-    }).then((resp) => {
-        return resp.json();
-    });
+    })
+        .then(onResponse)
+        .catch(onCatchError);
 }
 
 export async function deleteTodo(todo: Todo): Promise<Todo> {
@@ -61,9 +62,9 @@ export async function deleteTodo(todo: Todo): Promise<Todo> {
         method: 'DELETE',
         body: JSON.stringify(todo),
         headers: jsonHeader,
-    }).then((resp) => {
-        return resp.json();
-    });
+    })
+        .then(onResponse)
+        .catch(onCatchError);
 }
 
 export function log(data: UnknownObject): void {
@@ -71,11 +72,5 @@ export function log(data: UnknownObject): void {
         method: 'POST',
         body: JSON.stringify(data),
         headers: jsonHeader,
-    }).catch((error) => {
-        console.log('API error:', error, data);
-
-        return {
-            error: jsonHeader,
-        };
-    });
+    }).catch(onCatchError);
 }
