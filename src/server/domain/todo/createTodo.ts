@@ -10,11 +10,14 @@ export async function createTodo(request: Request): Promise<Response> {
         const { entity, error } = validateTodoEntity(data, state);
 
         if (entity) {
-            const ids = state?.todos?.map((item) => item.todo_id) || [1];
+            const ids = state.todos.map((item) => item.todo_id) || [1];
             const newId = Math.max(...ids) + 1;
-            const newTodo = { ...entity, todo_id: newId };
+            const newTodo = {
+                ...entity,
+                todo_id: newId,
+            };
 
-            state?.todos?.push(newTodo);
+            state.todos.push(newTodo);
 
             return respondWithResult(newTodo);
         } else {
