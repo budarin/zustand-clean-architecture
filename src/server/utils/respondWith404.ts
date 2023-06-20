@@ -1,6 +1,6 @@
 import { jsonHeader } from './consts';
 
-export function respondWith404() {
+export function respondWith404(): TypedResponse<JsonRpcError<undefined>> {
     return new Response(
         JSON.stringify({
             error: {

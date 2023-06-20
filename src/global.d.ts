@@ -25,7 +25,7 @@ type TimeStamp = number;
 type UnknownObject = Record<string, unknown>;
 type LikeEntity<T> = Partial<T> | { [key: string]: unknown };
 
-type JdonRpcError<E> = {
+type JsonRpcError<E> = {
     code: number;
     error: string;
     data?: E;
@@ -38,5 +38,5 @@ type JsonRpcResult<T, E extends unknown = unknown> =
       }
     | {
           result?: never;
-          error: JdonRpcError<E>;
+          error: JsonRpcError<E>;
       };

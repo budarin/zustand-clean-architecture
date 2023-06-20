@@ -3,7 +3,7 @@ import { validateTodoEntity } from './validateTodoEntity.ts';
 import { respondWithError } from '../../utils/respondWithError.ts';
 import { respondWithResult } from '../../utils/respondWithResult.ts';
 
-export async function createTodo(request: Request): Promise<Response> {
+export async function createTodo(request: Request) {
     try {
         const state = getState();
         const data = await request.json();

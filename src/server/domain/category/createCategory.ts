@@ -3,7 +3,7 @@ import { respondWithError } from '../../utils/respondWithError.ts';
 import { respondWithResult } from '../../utils/respondWithResult.ts';
 import { validateNewCategory } from '../../../domain/entities/category/index.ts';
 
-export async function createCategory(request: Request): Promise<Response> {
+export async function createCategory(request: Request) {
     try {
         const state = getState();
         const data = await request.json();
