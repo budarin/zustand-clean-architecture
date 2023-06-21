@@ -14,13 +14,24 @@ jobs:
             - uses: actions/checkout@v3
             - uses: actions/setup-node@v3
               with:
-                  node-version: 16
-            - name: Install dependencies
-              run: yarn
+                  node-version: 'latest'
+
+            - name: Enable Cache
+              id: cache_step
+              uses: actions/cache@v3
+              with:
+                  key: ${{ hashFiles('yarn.lock') }}
+                  path: node_modules
+
+            - if: ${{ steps.cache_step.outputs.cache-hit != 'true' }}
+              run: yarn install --frozen-lockfile
+
             - name: Install Playwright Browsers
               run: yarn playwright install --with-deps
+
             - name: Run Playwright tests
               run: yarn playwright test
+
             - uses: actions/upload-artifact@v3
               if: always()
               with:
