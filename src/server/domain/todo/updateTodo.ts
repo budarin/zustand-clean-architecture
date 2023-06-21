@@ -8,12 +8,11 @@ export async function updateTodo(request: Request): Promise<Response> {
     try {
         const state = getState();
         const data = await request.json();
-        const { entity, error } = validateTodoEntity(data, state);
+        const { entity, error } = validateTodoEntity(data, state, 'update');
 
         if (entity) {
             // если нет такой записи в todos - ошибка
             const idx = state.categories.findIndex((item) => item.category_id === entity.category_id);
-
             if (idx === -1) {
                 return respondWith404();
             }
