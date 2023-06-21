@@ -1,6 +1,8 @@
-name: My todos
+name: Build the project
 
 on:
+    push:
+        branches: [main, master]
     pull_request:
         types:
             - opened
