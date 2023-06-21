@@ -23,6 +23,7 @@ on:
             - '.dockerignore'
             - '.editorconfig'
             - '.env.*'
+            - './src/server/__tests__/**'
 
 permissions:
     contents: write # to fetch code (actions/checkout)

@@ -7,6 +7,20 @@ on:
             - opened
             - edited
         branches: [main, master]
+        paths-ignore:
+            - 'docs/**'
+            - '**.md'
+            - '.vscode/**'
+            - '.eslint*.*'
+            - '.gitignore'
+            - '.huskyrc.js'
+            - '.prettier*.*'
+            - 'docker-stack.yml'
+            - 'backups/**'
+            - '.dockerignore'
+            - '.editorconfig'
+            - '.env.*'
+
 jobs:
     test:
         timeout-minutes: 60
