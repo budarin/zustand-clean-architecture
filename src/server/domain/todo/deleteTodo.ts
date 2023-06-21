@@ -2,29 +2,28 @@ import { getState } from '../state.ts';
 import { respondWith404 } from '../../utils/respondWith404.ts';
 import { respondWithError } from '../../utils/respondWithError.ts';
 import { respondWithResult } from '../../utils/respondWithResult.ts';
+import { validateTodoEntity } from './validateTodoEntity.ts';
 
 export async function deleteTodo(request: Request): Promise<Response> {
     try {
-        const { todo_id } = await request.json();
-
-        // если нет todo_id - ошибка
-        if (todo_id === undefined) {
-            return respondWithError('Отсутствует todo_id');
-        }
-
         const state = getState();
+        const data = await request.json();
+        const { entity, error } = validateTodoEntity(data, state, 'delete');
 
-        // если нет такой записи в todos - ошибка
-        const idx = state.todos.findIndex((item) => item.todo_id === todo_id);
+        if (entity) {
+            // если нет такой записи в todos - ошибка
+            const idx = state.todos.findIndex((item) => item.todo_id === entity.todo_id);
+            if (idx === -1) {
+                return respondWith404();
+            }
 
-        if (idx === -1) {
-            return respondWith404();
+            const todo = state.todos[idx];
+            state.todos.splice(idx, 1);
+
+            return respondWithResult(todo);
+        } else {
+            return respondWithError(error);
         }
-
-        const todo = state.todos[idx];
-        state.todos.splice(idx, 1);
-
-        return respondWithResult(todo);
     } catch (error) {
         const { message, stack } = error as Error;
 
