@@ -1,3 +1,3 @@
 interface TypedResponse<T = any> extends Response {
-    json<P = T>(): Promise<P>;
+    json<T>(): Promise<T>;
 }
