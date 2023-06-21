@@ -7,7 +7,7 @@ export async function createTodo(request: Request): Promise<TypedResponse<JsonRp
     try {
         const state = getState();
         const data = await request.json();
-        const { entity, error } = validateTodoEntity(data, state);
+        const { entity, error } = validateTodoEntity(data, state, 'create');
 
         if (entity) {
             const ids = state.todos.map((item) => item.todo_id) || [1];
