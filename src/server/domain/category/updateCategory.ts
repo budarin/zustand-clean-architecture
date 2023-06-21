@@ -8,7 +8,7 @@ export async function updateCategory(request: Request): Promise<Response> {
     try {
         const state = getState();
         const data = await request.json();
-        const { entity, error } = validateCategoryEntity(data, state);
+        const { entity, error } = validateCategoryEntity(data, state, 'update');
 
         if (entity) {
             if (state.categories.length === 0) {

@@ -1,7 +1,7 @@
 import { getState } from '../state.ts';
 import { respondWithError } from '../../utils/respondWithError.ts';
 import { respondWithResult } from '../../utils/respondWithResult.ts';
-import { validateNewCategory } from '../../../domain/entities/category/index.ts';
+import { validateCategoryEntity } from './validateCategoryEntity.ts';
 
 export async function createCategory(
     request: Request,
@@ -9,14 +9,14 @@ export async function createCategory(
     try {
         const state = getState();
         const data = await request.json();
-        const { entity, error } = validateNewCategory(data);
+        const { entity, error } = validateCategoryEntity(data, state, 'create');
 
         if (entity) {
             const ids = state.categories.map((item) => item.category_id) || [1];
             const newId = Math.max(...ids) + 1;
             const newCategory = {
-                category_id: newId,
                 ...entity,
+                category_id: newId,
             };
 
             state.categories.push(newCategory);
