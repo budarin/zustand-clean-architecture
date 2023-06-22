@@ -3,14 +3,15 @@ import { loadState } from './loadState.ts';
 
 export function handleRequestWith(event: FetchEvent, handler: () => Promise<Response>) {
     event.respondWith(
-        loadState().then(async () => {
-            const resp = await handler();
-            await saveState();
+        loadState()
+            .then(async () => {
+                const resp = await handler();
+                await saveState();
 
-            return resp;
-        }),
-        // .then(async (responce) => {
-        //     return responce;
-        // }),
+                return resp;
+            })
+            .then(async (responce) => {
+                return responce;
+            }),
     );
 }
