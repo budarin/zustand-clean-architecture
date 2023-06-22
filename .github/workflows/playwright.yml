@@ -35,7 +35,7 @@ jobs:
 
             - name: Get installed Playwright version
               id: playwright-version
-              run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./package.json').devDependencies['@playwright/test'])")" >> $GITHUB_ENV
+              run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./package.json').devDependencies['@playwright/test'].slice(1))")" >> $GITHUB_ENV
 
             - name: Enable Cache
               id: npm-cache
