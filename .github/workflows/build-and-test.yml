@@ -36,7 +36,7 @@ jobs:
 
         steps:
             - if: ${{ github.event_name == 'pull_request' && github.event.action != 'closed' }}
-              run: echo ""
+              run: exit 0
 
             - name: Git Checkout
               uses: actions/checkout@v3
