@@ -62,6 +62,9 @@ jobs:
             - if: ${{ steps.npm_cache.outputs.cache-hit != 'true' }}
               run: npx playwright install --with-deps
 
+            - if: ${{ steps.npm_cache.outputs.cache-hit != 'true' }}
+              run: npx playwright install-deps
+
             - name: Run Playwright tests
               run: yarn playwright test
 
