@@ -60,8 +60,7 @@ jobs:
               run: yarn test
 
             - name: build
-              run: |
-                  yarn build
+              run: yarn build
 
             - name: Commit and push changes
               run: |
