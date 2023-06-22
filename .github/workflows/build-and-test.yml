@@ -58,6 +58,7 @@ jobs:
               run: |
                   yarn tsc
                   echo "Merged: ${{ github.event }}"
+                  echo "Merged: ${{ github.event.pull_request }}"
 
             - name: test
               run: yarn test
