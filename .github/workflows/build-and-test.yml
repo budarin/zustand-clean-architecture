@@ -56,9 +56,9 @@ jobs:
               run: yarn install --frozen-lockfile
             - name: lint
               run: |
-                  | yarn tsc
-                  | echo github.event_name
-                  | github.event.pull_request.merged
+                  yarn tsc
+                  echo github.event_name
+                  github.event.pull_request.merged
 
             - name: test
               run: yarn test
