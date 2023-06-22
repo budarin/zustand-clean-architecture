@@ -55,7 +55,7 @@ export function validateCategoryEntity(
 
         if (state.categories.some((category) => category.category_id === entity.category_id) === false) {
             return {
-                error: 'Категория не найдена!',
+                error: `Категория "${entity.category_id}" не найдена`,
             };
         }
     }
