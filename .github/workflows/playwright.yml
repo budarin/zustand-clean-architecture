@@ -43,8 +43,8 @@ jobs:
             - if: ${{ steps.cache_step.outputs.cache-hit != 'true' }}
               run: yarn install --frozen-lockfile
 
-            - name: Install Playwright Browsers
-              run: yarn playwright install --with-deps
+            # - name: Install Playwright Browsers
+            #   run: yarn playwright install --with-deps
 
             - name: Run Playwright tests
               run: yarn playwright test
