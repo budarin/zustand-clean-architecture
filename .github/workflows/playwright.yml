@@ -48,7 +48,7 @@ jobs:
               id: playwright-cache
               uses: actions/cache@v3
               with:
-                  key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+                  key: ${{ hashFiles('yarn.lock') }}
                   path: ~/.cache/ms-playwright
 
             - if: ${{ steps.npm_cache.outputs.cache-hit != 'true' }}
