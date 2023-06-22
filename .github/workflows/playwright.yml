@@ -23,12 +23,11 @@ on:
 
 jobs:
     test:
-        timeout-minutes: 60
+        if: ${{ github.event_name != 'pull_request' || github.event.pull_request.merged == false }}
+        timeout-minutes: 5
         runs-on: ubuntu-latest
-        steps:
-            - if: ${{ github.event_name == 'pull_request' && github.event.action != 'closed' }}
-              run: exit 0
 
+        steps:
             - uses: actions/checkout@v3
             - uses: actions/setup-node@v3
               with:
@@ -44,8 +43,8 @@ jobs:
             - if: ${{ steps.cache_step.outputs.cache-hit != 'true' }}
               run: yarn install --frozen-lockfile
 
-            - name: Install Playwright Browsers
-              run: yarn playwright install --with-deps
+            # - name: Install Playwright Browsers
+            #   run: yarn playwright install --with-deps
 
             - name: Run Playwright tests
               run: yarn playwright test
