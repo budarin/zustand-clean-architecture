@@ -30,7 +30,7 @@ export function validateTodoEntity(
     if (operation === 'add' || operation === 'create' || operation === 'update') {
         if (state.statuses.some((status) => status.status_id === entity.status_id) === false) {
             return {
-                error: 'Статус задачи не обнаружен в стправочнике!!',
+                error: 'Статус задачи не обнаружен в стправочнике!',
             };
         }
 
@@ -39,7 +39,7 @@ export function validateTodoEntity(
             state.categories?.some((category) => entity.category_id === category.category_id) === false
         ) {
             return {
-                error: 'Категория задачи не обнаружена в стправочнике!!',
+                error: 'Категория задачи не обнаружена в стправочнике!',
             };
         }
     }

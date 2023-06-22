@@ -11,13 +11,13 @@ export function validateTodoEntity(todo: UnknownObject, state: TodosState): Vali
 
     if (state.statuses.ids.includes(entity.status_id) === false) {
         return {
-            error: 'Статус задачи не обнаружен в стправочнике!!',
+            error: 'Статус задачи не обнаружен в стправочнике!',
         };
     }
 
     if (entity.category_id && state.categories.ids.includes(entity.category_id) === false) {
         return {
-            error: 'Категория задачи не обнаружена в стправочнике!!',
+            error: 'Категория задачи не обнаружена в стправочнике!',
         };
     }
 
