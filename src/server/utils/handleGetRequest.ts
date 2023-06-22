@@ -8,6 +8,7 @@ export async function handleGetRequest(event: FetchEvent, pathname: string) {
         event.respondWith(
             loadState().then(() => {
                 const state = getState();
+
                 return new Response(JSON.stringify(state), {
                     headers: jsonHeader,
                 });
