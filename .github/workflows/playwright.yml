@@ -45,19 +45,21 @@ jobs:
               uses: actions/cache@v3
               with:
                   key: ${{ hashFiles('yarn.lock') }}
-                  path: node_modules
+                  path: |
+                      node_modules
+                      ~/.cache/ms-playwright
 
-            - name: Cache playwright binaries
-              id: playwright_cache
-              uses: actions/cache@v3
-              with:
-                  key: playwright-${{ env.PLAYWRIGHT_VERSION }}
-                  path: ~/.cache/ms-playwright
+            # - name: Cache playwright binaries
+            #   id: playwright_cache
+            #   uses: actions/cache@v3
+            #   with:
+            #       key: playwright-${{ env.PLAYWRIGHT_VERSION }}
+            #       path: ~/.cache/ms-playwright
 
             - if: ${{ steps.npm_cache.outputs.cache-hit != 'true' }}
               run: yarn install --frozen-lockfile
 
-            - if: ${{ steps.playwright_cache.outputs.cache-hit != 'true' }}
+            - if: ${{ steps.npm_cache.outputs.cache-hit != 'true' }}
               run: |
                   echo ${{ steps.playwright_cache.outputs.cache-hit }}
                   npx playwright install --with-deps
