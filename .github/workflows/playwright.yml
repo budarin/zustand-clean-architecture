@@ -1,4 +1,5 @@
 # https://playwrightsolutions.com/playwright-github-action-to-cache-the-browser-binaries/
+
 name: Playwright Tests
 
 on:
@@ -46,7 +47,7 @@ jobs:
                   key: nm-pw-${{ hashFiles('yarn.lock') }}
                   path: |
                       node_modules
-                      ~/.cache/ms-playwright
+                      ${{ github.workspace }}/ms-playwright
 
             # - name: Cache playwright binaries
             #   id: playwright_cache
