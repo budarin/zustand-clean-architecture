@@ -49,7 +49,7 @@ jobs:
               id: playwright_cache
               uses: actions/cache@v3
               with:
-                  key: playwright-${{ hashFiles('yarn.lock') }}
+                  key: playwright-${{ env.PLAYWRIGHT_VERSION }}
                   path: ~/.cache/ms-playwright
 
             - if: ${{ steps.npm_cache.outputs.cache-hit != 'true' }}
