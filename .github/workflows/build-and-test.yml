@@ -41,7 +41,7 @@ jobs:
               id: setup_node_step
               uses: actions/setup-node@v3
               with:
-                  node-version: 'latest'
+                  node-version: '20'
 
             - name: Enable Cache
               id: cache_step
