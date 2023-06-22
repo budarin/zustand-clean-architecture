@@ -30,7 +30,7 @@ permissions:
 
 jobs:
     build:
-        if: ${{ github.event_name != 'pull_request' || github.event.pull_request.merged == false }}
+        if: ${{ github.event_name != 'pull_request' || github.event.pull_request.merged != 'true' }}
         name: build
         runs-on: ubuntu-latest
         timeout-minutes: 5
