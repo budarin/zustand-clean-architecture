@@ -53,8 +53,8 @@ jobs:
             - if: ${{ steps.cache_step.outputs.cache-hit != 'true' }}
               run: yarn install --frozen-lockfile
 
-            - run: npx playwright install --with-deps
-              if: steps.playwright-cache.outputs.cache-hit != 'true'
+            - if: ${{ steps.playwright-cache.outputs.cache-hit != 'true' }}
+              run: npx playwright install --with-deps
 
             - name: Run Playwright tests
               run: yarn playwright test
