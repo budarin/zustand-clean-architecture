@@ -39,7 +39,7 @@ jobs:
               id: playwright-version
               run: |
                   echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./package.json').devDependencies['@playwright/test'].slice(1))")" >> $GITHUB_ENV
-                  ls ~/.cache/
+                  ls ~/.cache/ms-playwright
 
             - name: Cache Node modules
               id: npm_cache
