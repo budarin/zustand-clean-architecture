@@ -1,5 +1,4 @@
 import { getState } from '../state.ts';
-import { respondWith404 } from '../../utils/respondWith404.ts';
 import { respondWithError } from '../../utils/respondWithError.ts';
 import { respondWithResult } from '../../utils/respondWithResult.ts';
 import { validateCategoryEntity } from './validateCategoryEntity.ts';
