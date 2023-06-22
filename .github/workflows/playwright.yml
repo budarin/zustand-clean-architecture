@@ -1,5 +1,4 @@
 # https://playwrightsolutions.com/playwright-github-action-to-cache-the-browser-binaries/
-
 name: Playwright Tests
 
 on:
@@ -39,7 +38,6 @@ jobs:
               id: playwright-version
               run: |
                   echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./package.json').devDependencies['@playwright/test'].slice(1))")" >> $GITHUB_ENV
-                  ls ~/.cache/ms-playwright
 
             - name: Cache Node modules
               id: npm_cache
