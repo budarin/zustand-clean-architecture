@@ -53,13 +53,12 @@ jobs:
                   path: node_modules
 
             - if: ${{ steps.cache_step.outputs.cache-hit != 'true' }}
+              run: yarn install --frozen-lockfile
+            - name: lint
               run: |
-                  | yarn install --frozen-lockfile
+                  | yarn tsc
                   | echo github.event_name
                   | github.event.pull_request.merged
-
-            - name: lint
-              run: yarn tsc
 
             - name: test
               run: yarn test
