@@ -1,7 +1,8 @@
 import { test, expect } from '@playwright/test';
-import { serverInitialState } from '../utils/serverInitialState';
+import { serverInitialState } from '../utils/serverInitialState.ts';
+import { waitForServiceWorker } from './utils/waitForServiceWorker.ts';
 
-test.beforeEach(async ({ page }) => {
+test.beforeAll(async ({ page }) => {
     await page.goto('/');
 });
 
@@ -13,19 +14,7 @@ test.describe('Приложение', async () => {
 
 test.describe('Service-worker', () => {
     test('Получение первоначального состояния', async ({ page }) => {
-        // await a promise that resolves when the page is controlled.
-        // Ensure you include clients.claim() in your activate handler!
-        await page.evaluate(async () => {
-            await new Promise((resolve) => {
-                if (navigator.serviceWorker.controller) {
-                    // If we're already controlled, resolve immediately.
-                    resolve(true);
-                } else {
-                    // Otherwise, resolve after controllerchange fires.
-                    navigator.serviceWorker.addEventListener('controllerchange', () => resolve(true));
-                }
-            });
-        });
+        await waitForServiceWorker(page);
 
         const todosStore = await page.evaluate(async () => {
             const req = await fetch('/api/get_todos');
