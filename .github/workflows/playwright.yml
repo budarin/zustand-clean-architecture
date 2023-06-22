@@ -24,7 +24,7 @@ on:
 
 jobs:
     test:
-        if: ${{ github.ref != 'refs/heads/master' }}
+        # if: ${{ github.ref != 'refs/heads/master' }}
         timeout-minutes: 5
 
         runs-on: ubuntu-latest
