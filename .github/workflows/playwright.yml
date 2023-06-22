@@ -38,14 +38,14 @@ jobs:
             #   run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./package.json').devDependencies['@playwright/test'].slice(1))")" >> $GITHUB_ENV
 
             - name: Cache Node modules
-              id: npm-cache
+              id: npm_cache
               uses: actions/cache@v3
               with:
                   key: ${{ hashFiles('yarn.lock') }}
                   path: node_modules
 
             - name: Cache playwright binaries
-              id: playwright-cache
+              id: playwright_cache
               uses: actions/cache@v3
               with:
                   key: ${{ hashFiles('yarn.lock') }}
@@ -54,8 +54,10 @@ jobs:
             - if: ${{ steps.npm_cache.outputs.cache-hit != 'true' }}
               run: yarn install --frozen-lockfile
 
-            - if: ${{ steps.playwright-cache.outputs.cache-hit != 'true' }}
-              run: npx playwright install --with-deps
+            - if: ${{ steps.playwright_cache.outputs.cache-hit != 'true' }}
+              run: |
+                  echo ${{ steps.playwright_cache.outputs.cache-hit }}
+                  npx playwright install --with-deps
 
             - name: Run Playwright tests
               run: yarn playwright test
