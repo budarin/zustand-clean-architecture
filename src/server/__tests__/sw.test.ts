@@ -1,17 +1,18 @@
 import { test, expect } from '@playwright/test';
 import { serverInitialState } from '../utils/serverInitialState';
 
+test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+});
+
 test.describe('Приложение', async () => {
     test('Запущено и работает', async ({ page }) => {
-        await page.goto('/');
         await expect(page).toHaveTitle(/Мои Задачи/);
     });
 });
 
 test.describe('Service-worker', () => {
     test('Получение первоначального состояния', async ({ page }) => {
-        await page.goto('/');
-
         // await a promise that resolves when the page is controlled.
         // Ensure you include clients.claim() in your activate handler!
         await page.evaluate(async () => {
