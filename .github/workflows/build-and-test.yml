@@ -30,7 +30,7 @@ permissions:
 
 jobs:
     build:
-        if: ${{ github.github_ref != 'refs/heads/master' }}
+        if: ${{ GITHUB_REF != 'refs/heads/master' }}
         name: build
         runs-on: ubuntu-latest
         timeout-minutes: 5
