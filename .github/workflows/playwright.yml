@@ -1,6 +1,6 @@
+# https://playwrightsolutions.com/playwright-github-action-to-cache-the-browser-binaries/
 name: Playwright Tests
 
-# https://playwrightsolutions.com/playwright-github-action-to-cache-the-browser-binaries/
 on:
     push:
         branches: [main, master]
