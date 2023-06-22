@@ -57,8 +57,7 @@ jobs:
             - name: lint
               run: |
                   yarn tsc
-                  echo "Merged: ${{ github.event }}"
-                  echo "Merged: ${{ github.event.pull_request }}"
+                  printenv
 
             - name: test
               run: yarn test
