@@ -46,7 +46,7 @@ jobs:
                   key: nm-pw-${{ hashFiles('yarn.lock') }}
                   path: |
                       node_modules
-                      ${{ github.workspace }}/ms-playwright
+                      ~/.cache/ms-playwright
 
             - if: ${{ steps.npm_cache.outputs.cache-hit != 'true' }}
               run: yarn install --frozen-lockfile
