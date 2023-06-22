@@ -6,6 +6,7 @@ on:
     pull_request:
         types:
             - opened
+            - edited
             - synchronize
         branches:
             - master
@@ -22,6 +23,7 @@ on:
             - '.dockerignore'
             - '.editorconfig'
             - '.env.*'
+            - 'src/server/__tests__/**'
 
 permissions:
     contents: write # to fetch code (actions/checkout)
@@ -33,6 +35,9 @@ jobs:
         timeout-minutes: 5
 
         steps:
+            - if: ${{ github.event_name == 'pull_request' && github.event.action != 'closed' }}
+              run: echo ""
+
             - name: Git Checkout
               uses: actions/checkout@v3
 
