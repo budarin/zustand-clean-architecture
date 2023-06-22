@@ -41,7 +41,7 @@ jobs:
               id: setup_node_step
               uses: actions/setup-node@v3
               with:
-                  node-version: 'latest'
+                  node-version: '20'
 
             - name: Enable Cache
               id: cache_step
@@ -52,10 +52,9 @@ jobs:
 
             - if: ${{ steps.cache_step.outputs.cache-hit != 'true' }}
               run: yarn install --frozen-lockfile
+
             - name: lint
-              run: |
-                  yarn tsc
-                  printenv
+              run: yarn tsc
 
             - name: test
               run: yarn test

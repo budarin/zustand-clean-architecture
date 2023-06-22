@@ -24,16 +24,27 @@ jobs:
     test:
         if: ${{ github.ref != 'refs/heads/master' }}
         timeout-minutes: 5
-        runs-on: ubuntu-latest
 
+        runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
             - uses: actions/setup-node@v3
               with:
-                  node-version: 'latest'
+                  node-version: '20'
+
+            - name: Get installed Playwright version
+              id: playwright-version
+              run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./package-lock.json').dependencies['@playwright/test'].version)")" >> $GITHUB_ENV
+
+            - name: Cache playwright binaries
+              id: playwright-cache
+              uses: actions/cache@v3
+              with:
+                  key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+                  path: ~/.cache/ms-playwright
 
             - name: Enable Cache
-              id: cache_step
+              id: npm_step
               uses: actions/cache@v3
               with:
                   key: ${{ hashFiles('yarn.lock') }}
@@ -42,8 +53,8 @@ jobs:
             - if: ${{ steps.cache_step.outputs.cache-hit != 'true' }}
               run: yarn install --frozen-lockfile
 
-            - name: Install Playwright Browsers
-              run: yarn playwright install --with-deps
+            - run: npx playwright install --with-deps
+              if: steps.playwright-cache.outputs.cache-hit != 'true'
 
             - name: Run Playwright tests
               run: yarn playwright test

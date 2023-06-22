@@ -13,17 +13,7 @@ export async function deleteCategory(request: Request): Promise<Response> {
         if (entity) {
             // если нет такой записи в categories - ошибка
             const idx = state.categories.findIndex((item) => item.category_id === entity.category_id);
-            if (idx === -1) {
-                return respondWith404();
-            }
-
             const category = state.categories[idx];
-
-            // если есть связанные todos - ошибка
-            const hasLinkedTodos = state.todos.some((item) => item.category_id === entity.category_id);
-            if (hasLinkedTodos) {
-                return respondWithError('Нельзя удалить Категорию - с ней связаны задачи!', category);
-            }
 
             state.categories.splice(idx, 1);
 

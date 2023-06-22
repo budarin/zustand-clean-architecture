@@ -11,11 +11,7 @@ export async function updateCategory(request: Request): Promise<Response> {
         const { entity, error } = validateCategoryEntity(data, state, 'update');
 
         if (entity) {
-            // если нет такой записи в categories - ошибка
             const idx = state.categories.findIndex((item) => item.category_id === entity.category_id);
-            if (idx === -1) {
-                return respondWith404();
-            }
 
             state.categories[idx] = entity;
 
