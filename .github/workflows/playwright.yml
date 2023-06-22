@@ -44,7 +44,7 @@ jobs:
               id: npm_cache
               uses: actions/cache@v3
               with:
-                  key: ${{ hashFiles('yarn.lock') }}
+                  key: nm-pw-${{ hashFiles('yarn.lock') }}
                   path: |
                       node_modules
                       ~/.cache/ms-playwright
