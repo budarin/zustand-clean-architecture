@@ -37,7 +37,7 @@ jobs:
               id: playwright-version
               run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./package.json').devDependencies['@playwright/test'].slice(1))")" >> $GITHUB_ENV
 
-            - name: Enable Cache
+            - name: Cache Node modules
               id: npm-cache
               uses: actions/cache@v3
               with:
@@ -48,7 +48,7 @@ jobs:
               id: playwright-cache
               uses: actions/cache@v3
               with:
-                  key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+                  key: ${{ hashFiles('yarn.lock') }}
                   path: ~/.cache/ms-playwright
 
             - if: ${{ steps.npm_cache.outputs.cache-hit != 'true' }}
