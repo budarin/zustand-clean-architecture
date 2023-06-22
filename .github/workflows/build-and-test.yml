@@ -52,10 +52,9 @@ jobs:
 
             - if: ${{ steps.cache_step.outputs.cache-hit != 'true' }}
               run: yarn install --frozen-lockfile
+
             - name: lint
-              run: |
-                  yarn tsc
-                  printenv
+              run: yarn tsc
 
             - name: test
               run: yarn test
