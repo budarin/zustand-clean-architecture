@@ -27,7 +27,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - if: ${{ github.event_name == 'pull_request' && github.event.action != 'closed' }}
-              run: echo ""
+              run: exit 0
 
             - uses: actions/checkout@v3
             - uses: actions/setup-node@v3
