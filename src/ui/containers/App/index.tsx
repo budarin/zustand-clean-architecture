@@ -3,7 +3,7 @@ import { FC, useCallback, useEffect, useState } from 'react';
 import { useMediaQuery } from 'usehooks-ts';
 import { cleanUpHtml } from './cleanUpHtml.ts';
 
-import App from '../../components/App/index.tsx';
+import AppProps from '../../components/App/index.tsx';
 
 import './index.css';
 

@@ -7,12 +7,12 @@ import './index.css';
 
 const appContainerCN = cn('App__Container');
 
-type App = {
+type AppProps = {
     isNavPanelVisible: boolean;
     isSmallScreen: boolean;
     todoListView: JSX.Element;
     navigationPanel: JSX.Element;
-    toggleNavPane: () => void;
+    onToggleNavPane: () => void;
 };
 
 const onScroll: React.UIEventHandler<HTMLDivElement> = (event) => {
@@ -20,15 +20,15 @@ const onScroll: React.UIEventHandler<HTMLDivElement> = (event) => {
     el.className = appContainerCN({ scrolled: el.scrollTop > 0 });
 };
 
-const App: FC<App> = (props) => {
-    const { isNavPanelVisible, isSmallScreen, navigationPanel, todoListView, toggleNavPane } = props;
+const App: FC<AppProps> = (props) => {
+    const { isNavPanelVisible, isSmallScreen, navigationPanel, todoListView, onToggleNavPane } = props;
 
     return (
         <main className="App">
             <AppHeader
                 isSmallScreen={isSmallScreen}
                 isNavPanelVisible={isNavPanelVisible}
-                toggleNavPane={toggleNavPane}
+                onToggleNavPane={onToggleNavPane}
             />
 
             <div className="App__Container" onScroll={onScroll}>
