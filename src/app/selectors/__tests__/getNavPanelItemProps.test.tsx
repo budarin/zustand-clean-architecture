@@ -1,9 +1,9 @@
 import { createRoot } from 'react-dom/client';
 import { act } from '@testing-library/react-hooks';
-import { resetStore } from './utils/store.setup.ts';
-import { getNavigationPanelItemProps } from '../getNavigationPanelItemProps.ts';
 
+import { resetStore } from './utils/store.setup.ts';
 import TestComponent from './utils/TestComponent.tsx';
+import { getNavigationPanelItemProps } from '../getNavigationPanelItemProps.ts';
 
 type GetNavigationPanelItemProps = ReturnType<typeof getNavigationPanelItemProps>;
 
