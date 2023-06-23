@@ -8,11 +8,11 @@ import TestComponent from './utils/TestComponent.tsx';
 type GetNavigationPanelItemProps = ReturnType<typeof getNavigationPanelItemProps>;
 
 const root = createRoot(document.createElement('div'));
-let result = {} as GetNavigationPanelItemProps;
+let result: GetNavigationPanelItemProps | undefined = undefined;
 
 beforeAll(() => {
     resetStore();
-    result = {} as GetNavigationPanelItemProps;
+    result = undefined;
 });
 
 describe('getNavigationPanelItemProps', () => {
