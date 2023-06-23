@@ -10,8 +10,8 @@ import {
 } from '../../domain/store/navigationFilter/index.ts';
 
 type GetNavPanelItemPropsSelector = (
-    id: NavigationFilterKey,
     navigationType: NavigationFilterType,
+    id: NavigationFilterKey,
 ) => (
     state: TodosState,
 ) =>
@@ -19,7 +19,7 @@ type GetNavPanelItemPropsSelector = (
     | { isCategory: false; title: string; icon: string; selected: boolean }
     | undefined;
 
-export const getNavPanelItemPropsSelector: GetNavPanelItemPropsSelector = (id, navigationType) =>
+export const getNavPanelItemPropsSelector: GetNavPanelItemPropsSelector = (navigationType, id) =>
     useCallback(
         (state: TodosState) => {
             const filter = state.navigationFilter;
@@ -56,5 +56,5 @@ export const getNavPanelItemPropsSelector: GetNavPanelItemPropsSelector = (id, n
         [id, navigationType],
     );
 
-export const getNavigationPanelItemProps = (id: NavigationFilterKey, navigationType: NavigationFilterType) =>
-    useTodoStore(getNavPanelItemPropsSelector(id, navigationType), shallow);
+export const getNavigationPanelItemProps = (navigationType: NavigationFilterType, id: NavigationFilterKey) =>
+    useTodoStore(getNavPanelItemPropsSelector(navigationType, id), shallow);

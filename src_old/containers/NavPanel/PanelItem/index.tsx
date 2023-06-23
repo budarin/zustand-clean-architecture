@@ -21,7 +21,7 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainer):
     const { id, navigationType } = props;
 
     const [expanded, setExpanded] = useState(false);
-    const navPanelItemProps = getNavigationPanelItemProps(id, navigationType);
+    const navPanelItemProps = getNavigationPanelItemProps(navigationType, id);
 
     // если нет данных для элемента - не рисуем его
     if (!navPanelItemProps) {

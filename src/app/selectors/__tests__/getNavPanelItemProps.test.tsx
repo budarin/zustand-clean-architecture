@@ -15,7 +15,7 @@ describe('getNavigationPanelItemProps', () => {
             createRoot(document.createElement('div')).render(
                 <TestComponent
                     hook={() => {
-                        selectedNavItemProps = getNavigationPanelItemProps('inbox', 'filter');
+                        selectedNavItemProps = getNavigationPanelItemProps('filter', 'inbox');
                     }}
                 />,
             );
@@ -38,7 +38,7 @@ describe('getNavigationPanelItemProps', () => {
             createRoot(document.createElement('div')).render(
                 <TestComponent
                     hook={() => {
-                        selectedNavItemProps = getNavigationPanelItemProps(1, 'category');
+                        selectedNavItemProps = getNavigationPanelItemProps('category', 1);
                     }}
                 />,
             );
@@ -61,7 +61,7 @@ describe('getNavigationPanelItemProps', () => {
             createRoot(document.createElement('div')).render(
                 <TestComponent
                     hook={() => {
-                        selectedNavItemProps = getNavigationPanelItemProps(100, 'category');
+                        selectedNavItemProps = getNavigationPanelItemProps('category', 100);
                     }}
                 />,
             );
@@ -77,7 +77,7 @@ describe('getNavigationPanelItemProps', () => {
             createRoot(document.createElement('div')).render(
                 <TestComponent
                     hook={() => {
-                        selectedNavItemProps = getNavigationPanelItemProps('lalalala', 'filter');
+                        selectedNavItemProps = getNavigationPanelItemProps('filter', 'lalalala');
                     }}
                 />,
             );

@@ -3,7 +3,7 @@ import { FC, useCallback, useEffect, useState } from 'react';
 import { useMediaQuery } from 'usehooks-ts';
 import { cleanUpHtml } from './cleanUpHtml.ts';
 
-import AppProps from '../../components/App/index.tsx';
+import App from '../../components/App/index.tsx';
 
 import './index.css';
 
@@ -26,7 +26,7 @@ const AppContainer: FC = () => {
         <App
             isSmallScreen={matches}
             isNavPanelVisible={isNavPanelOpen}
-            toggleNavPane={onToggleNavPan}
+            onToggleNavPane={onToggleNavPan}
             navigationPanel={<div>Nav</div>}
             todoListView={<div>TodoList</div>}
         />
