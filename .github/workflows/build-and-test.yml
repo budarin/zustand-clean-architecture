@@ -26,11 +26,11 @@ permissions:
 
 jobs:
     build:
-        # if: ${{ github.ref != 'refs/heads/master' }}
-        name: build
-        runs-on: ubuntu-latest
+        # не выполняем при merge PR
+        if: ${{ github.event_name != 'push' && github.ref != 'refs/heads/master' }}
         timeout-minutes: 5
 
+        runs-on: ubuntu-latest
         steps:
             - name: Git Checkout
               uses: actions/checkout@v3
