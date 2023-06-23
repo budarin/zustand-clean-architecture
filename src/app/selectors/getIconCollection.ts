@@ -1,6 +1,10 @@
 import { shallow } from 'zustand/shallow';
 import { useTodoStore } from '../../domain/store/store.tsx';
 
-const getIconCollectionSelector = (state: TodosState) => Object.values(state.icons.byId);
+/**
+ * Возвращает массив описаний иконок из store
+ */
+
+const getIconCollectionSelector = (state: TodosState): Icon[] => Object.values(state.icons.byId);
 
 export const getIconCollection = () => useTodoStore(getIconCollectionSelector, shallow);
