@@ -66,5 +66,12 @@ export const getNavPanelItemPropsSelector: GetNavPanelItemPropsSelector = (navig
         [id, navigationType],
     );
 
-export const getNavigationPanelItemProps = (navigationType: NavigationFilterType, id: NavigationFilterKey) =>
-    useTodoStore(getNavPanelItemPropsSelector(navigationType, id), shallow);
+export const getNavigationPanelItemProps = (
+    navigationType: NavigationPanelItemType,
+    id: NavigationFilterKey,
+):
+    | { isCategory: true; title: string; icon: string; selected: boolean }
+    | { isCategory: false; title: string; icon: string; selected: boolean }
+    | undefined => {
+    return useTodoStore(getNavPanelItemPropsSelector(navigationType, id), shallow);
+};

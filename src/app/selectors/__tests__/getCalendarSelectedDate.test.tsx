@@ -9,10 +9,8 @@ import { getCalendarSelectedDate } from '../getCalendarSelectedDate.ts';
 import { setNavigationFilter } from '../../../domain/store/navigationFilter/setNavigationFilter.ts';
 import { createCategoryNavigationFilter } from '../../../domain/store/navigationFilter/createCategoryNavigationFilter.ts';
 
-type GetNavigationPanelItemProps = ReturnType<typeof getCalendarSelectedDate>;
-
 const root = createRoot(document.createElement('div'));
-let result: GetNavigationPanelItemProps | undefined = undefined;
+let result = undefined as undefined | ReturnType<typeof getCalendarSelectedDate>;
 
 beforeAll(() => {
     resetStore();

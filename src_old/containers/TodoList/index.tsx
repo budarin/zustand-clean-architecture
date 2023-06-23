@@ -1,10 +1,10 @@
-import { getTodoListByNavFilter } from '../../../src/app/selectors/getTodoListByNavFilter.ts';
+import { getTodoListByNavigationFilter } from '../../../src/app/selectors/getTodoListByNavFilter.ts';
 
 // components
 import TodoListItemContainer from './ListItem/index.tsx';
 
 function TodoListContainer() {
-    const todoIds = getTodoListByNavFilter();
+    const todoIds = getTodoListByNavigationFilter();
 
     return (
         <>

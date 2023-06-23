@@ -9,4 +9,6 @@ const getIconCollectionSelector = (state: TodosState): Icon[] => {
     return Object.values(state.icons.byId);
 };
 
-export const getIconCollection = () => useTodoStore(getIconCollectionSelector, shallow);
+export const getIconCollection = (): Icon[] => {
+    return useTodoStore(getIconCollectionSelector, shallow);
+};

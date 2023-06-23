@@ -8,4 +8,6 @@ const getCategoryListSelector = (state: TodosState): readonly number[] => {
     return state.categories.ids;
 };
 
-export const getCategoryList = () => useTodoStore(getCategoryListSelector);
+export const getCategoryList = (): readonly number[] => {
+    return useTodoStore(getCategoryListSelector);
+};

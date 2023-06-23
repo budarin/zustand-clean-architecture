@@ -69,6 +69,8 @@ type NavigationFilter = FilterNavigationFilter | CategoryNavigationFilter | Cale
 type NavigationFilterType = NavigationFilter['type'];
 type NavigationFilterKey = NavigationFilter['key'];
 
+type NavigationPanelItemType = FilterNavigationFilter['type'] | CategoryNavigationFilter['type'];
+
 type TodosState = {
     icons: IconState;
     statuses: StatusState;

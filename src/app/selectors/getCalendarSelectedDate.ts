@@ -12,4 +12,6 @@ const getCalendarSelectedDateSelector = (state: TodosState): Date | undefined =>
     }
 };
 
-export const getCalendarSelectedDate = () => useTodoStore(getCalendarSelectedDateSelector);
+export const getCalendarSelectedDate = (): Date | undefined => {
+    return useTodoStore(getCalendarSelectedDateSelector);
+};

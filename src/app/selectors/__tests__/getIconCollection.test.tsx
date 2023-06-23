@@ -7,10 +7,8 @@ import TestComponent from './utils/TestComponent.tsx';
 import { getIconCollection } from '../getIconCollection.ts';
 import { serverInitialState } from '../../../server/utils/serverInitialState.ts';
 
-type GetCategoryList = ReturnType<typeof getIconCollection>;
-
 const root = createRoot(document.createElement('div'));
-let result: GetCategoryList | undefined = undefined;
+let result = undefined as undefined | ReturnType<typeof getIconCollection>;
 
 beforeAll(() => {
     resetStore();

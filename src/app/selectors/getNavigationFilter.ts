@@ -8,4 +8,6 @@ const getNavigationFilterSelector = (state: TodosState): Readonly<NavigationFilt
     return state.navigationFilter;
 };
 
-export const getNavigationFilter = () => useTodoStore(getNavigationFilterSelector);
+export const getNavigationFilter = (): Readonly<NavigationFilter> => {
+    return useTodoStore(getNavigationFilterSelector);
+};

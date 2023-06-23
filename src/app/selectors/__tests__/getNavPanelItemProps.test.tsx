@@ -5,10 +5,8 @@ import { resetStore } from './utils/store.setup.ts';
 import TestComponent from './utils/TestComponent.tsx';
 import { getNavigationPanelItemProps } from '../getNavigationPanelItemProps.ts';
 
-type GetNavigationPanelItemProps = ReturnType<typeof getNavigationPanelItemProps>;
-
 const root = createRoot(document.createElement('div'));
-let result: GetNavigationPanelItemProps | undefined = undefined;
+let result = undefined as undefined | ReturnType<typeof getNavigationPanelItemProps>;
 
 beforeAll(() => {
     resetStore();

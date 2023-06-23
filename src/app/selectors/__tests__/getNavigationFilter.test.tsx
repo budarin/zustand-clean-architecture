@@ -7,10 +7,8 @@ import TestComponent from './utils/TestComponent.tsx';
 import { useTodoStore } from '../../../domain/store/store.tsx';
 import { getNavigationFilter } from '../getNavigationFilter.ts';
 
-type GetCategoryList = ReturnType<typeof getNavigationFilter>;
-
 const root = createRoot(document.createElement('div'));
-let result: GetCategoryList | undefined = undefined;
+let result = undefined as undefined | ReturnType<typeof getNavigationFilter>;
 
 beforeAll(() => {
     resetStore();

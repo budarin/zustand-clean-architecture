@@ -5,11 +5,10 @@ import { resetStore } from './utils/store.setup.ts';
 import TestComponent from './utils/TestComponent.tsx';
 
 import { getCategoryList } from '../getCategoryList.ts';
-
-type GetCategoryList = ReturnType<typeof getCategoryList>;
+import { useTodoStore } from '../../../domain/store/store.tsx';
 
 const root = createRoot(document.createElement('div'));
-let result: GetCategoryList | undefined = undefined;
+let result = undefined as undefined | ReturnType<typeof getCategoryList>;
 
 beforeAll(() => {
     resetStore();
@@ -27,6 +26,6 @@ describe('getCategoryList', () => {
         });
 
         expect(result).not.toBeUndefined();
-        expect(result).toEqual([1, 2, 3, 4]);
+        expect(result).toEqual(useTodoStore.getState().categories.ids);
     });
 });
