@@ -5,8 +5,8 @@ import { resetStore } from './utils/store.setup.ts';
 import TestComponent from './utils/TestComponent.tsx';
 
 import { useTodoStore } from '../../../domain/store/store.tsx';
-import { getTodoListByNavigationFilter } from '../getTodoListByNavFilter.ts';
 import { getTodayDate } from '../../../utils/dateTime/getTodayDate.ts';
+import { getTodoListByNavigationFilter } from '../getTodoListByNavFilter.ts';
 import { inboxKey, navigationFilters } from '../../../domain/store/navigationFilter/index.ts';
 import { setNavigationFilter } from '../../../domain/store/navigationFilter/setNavigationFilter.ts';
 import { createFilterNavigationFilter } from '../../../domain/store/navigationFilter/createFilterNavigationFilter.ts';
@@ -22,22 +22,6 @@ beforeAll(() => {
 });
 
 describe('getTodoListByNavFilter', () => {
-    it('должен вернуть список задач для фильтра', () => {
-        act(() => {
-            root.render(
-                <TestComponent
-                    hook={() => {
-                        setNavigationFilter(createFilterNavigationFilter(inboxKey, navigationFilters[inboxKey]));
-                        result = getTodoListByNavigationFilter();
-                    }}
-                />,
-            );
-        });
-
-        expect(result).not.toBeUndefined();
-        expect(result).toEqual(useTodoStore.getState().todos.idsByFilterId[inboxKey]);
-    });
-
     it('должен вернуть список задач для категории', () => {
         act(() => {
             root.render(
@@ -70,6 +54,22 @@ describe('getTodoListByNavFilter', () => {
 
         expect(result).not.toBeUndefined();
         expect(result).toEqual([]);
+    });
+
+    it('должен вернуть список задач для фильтра', () => {
+        act(() => {
+            root.render(
+                <TestComponent
+                    hook={() => {
+                        setNavigationFilter(createFilterNavigationFilter(inboxKey, navigationFilters[inboxKey]));
+                        result = getTodoListByNavigationFilter();
+                    }}
+                />,
+            );
+        });
+
+        expect(result).not.toBeUndefined();
+        expect(result).toEqual(useTodoStore.getState().todos.idsByFilterId[inboxKey]);
     });
 
     it('должен вернуть список задач для календаря на сегодня', () => {
