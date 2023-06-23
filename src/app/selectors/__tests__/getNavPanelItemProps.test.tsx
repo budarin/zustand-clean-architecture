@@ -28,7 +28,6 @@ describe('getNavigationPanelItemProps', () => {
         });
 
         expect(result).not.toBeUndefined();
-
         expect(result).toEqual({
             title: 'Черновики',
             isCategory: false,
@@ -49,7 +48,6 @@ describe('getNavigationPanelItemProps', () => {
         });
 
         expect(result).not.toBeUndefined();
-
         expect(result).toEqual({
             title: 'Дом',
             isCategory: true,
