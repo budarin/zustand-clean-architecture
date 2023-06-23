@@ -12,7 +12,7 @@ type AppHeaderProps = {
     onToggleNavPane: () => void;
 };
 
-function AppHeader(props: AppHeaderProps) {
+const AppHeader: React.FC<AppHeaderProps> = (props) => {
     const { isSmallScreen, isNavPanelVisible, onToggleNavPane } = props;
 
     return (
@@ -33,6 +33,6 @@ function AppHeader(props: AppHeaderProps) {
             ) : null}
         </div>
     );
-}
+};
 
 export default AppHeader;
