@@ -19,6 +19,16 @@ type GetNavPanelItemPropsSelector = (
     | { isCategory: false; title: string; icon: string; selected: boolean }
     | undefined;
 
+/**
+ * Возвращает свойства для отрисовки эелементов навигации или undefined:
+ *
+ * isCategory - boolean (фильтр/категория задач)
+ * title - Название категории.фильтра
+ * icon - имя иконки
+ * selected - boolean
+ *
+ */
+
 export const getNavPanelItemPropsSelector: GetNavPanelItemPropsSelector = (navigationType, id) =>
     useCallback(
         (state: TodosState) => {
