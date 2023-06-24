@@ -1,7 +1,7 @@
 import { act } from '@testing-library/react';
-import { useTodoStore } from '../../../../domain/store/store.tsx';
 
 import { todoSamples } from './todos.ts';
+import { useTodoStore } from '../../../../domain/store/store.tsx';
 
 let initialState: TodosState;
 
