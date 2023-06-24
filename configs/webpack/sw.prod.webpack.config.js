@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     mode: 'production',
-    devtool: true,
+    devtool: false,
     entry: './src/server/index.ts',
     output: {
         path: path.resolve('./dist'),
