@@ -9,7 +9,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Do nothing
-              run: echo "This is an empty job"
+              run: |
+                  echo "This is an empty job"
+                  echo ${{ github.event_name == 'push' }}
+                  echo ${{ github.ref == 'refs/heads/master' }}
 
     build:
         runs-on: ubuntu-latest
