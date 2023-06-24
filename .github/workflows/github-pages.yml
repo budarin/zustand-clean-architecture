@@ -1,11 +1,8 @@
 name: Publish Pages
 on:
-    workflow_run:
-        workflows:
-            - 'Playwright Tests'
-            - 'Build the project'
+    pull_request:
         types:
-            - completed
+            - closed
 
 jobs:
     empty-job:
