@@ -8,9 +8,16 @@ on:
             - completed
 
 jobs:
+    empty-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Do nothing
+              run: echo "This is an empty job"
+
     build:
         runs-on: ubuntu-latest
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        if: ${{ github.event.workflow_run.conclusion == 'success' && contains(['Playwright Tests', 'Build the project'], github.event.workflow_run.workflow) }}
+
         timeout-minutes: 5
 
         needs: [Build the project, Playwright Tests]
