@@ -5,10 +5,16 @@ on:
         branches: [main, master]
 
 jobs:
+    empty-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Do nothing
+              run: echo "This is an empty job"
+
     build:
         runs-on: ubuntu-latest
         needs: ['Playwright Tests', 'Build the project']
-
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         timeout-minutes: 5
 
         steps:
