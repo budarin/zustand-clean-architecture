@@ -1,8 +1,12 @@
 name: Publish Pages
+
 on:
-    pull_request:
+    workflow_run:
+        workflows:
+            - 'Playwright Tests'
+            - 'Build the project'
         types:
-            - closed
+            - completed
 
 jobs:
     empty-job:
@@ -13,11 +17,9 @@ jobs:
 
     build:
         runs-on: ubuntu-latest
-        if: ${{ github.event.workflow_run.conclusion == 'success' && contains(['Playwright Tests', 'Build the project'], github.event.workflow_run.workflow) }}
+        if: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && contains(['Playwright Tests', 'Build the project'], github.event.workflow_run.workflow) && github.event_name == 'push' && github.ref == 'refs/heads/master' }}
 
         timeout-minutes: 5
-
-        needs: [Build the project, Playwright Tests]
 
         steps:
             - name: Checkout code
