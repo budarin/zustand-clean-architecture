@@ -4,14 +4,14 @@ import { getTodoCountForNavPanelItem } from '../../../../src/app/selectors/getTo
 import Badge from '../../../components/NavPanel/Badge/index.tsx';
 
 type TodosCountBadgeContainer = {
+    navigationType: NavigationPanelItemType;
     id: NavigationFilterKey;
-    navigationType: NavigationFilterType;
 };
 
 function TodosCountBadgeContainer(props: TodosCountBadgeContainer): JSX.Element {
     const { id, navigationType } = props;
 
-    const count = getTodoCountForNavPanelItem(id, navigationType);
+    const count = getTodoCountForNavPanelItem(navigationType, id);
 
     return <>{count ? <Badge count={count} /> : null}</>;
 }

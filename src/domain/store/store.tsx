@@ -90,12 +90,12 @@ export const useTodoStore = create<TodosState & Actions>()(() => ({
     categories: {
         byId: {
             1: {
-                category_id: 2,
+                category_id: 1,
                 icon_id: 2,
                 category: 'Дом',
             },
             2: {
-                category_id: 1,
+                category_id: 2,
                 icon_id: 3,
                 category: 'Работа',
             },

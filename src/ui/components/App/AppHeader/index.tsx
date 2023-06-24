@@ -6,14 +6,14 @@ import icon from '../../../../../assets/todolist.svg';
 
 import './index.css';
 
-type AppHeader = {
+type AppHeaderProps = {
     isSmallScreen: boolean;
     isNavPanelVisible: boolean;
-    toggleNavPane: () => void;
+    onToggleNavPane: () => void;
 };
 
-function AppHeader(props: AppHeader) {
-    const { isSmallScreen, isNavPanelVisible, toggleNavPane } = props;
+const AppHeader: React.FC<AppHeaderProps> = (props) => {
+    const { isSmallScreen, isNavPanelVisible, onToggleNavPane } = props;
 
     return (
         <div className="AppHeader">
@@ -27,12 +27,12 @@ function AppHeader(props: AppHeader) {
                     checked={isNavPanelVisible}
                     unCheckedIcon={<MenuIcon />}
                     checkedIcon={<CloseIcon />}
-                    onClick={toggleNavPane}
+                    onClick={onToggleNavPane}
                     title={`${isNavPanelVisible ? 'Скрыть' : 'Показать'} панель навигации`}
                 />
             ) : null}
         </div>
     );
-}
+};
 
 export default AppHeader;

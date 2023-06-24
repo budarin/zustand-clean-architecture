@@ -1,5 +1,13 @@
 import { useTodoStore } from '../../domain/store/store.tsx';
 
-const getCategoryListSelector = (state: TodosState) => state.categories.ids;
+/**
+ * Возвращает список id всех категорий задач
+ */
 
-export const getCategoryList = () => useTodoStore(getCategoryListSelector);
+const getCategoryListSelector = (state: TodosState): readonly number[] => {
+    return state.categories.ids;
+};
+
+export const getCategoryList = (): readonly number[] => {
+    return useTodoStore(getCategoryListSelector);
+};

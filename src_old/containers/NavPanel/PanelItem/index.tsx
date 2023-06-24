@@ -11,8 +11,8 @@ import NavigationIPanelIem from '../../../components/NavPanel/PanelIem/index.tsx
 import DottedMenuButton from '../../../components/Buttons/DottedMenuButton/index.tsx';
 
 type NavigationPanelItemContainer = {
+    navigationType: NavigationPanelItemType;
     id: NavigationFilterKey;
-    navigationType: NavigationFilterType;
 };
 
 const clickableTagNames = ['A', 'SPAN', 'IMG'];
@@ -21,7 +21,7 @@ const NavigationPanelItemContainer = memo((props: NavigationPanelItemContainer):
     const { id, navigationType } = props;
 
     const [expanded, setExpanded] = useState(false);
-    const navPanelItemProps = getNavigationPanelItemProps(id, navigationType);
+    const navPanelItemProps = getNavigationPanelItemProps(navigationType, id);
 
     // если нет данных для элемента - не рисуем его
     if (!navPanelItemProps) {

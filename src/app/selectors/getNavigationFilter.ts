@@ -1,5 +1,13 @@
 import { useTodoStore } from '../../domain/store/store.tsx';
 
-const getNavigationFilterSelector = (state: TodosState) => state.navigationFilter;
+/**
+ * Возвращает текущее состояние navigationFilter в store
+ */
 
-export const getNavigationFilter = () => useTodoStore(getNavigationFilterSelector);
+const getNavigationFilterSelector = (state: TodosState): Readonly<NavigationFilter> => {
+    return state.navigationFilter;
+};
+
+export const getNavigationFilter = (): Readonly<NavigationFilter> => {
+    return useTodoStore(getNavigationFilterSelector);
+};

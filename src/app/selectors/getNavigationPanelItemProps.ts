@@ -10,8 +10,8 @@ import {
 } from '../../domain/store/navigationFilter/index.ts';
 
 type GetNavPanelItemPropsSelector = (
-    id: NavigationFilterKey,
     navigationType: NavigationFilterType,
+    id: NavigationFilterKey,
 ) => (
     state: TodosState,
 ) =>
@@ -19,7 +19,17 @@ type GetNavPanelItemPropsSelector = (
     | { isCategory: false; title: string; icon: string; selected: boolean }
     | undefined;
 
-export const getNavPanelItemPropsSelector: GetNavPanelItemPropsSelector = (id, navigationType) =>
+/**
+ * Возвращает свойства для отрисовки эелементов навигации или undefined:
+ *
+ * isCategory - boolean (фильтр/категория задач)
+ * title - Название категории.фильтра
+ * icon - имя иконки
+ * selected - boolean
+ *
+ */
+
+export const getNavPanelItemPropsSelector: GetNavPanelItemPropsSelector = (navigationType, id) =>
     useCallback(
         (state: TodosState) => {
             const filter = state.navigationFilter;
@@ -56,5 +66,12 @@ export const getNavPanelItemPropsSelector: GetNavPanelItemPropsSelector = (id, n
         [id, navigationType],
     );
 
-export const getNavigationPanelItemProps = (id: NavigationFilterKey, navigationType: NavigationFilterType) =>
-    useTodoStore(getNavPanelItemPropsSelector(id, navigationType), shallow);
+export const getNavigationPanelItemProps = (
+    navigationType: NavigationPanelItemType,
+    id: NavigationFilterKey,
+):
+    | { isCategory: true; title: string; icon: string; selected: boolean }
+    | { isCategory: false; title: string; icon: string; selected: boolean }
+    | undefined => {
+    return useTodoStore(getNavPanelItemPropsSelector(navigationType, id), shallow);
+};
