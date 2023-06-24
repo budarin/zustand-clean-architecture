@@ -1,0 +1,42 @@
+name: Publish Pages
+
+on:
+    workflow_run:
+        workflows: ['Build the project', 'Playwright Tests']
+        types: [completed]
+        branches: [master]
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        #  && github.event_name == 'push' && github.ref == 'refs/heads/master'
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        timeout-minutes: 5
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: build
+              run: yarn build
+
+            - name: Upload Pages Artifact
+              uses: actions/upload-artifact@v2
+              with:
+                  name: pages
+                  path: ./docs # Измените на директорию, где находятся собранные файлы
+
+            - name: Deploy Pages
+              uses: actions/deploy-pages@v2
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  artifact-name: pages
+
+    empty-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Do nothing
+              run: |
+                  echo ${{ github.event_name }}
+                  echo ${{ github.ref }}
+                  echo ${{ github.event.workflow_run.conclusion }}
