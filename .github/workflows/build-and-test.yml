@@ -52,6 +52,7 @@ jobs:
               run: yarn install --frozen-lockfile
 
             - name: lint
+              if: ${{ github.event_name != 'push' && github.ref != 'refs/heads/master' }}
               run: yarn tsc
 
             - name: test
@@ -63,6 +64,7 @@ jobs:
               run: yarn build
 
             - name: Commit and push changes
+              if: ${{ github.event_name != 'push' && github.ref != 'refs/heads/master' }}
               run: |
                   if [[ -n $(git status --porcelain) ]]; then
                     echo "Changes detected"
