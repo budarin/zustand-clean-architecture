@@ -10,7 +10,7 @@ jobs:
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         timeout-minutes: 5
 
-        needs: empty-job
+        needs: [Build the project, Playwright Tests]
 
         steps:
             - name: Checkout code
