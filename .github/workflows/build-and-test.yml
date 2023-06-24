@@ -27,7 +27,7 @@ permissions:
 jobs:
     build:
         # не выполняем при merge PR
-        if: ${{ github.event_name != 'push' && github.ref != 'refs/heads/master' }}
+        # if: ${{ github.event_name != 'push' && github.ref != 'refs/heads/master' }}
         timeout-minutes: 5
 
         runs-on: ubuntu-latest
@@ -55,9 +55,11 @@ jobs:
               run: yarn tsc
 
             - name: test
+              if: ${{ github.event_name != 'push' && github.ref != 'refs/heads/master' }}
               run: yarn test
 
             - name: build
+              if: ${{ github.event_name != 'push' && github.ref != 'refs/heads/master' }}
               run: yarn build
 
             - name: Commit and push changes
