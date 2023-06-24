@@ -2,7 +2,7 @@ name: Publish Pages
 
 on:
     push:
-        branches: [main, master]
+        branches: master
 
 jobs:
     empty-job:
