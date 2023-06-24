@@ -1,23 +1,13 @@
 name: Publish Pages
 
 on:
-    workflow_run:
-        workflows:
-            - 'Playwright Tests'
-            - 'Build the project'
-        types:
-            - completed
+    push:
+        branches: [main, master]
 
 jobs:
-    empty-job:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Do nothing
-              run: echo "This is an empty job"
-
     build:
         runs-on: ubuntu-latest
-        if: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && contains(['Playwright Tests', 'Build the project'], github.event.workflow_run.workflow) && github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        needs: ['Playwright Tests', 'Build the project']
 
         timeout-minutes: 5
 
