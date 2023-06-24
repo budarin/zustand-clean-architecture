@@ -2,8 +2,8 @@ name: Publish Pages
 on:
     workflow_run:
         workflows:
-            - 'build-project'
-            - 'playwright-tests'
+            - 'Playwright Tests'
+            - 'Build the project'
         types:
             - completed
 
