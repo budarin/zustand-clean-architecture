@@ -1,32 +1,20 @@
-import { createRoot } from 'react-dom/client';
-import { act } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 
 import { resetStore } from './utils/store.setup.ts';
-import TestComponent from './utils/TestComponent.tsx';
 import { getNavigationPanelItemProps } from '../getNavigationPanelItemProps.ts';
-
-const root = createRoot(document.createElement('div'));
-let result = undefined as undefined | ReturnType<typeof getNavigationPanelItemProps>;
 
 beforeAll(() => {
     resetStore();
-    result = undefined;
 });
 
 describe('getNavigationPanelItemProps', () => {
     it('должен вернуть свойства для элемента панели навигации из списка фильтров', () => {
-        act(() => {
-            root.render(
-                <TestComponent
-                    hook={() => {
-                        result = getNavigationPanelItemProps('filter', 'inbox');
-                    }}
-                />,
-            );
+        const { result } = renderHook(() => {
+            return getNavigationPanelItemProps('filter', 'inbox');
         });
 
-        expect(result).not.toBeUndefined();
-        expect(result).toEqual({
+        expect(result.current).not.toBeUndefined();
+        expect(result.current).toEqual({
             title: 'Черновики',
             isCategory: false,
             selected: false,
@@ -35,18 +23,12 @@ describe('getNavigationPanelItemProps', () => {
     });
 
     it('должен вернуть свойства для элемента панели навигации из списка категорий', () => {
-        act(() => {
-            root.render(
-                <TestComponent
-                    hook={() => {
-                        result = getNavigationPanelItemProps('category', 1);
-                    }}
-                />,
-            );
+        const { result } = renderHook(() => {
+            return getNavigationPanelItemProps('category', 1);
         });
 
-        expect(result).not.toBeUndefined();
-        expect(result).toEqual({
+        expect(result.current).not.toBeUndefined();
+        expect(result.current).toEqual({
             title: 'Дом',
             isCategory: true,
             selected: false,
@@ -55,30 +37,18 @@ describe('getNavigationPanelItemProps', () => {
     });
 
     it('должен вернуть undefined для не существующей категорий', () => {
-        act(() => {
-            root.render(
-                <TestComponent
-                    hook={() => {
-                        result = getNavigationPanelItemProps('category', 100);
-                    }}
-                />,
-            );
+        const { result } = renderHook(() => {
+            return getNavigationPanelItemProps('category', 100);
         });
 
-        expect(result).toBeUndefined();
+        expect(result.current).toBeUndefined();
     });
 
     it('должен вернуть undefined для не существующего фильтра', () => {
-        act(() => {
-            root.render(
-                <TestComponent
-                    hook={() => {
-                        result = getNavigationPanelItemProps('filter', 'lalalala');
-                    }}
-                />,
-            );
+        const { result } = renderHook(() => {
+            return getNavigationPanelItemProps('filter', 'lalalala');
         });
 
-        expect(result).toBeUndefined();
+        expect(result.current).toBeUndefined();
     });
 });

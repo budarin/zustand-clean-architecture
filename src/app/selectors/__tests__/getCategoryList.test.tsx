@@ -1,31 +1,21 @@
-import { createRoot } from 'react-dom/client';
-import { act } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 
 import { resetStore } from './utils/store.setup.ts';
-import TestComponent from './utils/TestComponent.tsx';
 
 import { getCategoryList } from '../getCategoryList.ts';
 import { useTodoStore } from '../../../domain/store/store.tsx';
 
-const root = createRoot(document.createElement('div'));
-let result = undefined as undefined | ReturnType<typeof getCategoryList>;
-
 beforeAll(() => {
     resetStore();
-    result = undefined;
 });
-
-const onHookCall = () => {
-    result = getCategoryList();
-};
 
 describe('getCategoryList', () => {
     it('должен вернуть список id всех категорий в store', () => {
-        act(() => {
-            root.render(<TestComponent hook={onHookCall} />);
+        const { result } = renderHook(() => {
+            return getCategoryList();
         });
 
-        expect(result).not.toBeUndefined();
-        expect(result).toEqual(useTodoStore.getState().categories.ids);
+        expect(result.current).not.toBeUndefined();
+        expect(result.current).toEqual(useTodoStore.getState().categories.ids);
     });
 });

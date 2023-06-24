@@ -1,42 +1,32 @@
-import { createRoot } from 'react-dom/client';
-import { act } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 
 import { resetStore } from './utils/store.setup.ts';
-import TestComponent from './utils/TestComponent.tsx';
 
 import { getTodayDate } from '../../../utils/dateTime/getTodayDate.ts';
 import { getCalendarSelectedDate } from '../getCalendarSelectedDate.ts';
 import { setNavigationFilter } from '../../../domain/store/navigationFilter/setNavigationFilter.ts';
 import { createCategoryNavigationFilter } from '../../../domain/store/navigationFilter/createCategoryNavigationFilter.ts';
 
-const root = createRoot(document.createElement('div'));
-let result = undefined as undefined | ReturnType<typeof getCalendarSelectedDate>;
-
 beforeAll(() => {
     resetStore();
-    result = undefined;
 });
-
-const onHookCall = () => {
-    result = getCalendarSelectedDate();
-};
 
 describe('getCalendarSelectedDate', () => {
     it('должен вернуть дату если она выбрана в календаре в панели навигации', () => {
-        act(() => {
-            root.render(<TestComponent hook={onHookCall} />);
+        const { result } = renderHook(() => {
+            return getCalendarSelectedDate();
         });
 
-        expect(result).not.toBeUndefined();
-        expect(result).toEqual(getTodayDate());
+        expect(result.current).not.toBeUndefined();
+        expect(result.current).toEqual(getTodayDate());
     });
 
     it('должен вернуть undefined если активен фильтр или категория', () => {
-        act(() => {
+        const { result } = renderHook(() => {
             setNavigationFilter(createCategoryNavigationFilter(1, 'Дом'));
-            root.render(<TestComponent hook={onHookCall} />);
+            return getCalendarSelectedDate();
         });
 
-        expect(result).toBeUndefined();
+        expect(result.current).toBeUndefined();
     });
 });
