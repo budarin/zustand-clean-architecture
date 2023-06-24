@@ -49,6 +49,8 @@
 
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('./sw.js');
+            } else {
+                logger.error('Сервис-воркеры не поддерживаются в текущем браузере.');
             }
         </script>
 

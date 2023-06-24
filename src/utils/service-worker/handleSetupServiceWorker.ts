@@ -1,7 +1,3 @@
-import { useLogger } from '../../services/adapters/useLogger';
-
-const logger = useLogger();
-
 export async function handleSetupServiceWorker() {
     if ('serviceWorker' in navigator) {
         if (!navigator.serviceWorker.controller) {
@@ -28,7 +24,5 @@ export async function handleSetupServiceWorker() {
                 }
             });
         }
-    } else {
-        logger.error('Сервис-воркеры не поддерживаются в текущем браузере.');
     }
 }
