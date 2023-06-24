@@ -4,6 +4,7 @@ on:
     workflow_run:
         workflows: ['Build the project', 'Playwright Tests']
         types: [completed]
+        branches: [master]
 
 jobs:
     publish:
