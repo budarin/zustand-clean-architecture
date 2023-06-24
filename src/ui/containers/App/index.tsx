@@ -26,7 +26,7 @@ const AppContainer: FC = () => {
         <App
             isSmallScreen={matches}
             isNavPanelVisible={isNavPanelOpen}
-            toggleNavPane={onToggleNavPan}
+            onToggleNavPane={onToggleNavPan}
             navigationPanel={<div>Nav</div>}
             todoListView={<div>TodoList</div>}
         />

@@ -9,8 +9,17 @@ import {
     navigationFilters,
 } from '../../domain/store/navigationFilter/index.ts';
 
+/**
+ * Возвращает информацию для отображения TodoListView
+ *
+ * title - название фильтра/категории или дата
+ * icon - имя файла иконки
+ * count - количество задач
+ *
+ */
+
 const getTodoListViewPropsSelector = () =>
-    useCallback((state: TodosState) => {
+    useCallback((state: TodosState): { title: string; icon: string; count: number } => {
         let title = '';
         let icon = '';
         let count = 0;
@@ -21,17 +30,17 @@ const getTodoListViewPropsSelector = () =>
             case navigationFilterTypes.category: {
                 const category = state.categories.byId[key as Id];
 
-                title = category.category;
-                icon = state.icons.byId[category.icon_id].icon_name;
-                count = state.todos.idsByCategoryId[category.category_id]?.length || 0;
+                title = category?.category || 'Не известная категория';
+                icon = state.icons.byId[category?.icon_id]?.icon_name || '';
+                count = state.todos.idsByCategoryId[category?.category_id]?.length || 0;
 
                 break;
             }
 
             case navigationFilterTypes.filter: {
-                title = navigationFilters[key as NavigationFiltersKey];
-                icon = navigationFilterIcons[key as NavigationFiltersKey];
-                count = state.todos.idsByFilterId[key].length;
+                title = navigationFilters[key as NavigationFiltersKey] || 'Не известный фильтр';
+                icon = navigationFilterIcons[key as NavigationFiltersKey] || '';
+                count = state.todos.idsByFilterId[key].length || 0;
 
                 break;
             }
@@ -55,4 +64,6 @@ const getTodoListViewPropsSelector = () =>
         };
     }, []);
 
-export const getTodoListViewProps = () => useTodoStore(getTodoListViewPropsSelector(), shallow);
+export const getTodoListViewProps = (): { title: string; icon: string; count: number } => {
+    return useTodoStore(getTodoListViewPropsSelector(), shallow);
+};

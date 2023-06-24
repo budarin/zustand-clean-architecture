@@ -3,7 +3,7 @@ import { useTodoStore } from '../../domain/store/store.tsx';
 import { TWO_MINUTES } from '../../utils/dateTime/consts.ts';
 import { overdueKey } from '../../domain/store/navigationFilter/index.ts';
 import { joyfullyGilling } from '../../services/contracts/Notification/index.ts';
-import { createFilterNavFilter } from '../../domain/store/navigationFilter/createFilterNavFilter.ts';
+import { createFilterNavigationFilter } from '../../domain/store/navigationFilter/createFilterNavigationFilter.ts';
 
 export function checkOverdueTodos(): void {
     const now = Date.now();
@@ -20,7 +20,7 @@ export function checkOverdueTodos(): void {
                 joyfullyGilling(`lalala: ${todo.todo}`, {
                     toastId: 'due_date:' + todo.todo,
                     onClose: async () => {
-                        setNavigationFilter(createFilterNavFilter('Просроченные', overdueKey));
+                        setNavigationFilter(createFilterNavigationFilter('Просроченные', overdueKey));
                         _addToOverdueTodos(todo.todo_id);
                         setOverdueInBadge();
                     },

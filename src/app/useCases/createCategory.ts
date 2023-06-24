@@ -4,7 +4,7 @@ import { useNotification } from '../../services/adapters/useNotification.ts';
 
 import { useTodoStore } from '../../domain/store/store.tsx';
 import { validateNewCategory } from '../../domain/entities/category/index.ts';
-import { createCategoryNavFilter } from '../../domain/store/navigationFilter/createCategoryNavFilter.ts';
+import { createCategoryNavigationFilter } from '../../domain/store/navigationFilter/createCategoryNavigationFilter.ts';
 
 const api = useApi();
 const logger = useLogger();
@@ -61,7 +61,7 @@ export async function createCategory(
         store._addCategory(result);
 
         // устанавливаем навигационный фильтр на данную категорию
-        store.setNavigationFilter(createCategoryNavFilter(result.category_id, entity.category));
+        store.setNavigationFilter(createCategoryNavigationFilter(result.category_id, entity.category));
     } catch (error) {
         notification.notifyError(`Ошибка: ${error}`, {
             toastId: 'create_category_error' + entity.category,
