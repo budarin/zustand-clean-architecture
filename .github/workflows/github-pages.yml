@@ -9,28 +9,31 @@ jobs:
         runs-on: ubuntu-latest
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         timeout-minutes: 5
-
-    build:
-        runs-on: ubuntu-latest
-        needs: [Build the project, Playwright Tests]
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
-        timeout-minutes: 5
-
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
+            - name: Do nothing
+              run: echo ""
 
-            - name: build
-              run: yarn build
+        build:
+            runs-on: ubuntu-latest
+            needs: [Build the project, Playwright Tests]
+            if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+            timeout-minutes: 5
 
-            - name: Upload Pages Artifact
-              uses: actions/upload-artifact@v2
-              with:
-                  name: pages
-                  path: ./docs # Измените на директорию, где находятся собранные файлы
+            steps:
+                - name: Checkout code
+                  uses: actions/checkout@v2
 
-            - name: Deploy Pages
-              uses: actions/deploy-pages@v2
-              with:
-                  token: ${{ secrets.GITHUB_TOKEN }}
-                  artifact-name: pages
+                - name: build
+                  run: yarn build
+
+                - name: Upload Pages Artifact
+                  uses: actions/upload-artifact@v2
+                  with:
+                      name: pages
+                      path: ./docs # Измените на директорию, где находятся собранные файлы
+
+                - name: Deploy Pages
+                  uses: actions/deploy-pages@v2
+                  with:
+                      token: ${{ secrets.GITHUB_TOKEN }}
+                      artifact-name: pages
