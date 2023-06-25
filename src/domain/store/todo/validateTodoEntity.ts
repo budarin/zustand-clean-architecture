@@ -74,9 +74,6 @@ function isTodoExists(state: TodosState, todo_id: number) {
     return Object.values(state.todos.byId).some((todo) => todo.todo_id === todo_id);
 }
 function isCategoryExists(state: TodosState, category_id: number | undefined) {
-    if (category_id === undefined) {
-        return true;
-    }
     return Object.values(state.categories?.byId).some((category) => category.category_id === category_id);
 }
 
