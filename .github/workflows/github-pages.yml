@@ -18,6 +18,10 @@ jobs:
 
         steps:
             - name: Git Checkout
+              permissions:
+                  pages: write # to deploy to Pages
+                  id-token: write # to verify the deployment originates from an appropriate source
+
               uses: actions/checkout@v3
 
             - name: Setup Node
@@ -47,9 +51,6 @@ jobs:
 
             - name: Deploy Pages
               uses: actions/deploy-pages@v2
-              with:
-                  token: ${{ secrets.GITHUB_TOKEN }}
-                  artifact-name: pages
 
     empty-job:
         runs-on: ubuntu-latest
