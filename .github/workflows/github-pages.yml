@@ -22,6 +22,14 @@ jobs:
             url: ${{ steps.deployment.outputs.page_url }}
 
         steps:
+            - name: Do nothing
+              run: |
+                  echo ${{ github.event_name }}
+                  echo ${{ github.ref }}
+                  echo ${{ github.event.workflow_run.conclusion }}
+                  echo ${{ needs.Build_the_project.result }}
+                  echo ${{ needs.Playwright_Tests.result }}
+
             - name: Git Checkout
               uses: actions/checkout@v3
 
@@ -56,12 +64,3 @@ jobs:
             - name: Deploy Pages
               id: deployment
               uses: actions/deploy-pages@v2
-
-    empty-job:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Do nothing
-              run: |
-                  echo ${{ github.event_name }}
-                  echo ${{ github.ref }}
-                  echo ${{ github.event.workflow_run.conclusion }}
