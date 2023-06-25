@@ -32,7 +32,7 @@ export function validateTodoEntity(
     const entity = result.entity as Todo;
 
     if (operation === 'add' || operation === 'create' || operation === 'update') {
-        if (isStatusExists(state, entity.status_id) === false) {
+        if (!isStatusExists(state, entity.status_id)) {
             return {
                 error: 'Статус задачи не обнаружен в стправочнике!',
             };
@@ -45,7 +45,7 @@ export function validateTodoEntity(
         }
     }
 
-    if (operation === 'add' && !isTodoIdUnique(state, entity.todo_id)) {
+    if (operation === 'add' && isTodoIdUnique(state, entity.todo_id)) {
         return {
             error: 'Нарушение уникальности идентификатора задач',
         };
@@ -71,9 +71,14 @@ function isTodoExists(state: TodosState, todo_id: number) {
     return Object.values(state.todos.byId).some((todo) => todo.todo_id === todo_id);
 }
 function isCategoryExists(state: TodosState, category_id: number | undefined) {
+    if (category_id === undefined) {
+        return true;
+    }
     return Object.values(state.categories?.byId).some((category) => category.category_id === category_id);
 }
 
 function isTodoIdUnique(state: TodosState, todo_id: number) {
-    return Object.values(state.todos.byId).find((item) => item.todo_id === todo_id);
+    return !!Object.values(state.todos.byId).find((item) => {
+        return item.todo_id === todo_id;
+    });
 }

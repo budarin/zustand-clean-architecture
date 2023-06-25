@@ -10,16 +10,6 @@ export function addTodo(todo: UnknownObject): JsonRpcResult<Todo, UnknownObject>
     const { entity, error } = validateTodoEntity(todo, state, 'add');
 
     if (entity) {
-        if (state.todos.ids.includes(entity.todo_id) === true) {
-            return {
-                error: {
-                    code: 500,
-                    error: `Нарушение уникальности ключа todos!`,
-                    data: todo,
-                },
-            };
-        }
-
         const newState = { ...state };
         const newTodo = entity as ExtendedTodo;
 
