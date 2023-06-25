@@ -5,13 +5,13 @@ export function validateTodoEntity(todo: UnknownObject, state: Entities, operati
 export function validateTodoEntity(
     todo: UnknownObject,
     state: Entities,
-    operation: Exclude<StateEntityOperations, 'create'>,
+    operation: Exclude<ServerStateEntityOperations, 'create'>,
 ): ValidateEntity<Todo>;
 
 export function validateTodoEntity(
     todo: UnknownObject,
     state: Entities,
-    operation: StateEntityOperations,
+    operation: ServerStateEntityOperations,
 ): ValidateEntity<NewTodo | Todo> {
     let result: ValidateEntity<NewTodo | Todo>;
 
@@ -27,31 +27,22 @@ export function validateTodoEntity(
 
     const entity = result.entity as Todo;
 
-    if (operation === 'add' || operation === 'create' || operation === 'update') {
-        if (state.statuses.some((status) => status.status_id === entity.status_id) === false) {
+    if (operation === 'create' || operation === 'update') {
+        if (isStatusExists(state, entity.status_id) === false) {
             return {
                 error: 'Статус задачи не обнаружен в стправочнике!',
             };
         }
 
-        if (
-            (entity.category_id && !state.categories) ||
-            state.categories?.some((category) => entity.category_id === category.category_id) === false
-        ) {
+        if ((entity.category_id && !state.categories) || !isCategoryExists(state, entity.category_id)) {
             return {
                 error: 'Категория задачи не обнаружена в стправочнике!',
             };
         }
     }
 
-    if (operation === 'add' && state.todos.find((item) => item.todo_id === entity.todo_id)) {
-        return {
-            error: 'Нарушение уникальности идентификатора задач',
-        };
-    }
-
     if (operation === 'delete') {
-        if (state.todos.some((todo) => todo.todo_id === entity.todo_id) === false) {
+        if (!isTodoExists(state, entity.todo_id)) {
             return {
                 error: 'Задача не найдена!',
             };
@@ -61,4 +52,18 @@ export function validateTodoEntity(
     return {
         entity,
     };
+}
+
+function isStatusExists(state: Entities, status_id: number) {
+    return state.statuses.some((status) => status.status_id === status_id);
+}
+function isTodoExists(state: Entities, todo_id: number) {
+    return state.todos.some((todo) => todo.todo_id === todo_id);
+}
+function isCategoryExists(state: Entities, category_id: number | undefined) {
+    return state.categories?.some((category) => category.category_id === category_id);
+}
+
+function isTodoIdUnique(state: Entities, todo_id: number) {
+    return state.todos.find((item) => item.todo_id === todo_id);
 }

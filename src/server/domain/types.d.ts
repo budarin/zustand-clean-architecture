@@ -1,1 +1,1 @@
-type StateEntityOperations = 'add' | 'create' | 'update' | 'delete';
+type ServerStateEntityOperations = 'create' | 'update' | 'delete';

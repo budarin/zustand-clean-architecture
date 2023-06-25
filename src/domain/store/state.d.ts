@@ -83,3 +83,5 @@ type Action = {
     type: string;
     payload?: UnknownObject;
 };
+
+type ClientStateEntityOperations = 'add' | 'create' | 'update' | 'delete';
