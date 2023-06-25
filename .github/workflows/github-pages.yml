@@ -65,5 +65,5 @@ jobs:
                   echo ${{ github.event_name }}
                   echo ${{ github.ref }}
                   echo ${{ github.event.workflow_run.conclusion }}
-                  echo ${{ workflow_run.workflows.Build_the_project.result }}
-                  echo ${{ workflow_run.workflows.Playwright_Tests.result }}
+                  echo ${{ workflows.Build_the_project.result }}
+                  echo ${{ workflows.Playwright_Tests.result }}
