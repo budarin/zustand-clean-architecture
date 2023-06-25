@@ -15,9 +15,11 @@ jobs:
     publish:
         runs-on: ubuntu-latest
         #  && github.event_name == 'push' && github.ref == 'refs/heads/master'
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        if: >
+            ${{ github.event.workflow_run.conclusion == 'success' &&
+                needs.Build_the_project.result == 'success' &&
+                needs.Playwright_Tests.result == 'success' }}
         timeout-minutes: 5
-
         environment:
             name: github-pages
             url: ${{ steps.deployment.outputs.page_url }}
@@ -44,6 +46,9 @@ jobs:
 
             - name: build
               run: yarn build
+
+            - name: Setup Pages
+              uses: actions/configure-pages@v3
 
             - name: Upload Pages Artifact
               uses: actions/upload-artifact@v2

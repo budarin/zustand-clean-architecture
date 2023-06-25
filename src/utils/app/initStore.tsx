@@ -7,13 +7,14 @@ export function initStore(data: Entities) {
     let hasError = false;
 
     const { todos } = data;
-    const { _addTodo } = useTodoStore.getState();
+    const state = useTodoStore.getState();
+    const { _addTodo } = state;
 
     unstable_batchedUpdates(() => {
         todos?.forEach((todo) => {
             const result = _addTodo(todo);
 
-            if (result.error) {
+            if (result.error !== undefined) {
                 console.error(result.error);
                 hasError = true;
             }
