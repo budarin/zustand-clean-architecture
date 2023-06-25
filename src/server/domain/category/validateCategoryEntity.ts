@@ -9,13 +9,13 @@ export function validateCategoryEntity(
 export function validateCategoryEntity(
     category: UnknownObject,
     state: Entities,
-    operation: Exclude<StateEntityOperations, 'create'>,
+    operation: Exclude<ServerStateEntityOperations, 'create'>,
 ): ValidateEntity<Category>;
 
 export function validateCategoryEntity(
     category: UnknownObject,
     state: Entities,
-    operation: StateEntityOperations,
+    operation: ServerStateEntityOperations,
 ): ValidateEntity<NewCategory | Category> {
     let result: ValidateEntity<NewCategory | Category>;
 
@@ -31,29 +31,20 @@ export function validateCategoryEntity(
 
     const entity = result.entity as Category;
 
-    if (
-        (operation === 'add' || operation === 'create' || operation === 'update') &&
-        state.categories.find((item) => item.category === entity.category && item.category_id !== entity.category_id)
-    ) {
+    if ((operation === 'create' || operation === 'update') && isCategoryNameNotUnique(state, entity)) {
         return {
             error: 'Нарушение уникальности имени категории',
         };
     }
 
-    if (operation === 'add' && state.categories.find((item) => item.category_id === entity.category_id)) {
-        return {
-            error: 'Нарушение уникальности идентификатора категории',
-        };
-    }
-
     if (operation === 'delete') {
-        if (state.todos.some((item) => item.category_id === entity.category_id)) {
+        if (isCategoryAssociatedWithTasks(state, entity.category_id)) {
             return {
                 error: 'Нельзя удалить Категорию - с ней связаны задачи!',
             };
         }
 
-        if (state.categories.some((category) => category.category_id === entity.category_id) === false) {
+        if (isCategoryExists(state, entity.category_id) === false) {
             return {
                 error: `Категория "${entity.category_id}" не найдена`,
             };
@@ -63,4 +54,18 @@ export function validateCategoryEntity(
     return {
         entity: result.entity,
     };
+}
+
+function isCategoryNameNotUnique(state: Entities, entity: Category) {
+    return state.categories.find(
+        (item) => item.category === entity.category && item.category_id !== entity.category_id,
+    );
+}
+
+function isCategoryAssociatedWithTasks(state: Entities, category_id: number) {
+    return state.todos.some((item) => item.category_id === category_id);
+}
+
+function isCategoryExists(state: Entities, category_id: number) {
+    return state.categories.some((category) => category.category_id === category_id);
 }

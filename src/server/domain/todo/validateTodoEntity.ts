@@ -5,13 +5,13 @@ export function validateTodoEntity(todo: UnknownObject, state: Entities, operati
 export function validateTodoEntity(
     todo: UnknownObject,
     state: Entities,
-    operation: Exclude<StateEntityOperations, 'create'>,
+    operation: Exclude<ServerStateEntityOperations, 'create'>,
 ): ValidateEntity<Todo>;
 
 export function validateTodoEntity(
     todo: UnknownObject,
     state: Entities,
-    operation: StateEntityOperations,
+    operation: ServerStateEntityOperations,
 ): ValidateEntity<NewTodo | Todo> {
     let result: ValidateEntity<NewTodo | Todo>;
 

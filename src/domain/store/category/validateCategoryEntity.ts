@@ -1,31 +1,81 @@
-import { validateCategory } from '../../entities/category';
+import { validateCategory, validateNewCategory } from '../../entities/category';
 
-export function validateCategoryEntity(category: UnknownObject, state: TodosState): ValidateEntity<Category> {
-    const result = validateCategory(category);
+export function validateCategoryEntity(
+    category: UnknownObject,
+    state: TodosState,
+    operation: 'create',
+): ValidateEntity<NewCategory>;
 
-    if (!result.entity) {
+export function validateCategoryEntity(
+    category: UnknownObject,
+    state: TodosState,
+    operation: Exclude<ClientStateEntityOperations, 'create'>,
+): ValidateEntity<Category>;
+
+export function validateCategoryEntity(
+    category: UnknownObject,
+    state: TodosState,
+    operation: ClientStateEntityOperations,
+): ValidateEntity<NewCategory | Category> {
+    let result: ValidateEntity<NewCategory | Category>;
+
+    if (operation === 'create') {
+        result = validateNewCategory(category) as ValidateEntity<NewCategory>;
+    } else {
+        result = validateCategory(category) as ValidateEntity<Category>;
+    }
+
+    if (result.error !== undefined) {
         return result;
     }
 
-    const { entity } = result;
+    const entity = result.entity as Category;
 
-    if (state.icons.ids.includes(entity.icon_id) === false) {
+    if ((operation === 'create' || operation === 'update') && isCategoryNameNotUnique(state, entity)) {
         return {
-            error: 'Идентификатор иконки отсутствует в справочнике!',
+            error: 'Нарушение уникальности имени категории',
         };
     }
 
-    if (
-        Object.values(state.categories.byId).find(
-            (item) => item.category === entity.category && item.category_id !== entity.category_id,
-        )
-    ) {
+    if (operation === 'add' && isCategoryIdNotUnique(state, entity.category_id)) {
         return {
-            error: `Категория с названием ${entity.category} уже существует! Название должно быть уникальным.`,
+            error: 'Нарушение уникальности идентификатора категории',
         };
+    }
+
+    if (operation === 'delete') {
+        if (isCategoryAssociatedWithTasks(state, entity.category_id)) {
+            return {
+                error: 'Нельзя удалить Категорию - с ней связаны задачи!',
+            };
+        }
+
+        if (!isCategoryExists(state, entity.category_id)) {
+            return {
+                error: `Категория "${entity.category_id}" не найдена`,
+            };
+        }
     }
 
     return {
-        entity,
+        entity: result.entity,
     };
+}
+
+function isCategoryNameNotUnique(state: TodosState, entity: Category): boolean {
+    return Object.values(state.categories.byId).some(
+        (item) => item.category === entity.category && item.category_id !== entity.category_id,
+    );
+}
+
+function isCategoryIdNotUnique(state: TodosState, categoryId: number): boolean {
+    return Object.values(state.categories.byId).some((item) => item.category_id === categoryId);
+}
+
+function isCategoryAssociatedWithTasks(state: TodosState, categoryId: number): boolean {
+    return Object.values(state.todos.byId).some((item) => item.category_id === categoryId);
+}
+
+function isCategoryExists(state: TodosState, categoryId: number): boolean {
+    return Object.values(state.categories.byId).some((category) => category.category_id === categoryId);
 }
