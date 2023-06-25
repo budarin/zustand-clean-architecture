@@ -21,8 +21,8 @@ on:
             - '.env.*'
             - 'src/server/__tests__/**'
 
-permissions:
-    contents: write # to fetch code (actions/checkout)
+# permissions:
+#     contents: write # to fetch code (actions/checkout)
 
 jobs:
     build:
@@ -60,16 +60,16 @@ jobs:
             - name: build
               run: yarn build
 
-            - name: Commit and push changes
-              run: |
-                  if [[ -n $(git status --porcelain) ]]; then
-                    echo "Changes detected"
-                    
-                    git config --local user.email "github-actions[bot]@github.com"
-                    git config --local user.name "github-actions[bot]"
-                    git add .
-                    git commit -m "ci changes"
-                    git push origin HEAD:refs/heads/${{ github.head_ref }} -f
-                  else
-                    echo "No changes"
-                  fi
+            # - name: Commit and push changes - docs folder
+            #   run: |
+            #       if [[ -n $(git status --porcelain) ]]; then
+            #         echo "Changes detected"
+
+            #         git config --local user.email "github-actions[bot]@github.com"
+            #         git config --local user.name "github-actions[bot]"
+            #         git add .
+            #         git commit -m "ci changes"
+            #         git push origin HEAD:refs/heads/${{ github.head_ref }} -f
+            #       else
+            #         echo "No changes"
+            #       fi
