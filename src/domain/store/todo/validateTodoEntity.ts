@@ -38,10 +38,7 @@ export function validateTodoEntity(
             };
         }
 
-        if (
-            (entity.category_id && !state.categories) ||
-            (entity.category_id && state.categories && !isCategoryExists(state, entity.category_id))
-        ) {
+        if (entity.category_id && !isCategoryExists(state, entity.category_id)) {
             return {
                 error: 'Категория задачи не обнаружена в стправочнике!',
             };
@@ -73,7 +70,7 @@ function isStatusExists(state: TodosState, status_id: number) {
 function isTodoExists(state: TodosState, todo_id: number) {
     return Object.values(state.todos.byId).some((todo) => todo.todo_id === todo_id);
 }
-function isCategoryExists(state: TodosState, category_id: number | undefined) {
+function isCategoryExists(state: TodosState, category_id: number) {
     return Object.values(state.categories?.byId).some((category) => category.category_id === category_id);
 }
 
