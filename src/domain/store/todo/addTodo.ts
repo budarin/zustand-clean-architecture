@@ -7,7 +7,7 @@ import { updateTodoDueDate } from './filters/updateTodoDueDate';
 
 export function addTodo(todo: UnknownObject): JsonRpcResult<Todo, UnknownObject> {
     const state = useTodoStore.getState();
-    const { entity, error } = validateTodoEntity(todo, state);
+    const { entity, error } = validateTodoEntity(todo, state, 'add');
 
     if (entity) {
         if (state.todos.ids.includes(entity.todo_id) === true) {

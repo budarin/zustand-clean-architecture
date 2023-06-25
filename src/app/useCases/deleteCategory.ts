@@ -17,7 +17,7 @@ export async function deleteCategory(category: Category, isMountedRef: React.Mut
         return;
     }
 
-    store._deleteCategory(category.category_id);
+    store._deleteCategory(category);
 
     try {
         await delay(3000);

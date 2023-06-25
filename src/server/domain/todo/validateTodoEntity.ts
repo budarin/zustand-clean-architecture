@@ -63,7 +63,3 @@ function isTodoExists(state: Entities, todo_id: number) {
 function isCategoryExists(state: Entities, category_id: number | undefined) {
     return state.categories?.some((category) => category.category_id === category_id);
 }
-
-function isTodoIdUnique(state: Entities, todo_id: number) {
-    return state.todos.find((item) => item.todo_id === todo_id);
-}
