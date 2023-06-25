@@ -38,7 +38,10 @@ export function validateTodoEntity(
             };
         }
 
-        if ((entity.category_id && !state.categories) || !isCategoryExists(state, entity.category_id)) {
+        if (
+            (entity.category_id && !state.categories) ||
+            (entity.category_id && state.categories && !isCategoryExists(state, entity.category_id))
+        ) {
             return {
                 error: 'Категория задачи не обнаружена в стправочнике!',
             };
