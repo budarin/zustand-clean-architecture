@@ -31,7 +31,7 @@ export function validateCategoryEntity(
 
     const entity = result.entity as Category;
 
-    if ((operation === 'create' || operation === 'update') && isCategoryNameNotUnique(state, entity)) {
+    if (operation === 'update' && isCategoryNameNotUnique(state, entity)) {
         return {
             error: 'Нарушение уникальности имени категории',
         };

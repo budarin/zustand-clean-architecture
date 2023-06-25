@@ -7,7 +7,7 @@ import { updateTodoDueDate } from './filters/updateTodoDueDate';
 
 export function updateTodo(todo: UnknownObject): JsonRpcResult<Todo, UnknownObject> {
     const state = useTodoStore.getState();
-    const { entity, error } = validateTodoEntity(todo, state);
+    const { entity, error } = validateTodoEntity(todo, state, 'update');
 
     if (entity) {
         const newState = { ...state };
