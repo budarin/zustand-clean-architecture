@@ -43,8 +43,8 @@ jobs:
             - name: Upload Pages Artifact
               uses: actions/upload-artifact@v2
               with:
-                  name: pages
-                  path: ./docs # Измените на директорию, где находятся собранные файлы
+                  name: github-pages
+                  path: docs/ # Измените на директорию, где находятся собранные файлы
 
             - name: Deploy Pages
               uses: actions/deploy-pages@v2
