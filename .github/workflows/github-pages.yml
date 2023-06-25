@@ -48,6 +48,8 @@ jobs:
 
             - name: Deploy Pages
               uses: actions/deploy-pages@v2
+              env:
+                  ACTIONS_STEP_DEBUG: true
 
     empty-job:
         runs-on: ubuntu-latest
