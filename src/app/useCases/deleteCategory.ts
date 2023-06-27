@@ -17,13 +17,13 @@ export async function deleteCategory(category: Category, isMountedRef: React.Mut
         return;
     }
 
-    store._deleteCategory(category);
+    store.deleteCategory(category);
 
     try {
         await delay(3000);
 
         if (!isMountedRef.current) {
-            store._addCategory(value);
+            store.addCategory(value);
             return;
         }
 
@@ -31,9 +31,9 @@ export async function deleteCategory(category: Category, isMountedRef: React.Mut
             autoClose: 2000,
         });
 
-        store._addCategory(value);
+        store.addCategory(value);
     } catch (err) {
         notification.notifyError(`Error: ${(err as Error).message}`);
-        store._addCategory(value);
+        store.addCategory(value);
     }
 }

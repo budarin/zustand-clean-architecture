@@ -4,7 +4,7 @@ export function validateTodoEntity(
     todo: UnknownObject,
     state: TodosState,
     operation: ClientStateEntityOperations,
-): ValidateEntity<NewTodo | Todo> {
+): ValidateEntity<Todo> {
     const result = validateTodo(todo);
 
     if (!result.entity) {

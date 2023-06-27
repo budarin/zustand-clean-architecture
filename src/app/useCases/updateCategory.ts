@@ -12,14 +12,14 @@ export async function updateCategory(category: Category, isMountedRef: React.Mut
     const store = useTodoStore.getState();
     const oldValue = store.categories.byId[category.category_id];
 
-    store._updateCategory(category);
+    store.updateCategory(category);
 
     // toast.info('Категория успешно удалена', { autoClose: 1000 });
 
     await delay(3000);
 
     if (!isMountedRef.current) {
-        store._updateCategory(oldValue);
+        store.updateCategory(oldValue);
         return;
     }
 
@@ -27,5 +27,5 @@ export async function updateCategory(category: Category, isMountedRef: React.Mut
         autoClose: 2000,
     });
 
-    store._updateCategory(oldValue);
+    store.updateCategory(oldValue);
 }

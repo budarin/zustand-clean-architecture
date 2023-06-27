@@ -58,7 +58,7 @@ export async function createCategory(
         }
 
         const store = useTodoStore.getState();
-        store._addCategory(result);
+        store.addCategory(result);
 
         // устанавливаем навигационный фильтр на данную категорию
         store.setNavigationFilter(createCategoryNavigationFilter(result.category_id, entity.category));

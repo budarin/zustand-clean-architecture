@@ -6,7 +6,7 @@ import { useTodoStore } from '../../../../domain/store/store.tsx';
 let initialState: TodosState;
 
 function setupStore() {
-    const { _addTodo } = useTodoStore.getState();
+    const { addTodo: _addTodo } = useTodoStore.getState();
 
     todoSamples.forEach((todo) => {
         _addTodo(todo);

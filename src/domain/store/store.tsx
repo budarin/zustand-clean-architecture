@@ -12,7 +12,7 @@ import { deleteCategory } from './category/deleteCategory.ts';
 import { addTodo } from './todo/addTodo.ts';
 import { updateTodo } from './todo/updateTodo.ts';
 import { deleteTodo } from './todo/deleteTodo.ts';
-import { addToOverdueTodos } from './todo/addToOverdueTodos.ts';
+import { addToOverdueTodos } from '../../app/useCases/addToOverdueTodos.ts';
 import { setNavigationFilter } from './navigationFilter/setNavigationFilter.ts';
 
 // action creators
@@ -20,21 +20,20 @@ import { createCalendarNavigationFilter } from './navigationFilter/createCalenda
 
 export type Actions = {
     // Icon
-    _addIcon: typeof addIcon;
+    addIcon: typeof addIcon;
 
     // Status
-    _addStatus: typeof addStatus;
+    addStatus: typeof addStatus;
 
     // Category
-    _addCategory: typeof addCategory;
-    _updateCategory: typeof updateCategory;
-    _deleteCategory: typeof deleteCategory;
+    addCategory: typeof addCategory;
+    updateCategory: typeof updateCategory;
+    deleteCategory: typeof deleteCategory;
 
     // Todo
-    _addTodo: typeof addTodo;
-    _updateTodo: typeof updateTodo;
-    _deleteTodo: typeof deleteTodo;
-    _addToOverdueTodos: typeof addToOverdueTodos;
+    addTodo: typeof addTodo;
+    updateTodo: typeof updateTodo;
+    deleteTodo: typeof deleteTodo;
 
     // NavigationFilter
     setNavigationFilter: typeof setNavigationFilter;
@@ -128,21 +127,21 @@ export const useTodoStore = create<TodosState & Actions>()(() => ({
     navigationFilter: createCalendarNavigationFilter(getTodayDate()),
 
     // Icon
-    _addIcon: addIcon,
+    addIcon: addIcon,
 
     // Status
-    _addStatus: addStatus,
+    addStatus: addStatus,
 
     // Category
-    _addCategory: addCategory,
-    _updateCategory: updateCategory,
-    _deleteCategory: deleteCategory,
+    addCategory: addCategory,
+    updateCategory: updateCategory,
+    deleteCategory: deleteCategory,
 
     // Todo
-    _addTodo: addTodo,
-    _updateTodo: updateTodo,
-    _deleteTodo: deleteTodo,
-    _addToOverdueTodos: addToOverdueTodos,
+    addTodo: addTodo,
+    updateTodo: updateTodo,
+    deleteTodo: deleteTodo,
+    addToOverdueTodos: addToOverdueTodos,
 
     // NavigationFilter
     setNavigationFilter,

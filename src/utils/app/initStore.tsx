@@ -8,7 +8,7 @@ export function initStore(data: Entities) {
 
     const { todos } = data;
     const state = useTodoStore.getState();
-    const { _addTodo } = state;
+    const { addTodo: _addTodo } = state;
 
     unstable_batchedUpdates(() => {
         todos?.forEach((todo) => {
