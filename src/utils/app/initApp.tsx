@@ -44,7 +44,7 @@ export async function initApp() {
 
         .then(() => {
             const kvStorage = useKVStorage();
-            const rootElement = document.getElementById('root') || createRootElement();
+            const rootElement = document.querySelector('#root') || createRootElement();
 
             createRoot(rootElement).render(
                 <>
