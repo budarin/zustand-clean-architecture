@@ -8,8 +8,8 @@ import { useLogger } from '../../services/adapters/useLogger.ts';
 import { useKVStorage } from '../../services/adapters/useKVStorage.ts';
 
 // utils
-import { runTask } from '../tasks/runTask.ts';
 import { initStore } from './initStore.tsx';
+import { runTask } from '../tasks/runTask.ts';
 import { ONE_MINUTE } from '../dateTime/consts.ts';
 import { createRootElement } from './createRootElement.tsx';
 import { isAppleMobile } from '../browsers/isAppleMobile.ts';
