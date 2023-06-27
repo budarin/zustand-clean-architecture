@@ -1,4 +1,4 @@
-export async function handleSetupServiceWorker() {
+export async function setupServiceWorker() {
     if ('serviceWorker' in navigator) {
         if (!navigator.serviceWorker.controller) {
             await new Promise((resolve) => {
