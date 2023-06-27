@@ -3,27 +3,9 @@ import { validateCategory, validateNewCategory } from '../../entities/category';
 export function validateCategoryEntity(
     category: UnknownObject,
     state: TodosState,
-    operation: 'create',
-): ValidateEntity<NewCategory>;
-
-export function validateCategoryEntity(
-    category: UnknownObject,
-    state: TodosState,
-    operation: Exclude<ClientStateEntityOperations, 'create'>,
-): ValidateEntity<Category>;
-
-export function validateCategoryEntity(
-    category: UnknownObject,
-    state: TodosState,
     operation: ClientStateEntityOperations,
-): ValidateEntity<NewCategory | Category> {
-    let result: ValidateEntity<NewCategory | Category>;
-
-    if (operation === 'create') {
-        result = validateNewCategory(category) as ValidateEntity<NewCategory>;
-    } else {
-        result = validateCategory(category) as ValidateEntity<Category>;
-    }
+): ValidateEntity<Category> {
+    const result = validateCategory(category) as ValidateEntity<Category>;
 
     if (result.error !== undefined) {
         return result;

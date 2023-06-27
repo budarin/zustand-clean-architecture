@@ -3,27 +3,9 @@ import { validateNewTodo, validateTodo } from '../../../domain/entities/todo';
 export function validateTodoEntity(
     todo: UnknownObject,
     state: TodosState,
-    operation: 'create',
-): ValidateEntity<NewTodo>;
-
-export function validateTodoEntity(
-    todo: UnknownObject,
-    state: TodosState,
-    operation: Exclude<ClientStateEntityOperations, 'create'>,
-): ValidateEntity<Todo>;
-
-export function validateTodoEntity(
-    todo: UnknownObject,
-    state: TodosState,
     operation: ClientStateEntityOperations,
 ): ValidateEntity<NewTodo | Todo> {
-    let result: ValidateEntity<NewTodo | Todo>;
-
-    if (operation === 'create') {
-        result = validateNewTodo(todo) as ValidateEntity<NewTodo>;
-    } else {
-        result = validateTodo(todo) as ValidateEntity<Todo>;
-    }
+    const result = validateTodo(todo);
 
     if (!result.entity) {
         return result;
