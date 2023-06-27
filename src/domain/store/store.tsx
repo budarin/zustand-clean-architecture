@@ -12,7 +12,6 @@ import { deleteCategory } from './category/deleteCategory.ts';
 import { addTodo } from './todo/addTodo.ts';
 import { updateTodo } from './todo/updateTodo.ts';
 import { deleteTodo } from './todo/deleteTodo.ts';
-import { addToOverdueTodos } from '../../app/useCases/addToOverdueTodos.ts';
 import { setNavigationFilter } from './navigationFilter/setNavigationFilter.ts';
 
 // action creators
@@ -127,21 +126,20 @@ export const useTodoStore = create<TodosState & Actions>()(() => ({
     navigationFilter: createCalendarNavigationFilter(getTodayDate()),
 
     // Icon
-    addIcon: addIcon,
+    addIcon,
 
     // Status
-    addStatus: addStatus,
+    addStatus,
 
     // Category
-    addCategory: addCategory,
-    updateCategory: updateCategory,
-    deleteCategory: deleteCategory,
+    addCategory,
+    updateCategory,
+    deleteCategory,
 
     // Todo
-    addTodo: addTodo,
-    updateTodo: updateTodo,
-    deleteTodo: deleteTodo,
-    addToOverdueTodos: addToOverdueTodos,
+    addTodo,
+    updateTodo,
+    deleteTodo,
 
     // NavigationFilter
     setNavigationFilter,
