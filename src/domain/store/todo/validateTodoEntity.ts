@@ -13,7 +13,7 @@ export function validateTodoEntity(
 
     const entity = result.entity as Todo;
 
-    if (operation === 'add' || operation === 'create' || operation === 'update') {
+    if (operation === 'add' || operation === 'update') {
         if (!isStatusExists(state, entity.status_id)) {
             return {
                 error: 'Статус задачи не обнаружен в стправочнике!',
