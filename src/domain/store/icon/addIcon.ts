@@ -1,9 +1,9 @@
 import { useTodoStore } from '../store';
-import { validateIconEntity } from './validateIconEntity';
+import { validateIcon } from './validateIcon';
 
 export function addIcon(icon: UnknownObject): JsonRpcResult<Icon, UnknownObject> {
     const state = useTodoStore.getState();
-    const { entity, error } = validateIconEntity(icon, state);
+    const { entity, error } = validateIcon(icon, state);
 
     if (entity) {
         if (state.icons.ids.includes(entity.icon_id) === true) {

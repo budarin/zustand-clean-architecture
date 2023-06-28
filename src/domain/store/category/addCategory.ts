@@ -1,9 +1,9 @@
 import { useTodoStore } from '../store';
-import { validateCategoryEntity } from './validateCategoryEntity';
+import { validateCategory } from './validateCategory';
 
 export function addCategory(category: UnknownObject): JsonRpcResult<Category, UnknownObject> {
     const state = useTodoStore.getState();
-    const { entity, error } = validateCategoryEntity(category, state, 'add');
+    const { entity, error } = validateCategory(category, state, 'add');
 
     if (entity) {
         if (state.categories.ids.includes(entity.category_id) === true) {

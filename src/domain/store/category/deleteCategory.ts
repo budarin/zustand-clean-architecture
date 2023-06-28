@@ -1,9 +1,9 @@
 import { useTodoStore } from '../../store/store';
-import { validateCategoryEntity } from './validateCategoryEntity';
+import { validateCategory } from './validateCategory';
 
 export function deleteCategory(category: Category): JsonRpcResult<Category, number> {
     const state = useTodoStore.getState();
-    const { entity, error } = validateCategoryEntity(category, state, 'delete');
+    const { entity, error } = validateCategory(category, state, 'delete');
 
     if (error !== undefined) {
         return {

@@ -1,11 +1,12 @@
-import { validateNewTodo, validateTodo } from '../../../domain/entities/todo';
+import { validateTodoEntity } from '../../entities/todo';
+import { createValidationError } from '../../entities/validation_utils/createValidationError';
 
-export function validateTodoEntity(
+export function validateTodo(
     todo: UnknownObject,
     state: TodosState,
     operation: ClientStateEntityOperations,
 ): ValidateEntity<Todo> {
-    const result = validateTodo(todo);
+    const result = validateTodoEntity(todo);
 
     if (!result.entity) {
         return result;
@@ -15,29 +16,21 @@ export function validateTodoEntity(
 
     if (operation === 'add' || operation === 'update') {
         if (!isStatusExists(state, entity.status_id)) {
-            return {
-                error: 'Статус задачи не обнаружен в стправочнике!',
-            };
+            return createValidationError('Статус задачи не обнаружен в стправочнике!');
         }
 
         if (entity.category_id && !isCategoryExists(state, entity.category_id)) {
-            return {
-                error: 'Категория задачи не обнаружена в стправочнике!',
-            };
+            return createValidationError('Категория задачи не обнаружена в стправочнике!');
         }
     }
 
     if (operation === 'add' && isTodoIdUnique(state, entity.todo_id)) {
-        return {
-            error: 'Нарушение уникальности идентификатора задач',
-        };
+        return createValidationError('Нарушение уникальности идентификатора задач');
     }
 
     if (operation === 'delete') {
         if (!isTodoExists(state, entity.todo_id)) {
-            return {
-                error: 'Задача не найдена!',
-            };
+            return createValidationError('Задача не найдена!');
         }
     }
 

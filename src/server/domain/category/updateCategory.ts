@@ -1,13 +1,13 @@
 import { getState } from '../state.ts';
 import { respondWithError } from '../../utils/respondWithError.ts';
-import { validateCategoryEntity } from './validateCategoryEntity.ts';
+import { validateCategory } from './validateCategory.ts';
 import { respondWithResult } from '../../utils/respondWithResult.ts';
 
 export async function updateCategory(request: Request): Promise<Response> {
     try {
         const state = getState();
         const data = await request.json();
-        const { entity, error } = validateCategoryEntity(data, state, 'update');
+        const { entity, error } = validateCategory(data, state, 'update');
 
         if (entity) {
             const idx = state.categories.findIndex((item) => item.category_id === entity.category_id);

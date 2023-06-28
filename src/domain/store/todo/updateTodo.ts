@@ -1,5 +1,5 @@
 import { useTodoStore } from '../../store/store';
-import { validateTodoEntity } from './validateTodoEntity';
+import { validateTodo } from './validateTodo';
 import { getOnlyDateTimestamp } from '../../../utils/dateTime/getOnlyDateTimestamp';
 import { updateTodoFilters } from './filters/updateTodoFilters';
 import { updateTodoCategories } from './filters/updateTodoCategories';
@@ -7,7 +7,7 @@ import { updateTodoDueDate } from './filters/updateTodoDueDate';
 
 export function updateTodo(todo: UnknownObject): JsonRpcResult<Todo, UnknownObject> {
     const state = useTodoStore.getState();
-    const { entity, error } = validateTodoEntity(todo, state, 'update');
+    const { entity, error } = validateTodo(todo, state, 'update');
 
     if (entity) {
         const newState = { ...state };

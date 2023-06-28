@@ -1,9 +1,9 @@
 import { useTodoStore } from '../store';
-import { validateStatusEntity } from './validateStatusEntity';
+import { validateStatus } from './validateStatus';
 
 export function addStatus(status: UnknownObject): JsonRpcResult<Status, UnknownObject> {
     const state = useTodoStore.getState();
-    const { entity, error } = validateStatusEntity(status, state);
+    const { entity, error } = validateStatus(status, state);
 
     if (entity) {
         if (state.statuses.ids.includes(entity.status_id) === true) {

@@ -1,18 +1,19 @@
-import { validateCategory, validateNewCategory } from '../../../domain/entities/category';
+import { createValidationError } from '../../../domain/entities/validation_utils/createValidationError';
+import { validateCategoryEntity, validateNewCategoryEntity } from '../../../domain/entities/category';
 
-export function validateCategoryEntity(
+export function validateCategory(
     category: UnknownObject,
     state: Entities,
     operation: 'create',
 ): ValidateEntity<NewCategory>;
 
-export function validateCategoryEntity(
+export function validateCategory(
     category: UnknownObject,
     state: Entities,
     operation: Exclude<ServerStateEntityOperations, 'create'>,
 ): ValidateEntity<Category>;
 
-export function validateCategoryEntity(
+export function validateCategory(
     category: UnknownObject,
     state: Entities,
     operation: ServerStateEntityOperations,
@@ -20,9 +21,9 @@ export function validateCategoryEntity(
     let result: ValidateEntity<NewCategory | Category>;
 
     if (operation === 'create') {
-        result = validateNewCategory(category) as ValidateEntity<NewCategory>;
+        result = validateNewCategoryEntity(category) as ValidateEntity<NewCategory>;
     } else {
-        result = validateCategory(category) as ValidateEntity<Category>;
+        result = validateCategoryEntity(category) as ValidateEntity<Category>;
     }
 
     if (result.error !== undefined) {
@@ -32,22 +33,16 @@ export function validateCategoryEntity(
     const entity = result.entity as Category;
 
     if ((operation === 'create' || operation === 'update') && isCategoryNameNotUnique(state, entity)) {
-        return {
-            error: 'Нарушение уникальности имени категории',
-        };
+        return createValidationError('Нарушение уникальности имени категории');
     }
 
     if (operation === 'delete') {
         if (isCategoryAssociatedWithTasks(state, entity.category_id)) {
-            return {
-                error: 'Нельзя удалить Категорию - с ней связаны задачи!',
-            };
+            return createValidationError('Нельзя удалить Категорию - с ней связаны задачи!');
         }
 
         if (isCategoryExists(state, entity.category_id) === false) {
-            return {
-                error: `Категория "${entity.category_id}" не найдена`,
-            };
+            return createValidationError(`Категория "${entity.category}" с указанным ключем не найдена`);
         }
     }
 

@@ -84,7 +84,6 @@ const due_date: ValidationRule = [validate_dueDate, 'необязательно�
 const completed: ValidationRule = [validate_completed, 'поле completed должно быть boolean'];
 const deleted: ValidationRule = [validate_deleted, 'поле deleted должно быть boolean'];
 
-// Todo getter
 export function getTodoFomObject(input: UnknownObject): Todo | NewTodo | {} {
     const { todo_id, todo, status_id, category_id, description, due_date, deleted, completed } = input;
 
@@ -111,7 +110,7 @@ export const todoValidationRules: ValidationRules = {
     deleted,
 };
 
-export function validateTodo(todo: UnknownObject): ValidateEntity<Todo> {
+export function validateTodoEntity(todo: UnknownObject): ValidateEntity<Todo> {
     return validateRawEntity<Todo>(getTodoFomObject(todo), todoValidationRules);
 }
 
@@ -124,6 +123,6 @@ export const newTodoValidationRules: ValidationRules = {
     completed,
     deleted,
 };
-export function validateNewTodo(todo: UnknownObject): ValidateEntity<NewTodo> {
+export function validateNewTodoEntity(todo: UnknownObject): ValidateEntity<NewTodo> {
     return validateRawEntity<NewTodo>(getTodoFomObject(todo), newTodoValidationRules);
 }

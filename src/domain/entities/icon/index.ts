@@ -20,7 +20,6 @@ export function validate_name(x: UnknownObject): boolean {
     return false;
 }
 
-// Category getter
 export function getIconFomObject(input: UnknownObject = {}): Icon | {} {
     const { icon_id, icon_name } = input;
 
@@ -35,6 +34,6 @@ export const iconValidationRules: ValidationRules = {
     name: [validate_name, 'обязательное icon_name должно быть строкой'],
 };
 
-export function validateIcon(icon: UnknownObject): ValidateEntity<Icon> {
+export function validateIconEntity(icon: UnknownObject): ValidateEntity<Icon> {
     return validateRawEntity<Icon>(getIconFomObject(icon), iconValidationRules);
 }

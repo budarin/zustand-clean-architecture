@@ -1,14 +1,15 @@
-import { validateNewTodo, validateTodo } from '../../../domain/entities/todo';
+import { createValidationError } from '../../../domain/entities/validation_utils/createValidationError';
+import { validateNewTodoEntity, validateTodoEntity } from '../../../domain/entities/todo';
 
-export function validateTodoEntity(todo: UnknownObject, state: Entities, operation: 'create'): ValidateEntity<NewTodo>;
+export function validateTodo(todo: UnknownObject, state: Entities, operation: 'create'): ValidateEntity<NewTodo>;
 
-export function validateTodoEntity(
+export function validateTodo(
     todo: UnknownObject,
     state: Entities,
     operation: Exclude<ServerStateEntityOperations, 'create'>,
 ): ValidateEntity<Todo>;
 
-export function validateTodoEntity(
+export function validateTodo(
     todo: UnknownObject,
     state: Entities,
     operation: ServerStateEntityOperations,
@@ -16,9 +17,9 @@ export function validateTodoEntity(
     let result: ValidateEntity<NewTodo | Todo>;
 
     if (operation === 'create') {
-        result = validateNewTodo(todo) as ValidateEntity<NewTodo>;
+        result = validateNewTodoEntity(todo) as ValidateEntity<NewTodo>;
     } else {
-        result = validateTodo(todo) as ValidateEntity<Todo>;
+        result = validateTodoEntity(todo) as ValidateEntity<Todo>;
     }
 
     if (!result.entity) {
@@ -29,23 +30,17 @@ export function validateTodoEntity(
 
     if (operation === 'create' || operation === 'update') {
         if (isStatusExists(state, entity.status_id) === false) {
-            return {
-                error: 'Статус задачи не обнаружен в стправочнике!',
-            };
+            return createValidationError('Статус задачи не обнаружен в стправочнике!');
         }
 
         if ((entity.category_id && !state.categories) || !isCategoryExists(state, entity.category_id)) {
-            return {
-                error: 'Категория задачи не обнаружена в стправочнике!',
-            };
+            return createValidationError('Категория задачи не обнаружена в стправочнике!');
         }
     }
 
     if (operation === 'delete') {
         if (!isTodoExists(state, entity.todo_id)) {
-            return {
-                error: 'Задача не найдена!',
-            };
+            return createValidationError('Задача не найдена!');
         }
     }
 

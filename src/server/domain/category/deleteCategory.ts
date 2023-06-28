@@ -1,13 +1,13 @@
 import { getState } from '../state.ts';
 import { respondWithError } from '../../utils/respondWithError.ts';
 import { respondWithResult } from '../../utils/respondWithResult.ts';
-import { validateCategoryEntity } from './validateCategoryEntity.ts';
+import { validateCategory } from './validateCategory.ts';
 
 export async function deleteCategory(request: Request): Promise<Response> {
     try {
         const state = getState();
         const data = await request.json();
-        const { entity, error } = validateCategoryEntity(data, state, 'delete');
+        const { entity, error } = validateCategory(data, state, 'delete');
 
         if (entity) {
             // если нет такой записи в categories - ошибка
