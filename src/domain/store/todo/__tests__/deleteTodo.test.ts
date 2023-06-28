@@ -1,5 +1,5 @@
-import { resetStore } from '../../../../utils/jest/store.setup';
 import { deleteTodo } from '../deleteTodo';
+import { resetStore } from '../../../../utils/jest/store.setup';
 
 beforeAll(() => {
     resetStore();
