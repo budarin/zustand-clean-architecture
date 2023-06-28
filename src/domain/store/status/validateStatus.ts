@@ -16,11 +16,11 @@ export function validateStatus(
 
     if (operation === 'add') {
         if (isStatusIdExists(state, entity.status_id)) {
-            return createValidationError(`Нарушение уникальности ключа статуса.`);
+            return createValidationError('Нарушение уникальностиидентификатора статуса');
         }
 
         if (isStatusNameNotUnique(state, entity)) {
-            return createValidationError(`Нарушение уникальности имени статуса.`);
+            return createValidationError('Нарушение уникальности имени статуса');
         }
     }
 

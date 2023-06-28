@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 
-import { resetStore } from './utils/store.setup.ts';
+import { resetStoreForReact } from '../../../utils/jest/store.setup.ts';
 
 import { useTodoStore } from '../../../domain/store/store.tsx';
 import { getTodayDate } from '../../../utils/dateTime/getTodayDate.ts';
@@ -8,7 +8,7 @@ import { getTodosCountByTimestamp } from '../getTodosCountByTimestamp.ts';
 import { getOnlyDateTimestamp } from '../../../utils/dateTime/getOnlyDateTimestamp.ts';
 
 beforeAll(() => {
-    resetStore();
+    resetStoreForReact();
 });
 
 describe('getTodosCountByTimestamp', () => {

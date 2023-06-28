@@ -17,7 +17,7 @@ export function validateNavigationFilter(filter: UnknownObject, state: TodosStat
     switch (type) {
         case 'filter': {
             if (typeof key !== 'string' || !navigationFilterKeys.includes(key)) {
-                return createValidationError('Не верный тип ключа фильтра');
+                return createValidationError('Не верный типидентификатора фильтра');
             }
 
             if (!navigationFilterTitles.includes(title)) {
@@ -32,13 +32,13 @@ export function validateNavigationFilter(filter: UnknownObject, state: TodosStat
             }
 
             if (typeof key !== 'number' || !state.categories.ids.includes(key)) {
-                return createValidationError('Не верный тип ключа фильтра категорий');
+                return createValidationError('Не верный типидентификатора фильтра категорий');
             }
             break;
         }
         case 'calendar': {
             if (typeof key !== 'number') {
-                return createValidationError('Не верный тип ключа в фильтре календаря');
+                return createValidationError('Не верный типидентификатора в фильтре календаря');
             }
 
             const dt = new Date(key);

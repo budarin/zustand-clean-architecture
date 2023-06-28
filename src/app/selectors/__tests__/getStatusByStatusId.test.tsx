@@ -1,12 +1,12 @@
 import { renderHook } from '@testing-library/react';
 
-import { resetStore } from './utils/store.setup.ts';
+import { resetStoreForReact } from '../../../utils/jest/store.setup.ts';
 
 import { useTodoStore } from '../../../domain/store/store.tsx';
 import { getStatusByStatusId } from '../getStatusByStatusId.ts';
 
 beforeAll(() => {
-    resetStore();
+    resetStoreForReact();
 });
 
 describe('getStatusByStatusId', () => {

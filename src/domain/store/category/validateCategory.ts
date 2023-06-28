@@ -14,23 +14,27 @@ export function validateCategory(
 
     const entity = result.entity as Category;
 
+    if (operation === 'add') {
+        if (isCategoryIdNotUnique(state, entity.category_id)) {
+            return createValidationError('Нарушение уникальностиидентификатора ктегории');
+        }
+    }
+
     if (operation === 'add' || operation === 'update') {
         if (isCategoryNameNotUnique(state, entity)) {
-            return createValidationError('Нарушение уникальности имени категории');
+            return createValidationError('Нарушение уникальности имени ктегории');
         }
+    }
 
-        if (isCategoryIdNotUnique(state, entity.category_id)) {
-            return createValidationError('Нарушение уникальности идентификатора категории');
+    if (operation === 'update' || operation === 'delete') {
+        if (!isCategoryExists(state, entity.category_id)) {
+            return createValidationError(`Категория не найдена`);
         }
     }
 
     if (operation === 'delete') {
         if (isCategoryAssociatedWithTasks(state, entity.category_id)) {
-            return createValidationError('Нельзя удалить Категорию - с ней связаны задачи!');
-        }
-
-        if (!isCategoryExists(state, entity.category_id)) {
-            return createValidationError(`Категория "${entity.category}" с указанным ключем не найдена`);
+            return createValidationError('Нельзя удалить Категорию - с ней связаны задачи');
         }
     }
 

@@ -1,13 +1,13 @@
 import { renderHook } from '@testing-library/react';
 
-import { resetStore } from './utils/store.setup.ts';
+import { resetStoreForReact } from '../../../utils/jest/store.setup.ts';
 
 import { useTodoStore } from '../../../domain/store/store.tsx';
 import { inboxKey } from '../../../domain/store/navigationFilter/index.ts';
 import { getTodoCountForNavPanelItem } from '../getTodoCountForNavPanelItem.ts';
 
 beforeAll(() => {
-    resetStore();
+    resetStoreForReact();
 });
 
 describe('getTodoCountForNavPanelItem', () => {

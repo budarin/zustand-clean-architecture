@@ -23,6 +23,7 @@ export function updateCategory(category: UnknownObject): JsonRpcResult<Category,
         error: {
             code: 500,
             error,
+            data: category,
         },
     };
 }

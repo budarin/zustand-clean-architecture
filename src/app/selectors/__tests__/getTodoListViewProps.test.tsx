@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 
-import { resetStore } from './utils/store.setup.ts';
+import { resetStoreForReact } from '../../../utils/jest/store.setup.ts';
 
 import { useTodoStore } from '../../../domain/store/store.tsx';
 import { getTodoListViewProps } from '../getTodoListViewProps.ts';
@@ -12,7 +12,7 @@ import { createCategoryNavigationFilter } from '../../../domain/store/navigation
 import { createCalendarNavigationFilter } from '../../../domain/store/navigationFilter/createCalendarNavigationFilter.ts';
 
 beforeAll(() => {
-    resetStore();
+    resetStoreForReact();
 });
 
 describe('getTodoListViewProps', () => {

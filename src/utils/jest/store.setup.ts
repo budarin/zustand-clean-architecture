@@ -1,7 +1,7 @@
 import { act } from '@testing-library/react';
 
 import { todoSamples } from './todos.ts';
-import { useTodoStore } from '../../../../domain/store/store.tsx';
+import { useTodoStore } from '../../domain/store/store.tsx';
 
 let initialState: TodosState;
 
@@ -17,6 +17,10 @@ function setupStore() {
 
 setupStore();
 
-export const resetStore = () => {
+export const resetStoreForReact = () => {
     act(() => useTodoStore.setState(initialState, true));
+};
+
+export const resetStore = () => {
+    useTodoStore.setState(initialState, true);
 };

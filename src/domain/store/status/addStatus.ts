@@ -6,16 +6,6 @@ export function addStatus(status: UnknownObject): JsonRpcResult<Status, UnknownO
     const { entity, error } = validateStatus(status, state, 'add');
 
     if (entity) {
-        if (state.statuses.ids.includes(entity.status_id) === true) {
-            return {
-                error: {
-                    code: 500,
-                    error: `Нарушение уникальности ключа statuses!`,
-                    data: status,
-                },
-            };
-        }
-
         const newState = { ...state };
 
         newState.statuses.byId = { ...state.statuses.byId, [entity.status_id]: entity };

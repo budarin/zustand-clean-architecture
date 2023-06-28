@@ -10,7 +10,7 @@ export function addCategory(category: UnknownObject): JsonRpcResult<Category, Un
             return {
                 error: {
                     code: 500,
-                    error: `Нарушение уникальности ключа categories`,
+                    error: `Нарушение уникальностиидентификатора categories`,
                     data: category,
                 },
             };

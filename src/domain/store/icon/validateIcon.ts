@@ -16,7 +16,7 @@ export function validateIcon(
 
     if (operation === 'add') {
         if (isIconIdExists(state, entity.icon_id)) {
-            return createValidationError(`Нарушение уникальности ключа иконки`);
+            return createValidationError(`Нарушение уникальностиидентификатора иконки`);
         }
 
         if (isIconNameNotUnique(state, entity)) {

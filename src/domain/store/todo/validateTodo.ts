@@ -14,23 +14,23 @@ export function validateTodo(
 
     const entity = result.entity as Todo;
 
-    if (operation === 'add' || operation === 'update') {
-        if (!isStatusExists(state, entity.status_id)) {
-            return createValidationError('Статус задачи не обнаружен в стправочнике!');
-        }
-
-        if (entity.category_id && !isCategoryExists(state, entity.category_id)) {
-            return createValidationError('Категория задачи не обнаружена в стправочнике!');
-        }
-    }
-
     if (operation === 'add' && isTodoIdUnique(state, entity.todo_id)) {
         return createValidationError('Нарушение уникальности идентификатора задач');
     }
 
+    if (operation === 'add' || operation === 'update') {
+        if (entity.category_id && !isCategoryExists(state, entity.category_id)) {
+            return createValidationError('Категория задачи не обнаружена в стправочнике');
+        }
+
+        if (!isStatusExists(state, entity.status_id)) {
+            return createValidationError('Статус задачи не обнаружен в стправочнике');
+        }
+    }
+
     if (operation === 'delete') {
         if (!isTodoExists(state, entity.todo_id)) {
-            return createValidationError('Задача не найдена!');
+            return createValidationError('Задача не найдена');
         }
     }
 

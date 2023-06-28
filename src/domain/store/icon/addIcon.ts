@@ -6,16 +6,6 @@ export function addIcon(icon: UnknownObject): JsonRpcResult<Icon, UnknownObject>
     const { entity, error } = validateIcon(icon, state, 'add');
 
     if (entity) {
-        if (state.icons.ids.includes(entity.icon_id) === true) {
-            return {
-                error: {
-                    code: 500,
-                    error: `Нарушение уникальности ключа icons`,
-                    data: icon,
-                },
-            };
-        }
-
         const newState = { ...state };
 
         newState.icons.byId = { ...state.icons.byId, [entity.icon_id]: entity };

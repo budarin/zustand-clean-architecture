@@ -1,5 +1,5 @@
-import { getDateOverToday } from '../../../../utils/dateTime/getDateOverToday';
-import { getTodayInMinutes } from '../../../../utils/dateTime/getTodayInMinutes';
+import { getDateOverToday } from '../dateTime/getDateOverToday';
+import { getTodayInMinutes } from '../dateTime/getTodayInMinutes';
 
 export const todoSamples = [
     {
