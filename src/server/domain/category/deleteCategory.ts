@@ -1,7 +1,7 @@
 import { getState } from '../state.ts';
+import { validateCategory } from './validateCategory.ts';
 import { respondWithError } from '../../utils/respondWithError.ts';
 import { respondWithResult } from '../../utils/respondWithResult.ts';
-import { validateCategory } from './validateCategory.ts';
 
 export async function deleteCategory(request: Request): Promise<Response> {
     try {

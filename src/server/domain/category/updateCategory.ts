@@ -1,6 +1,6 @@
 import { getState } from '../state.ts';
-import { respondWithError } from '../../utils/respondWithError.ts';
 import { validateCategory } from './validateCategory.ts';
+import { respondWithError } from '../../utils/respondWithError.ts';
 import { respondWithResult } from '../../utils/respondWithResult.ts';
 
 export async function updateCategory(request: Request): Promise<Response> {

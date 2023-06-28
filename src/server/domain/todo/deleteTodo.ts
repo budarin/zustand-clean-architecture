@@ -1,8 +1,8 @@
 import { getState } from '../state.ts';
+import { validateTodo } from './validateTodo.ts';
 import { respondWith404 } from '../../utils/respondWith404.ts';
 import { respondWithError } from '../../utils/respondWithError.ts';
 import { respondWithResult } from '../../utils/respondWithResult.ts';
-import { validateTodo } from './validateTodo.ts';
 
 export async function deleteTodo(request: Request): Promise<Response> {
     try {
