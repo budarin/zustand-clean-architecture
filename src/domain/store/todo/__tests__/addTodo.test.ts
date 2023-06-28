@@ -1,9 +1,8 @@
 import { addTodo } from '../addTodo';
-import { resetStore } from '../../../../utils/jest/store.setup';
 import { useTodoStore } from '../../store';
-import { getDateOverToday } from '../../../../utils/dateTime/getDateOverToday';
+import { resetStore } from '../../../../utils/jest/store.setup';
 import { overdueKey, recycleBinKey } from '../../navigationFilter';
-import { getOnlyDateTimestamp } from '../../../../utils/dateTime/getOnlyDateTimestamp';
+import { getDateOverToday } from '../../../../utils/dateTime/getDateOverToday';
 
 beforeAll(() => {
     resetStore();
