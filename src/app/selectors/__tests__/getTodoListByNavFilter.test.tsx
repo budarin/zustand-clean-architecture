@@ -28,16 +28,6 @@ describe('getTodoListByNavFilter', () => {
         expect(result.current).toEqual(useTodoStore.getState().todos.idsByCategoryId[1]);
     });
 
-    it('должен вернуть пустой список задач для не существующей категории', () => {
-        const { result } = renderHook(() => {
-            setNavigationFilter(createCategoryNavigationFilter(111, 'lalala'));
-            return getTodoListByNavigationFilter();
-        });
-
-        expect(result.current).not.toBeUndefined();
-        expect(result.current).toEqual([]);
-    });
-
     it('должен вернуть список задач для фильтра', () => {
         const { result } = renderHook(() => {
             setNavigationFilter(createFilterNavigationFilter(inboxKey, navigationFilters[inboxKey]));

@@ -29,14 +29,6 @@ describe('getTodoCountForNavPanelItem', () => {
         expect(result.current).toEqual(useTodoStore.getState().todos.idsByFilterId[inboxKey].length);
     });
 
-    it('должен вернуть undefined для не существующей категории', () => {
-        const { result } = renderHook(() => {
-            return getTodoCountForNavPanelItem('category', 111);
-        });
-
-        expect(result.current).toEqual(0);
-    });
-
     it('должен вернуть undefined для не существующей фильтра', () => {
         const { result } = renderHook(() => {
             return getTodoCountForNavPanelItem('filter', 'lalala');

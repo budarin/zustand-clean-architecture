@@ -71,6 +71,7 @@
     "postbuild": "sh ./scripts/postbuild.sh",
     "postinstall": "sh ./scripts/postinstall.sh",
     "branche-refresh": "sh ./scripts/branch-refresh.sh",
-    "upgrade deps": "yarn upgrade-interactive --latest;"
+    "upgrade deps": "yarn upgrade-interactive --latest;",
+    "debug": "jest ./src/app/selectors/__tests__/getTodoListViewProps.test.tsx"
   }
 }

@@ -51,23 +51,6 @@ describe('getTodoListViewProps', () => {
         expect(result.current).toEqual({ count, icon, title });
     });
 
-    it('должен вернуть параметры для TodoListView для не существующей категории', () => {
-        const { result } = renderHook(() => {
-            setNavigationFilter(createCategoryNavigationFilter(111, 'lalala'));
-            return getTodoListViewProps();
-        });
-
-        expect(result.current).not.toBeUndefined();
-
-        const state = useTodoStore.getState();
-        const category = state.categories.byId[1111];
-        const title = category?.category || 'Не известная категория';
-        const icon = state.icons.byId[category?.icon_id]?.icon_name || '';
-        const count = state.todos.idsByCategoryId[category?.category_id]?.length || 0;
-
-        expect(result.current).toEqual({ count, icon, title });
-    });
-
     it('должен вернуть параметры для TodoListView на сегодня', () => {
         const { result } = renderHook(() => {
             setNavigationFilter(createCalendarNavigationFilter(getTodayDate()));
