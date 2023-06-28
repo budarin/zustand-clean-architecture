@@ -65,7 +65,7 @@
   "scripts": {
     "start-client": "webpack-dev-server -c ./configs/webpack/webpack.config.js",
     "build": "sh ./scripts/build.sh",
-    "test": "jest",
+    "test": "jest --verbose",
     "server-test": "npx playwright test",
     "tsc": "tsc",
     "postbuild": "sh ./scripts/postbuild.sh",
