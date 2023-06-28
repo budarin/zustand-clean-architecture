@@ -14,7 +14,7 @@ export function validateIcon(
 
     const { entity } = result;
 
-    if (operation === 'add' || operation === 'update') {
+    if (operation === 'add') {
         if (isIconIdExists(state, entity.icon_id)) {
             return createValidationError(`Нарушение уникальности ключа иконки`);
         }

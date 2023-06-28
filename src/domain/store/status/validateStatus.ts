@@ -14,7 +14,7 @@ export function validateStatus(
 
     const { entity } = result;
 
-    if (operation === 'add' || operation === 'update') {
+    if (operation === 'add') {
         if (isStatusIdExists(state, entity.status_id)) {
             return createValidationError(`Нарушение уникальности ключа статуса.`);
         }
