@@ -2,7 +2,7 @@ import { isString } from './isString.ts';
 import { isBoolean } from './isBoolean.ts';
 import { isUndefined } from './isUndefined.ts';
 
-export function toDefaultBoolean(byDefault: boolean): (x: unknown) => boolean | undefined {
+export function toDefaultBoolean(byDefault: boolean): (x: unknown) => boolean | unknown {
     return (x: unknown) => {
         if (isBoolean(x)) {
             return x;
@@ -16,13 +16,15 @@ export function toDefaultBoolean(byDefault: boolean): (x: unknown) => boolean | 
                     return false;
 
                 default:
-                    return;
+                    return x;
             }
         }
 
         if (isUndefined(x)) {
             return byDefault;
         }
+
+        return x;
     };
 }
 

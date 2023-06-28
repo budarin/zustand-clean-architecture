@@ -30,8 +30,8 @@ export function getIconFomObject(input: UnknownObject = {}): Icon | {} {
 }
 
 export const iconValidationRules: ValidationRules = {
-    icon_id: [validate_id, 'обязательное поле icon_id должно быть целочисленным числом'],
-    name: [validate_name, 'обязательное icon_name должно быть строкой'],
+    icon_id: [validate_id, 'Обязательное поле icon_id должно быть целочисленным числом'],
+    name: [validate_name, 'Длина поля name должна быть не менее 5 символов и не более 20 символов'],
 };
 
 export function validateIconEntity(icon: UnknownObject): ValidateEntity<Icon> {

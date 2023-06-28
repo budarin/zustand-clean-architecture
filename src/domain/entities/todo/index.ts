@@ -30,10 +30,14 @@ export const validate_dueDate = (x: UnknownObject) => isNotExists(x.due_date) ||
 
 // Поле completed должно быть логическим типом и по умолчанию должно быть установлено в false,
 // либо оно может быть неопределенным.
-export const validate_completed = (x: UnknownObject): boolean => isBoolean(x.completed);
+export const validate_completed = (x: UnknownObject): boolean => {
+    return isUndefined(x.completed) || isBoolean(x.completed);
+};
 
 //  Поле deleted должно быть логическим типом и по умолчанию должно быть установлено в false.
-export const validate_deleted = (x: UnknownObject): boolean => isUndefined(x.deleted) || isBoolean(x.deleted);
+export const validate_deleted = (x: UnknownObject): boolean => {
+    return isUndefined(x.deleted) || isBoolean(x.deleted);
+};
 
 // Длина поля todo должна быть не менее 5 символов и не более 150 символов.
 export function validate_todo(x: UnknownObject): boolean {
@@ -56,14 +60,6 @@ export function validateDescription(x: UnknownObject): boolean {
 
     return false;
 }
-
-// значение поля status_id должно присутствовать в списке statuses
-export const validateStatusIdRelation = (status_id: number, statusIdsSores: Record<number, any>[]): boolean =>
-    !!statusIdsSores.find((idsStore) => Boolean(idsStore[status_id]));
-
-// значение поля category_id должно присутствовать в списке categories либо быть равным undefined
-export const validateCategoryIdRelation = (category_id: number, categoryIdsSores: Record<number, any>[]): boolean =>
-    !!categoryIdsSores.find((idsStore) => Boolean(idsStore[category_id]));
 
 // coverters
 const todoBeFalse = toDefaultBoolean(false);

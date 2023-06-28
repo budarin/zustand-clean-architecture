@@ -11,7 +11,7 @@ export const MAX_CATEGOTY_LENGTH = 20;
 export const validate_id = (x: UnknownObject): boolean => exists(x.category_id) && isInt(x.category_id);
 
 // Поле icon_id должно быть целочисленного типа и должно ссылаться на существующую иконку в списке Icons.
-export const validate_icon_idd = (x: UnknownObject): boolean => exists(x.icon_id) && isInt(x.icon_id);
+export const validate_icon_id = (x: UnknownObject): boolean => exists(x.icon_id) && isInt(x.icon_id) && x.icon_id > 0;
 
 // Обязательно должно присутствовать поле category, и его длина должна быть более 3-х символов и не должна превышать 15 символов.
 export function validate_category(x: UnknownObject): boolean {
@@ -23,12 +23,12 @@ export function validate_category(x: UnknownObject): boolean {
 }
 
 // validation rules
-const category_id: ValidationRule = [validate_id, 'Category обязан иметь category_id целым числомr'];
+const category_id: ValidationRule = [validate_id, 'Category обязан иметь category_id целым числом'];
 const category: ValidationRule = [
     validate_category,
     `Длина названия категории должна быть более ${MIN_CATEGOTY_LENGTH} символов и не превышать ${MAX_CATEGOTY_LENGTH} символов`,
 ];
-const icon_id: ValidationRule = [validate_icon_idd, 'Category обязан иметь icon_id целым числом'];
+const icon_id: ValidationRule = [validate_icon_id, 'Category обязан иметь icon_id целым числом'];
 
 export function getCategoryFomObject(input: UnknownObject = {}): NewCategory | Category | {} {
     const { category_id, category, icon_id } = input;
