@@ -12,7 +12,7 @@ export async function deleteTodo(todo: Todo, isMountedRef: React.MutableRefObjec
     const store = useTodoStore.getState();
     const oldValue = store.todos.byId[todo.todo_id];
 
-    store.deleteTodo(todo.todo_id);
+    store.deleteTodo(todo);
 
     // toast.info('Тодо обновлен', { autoClose: 1000 });
 

@@ -20,6 +20,7 @@ describe('getEntity', () => {
 
     const converters: TypeConverters = {
         id: toInt,
+        // @ts-ignore
         completed: toDefaultBoolean(false),
         isActive: toBoolean,
         createdAt: toTimeStamp,
