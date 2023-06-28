@@ -77,6 +77,22 @@ describe('getCategoryFomObject', () => {
 
         expect(getCategoryFomObject(input)).toEqual(expectedOutput);
     });
+
+    it('должна возвращать часть объекта категории и остальные поля с неопределенными свойствами, если требуемые свойства отсутствуют', () => {
+        const input = {
+            category_id: 5,
+            category: 'Test Category',
+            extraField: 'Extra',
+        };
+
+        const expectedOutput = {
+            category_id: 5,
+            category: 'Test Category',
+            icon_id: undefined,
+        };
+
+        expect(getCategoryFomObject(input)).toEqual(expectedOutput);
+    });
 });
 
 describe('validateNewCategoryEntity', () => {
