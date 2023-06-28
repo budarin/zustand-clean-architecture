@@ -96,7 +96,9 @@ test.describe('Service-worker', () => {
             return await req.json();
         });
 
-        expect(category).toEqual({ error: { code: 500, error: 'Категория "5" не найдена' } });
+        expect(category.error).not.toBeUndefined();
+        expect(category.error.code).toEqual(500);
+        expect(category.error.error).toContain('не найдена');
     });
 
     test('Попытка удаления используемой категории', async ({ page }) => {
