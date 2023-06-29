@@ -40,7 +40,7 @@ export function getCategoryFomObject(input: UnknownObject = {}): NewCategory | C
     };
 }
 
-export const categoryValidationRules: ValidationRules = {
+const categoryValidationRules: ValidationRules = {
     category_id,
     category,
     icon_id,
@@ -50,7 +50,7 @@ export function validateCategoryEntity(category: UnknownObject): ValidateEntity<
     return validateRawEntity<Category>(getCategoryFomObject(category), categoryValidationRules);
 }
 
-export const newCategoryValidationRules: ValidationRules = {
+const newCategoryValidationRules: ValidationRules = {
     category,
     icon_id,
 };

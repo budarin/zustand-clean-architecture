@@ -1,4 +1,4 @@
-import { navigationFilterKeys, navigationFilterTitles, navigationFilterTypeValues, navigationFilterTypes } from '.';
+import { navigationFilterKeys, navigationFilterTitles, navigationFilterTypeValues } from '.';
 import { createValidationError } from '../../entities/validation_utils/createValidationError';
 
 export function validateNavigationFilter(filter: UnknownObject, state: TodosState): ValidateEntity<NavigationFilter> {

@@ -6,18 +6,7 @@ export function addCategory(category: UnknownObject): JsonRpcResult<Category, Un
     const { entity, error } = validateCategory(category, state, 'add');
 
     if (entity) {
-        if (state.categories.ids.includes(entity.category_id) === true) {
-            return {
-                error: {
-                    code: 500,
-                    error: `Нарушение уникальностиидентификатора categories`,
-                    data: category,
-                },
-            };
-        }
-
         const newState = { ...state };
-
         newState.categories.byId = { ...state.categories.byId, [entity.category_id]: entity };
         newState.categories.ids = [...state.categories.ids, entity.category_id];
         useTodoStore.setState(newState);

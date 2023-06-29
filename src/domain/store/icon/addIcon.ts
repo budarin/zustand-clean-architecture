@@ -10,6 +10,7 @@ export function addIcon(icon: UnknownObject): JsonRpcResult<Icon, UnknownObject>
 
         newState.icons.byId = { ...state.icons.byId, [entity.icon_id]: entity };
         newState.icons.ids = [...state.icons.ids, entity.icon_id];
+        
         useTodoStore.setState(newState);
 
         return { result: entity };

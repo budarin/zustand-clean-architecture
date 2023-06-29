@@ -33,8 +33,7 @@ export function getStatusFomObject(input: UnknownObject = {}): Status {
     };
 }
 
-// validation rules
-export const statusValidationRules: ValidationRules = {
+const statusValidationRules: ValidationRules = {
     status_id: [validate_id, 'обязательное поле status_id должно быть целочисленным числом'],
     status: [
         validate_status,

@@ -12,6 +12,7 @@ export function updateCategory(category: UnknownObject): JsonRpcResult<Category,
             ...state.categories.byId[entity.category_id],
             ...entity,
         };
+
         useTodoStore.setState(newState);
 
         return {

@@ -14,7 +14,6 @@ export function deleteCategory(category: UnknownObject): JsonRpcResult<Category,
 
         const ids = state.categories.ids;
         const idx = ids.indexOf(category_id);
-
         if (idx > -1) {
             newState.categories.ids = ids.filter((item) => item !== category_id);
         }
@@ -22,7 +21,7 @@ export function deleteCategory(category: UnknownObject): JsonRpcResult<Category,
         // удалить в todos idsByCategoryId так как там нет todos
         const { [category_id]: del, ...restIdsByCategoryId } = state.todos.idsByCategoryId;
         newState.todos.idsByCategoryId = restIdsByCategoryId;
-        
+
         useTodoStore.setState(newState);
 
         return {

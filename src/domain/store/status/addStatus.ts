@@ -10,6 +10,7 @@ export function addStatus(status: UnknownObject): JsonRpcResult<Status, UnknownO
 
         newState.statuses.byId = { ...state.statuses.byId, [entity.status_id]: entity };
         newState.statuses.ids = [...state.statuses.ids, entity.status_id];
+
         useTodoStore.setState(newState);
 
         return {

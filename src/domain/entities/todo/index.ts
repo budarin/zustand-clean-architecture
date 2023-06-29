@@ -95,7 +95,7 @@ export function getTodoFomObject(input: UnknownObject): Todo | NewTodo | {} {
     };
 }
 
-export const todoValidationRules: ValidationRules = {
+const todoValidationRules: ValidationRules = {
     todo_id,
     status_id,
     category_id,
@@ -110,7 +110,7 @@ export function validateTodoEntity(todo: UnknownObject): ValidateEntity<Todo> {
     return validateRawEntity<Todo>(getTodoFomObject(todo), todoValidationRules);
 }
 
-export const newTodoValidationRules: ValidationRules = {
+const newTodoValidationRules: ValidationRules = {
     status_id,
     category_id,
     todo,

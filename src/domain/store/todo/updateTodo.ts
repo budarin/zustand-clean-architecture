@@ -25,6 +25,7 @@ export function updateTodo(todo: UnknownObject): JsonRpcResult<ExtendedTodo, Unk
         updateTodoDueDate(newState.todos, newTodo, oldTodo);
 
         newState.todos.byId[entity.todo_id] = newTodo;
+        
         useTodoStore.setState(newState);
 
         return {

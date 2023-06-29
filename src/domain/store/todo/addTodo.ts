@@ -25,6 +25,7 @@ export function addTodo(todo: UnknownObject): JsonRpcResult<ExtendedTodo, Unknow
 
         newState.todos.byId = { ...state.todos.byId, [newTodo.todo_id]: newTodo };
         newState.todos.ids = [...state.todos.ids, newTodo.todo_id];
+
         useTodoStore.setState(newState);
 
         return {

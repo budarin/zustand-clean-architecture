@@ -15,6 +15,7 @@ export function setNavigationFilter(filter: UnknownObject): JsonRpcResult<Naviga
         const newState = { ...state };
 
         newState.navigationFilter = entity;
+
         useTodoStore.setState(newState);
 
         return {
