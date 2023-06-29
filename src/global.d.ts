@@ -11,6 +11,7 @@ declare module '*.gif';
 interface Window {
     loadingPromise: Promise<boolean>;
     scriptLoadError?: () => void;
+    _timers: NodeJS.Timeout[];
     navigator: {
         msMaxTouchPoints?: number;
     };

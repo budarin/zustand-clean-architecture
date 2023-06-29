@@ -34,11 +34,16 @@
 
                     localStorage.setItem('reloadOnError', tryNo + 1);
 
-                    setTimeout(() => {
+                    const timer = setTimeout(() => {
                         var timestamp = new Date().getTime();
                         var url = window.location.href + '?t=' + timestamp;
                         window.location.href = url;
                     }, 3000);
+
+                    if (!window._timers) {
+                        window._timers = [];
+                    }
+                    window._timers.push(timer);
                 } else {
                     console.log(event);
                 }
@@ -74,9 +79,14 @@
                     }
 
                     window.loadingPromise = new Promise((resolve) => {
-                        setTimeout(() => {
+                        const timer = setTimeout(() => {
                             resolve(true);
                         }, 1500);
+
+                        if (!window._timers) {
+                            window._timers = [];
+                        }
+                        window._timers.push(timer);
                     });
                 }, 250);
             </script>
