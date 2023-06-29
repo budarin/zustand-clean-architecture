@@ -5607,6 +5607,11 @@ postcss-page-break@^3.0.4:
   resolved "https://registry.yarnpkg.com/postcss-page-break/-/postcss-page-break-3.0.4.tgz#7fbf741c233621622b68d435babfb70dd8c1ee5f"
   integrity sha512-1JGu8oCjVXLa9q9rFTo4MbeeA5FMe00/9C7lN4va606Rdb+HkxXtXsmEDrIraQ11fGz/WvKWa8gMuCKkrXpTsQ==
 
+postcss-pixels-to-rem@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/postcss-pixels-to-rem/-/postcss-pixels-to-rem-0.8.0.tgz#48de500862d34f89126f123c34f0d247135f541b"
+  integrity sha512-MghzOc6CueAS/35n/DjcoPmUrijHDxVrFR5FZqFlYjCFQ9TQO8ErHCPMv/Tgj+uOygGbcMKIqeIYZESKfJ2JCw==
+
 postcss-place@^8.0.1:
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/postcss-place/-/postcss-place-8.0.1.tgz#408d7a27e99192df51c95fe62a3a34def62aa66a"
@@ -5682,11 +5687,6 @@ postcss-pseudo-class-any-link@^8.0.2:
   integrity sha512-FYTIuRE07jZ2CW8POvctRgArQJ43yxhr5vLmImdKUvjFCkR09kh8pIdlCwdx/jbFm7MiW4QP58L4oOUv3grQYA==
   dependencies:
     postcss-selector-parser "^6.0.10"
-
-postcss-pxtorem@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-pxtorem/-/postcss-pxtorem-6.0.0.tgz#f228a4d05d8a73f0642eabae950e2b19836366d7"
-  integrity sha512-ZRXrD7MLLjLk2RNGV6UA4f5Y7gy+a/j1EqjAfp9NdcNYVjUMvg5HTYduTjSkKBkRkfqbg/iKrjMO70V4g1LZeg==
 
 postcss-replace-overflow-wrap@^4.0.0:
   version "4.0.0"
