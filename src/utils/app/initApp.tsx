@@ -13,10 +13,10 @@ import { runTask } from '../tasks/runTask.ts';
 import { ONE_MINUTE } from '../dateTime/consts.ts';
 import { createRootElement } from './createRootElement.tsx';
 import { isAppleMobile } from '../browsers/isAppleMobile.ts';
-import { setUpPwaInstall } from '../service-worker/pwa-install/setUpPwaInstall.ts';
-import { isStandaloneMode } from '../service-worker/pwa-install/isStandaloneMode.ts';
 import { checkOverdueTodos } from '../../app/useCases/checkOverdueTodos.ts';
 import { setOverdueInBadge } from '../../app/useCases/setOverdueInBadge.ts';
+import { setUpPwaInstall } from '../service-worker/pwa-install/setUpPwaInstall.ts';
+import { isStandaloneMode } from '../service-worker/pwa-install/isStandaloneMode.ts';
 
 // cpntainers
 import AppContainer from '../../ui/containers/App/index.tsx';
