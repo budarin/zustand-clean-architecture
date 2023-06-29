@@ -76,7 +76,7 @@
     "test": "jest --verbose",
     "server-test": "npx playwright test",
     "tsc": "tsc",
-    "stylelint": "stylelint **/*.css --fix",
+    "stylelint": "stylelint src/**/*.css --fix",
     "postbuild": "sh ./scripts/postbuild.sh",
     "postinstall": "sh ./scripts/postinstall.sh",
     "branche-refresh": "sh ./scripts/branch-refresh.sh",
