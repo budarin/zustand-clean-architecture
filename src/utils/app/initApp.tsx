@@ -17,6 +17,7 @@ import { setOverdueInBadge } from '../../app/useCases/setOverdueInBadge.ts';
 
 // cpntainers
 import AppContainer from '../../ui/containers/App/index.tsx';
+import { cleanUpHtml } from './cleanUpHtml.ts';
 
 const api = useApi();
 const logger = useLogger();
@@ -26,16 +27,11 @@ export async function initApp() {
     api.getTodoStore()
         .then((data) => {
             // console.log(data);
-
             initStore(data);
             setOverdueInBadge();
-
-            const checkOverduedTodosTask = runTask(checkOverdueTodos, ONE_MINUTE);
-            window.addEventListener('beforeunload', checkOverduedTodosTask.stop);
+            window.addEventListener('beforeunload', runTask(checkOverdueTodos, ONE_MINUTE).stop);
         })
-
         .then(() => window.loadingPromise)
-
         .then(() => {
             const rootElement = document.querySelector('#root') || createRootElement();
             createRoot(rootElement).render(
@@ -47,9 +43,11 @@ export async function initApp() {
                     <ToastContainer limit={3} hideProgressBar={true} />
                 </>,
             );
-            kvStorage.remove('reloadOnError');
         })
-
+        .then(() => {
+            kvStorage.remove('reloadOnError');
+            cleanUpHtml();
+        })
         .catch((error) => {
             logger.error({ error, stack: error.stack });
         });
