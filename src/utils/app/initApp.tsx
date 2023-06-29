@@ -20,6 +20,7 @@ import AppContainer from '../../ui/containers/App/index.tsx';
 
 const api = useApi();
 const logger = useLogger();
+const kvStorage = useKVStorage();
 
 export async function initApp() {
     api.getTodoStore()
@@ -36,9 +37,7 @@ export async function initApp() {
         .then(() => window.loadingPromise)
 
         .then(() => {
-            const kvStorage = useKVStorage();
             const rootElement = document.querySelector('#root') || createRootElement();
-
             createRoot(rootElement).render(
                 <>
                     <StrictMode>
@@ -48,7 +47,6 @@ export async function initApp() {
                     <ToastContainer limit={3} hideProgressBar={true} />
                 </>,
             );
-
             kvStorage.remove('reloadOnError');
         })
 
