@@ -1,17 +1,18 @@
 .App {
+    overflow: hidden;
     display: flex;
     flex-direction: column;
+
+    max-width: 968px;
     height: 100%;
     block-size: 100%;
-    max-width: 968px;
     padding: 0 var(--x);
-    overflow: hidden;
 }
 
 .App__Container {
+    overflow: hidden;
     flex: 1;
     width: 100%;
-    overflow: hidden;
 }
 
 .App__Container_scrolled {
@@ -19,11 +20,14 @@
 }
 
 .App__NavPanel {
-}
-.App__TodoList {
+    display: block;
 }
 
-@media only screen and (min-width: 641px) {
+.App__TodoList {
+    display: block;
+}
+
+@media only screen and (width >= 641px) {
     .App {
         padding: 0 var(--x2);
     }
@@ -35,10 +39,10 @@
     }
 }
 
-@media only screen and (min-width: 980px) {
+@media only screen and (width >= 980px) {
     .App {
-        padding: 0;
         margin: 0 auto;
+        padding: 0;
     }
 }
 
@@ -47,10 +51,11 @@
     input {
         padding: var(--x2);
     }
+
     input[type='checkbox'],
     input[type='radio'] {
-        height: var(--x5);
         width: var(--x5);
+        height: var(--x5);
         margin: var(--x3, 8px);
         background: transparent;
     }

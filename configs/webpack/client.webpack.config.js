@@ -69,7 +69,39 @@ module.exports = {
             },
             {
                 test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: true,
+                            postcssOptions: {
+                                plugins: [
+                                    [
+                                        'postcss-preset-env',
+                                        {
+                                            browsers: 'last 2 versions',
+                                        },
+                                    ],
+                                    [
+                                        'postcss-pxtorem',
+                                        {
+                                            rootValue: 16,
+                                            unitPrecision: 5,
+                                            propList: ['font', 'font-size', 'line-height', 'letter-spacing'],
+                                            selectorBlackList: [],
+                                            replace: true,
+                                            mediaQuery: false,
+                                            minPixelValue: 0,
+                                            exclude: /node_modules/i,
+                                        },
+                                    ],
+                                ],
+                            },
+                        },
+                    },
+                ],
             },
         ],
     },
