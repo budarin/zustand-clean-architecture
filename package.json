@@ -74,7 +74,7 @@
         "start-client": "webpack-dev-server -c ./configs/webpack/webpack.config.js",
         "build": "sh ./scripts/build.sh",
         "test": "jest --verbose",
-        "server-test": "npx playwright test",
+        "playwright-test": "npx playwright test",
         "tsc": "tsc",
         "stylelint": "stylelint **/*.css --fix",
         "postbuild": "sh ./scripts/postbuild.sh",
