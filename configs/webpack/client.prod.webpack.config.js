@@ -91,7 +91,7 @@ module.exports = {
                                     [
                                         'postcss-preset-env',
                                         {
-                                            browsers: 'last 2 versions',
+                                            // browsers: 'last 2 versions',
                                         },
                                     ],
                                     [
@@ -99,7 +99,16 @@ module.exports = {
                                         {
                                             rootValue: 16,
                                             unitPrecision: 5,
-                                            propList: ['font', 'font-size', 'line-height', 'letter-spacing'],
+                                            propList: [
+                                                'font',
+                                                'font-size',
+                                                'line-height',
+                                                'letter-spacing',
+                                                'width',
+                                                'height',
+                                                'padding*',
+                                                'margin*',
+                                            ],
                                             selectorBlackList: [],
                                             replace: true,
                                             mediaQuery: false,
