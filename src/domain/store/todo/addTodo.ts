@@ -5,7 +5,7 @@ import { getOnlyDateTimestamp } from '../../../utils/dateTime/getOnlyDateTimesta
 import { updateTodoFilters } from './filters/updateTodoFilters';
 import { updateTodoDueDate } from './filters/updateTodoDueDate';
 
-export function addTodo(todo: UnknownObject): JsonRpcResult<Todo, UnknownObject> {
+export function addTodo(todo: UnknownObject): JsonRpcResult<ExtendedTodo, UnknownObject> {
     const state = useTodoStore.getState();
     const { entity, error } = validateTodo(todo, state, 'add');
 
@@ -28,7 +28,7 @@ export function addTodo(todo: UnknownObject): JsonRpcResult<Todo, UnknownObject>
         useTodoStore.setState(newState);
 
         return {
-            result: entity,
+            result: newTodo,
         };
     }
 

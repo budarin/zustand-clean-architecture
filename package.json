@@ -72,6 +72,6 @@
     "postinstall": "sh ./scripts/postinstall.sh",
     "branche-refresh": "sh ./scripts/branch-refresh.sh",
     "upgrade deps": "yarn upgrade-interactive --latest;",
-    "debug": "jest ./src/domain/store/todo/__tests__/addTodo.test.ts"
+    "debug": "jest ./src/domain/store/todo/__tests__/updateTodo.test.ts"
   }
 }

@@ -5,7 +5,7 @@ import { updateTodoFilters } from './filters/updateTodoFilters';
 import { updateTodoCategories } from './filters/updateTodoCategories';
 import { updateTodoDueDate } from './filters/updateTodoDueDate';
 
-export function updateTodo(todo: UnknownObject): JsonRpcResult<Todo, UnknownObject> {
+export function updateTodo(todo: UnknownObject): JsonRpcResult<ExtendedTodo, UnknownObject> {
     const state = useTodoStore.getState();
     const { entity, error } = validateTodo(todo, state, 'update');
 
@@ -28,7 +28,7 @@ export function updateTodo(todo: UnknownObject): JsonRpcResult<Todo, UnknownObje
         useTodoStore.setState(newState);
 
         return {
-            result: entity,
+            result: newTodo,
         };
     }
 

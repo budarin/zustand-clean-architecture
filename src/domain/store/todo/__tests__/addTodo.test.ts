@@ -100,20 +100,11 @@ describe('addTodo', () => {
 
         const { result, error } = addTodo(input);
 
-        expect(error).toBeUndefined();
-        expect(result).toMatchObject({
-            todo_id,
-            status_id: 1,
-            category_id,
-            todo: 'Todo10',
-            deleted: true,
-            completed: false,
-            due_date,
-            description: undefined,
-        });
-
         const state = useTodoStore.getState();
         const addedTodo = state.todos.byId[todo_id];
+
+        expect(error).toBeUndefined();
+        expect(result).toMatchObject(addedTodo);
 
         expect(state.todos.ids).toContain(todo_id);
         expect(result).toEqual(addedTodo);

@@ -22,6 +22,7 @@ export function deleteCategory(category: UnknownObject): JsonRpcResult<Category,
         // удалить в todos idsByCategoryId так как там нет todos
         const { [category_id]: del, ...restIdsByCategoryId } = state.todos.idsByCategoryId;
         newState.todos.idsByCategoryId = restIdsByCategoryId;
+        
         useTodoStore.setState(newState);
 
         return {

@@ -1,5 +1,5 @@
-import { overdueKey } from '../../domain/store/navigationFilter';
 import { useTodoStore } from '../../domain/store/store';
+import { overdueKey } from '../../domain/store/navigationFilter';
 
 export function addToOverdueTodos(id: Category['category_id']): JsonRpcResult<Category['category_id']> {
     const newState = { ...useTodoStore.getState() };
