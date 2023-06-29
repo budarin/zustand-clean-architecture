@@ -1,4 +1,4 @@
-import { addToOverdueTodos } from './addToOverdueTodos.ts';
+import { addTodoToOverdueList } from './addTodoToOverdueList.ts';
 import { setOverdueInBadge } from './setOverdueInBadge.ts';
 import { useTodoStore } from '../../domain/store/store.tsx';
 import { TWO_MINUTES } from '../../utils/dateTime/consts.ts';
@@ -22,7 +22,7 @@ export function checkOverdueTodos(): void {
                     toastId: 'due_date:' + todo.todo,
                     onClose: async () => {
                         setNavigationFilter(createFilterNavigationFilter('Просроченные', overdueKey));
-                        addToOverdueTodos(todo.todo_id);
+                        addTodoToOverdueList(todo.todo_id);
                         setOverdueInBadge();
                     },
                 });

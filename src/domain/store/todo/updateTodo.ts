@@ -1,9 +1,9 @@
-import { useTodoStore } from '../../store/store';
 import { validateTodo } from './validateTodo';
-import { getOnlyDateTimestamp } from '../../../utils/dateTime/getOnlyDateTimestamp';
+import { useTodoStore } from '../../store/store';
+import { updateTodoDueDate } from './filters/updateTodoDueDate';
 import { updateTodoFilters } from './filters/updateTodoFilters';
 import { updateTodoCategories } from './filters/updateTodoCategories';
-import { updateTodoDueDate } from './filters/updateTodoDueDate';
+import { getOnlyDateTimestamp } from '../../../utils/dateTime/getOnlyDateTimestamp';
 
 export function updateTodo(todo: UnknownObject): JsonRpcResult<ExtendedTodo, UnknownObject> {
     const state = useTodoStore.getState();
@@ -25,7 +25,7 @@ export function updateTodo(todo: UnknownObject): JsonRpcResult<ExtendedTodo, Unk
         updateTodoDueDate(newState.todos, newTodo, oldTodo);
 
         newState.todos.byId[entity.todo_id] = newTodo;
-        
+
         useTodoStore.setState(newState);
 
         return {
