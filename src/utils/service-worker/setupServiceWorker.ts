@@ -1,3 +1,5 @@
+import { setUpPwaInstall } from './pwa-install/setUpPwaInstall.ts';
+
 export async function setupServiceWorker() {
     if ('serviceWorker' in navigator) {
         if (!navigator.serviceWorker.controller) {
@@ -23,6 +25,10 @@ export async function setupServiceWorker() {
                     resolve(true);
                 }
             });
+        }
+
+        if ('BeforeInstallPromptEvent' in window) {
+            window.addEventListener('beforeinstallprompt', setUpPwaInstall);
         }
     }
 }
