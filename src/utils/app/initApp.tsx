@@ -28,16 +28,12 @@ export async function initApp() {
     api.getTodoStore()
         .then((data) => {
             // console.log(data);
+
             initStore(data);
             setOverdueInBadge();
 
-            const checkOverduedTodosTask = runTask(() => {
-                checkOverdueTodos();
-            }, ONE_MINUTE);
-
-            window.addEventListener('beforeunload', () => {
-                checkOverduedTodosTask.stop();
-            });
+            const checkOverduedTodosTask = runTask(checkOverdueTodos, ONE_MINUTE);
+            window.addEventListener('beforeunload', checkOverduedTodosTask.stop);
         })
 
         .then(() => window.loadingPromise)
