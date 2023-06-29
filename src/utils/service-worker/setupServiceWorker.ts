@@ -29,12 +29,11 @@ export async function setupServiceWorker() {
             });
         }
 
+        // В FireFox и десктопный Safari вообще не поддерживают pwa - игнорируем их
         // в тех браузерах где есть BeforeInstallPromptEvent событие - подписываемся на него
         if ('BeforeInstallPromptEvent' in window) {
             window.addEventListener('beforeinstallprompt', setUpPwaInstall);
         } else {
-            // В FireFox и десктопный Safari вообще не поддерживают pwa - игнорируем их
-
             // В Safari на iOS нет пока события 'beforeInstallPromptEvent', но у него можно добавить ярлык на экран
             // и это будет полноценное pwa приложение - поэтому будем показывать юзеру диалог с инструкциями
             if ('serviceWorker' in navigator && isAppleMobile() && isStandaloneMode() === false) {
