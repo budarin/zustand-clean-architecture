@@ -1,9 +1,7 @@
-import { FC, useCallback, useEffect, useState } from 'react';
-
 import { useMediaQuery } from 'usehooks-ts';
+import { FC, useCallback, useState } from 'react';
 
 import App from '../../components/App/index.tsx';
-
 import './index.css';
 
 let showNavePaneAtStart = true;
