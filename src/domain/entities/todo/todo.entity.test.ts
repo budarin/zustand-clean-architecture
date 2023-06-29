@@ -15,6 +15,7 @@ import {
     validateTodoEntity,
     validateNewTodoEntity,
 } from '.';
+import { getTodayDate } from '../../../utils/dateTime/getTodayDate.ts';
 
 describe('validate_id', () => {
     it('должна возвращать false, если свойство todo_id не существует', () => {
@@ -282,9 +283,10 @@ describe('getTodoFomObject', () => {
     });
 
     it('должна возвращать объект с правильными полями и значениями', () => {
+        const due_date = getTodayDate().toISOString();
         const input = {
             description: 'test description',
-            due_date: '2023-06-28',
+            due_date,
             deleted: false,
             completed: true,
             some_other_property: 'value',
@@ -292,7 +294,7 @@ describe('getTodoFomObject', () => {
 
         const expectedOutput = {
             description: 'test description',
-            due_date: '2023-06-28',
+            due_date,
             deleted: false,
             completed: true,
         };
@@ -305,7 +307,7 @@ describe('getTodoFomObject', () => {
     it('должна возвращать "пустой" объект для объекта не содержащего ', () => {
         const input = {
             sdsddescription: 'test description',
-            dfddue_date: '2023-06-28',
+            dfdduedate: getTodayDate().toISOString(),
             deleteddd: false,
             completeddf: true,
             some_other_property: 'value',
@@ -537,10 +539,12 @@ describe('validateTodoEntity', () => {
 
 describe('validateNewTodoEntity', () => {
     it('должна возвращать объект с полем "entity", если валидация пройдена', () => {
+        const due_date = getTodayDate().toISOString();
+
         const entity = {
             status_id: 1,
             category_id: 2,
-            due_date: '2023-06-28',
+            due_date,
             completed: true,
             deleted: false,
             todo: 'Do something',
