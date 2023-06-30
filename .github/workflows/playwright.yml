@@ -20,7 +20,7 @@ on:
             - '.env.*'
 
 jobs:
-    playwright test:
+    playwright_test:
         # не выполняем при merge PR
         # if: ${{ github.event_name != 'push' && github.ref != 'refs/heads/master' }}
         timeout-minutes: 5
