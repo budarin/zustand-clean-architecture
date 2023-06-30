@@ -5,7 +5,7 @@ import AppHeader from './AppHeader/index.tsx';
 
 import './index.css';
 
-const appContainerCN = cn('App__Container');
+const appContainerCN = cn('App-Container');
 
 type AppProps = {
     isNavPanelVisible: boolean;
@@ -31,9 +31,9 @@ const App: FC<AppProps> = (props) => {
                 onToggleNavPane={onToggleNavPane}
             />
 
-            <div className="App__Container" onScroll={onScroll}>
-                <div className="App__NavPanel">{navigationPanel}</div>
-                <div className="App__TodoList">{todoListView}</div>
+            <div className="App-Container" onScroll={onScroll}>
+                <div className="App-NavPanel">{navigationPanel}</div>
+                <div className="App-TodoList">{todoListView}</div>
             </div>
         </main>
     );

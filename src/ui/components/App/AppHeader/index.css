@@ -4,21 +4,21 @@
     align-items: center;
 }
 
-.AppHeader__Icon {
+.AppHeader-Logo {
     inline-size: var(--x8);
     block-size: var(--x8);
     margin-inline-start: var(--x2);
     vertical-align: text-bottom;
 }
 
-.AppHeader__Title {
+.AppHeader-Title {
     display: inline-block;
     flex: 1;
     font-size: 1.5rem;
     font-weight: 400;
 }
 
-.AppHeader__MenuButton {
+.AppHeader-MenuButton {
     cursor: pointer;
 
     inline-size: var(--x10);
@@ -33,13 +33,13 @@
 }
 
 @media (hover: hover) {
-    .AppHeader__MenuButton:hover {
+    .AppHeader-MenuButton:hover {
         background-color: var(--primaryLightColor);
     }
 }
 
 @media only screen and (width >= 641px) {
-    .AppHeader__Icon {
+    .AppHeader-Logo {
         margin-inline-start: 0;
     }
 }
@@ -49,7 +49,7 @@
         block-size: 80px;
     }
 
-    .AppHeader__Title {
+    .AppHeader-Title {
         font-size: 1.7rem;
     }
 }

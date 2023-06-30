@@ -9,14 +9,14 @@
     padding-inline: var(--x);
 }
 
-.App__Container {
+.App-Container {
     position: relative;
     overflow: hidden;
     flex: 1;
     block-size: 200px;
 }
 
-.App__Container_scrolled::before {
+.App-Container_scrolled::before {
     content: '';
 
     position: absolute;
@@ -31,11 +31,11 @@
     border-block-start: 1px solid var(--primaryColor);
 }
 
-.App__NavPanel {
+.App-NavPanel {
     display: block;
 }
 
-.App__TodoList {
+.App-TodoList {
     display: block;
 }
 
@@ -45,7 +45,7 @@
         padding-inline: var(--x2);
     }
 
-    .App__Container {
+    .App-Container {
         display: flex;
         flex-direction: row;
         gap: var(--x4);

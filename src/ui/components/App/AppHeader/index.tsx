@@ -17,13 +17,13 @@ const AppHeader: React.FC<AppHeaderProps> = (props) => {
 
     return (
         <div className="AppHeader">
-            <img className="AppHeader__Icon" src={icon} width={32} height={32} alt="App logo" />
+            <img className="AppHeader-Logo" src={icon} width={32} height={32} alt="App logo" />
 
-            <h1 className="AppHeader__Title">Мои Задачи</h1>
+            <h1 className="AppHeader-Title">Мои Задачи</h1>
 
             {isSmallScreen ? (
                 <CheckButton
-                    className="AppHeader__MenuButton"
+                    className="AppHeader-MenuButton"
                     checked={isNavPanelVisible}
                     unCheckedIcon={<MenuIcon />}
                     checkedIcon={<CloseIcon />}
