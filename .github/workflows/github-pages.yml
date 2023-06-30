@@ -12,7 +12,7 @@ permissions:
     id-token: write
 
 jobs:
-    publish:
+    publish_pages:
         runs-on: ubuntu-latest
         #  && github.event_name == 'push' && github.ref == 'refs/heads/master'
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
