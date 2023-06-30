@@ -76,3 +76,38 @@ jobs:
             #       else
             #         echo "No changes"
             #       fi
+
+    playwright_test:
+        # не выполняем при merge PR
+        # if: ${{ github.event_name != 'push' && github.ref != 'refs/heads/master' }}
+        timeout-minutes: 5
+
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: '20'
+
+            - name: Cache Node modules
+              id: npm_cache
+              uses: actions/cache@v3
+              with:
+                  key: ${{ hashFiles('yarn.lock') }}
+                  path: node_modules
+
+            - if: ${{ steps.npm_cache.outputs.cache-hit != 'true' }}
+              run: yarn install --frozen-lockfile
+
+            - name: Install Playwright
+              run: yarn playwright install --with-deps
+
+            - name: Run Playwright tests
+              run: yarn playwright test
+
+            - uses: actions/upload-artifact@v3
+              if: always()
+              with:
+                  name: playwright-report
+                  path: playwright-report/
+                  retention-days: 30
