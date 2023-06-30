@@ -44,7 +44,7 @@
         "stylelint": "^15.9.0",
         "stylelint-config-clean-order": "^5.0.1",
         "stylelint-config-standard": "^33.0.0",
-        "stylelint-use-logical": "^2.1.0",
+        "stylelint-use-logical-spec": "^5.0.0",
         "terser-webpack-plugin": "^5.3.9",
         "typescript": "^5.1.6",
         "webpack": "^5.88.1",

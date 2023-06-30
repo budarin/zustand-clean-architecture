@@ -6522,10 +6522,10 @@ stylelint-order@^6.0.2:
     postcss "^8.4.21"
     postcss-sorting "^8.0.2"
 
-stylelint-use-logical@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/stylelint-use-logical/-/stylelint-use-logical-2.1.0.tgz#4d2e58418d1a5d459beb3d51552491fab1ed22ec"
-  integrity sha512-DN1boOPI6IMYTlu2KeQpH5hDEiCODHhd+AtXU0InO37wkWAuELiPwuv59HrTg2m9PYmqGTTO/QWdMBafYVPfew==
+stylelint-use-logical-spec@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/stylelint-use-logical-spec/-/stylelint-use-logical-spec-5.0.0.tgz#5903e38ea37cb4277ea4f7d29e9a997772afab5f"
+  integrity sha512-uLF876lrsGVWFPQ8haGhfDfsTyAzPoJq2AAExuSzE2V1uC8uCmuy6S66NseiEwcf0AGqWzS56kPVzF/hVvWIjA==
 
 stylelint@^15.9.0:
   version "15.9.0"

@@ -1,7 +1,7 @@
 .DottedMenuButton {
     cursor: pointer;
 
-    height: var(--x9);
+    inline-size: var(--x9);
     margin: 0;
     padding: var(--touchAreaPadding, 8px);
 
@@ -11,7 +11,7 @@
 
 @media (pointer: coarse) {
     .DottedMenuButton {
-        width: var(--x11);
-        height: var(--x11);
+        inline-size: var(--x11);
+        block-size: var(--x11);
     }
 }

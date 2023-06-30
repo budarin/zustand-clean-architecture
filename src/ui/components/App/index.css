@@ -3,20 +3,20 @@
     display: flex;
     flex-direction: column;
 
-    max-width: 968px;
-    height: 100%;
+    max-inline-size: 968px;
     block-size: 100%;
-    padding: 0 var(--x);
+    padding-block: 0;
+    padding-inline: var(--x);
 }
 
 .App__Container {
     overflow: hidden;
     flex: 1;
-    width: 100%;
+    inline-size: 100%;
 }
 
 .App__Container_scrolled {
-    border-top: 1px solid var(--primaryColor);
+    border-block-start: 1px solid var(--primaryColor);
 }
 
 .App__NavPanel {
@@ -29,7 +29,8 @@
 
 @media only screen and (width >= 641px) {
     .App {
-        padding: 0 var(--x2);
+        padding-block: 0;
+        padding-inline: var(--x2);
     }
 
     .App__Container {
@@ -41,7 +42,8 @@
 
 @media only screen and (width >= 980px) {
     .App {
-        margin: 0 auto;
+        margin-block: 0;
+        margin-inline: auto;
         padding: 0;
     }
 }
@@ -54,8 +56,8 @@
 
     input[type='checkbox'],
     input[type='radio'] {
-        width: var(--x5);
-        height: var(--x5);
+        inline-size: var(--x5);
+        block-size: var(--x5);
         margin: var(--x3, 8px);
         background: transparent;
     }

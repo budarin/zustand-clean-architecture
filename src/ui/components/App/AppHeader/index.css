@@ -5,9 +5,9 @@
 }
 
 .AppHeader__Icon {
-    width: var(--x8);
-    height: var(--x8);
-    margin-left: var(--x2);
+    inline-size: var(--x8);
+    block-size: var(--x8);
+    margin-inline-start: var(--x2);
     vertical-align: text-bottom;
 }
 
@@ -21,8 +21,8 @@
 .AppHeader__MenuButton {
     cursor: pointer;
 
-    width: var(--x10);
-    height: var(--x10);
+    inline-size: var(--x10);
+    block-size: var(--x10);
     margin: var(--touchAreaPadding, 8px);
 
     vertical-align: sub;
@@ -40,13 +40,13 @@
 
 @media only screen and (width >= 641px) {
     .AppHeader__Icon {
-        margin-left: 0;
+        margin-inline-start: 0;
     }
 }
 
 @media only screen and (height >= 640px) {
     .AppHeader {
-        height: 80px;
+        block-size: 80px;
     }
 
     .AppHeader__Title {
