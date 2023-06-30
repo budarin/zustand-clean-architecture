@@ -20,12 +20,13 @@ describe('getEntity', () => {
 
     const converters: TypeConverters = {
         id: toInt,
+        // @ts-ignore
         completed: toDefaultBoolean(false),
         isActive: toBoolean,
         createdAt: toTimeStamp,
     };
 
-    test('конвертирует типы свойств в соответствии с переданными функциями-конвертерами', () => {
+    it('конвертирует типы свойств в соответствии с переданными функциями-конвертерами', () => {
         const result = applyEntityConverters(entity, converters);
         expect(result).toEqual({
             id: 1,
@@ -35,7 +36,7 @@ describe('getEntity', () => {
         });
     });
 
-    test('игнорирует отсутствующие свойства', () => {
+    it('игнорирует отсутствующие свойства', () => {
         const result = applyEntityConverters({ ...entity, extraProp: 123 }, converters);
         expect(result).toEqual({
             id: 1,
@@ -46,7 +47,7 @@ describe('getEntity', () => {
         });
     });
 
-    test('игнорирует неопределенные свойства', () => {
+    it('игнорирует неопределенные свойства', () => {
         const result = applyEntityConverters({ ...entity, undefinedProp: undefined }, converters);
         expect(result).toEqual({
             id: 1,

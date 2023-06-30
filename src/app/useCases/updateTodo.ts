@@ -22,12 +22,12 @@ export async function updateTodo(todo: Todo, isMountedRef: React.MutableRefObjec
         return;
     }
 
-    store._updateTodo(todo);
+    store.updateTodo(todo);
 
     await delay(3000);
 
     if (!isMountedRef.current) {
-        store._updateTodo(oldValue);
+        store.updateTodo(oldValue);
         updatingTodos.delete(todo.todo_id);
         return;
     }
@@ -38,7 +38,7 @@ export async function updateTodo(todo: Todo, isMountedRef: React.MutableRefObjec
         toastId: 'server_error_todo' + todo.todo_id,
     });
 
-    store._updateTodo(oldValue);
+    store.updateTodo(oldValue);
 
     updatingTodos.delete(todo.todo_id);
 }

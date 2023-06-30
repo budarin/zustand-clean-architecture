@@ -1,14 +1,16 @@
 .ExpandButton {
-    height: var(--x9);
-    padding: var(--touchAreaPadding, 8px);
-    margin: 0;
-    border: 0;
     cursor: pointer;
+
+    block-size: var(--x9);
+    margin: 0;
+    padding: var(--touchAreaPadding, 8px);
+
+    border: 0;
 }
 
 @media (pointer: coarse) {
     .ExpandButton {
-        height: var(--x11);
-        width: var(--x11);
+        inline-size: var(--x11);
+        block-size: var(--x11);
     }
 }

@@ -1,4 +1,5 @@
 declare const __DEV__: boolean;
+declare const __PROD__: boolean;
 
 declare module '*.css';
 declare module '*.mp3';
@@ -10,6 +11,7 @@ declare module '*.gif';
 interface Window {
     loadingPromise: Promise<boolean>;
     scriptLoadError?: () => void;
+    _timers: NodeJS.Timeout[];
     navigator: {
         msMaxTouchPoints?: number;
     };

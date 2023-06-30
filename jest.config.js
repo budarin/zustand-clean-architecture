@@ -69,6 +69,7 @@ module.exports = {
     // A set of global variables that need to be available in all test environments
     globals: {
         __DEV__: process.env['NODE_ENV'] !== 'production',
+        __PROD__: process.env['NODE_ENV'] === 'production',
         IS_REACT_ACT_ENVIRONMENT: true,
     },
 

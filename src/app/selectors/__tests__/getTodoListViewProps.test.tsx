@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 
-import { resetStore } from './utils/store.setup.ts';
+import { resetStoreForReact } from '../../../utils/jest/store.setup.ts';
 
 import { useTodoStore } from '../../../domain/store/store.tsx';
 import { getTodoListViewProps } from '../getTodoListViewProps.ts';
@@ -12,7 +12,7 @@ import { createCategoryNavigationFilter } from '../../../domain/store/navigation
 import { createCalendarNavigationFilter } from '../../../domain/store/navigationFilter/createCalendarNavigationFilter.ts';
 
 beforeAll(() => {
-    resetStore();
+    resetStoreForReact();
 });
 
 describe('getTodoListViewProps', () => {
@@ -47,23 +47,6 @@ describe('getTodoListViewProps', () => {
         const title = category?.category || 'Не известная категория';
         const icon = state.icons.byId[category.icon_id].icon_name;
         const count = state.todos.idsByCategoryId[category.category_id]?.length || 0;
-
-        expect(result.current).toEqual({ count, icon, title });
-    });
-
-    it('должен вернуть параметры для TodoListView для не существующей категории', () => {
-        const { result } = renderHook(() => {
-            setNavigationFilter(createCategoryNavigationFilter(111, 'lalala'));
-            return getTodoListViewProps();
-        });
-
-        expect(result.current).not.toBeUndefined();
-
-        const state = useTodoStore.getState();
-        const category = state.categories.byId[1111];
-        const title = category?.category || 'Не известная категория';
-        const icon = state.icons.byId[category?.icon_id]?.icon_name || '';
-        const count = state.todos.idsByCategoryId[category?.category_id]?.length || 0;
 
         expect(result.current).toEqual({ count, icon, title });
     });

@@ -1,9 +1,4 @@
 import { initApp } from './utils/app/initApp.tsx';
-import { setUpPwaInstall } from './utils/service-worker/pwa-install/setUpPwaInstall.ts';
-import { handleSetupServiceWorker } from './utils/service-worker/handleSetupServiceWorker.ts';
+import { setupServiceWorker } from './utils/service-worker/setupServiceWorker.ts';
 
-handleSetupServiceWorker().then(initApp);
-
-if ('BeforeInstallPromptEvent' in window) {
-    window.addEventListener('beforeinstallprompt', setUpPwaInstall);
-}
+setupServiceWorker().then(initApp);

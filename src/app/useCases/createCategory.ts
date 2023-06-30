@@ -3,7 +3,7 @@ import { useLogger } from '../../services/adapters/useLogger.ts';
 import { useNotification } from '../../services/adapters/useNotification.ts';
 
 import { useTodoStore } from '../../domain/store/store.tsx';
-import { validateNewCategory } from '../../domain/entities/category/index.ts';
+import { validateNewCategoryEntity } from '../../domain/entities/category/index.ts';
 import { createCategoryNavigationFilter } from '../../domain/store/navigationFilter/createCategoryNavigationFilter.ts';
 
 const api = useApi();
@@ -19,7 +19,7 @@ export async function createCategory(
         return;
     }
 
-    const { entity, error: validateError } = validateNewCategory(category);
+    const { entity, error: validateError } = validateNewCategoryEntity(category);
 
     if (validateError) {
         notification.notifyError(`Ошибка: ${validateError}`, {
@@ -58,7 +58,7 @@ export async function createCategory(
         }
 
         const store = useTodoStore.getState();
-        store._addCategory(result);
+        store.addCategory(result);
 
         // устанавливаем навигационный фильтр на данную категорию
         store.setNavigationFilter(createCategoryNavigationFilter(result.category_id, entity.category));

@@ -30,10 +30,14 @@ export const validate_dueDate = (x: UnknownObject) => isNotExists(x.due_date) ||
 
 // Поле completed должно быть логическим типом и по умолчанию должно быть установлено в false,
 // либо оно может быть неопределенным.
-export const validate_completed = (x: UnknownObject): boolean => isBoolean(x.completed);
+export const validate_completed = (x: UnknownObject): boolean => {
+    return isUndefined(x.completed) || isBoolean(x.completed);
+};
 
 //  Поле deleted должно быть логическим типом и по умолчанию должно быть установлено в false.
-export const validate_deleted = (x: UnknownObject): boolean => isUndefined(x.deleted) || isBoolean(x.deleted);
+export const validate_deleted = (x: UnknownObject): boolean => {
+    return isUndefined(x.deleted) || isBoolean(x.deleted);
+};
 
 // Длина поля todo должна быть не менее 5 символов и не более 150 символов.
 export function validate_todo(x: UnknownObject): boolean {
@@ -57,14 +61,6 @@ export function validateDescription(x: UnknownObject): boolean {
     return false;
 }
 
-// значение поля status_id должно присутствовать в списке statuses
-export const validateStatusIdRelation = (status_id: number, statusIdsSores: Record<number, any>[]): boolean =>
-    !!statusIdsSores.find((idsStore) => Boolean(idsStore[status_id]));
-
-// значение поля category_id должно присутствовать в списке categories либо быть равным undefined
-export const validateCategoryIdRelation = (category_id: number, categoryIdsSores: Record<number, any>[]): boolean =>
-    !!categoryIdsSores.find((idsStore) => Boolean(idsStore[category_id]));
-
 // coverters
 const todoBeFalse = toDefaultBoolean(false);
 
@@ -84,7 +80,6 @@ const due_date: ValidationRule = [validate_dueDate, 'необязательно�
 const completed: ValidationRule = [validate_completed, 'поле completed должно быть boolean'];
 const deleted: ValidationRule = [validate_deleted, 'поле deleted должно быть boolean'];
 
-// Todo getter
 export function getTodoFomObject(input: UnknownObject): Todo | NewTodo | {} {
     const { todo_id, todo, status_id, category_id, description, due_date, deleted, completed } = input;
 
@@ -100,7 +95,7 @@ export function getTodoFomObject(input: UnknownObject): Todo | NewTodo | {} {
     };
 }
 
-export const todoValidationRules: ValidationRules = {
+const todoValidationRules: ValidationRules = {
     todo_id,
     status_id,
     category_id,
@@ -111,11 +106,11 @@ export const todoValidationRules: ValidationRules = {
     deleted,
 };
 
-export function validateTodo(todo: UnknownObject): ValidateEntity<Todo> {
+export function validateTodoEntity(todo: UnknownObject): ValidateEntity<Todo> {
     return validateRawEntity<Todo>(getTodoFomObject(todo), todoValidationRules);
 }
 
-export const newTodoValidationRules: ValidationRules = {
+const newTodoValidationRules: ValidationRules = {
     status_id,
     category_id,
     todo,
@@ -124,6 +119,6 @@ export const newTodoValidationRules: ValidationRules = {
     completed,
     deleted,
 };
-export function validateNewTodo(todo: UnknownObject): ValidateEntity<NewTodo> {
+export function validateNewTodoEntity(todo: UnknownObject): ValidateEntity<NewTodo> {
     return validateRawEntity<NewTodo>(getTodoFomObject(todo), newTodoValidationRules);
 }

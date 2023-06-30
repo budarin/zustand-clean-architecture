@@ -1,14 +1,14 @@
 import { getState } from '../state.ts';
+import { validateTodo } from './validateTodo.ts';
 import { respondWith404 } from '../../utils/respondWith404.ts';
 import { respondWithError } from '../../utils/respondWithError.ts';
 import { respondWithResult } from '../../utils/respondWithResult.ts';
-import { validateTodoEntity } from './validateTodoEntity.ts';
 
 export async function deleteTodo(request: Request): Promise<Response> {
     try {
         const state = getState();
         const data = await request.json();
-        const { entity, error } = validateTodoEntity(data, state, 'delete');
+        const { entity, error } = validateTodo(data, state, 'delete');
 
         if (entity) {
             // если нет такой записи в todos - ошибка

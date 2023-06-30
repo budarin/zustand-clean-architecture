@@ -1,5 +1,5 @@
 import { getState } from '../state.ts';
-import { validateTodoEntity } from './validateTodoEntity.ts';
+import { validateTodo } from './validateTodo.ts';
 import { respondWithError } from '../../utils/respondWithError.ts';
 import { respondWithResult } from '../../utils/respondWithResult.ts';
 
@@ -7,7 +7,7 @@ export async function createTodo(request: Request): Promise<TypedResponse<JsonRp
     try {
         const state = getState();
         const data = await request.json();
-        const { entity, error } = validateTodoEntity(data, state, 'create');
+        const { entity, error } = validateTodo(data, state, 'create');
 
         if (entity) {
             const ids = state.todos.map((item) => item.todo_id) || [1];

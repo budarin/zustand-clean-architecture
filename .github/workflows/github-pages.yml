@@ -15,7 +15,7 @@ jobs:
     publish:
         runs-on: ubuntu-latest
         #  && github.event_name == 'push' && github.ref == 'refs/heads/master'
-        if: ${{ github.event.workflow_run.conclusion == 'success' && needs.Build_the_project.result == 'success' && needs.Playwright_Tests.result == 'success' }}
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         timeout-minutes: 5
         environment:
             name: github-pages
@@ -65,5 +65,5 @@ jobs:
                   echo ${{ github.event_name }}
                   echo ${{ github.ref }}
                   echo ${{ github.event.workflow_run.conclusion }}
-                  echo ${{ workflows.Build_the_project.result }}
-                  echo ${{ workflows.Playwright_Tests.result }}
+                  echo ${{ needs.Build_the_project.result }}
+                  echo ${{ needs.Playwright_Tests.result }}

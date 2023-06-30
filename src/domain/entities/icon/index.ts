@@ -20,7 +20,6 @@ export function validate_name(x: UnknownObject): boolean {
     return false;
 }
 
-// Category getter
 export function getIconFomObject(input: UnknownObject = {}): Icon | {} {
     const { icon_id, icon_name } = input;
 
@@ -30,11 +29,11 @@ export function getIconFomObject(input: UnknownObject = {}): Icon | {} {
     };
 }
 
-export const iconValidationRules: ValidationRules = {
-    icon_id: [validate_id, 'обязательное поле icon_id должно быть целочисленным числом'],
-    name: [validate_name, 'обязательное icon_name должно быть строкой'],
+const iconValidationRules: ValidationRules = {
+    icon_id: [validate_id, 'Обязательное поле icon_id должно быть целочисленным числом'],
+    name: [validate_name, 'Длина поля name должна быть не менее 5 символов и не более 20 символов'],
 };
 
-export function validateIcon(icon: UnknownObject): ValidateEntity<Icon> {
+export function validateIconEntity(icon: UnknownObject): ValidateEntity<Icon> {
     return validateRawEntity<Icon>(getIconFomObject(icon), iconValidationRules);
 }

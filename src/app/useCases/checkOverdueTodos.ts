@@ -1,6 +1,7 @@
 import { setOverdueInBadge } from './setOverdueInBadge.ts';
 import { useTodoStore } from '../../domain/store/store.tsx';
 import { TWO_MINUTES } from '../../utils/dateTime/consts.ts';
+import { addTodoToOverdueList } from './addTodoToOverdueList.ts';
 import { overdueKey } from '../../domain/store/navigationFilter/index.ts';
 import { joyfullyGilling } from '../../services/contracts/Notification/index.ts';
 import { createFilterNavigationFilter } from '../../domain/store/navigationFilter/createFilterNavigationFilter.ts';
@@ -8,7 +9,7 @@ import { createFilterNavigationFilter } from '../../domain/store/navigationFilte
 export function checkOverdueTodos(): void {
     const now = Date.now();
 
-    const { todos, _addToOverdueTodos, setNavigationFilter } = useTodoStore.getState();
+    const { todos, setNavigationFilter } = useTodoStore.getState();
     const overdueIds = todos.idsByFilterId[overdueKey];
 
     for (const todo of Object.values(todos.byId)) {
@@ -21,7 +22,7 @@ export function checkOverdueTodos(): void {
                     toastId: 'due_date:' + todo.todo,
                     onClose: async () => {
                         setNavigationFilter(createFilterNavigationFilter('Просроченные', overdueKey));
-                        _addToOverdueTodos(todo.todo_id);
+                        addTodoToOverdueList(todo.todo_id);
                         setOverdueInBadge();
                     },
                 });

@@ -23,7 +23,6 @@ export function validate_status(x: UnknownObject): boolean {
     return false;
 }
 
-// Category getter
 export function getStatusFomObject(input: UnknownObject = {}): Status {
     const { status_id, status, color } = input as Status;
 
@@ -34,8 +33,7 @@ export function getStatusFomObject(input: UnknownObject = {}): Status {
     };
 }
 
-// validation rules
-export const statusValidationRules: ValidationRules = {
+const statusValidationRules: ValidationRules = {
     status_id: [validate_id, 'обязательное поле status_id должно быть целочисленным числом'],
     status: [
         validate_status,
@@ -44,6 +42,6 @@ export const statusValidationRules: ValidationRules = {
     color: [validate_color, 'обязательное поле color должно быть строкой из 7 символов'],
 };
 
-export function validateStatus(status: UnknownObject): ValidateEntity<Status> {
+export function validateStatusEntity(status: UnknownObject): ValidateEntity<Status> {
     return validateRawEntity<Status>(getStatusFomObject(status), statusValidationRules);
 }

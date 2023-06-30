@@ -1,15 +1,14 @@
 @font-face {
-    font-family: 'robotoregular';
-    src: url('../../../../assets/roboto-regular-webfont.woff2') format('woff2');
+    font-family: robotoregular;
     font-weight: normal;
     font-style: normal;
     font-display: swap;
+    src: url('../../../../assets/roboto-regular-webfont.woff2') format('woff2');
 }
 
 :root {
-    --font-family: 'robotoregular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial,
+    --font-family: 'robotoregular', -apple-system, blinkmacsystemfont, 'Segoe UI', 'Noto Sans', helvetica, arial,
         sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
-
     --isTouch: 0;
 
     /* sizes */
@@ -50,21 +49,21 @@
 html,
 body,
 #root {
+    inline-size: 100%;
+    block-size: 100%;
     margin: 0;
-    height: 100%;
-    width: 100%;
     font-size: 100%;
 }
 
 html {
-    color: var(--primaryTextColor);
     font-family: var(--font-family);
+    color: var(--primaryTextColor);
 }
 
 #root {
-    transition: opacity 1s ease;
     /* только тут должен быть hidden чтобы работал pull to refresh */
     overflow: hidden;
+    transition: opacity 1s ease;
 }
 
 .hidden {

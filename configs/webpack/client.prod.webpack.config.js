@@ -29,6 +29,7 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             __DEV__: process.env['NODE_ENV'] !== 'production',
+            __PROD__: process.env['NODE_ENV'] === 'production',
         }),
         new CopyPlugin({
             patterns: [{ from: './assets/site_icons/' }],
@@ -79,7 +80,34 @@ module.exports = {
             },
             {
                 test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    [
+                                        'postcss-preset-env',
+                                        {
+                                            // browsers: 'last 2 versions',
+                                        },
+                                    ],
+                                    [
+                                        'postcss-pixels-to-rem',
+                                        {
+                                            base: 16,
+                                            unit: 'rem',
+                                            exclude: [],
+                                            mediaQueries: true,
+                                        },
+                                    ],
+                                ],
+                            },
+                        },
+                    },
+                ],
             },
         ],
     },

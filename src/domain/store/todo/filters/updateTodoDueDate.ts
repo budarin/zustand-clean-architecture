@@ -3,8 +3,11 @@ import { isNotExists } from '../../../entities/validation_utils/isNotExists';
 // обновляем todos.idsByByDueDate
 export function updateTodoDueDate(state: TodoState, newTodo: ExtendedTodo, oldTodo?: ExtendedTodo) {
     // если при создании у новой задачи нет due_date
-    // или при обновлении due_date не изменилась - выходим
-    if ((oldTodo && oldTodo.due_date === newTodo.due_date) || isNotExists(newTodo.due_date)) {
+    // или при обновлении due_date не изменилась - выходим и она находится в списке просроченных задач
+    if (
+        (oldTodo && isTodoExistsInOverdue(state, oldTodo) && oldTodo.due_date === newTodo.due_date) ||
+        isNotExists(newTodo.due_date)
+    ) {
         return;
     }
 
@@ -28,4 +31,12 @@ export function updateTodoDueDate(state: TodoState, newTodo: ExtendedTodo, oldTo
             }
         }
     }
+}
+
+function isTodoExistsInOverdue(state: TodoState, todo: ExtendedTodo): boolean {
+    if (todo.due_date_ts === undefined) {
+        return false;
+    }
+
+    return Boolean((state.idsByDueDate[todo.due_date_ts] || []).includes(todo.todo_id));
 }

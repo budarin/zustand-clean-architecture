@@ -1,20 +1,33 @@
 import { useTodoStore } from '../store';
+import { validateNavigationFilter } from './validateNavigationFilter';
 
-export function setNavigationFilter(filter: NavigationFilter): JsonRpcResult<NavigationFilter> {
+export function setNavigationFilter(filter: UnknownObject): JsonRpcResult<NavigationFilter, UnknownObject> {
     const state = useTodoStore.getState();
+    const { entity, error } = validateNavigationFilter(filter, state);
 
-    if (state.navigationFilter.key === filter.key) {
+    if (entity) {
+        if (state.navigationFilter.key === entity.key) {
+            return {
+                result: entity,
+            };
+        }
+
+        const newState = { ...state };
+
+        newState.navigationFilter = entity;
+
+        useTodoStore.setState(newState);
+
         return {
-            result: filter,
+            result: entity,
         };
     }
 
-    const newState = { ...state };
-
-    newState.navigationFilter = filter;
-    useTodoStore.setState(newState);
-
     return {
-        result: filter,
+        error: {
+            code: 500,
+            error,
+            data: filter,
+        },
     };
 }

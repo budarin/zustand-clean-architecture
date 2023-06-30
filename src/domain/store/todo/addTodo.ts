@@ -1,13 +1,13 @@
 import { useTodoStore } from '../store';
-import { validateTodoEntity } from './validateTodoEntity';
+import { validateTodo } from './validateTodo';
 import { updateTodoCategories } from './filters/updateTodoCategories';
 import { getOnlyDateTimestamp } from '../../../utils/dateTime/getOnlyDateTimestamp';
 import { updateTodoFilters } from './filters/updateTodoFilters';
 import { updateTodoDueDate } from './filters/updateTodoDueDate';
 
-export function addTodo(todo: UnknownObject): JsonRpcResult<Todo, UnknownObject> {
+export function addTodo(todo: UnknownObject): JsonRpcResult<ExtendedTodo, UnknownObject> {
     const state = useTodoStore.getState();
-    const { entity, error } = validateTodoEntity(todo, state, 'add');
+    const { entity, error } = validateTodo(todo, state, 'add');
 
     if (entity) {
         const newState = { ...state };
@@ -25,10 +25,11 @@ export function addTodo(todo: UnknownObject): JsonRpcResult<Todo, UnknownObject>
 
         newState.todos.byId = { ...state.todos.byId, [newTodo.todo_id]: newTodo };
         newState.todos.ids = [...state.todos.ids, newTodo.todo_id];
+
         useTodoStore.setState(newState);
 
         return {
-            result: entity,
+            result: newTodo,
         };
     }
 

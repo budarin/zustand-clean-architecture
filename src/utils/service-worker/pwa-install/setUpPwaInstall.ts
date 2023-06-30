@@ -4,6 +4,7 @@ export function setUpPwaInstall() {
     script.src = 'https://cdn.jsdelivr.net/gh/khmyznikov/pwa-install@latest/dist/pwa-install.bundle.js';
 
     const pwaInstall = document.createElement('pwa-install');
+
     pwaInstall.id = 'pwa-install';
     pwaInstall.setAttribute('manifest-url', 'manifest.json');
     pwaInstall.setAttribute('manual-apple', 'true');
