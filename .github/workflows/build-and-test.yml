@@ -39,7 +39,7 @@ jobs:
               id: setup_node_step
               uses: actions/setup-node@v3
               with:
-                  node-version: '20'
+                  node-version: 'latest'
 
             - name: Enable Cache
               id: cache_step
@@ -54,50 +54,11 @@ jobs:
             - name: tslint
               run: yarn tsc
 
-            - name: stylelint
-              run: yarn stylelint
-
             - name: test
               run: yarn test
 
-            - name: build
-              run: yarn build
-
-            # - name: Commit and push changes - docs folder
-            #   run: |
-            #       if [[ -n $(git status --porcelain) ]]; then
-            #         echo "Changes detected"
-
-            #         git config --local user.email "github-actions[bot]@github.com"
-            #         git config --local user.name "github-actions[bot]"
-            #         git add .
-            #         git commit -m "ci changes"
-            #         git push origin HEAD:refs/heads/${{ github.head_ref }} -f
-            #       else
-            #         echo "No changes"
-            #       fi
-
-    playwright_test:
-        # не выполняем при merge PR
-        # if: ${{ github.event_name != 'push' && github.ref != 'refs/heads/master' }}
-        timeout-minutes: 5
-
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
-              with:
-                  node-version: '20'
-
-            - name: Cache Node modules
-              id: npm_cache
-              uses: actions/cache@v3
-              with:
-                  key: ${{ hashFiles('yarn.lock') }}
-                  path: node_modules
-
-            - if: ${{ steps.npm_cache.outputs.cache-hit != 'true' }}
-              run: yarn install --frozen-lockfile
+            - name: stylelint
+              run: yarn stylelint
 
             - name: Install Playwright
               run: yarn playwright install --with-deps
@@ -111,3 +72,6 @@ jobs:
                   name: playwright-report
                   path: playwright-report/
                   retention-days: 30
+
+            - name: build
+              run: yarn build
