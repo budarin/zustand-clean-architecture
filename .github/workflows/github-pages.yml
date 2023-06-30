@@ -29,7 +29,7 @@ jobs:
               id: setup_node_step
               uses: actions/setup-node@v3
               with:
-                  node-version: '20'
+                  node-version: 'latest'
 
             - name: Enable Cache
               id: cache_step
@@ -50,7 +50,7 @@ jobs:
             - name: Upload Pages Artifact
               uses: actions/upload-pages-artifact@v1
               with:
-                  path: docs/ # Измените на директорию, где находятся собранные файлы
+                  path: docs/
 
             - name: Deploy Pages
               id: deployment
