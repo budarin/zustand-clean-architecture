@@ -9,40 +9,51 @@
     padding-inline: var(--x);
 }
 
-.App__Container {
+.App-Container {
+    position: relative;
     overflow: hidden;
     flex: 1;
-    inline-size: 100%;
+    block-size: 200px;
 }
 
-.App__Container_scrolled {
+.App-Container_scrolled::before {
+    content: '';
+
+    position: absolute;
+    z-index: 1;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+
+    inline-size: 100%;
+    block-size: 10px;
+
+    background: linear-gradient(to bottom, var(--primaryLightColor) 0%, rgb(0 0 0 / 0%) 100%);
     border-block-start: 1px solid var(--primaryColor);
 }
 
-.App__NavPanel {
+.App-NavPanel {
     display: block;
 }
 
-.App__TodoList {
+.App-TodoList {
     display: block;
 }
 
-@media only screen and (width >= 641px) {
+@media only screen and (width > 640px) {
     .App {
         padding-block: 0;
         padding-inline: var(--x2);
     }
 
-    .App__Container {
+    .App-Container {
         display: flex;
         flex-direction: row;
         gap: var(--x4);
     }
 }
 
-@media only screen and (width >= 980px) {
+@media only screen and (width > 984px) {
     .App {
-        margin-block: 0;
         margin-inline: auto;
         padding: 0;
     }
