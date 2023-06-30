@@ -2246,6 +2246,14 @@
     "@react-types/shared" "^3.18.1"
     "@swc/helpers" "^0.5.0"
 
+"@react-stately/data@^3.10.0":
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/@react-stately/data/-/data-3.10.0.tgz#a87206f29d517c7a8946e3ea2f1f5ab12f24e698"
+  integrity sha512-B5GqSNvvgTxVziR2nJW84HhvLOEI9AYPm/cyEdkumams7BFP8XEQStSS/SiRCMuufdHe4pnzHAQr5ynfRObwkg==
+  dependencies:
+    "@react-types/shared" "^3.18.1"
+    "@swc/helpers" "^0.5.0"
+
 "@react-stately/datepicker@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@react-stately/datepicker/-/datepicker-3.5.0.tgz#eb43bf0e842e69c3390df3933869bf27fb337609"
@@ -7007,6 +7015,34 @@ react-is@^18.0.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
+
+react-stately@^3.24.0:
+  version "3.24.0"
+  resolved "https://registry.yarnpkg.com/react-stately/-/react-stately-3.24.0.tgz#87a3ac6fee7c9480970a595bc3e2e97675b00d25"
+  integrity sha512-4jNCR7rQBqvV8aKxm8giUWms/Wxlo9MMLUDDKfg75LEiCaqLcnxSC99HsEVKSao3RI0JCCj2ihewh6grRW/AgQ==
+  dependencies:
+    "@react-stately/calendar" "^3.3.0"
+    "@react-stately/checkbox" "^3.4.3"
+    "@react-stately/collections" "^3.9.0"
+    "@react-stately/combobox" "^3.5.2"
+    "@react-stately/data" "^3.10.0"
+    "@react-stately/datepicker" "^3.5.0"
+    "@react-stately/dnd" "^3.2.2"
+    "@react-stately/list" "^3.9.0"
+    "@react-stately/menu" "^3.5.3"
+    "@react-stately/numberfield" "^3.5.0"
+    "@react-stately/overlays" "^3.6.0"
+    "@react-stately/radio" "^3.8.2"
+    "@react-stately/searchfield" "^3.4.3"
+    "@react-stately/select" "^3.5.2"
+    "@react-stately/selection" "^3.13.2"
+    "@react-stately/slider" "^3.4.0"
+    "@react-stately/table" "^3.10.0"
+    "@react-stately/tabs" "^3.5.0"
+    "@react-stately/toggle" "^3.6.0"
+    "@react-stately/tooltip" "^3.4.2"
+    "@react-stately/tree" "^3.7.0"
+    "@react-types/shared" "^3.18.1"
 
 react-toastify@^9.1.2:
   version "9.1.3"
