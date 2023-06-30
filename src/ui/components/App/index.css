@@ -39,7 +39,7 @@
     display: block;
 }
 
-@media only screen and (width >= 641px) {
+@media only screen and (width > 640px) {
     .App {
         padding-block: 0;
         padding-inline: var(--x2);
@@ -52,7 +52,7 @@
     }
 }
 
-@media only screen and (width >= 984px) {
+@media only screen and (width > 984px) {
     .App {
         margin-inline: auto;
         padding: 0;

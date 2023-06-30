@@ -38,13 +38,13 @@
     }
 }
 
-@media only screen and (width >= 641px) {
+@media only screen and (width > 640px) {
     .AppHeader-Logo {
         margin-inline-start: 0;
     }
 }
 
-@media only screen and (height >= 640px) {
+@media only screen and (height > 640px) {
     .AppHeader {
         block-size: 80px;
     }
