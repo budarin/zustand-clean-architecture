@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { cn } from '../classNames.ts';
+import { cn } from '@bem-react/classname';
 
 import AppHeader from './AppHeader/index.tsx';
 
