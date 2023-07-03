@@ -7,6 +7,6 @@ interface KVStorage {
     clear(): void;
 }
 
-export function useKVStorage(): KVStorage {
+export function getKVStorage(): KVStorage {
     return KVStorage;
 }

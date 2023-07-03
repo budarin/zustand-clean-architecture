@@ -11,6 +11,6 @@ interface API {
     log(data: UnknownObject): void;
 }
 
-export function useApi(): API {
+export function getApi(): API {
     return API;
 }

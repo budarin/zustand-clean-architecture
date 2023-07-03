@@ -3,14 +3,14 @@ import React, { FormEventHandler, MouseEventHandler, memo, useCallback, useEffec
 
 import { useCreateCategory } from './useCreateCategory.tsx';
 import { isNotificationElement } from './isNotificationElement.tsx';
-import { useLogger } from '../../../../src/services/adapters/useLogger.ts';
+import { getLogger } from '../../../../src/services/adapters/getLogger.ts';
 
 // components
 import CreateCategoryFormContainer from '../CreateCategoryForm/index.tsx';
 import CategoryHeader from '../../../components/NavPanel/CategoryHeader/index.tsx';
 
 let timer: NodeJS.Timeout;
-const logger = useLogger();
+const logger = getLogger();
 
 const CategoryHeadersContainer = memo(function () {
     const [isOpen, setOpen] = useState<boolean>(false);

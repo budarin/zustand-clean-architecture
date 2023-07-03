@@ -1,9 +1,9 @@
 import { delay } from '../../utils/promises/delay.ts';
 import { useTodoStore } from '../../domain/store/store.tsx';
-import { useNotification } from '../../services/adapters/useNotification.ts';
+import { getNotification } from '../../services/adapters/getNotification.ts';
 
 const updatingTodos = new Set();
-const notification = useNotification();
+const notification = getNotification();
 
 export async function updateTodo(todo: Todo, isMountedRef: React.MutableRefObject<boolean>): Promise<void> {
     if (!isMountedRef.current) {

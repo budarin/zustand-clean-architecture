@@ -2,7 +2,7 @@ import React from 'react';
 import { unstable_batchedUpdates } from 'react-dom';
 
 import { useTodoStore } from '../../domain/store/store.tsx';
-import { useNotification } from '../../services/adapters/useNotification.ts';
+import { getNotification } from '../../services/adapters/getNotification.ts';
 
 export function initStore(data: Entities) {
     let hasError = false;
@@ -23,7 +23,7 @@ export function initStore(data: Entities) {
     });
 
     if (hasError) {
-        const notification = useNotification();
+        const notification = getNotification();
 
         notification.notifyWarning(
             <span>

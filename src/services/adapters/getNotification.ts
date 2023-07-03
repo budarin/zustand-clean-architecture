@@ -7,6 +7,6 @@ interface Notification {
     joyfullyGilling: Notification.NotificationMethod;
 }
 
-export function useNotification(): Notification {
+export function getNotification(): Notification {
     return Notification;
 }

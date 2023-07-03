@@ -1,10 +1,10 @@
-import { useApi } from '../../adapters/useApi.ts';
+import { getApi } from '../../adapters/getApi.ts';
 import { isString } from '../../../domain/entities/validation_utils/isString.ts';
 
 type LogMethods = 'info' | 'warn' | 'error';
 
 function logObject(data: string | UnknownObject, type: LogMethods): void {
-    const api = useApi();
+    const api = getApi();
     const logObj = isString(data)
         ? {
               type,
