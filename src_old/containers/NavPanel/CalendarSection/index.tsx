@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { inboxKey, overdueKey } from '../../../../src/domain/store/navigationFilter/index.ts';
 
 // components

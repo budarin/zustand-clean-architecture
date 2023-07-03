@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import { createTodo } from '../../../src/app/useCases/createTodo.ts';
-import { useNotification } from '../../../src/services/adapters/useNotification.ts';
+import { getNotification } from '../../../src/services/adapters/getNotification.ts';
 
 type UseCreateTodo = [inProgress: boolean, createTodo: React.Dispatch<React.SetStateAction<Todo | undefined>>];
 
 export function useUCreateTodo(): UseCreateTodo {
-    const notification = useNotification();
+    const notification = getNotification();
 
     const isMountedRef = useRef(true);
     const [todo, setTodo] = useState<Todo>();

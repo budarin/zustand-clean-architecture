@@ -1,3 +1,4 @@
+import React from 'react';
 import MenuIcon from '../../Icons/MenuIcon';
 import CheckButton from '../../Buttons/CheckButton';
 import CloseIcon from '../../Icons/CloseIcon';

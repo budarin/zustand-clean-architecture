@@ -1,4 +1,4 @@
-import { RefObject } from 'react';
+import React, { RefObject } from 'react';
 import { useEventListener } from 'usehooks-ts';
 
 export function useArrowKeysToSimulateTab<T extends HTMLElement>(ref: RefObject<T>): void {

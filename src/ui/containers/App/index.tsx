@@ -1,5 +1,5 @@
 import { useMediaQuery } from 'usehooks-ts';
-import { FC, useCallback, useState } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 
 import './index.css';
 import App from '../../components/App/index.tsx';

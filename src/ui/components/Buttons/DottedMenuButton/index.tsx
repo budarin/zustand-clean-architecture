@@ -1,6 +1,7 @@
-import DottedMenuIcon from '../../Icons/DottedMenuIcon';
+import React from 'react';
 
 import './index.css';
+import DottedMenuIcon from '../../Icons/DottedMenuIcon';
 
 type DottedMenuButton = {
     className?: string;
@@ -13,13 +14,7 @@ function DottedMenuButton(props: DottedMenuButton) {
     const { className, onClick, title, expanded } = props;
 
     return (
-        <button
-            className={`DottedMenuButton ${className}`}
-            onClick={onClick}
-            title={title}
-            area-role="menu"
-            aria-expanded={expanded}
-        >
+        <button className={`DottedMenuButton ${className}`} onClick={onClick} title={title} aria-expanded={expanded}>
             <DottedMenuIcon />
         </button>
     );

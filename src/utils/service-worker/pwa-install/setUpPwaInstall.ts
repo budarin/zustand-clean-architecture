@@ -12,4 +12,8 @@ export function setUpPwaInstall() {
 
     document.body.appendChild(script);
     document.body.appendChild(pwaInstall);
+
+    if ('BeforeInstallPromptEvent' in window) {
+        window.removeEventListener('beforeinstallprompt', setUpPwaInstall);
+    }
 }

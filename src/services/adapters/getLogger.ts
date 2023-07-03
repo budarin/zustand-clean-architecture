@@ -6,6 +6,6 @@ interface Logger {
     error(data: string | UnknownObject): void;
 }
 
-export function useLogger(): Logger {
+export function getLogger(): Logger {
     return Logger;
 }

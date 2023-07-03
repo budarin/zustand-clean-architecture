@@ -1,3 +1,4 @@
+import React from 'react';
 import MenuIcon from '../../Icons/MenuIcon/index.tsx';
 import CloseIcon from '../../Icons/CloseIcon/index.tsx';
 import CheckButton from '../../Buttons/CheckButton/index.tsx';

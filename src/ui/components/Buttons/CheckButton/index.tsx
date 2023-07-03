@@ -1,3 +1,4 @@
+import React from 'react';
 import './index.css';
 
 type CheckButton = {
@@ -13,13 +14,7 @@ function CheckButton(props: CheckButton) {
     const { className, checked, unCheckedIcon, checkedIcon, onClick, title } = props;
 
     return (
-        <button
-            className={`CheckButton ${className}`}
-            area-role="menu"
-            aria-expanded={checked}
-            onClick={onClick}
-            title={title}
-        >
+        <button className={`CheckButton ${className}`} aria-expanded={checked} onClick={onClick} title={title}>
             {checked ? checkedIcon : unCheckedIcon}
         </button>
     );

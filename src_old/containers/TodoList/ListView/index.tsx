@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { IconsByNameKey, iconsByName } from '../../iconsByName.ts';
 import { getTodoListViewProps } from '../../../../src/app/selectors/getTodoListViewProps.ts';
 

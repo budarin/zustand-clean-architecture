@@ -1,14 +1,14 @@
-import { useApi } from '../../services/adapters/useApi.ts';
-import { useLogger } from '../../services/adapters/useLogger.ts';
-import { useNotification } from '../../services/adapters/useNotification.ts';
+import { getApi } from '../../services/adapters/getApi.ts';
+import { getLogger } from '../../services/adapters/getLogger.ts';
+import { getNotification } from '../../services/adapters/getNotification.ts';
 
 import { useTodoStore } from '../../domain/store/store.tsx';
 import { validateNewCategoryEntity } from '../../domain/entities/category/index.ts';
 import { createCategoryNavigationFilter } from '../../domain/store/navigationFilter/createCategoryNavigationFilter.ts';
 
-const api = useApi();
-const logger = useLogger();
-const notification = useNotification();
+const api = getApi();
+const logger = getLogger();
+const notification = getNotification();
 const NOT_CATEGORY_OBJECT = 'Объект не является описанием Категории';
 
 export async function createCategory(

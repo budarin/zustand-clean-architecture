@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 import DottedMenuIcon from '../../Icons/DottedMenuIcon';
 
@@ -15,13 +15,7 @@ const DottedMenuButton: FC<DottedMenuButton> = (props) => {
     const { className, onClick, title, expanded } = props;
 
     return (
-        <button
-            className={`DottedMenuButton ${className}`}
-            onClick={onClick}
-            title={title}
-            area-role="menu"
-            aria-expanded={expanded}
-        >
+        <button className={`DottedMenuButton ${className}`} onClick={onClick} title={title} aria-expanded={expanded}>
             <DottedMenuIcon />
         </button>
     );

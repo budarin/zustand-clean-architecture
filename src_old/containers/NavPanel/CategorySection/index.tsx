@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { getCategoryList } from '../../../../src/app/selectors/getCategoryList.ts';
 import { navigationFilterTypes } from '../../../../src/domain/store/navigationFilter/index.ts';
 
