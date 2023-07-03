@@ -54,6 +54,9 @@ jobs:
             - name: tslint
               run: yarn tsc
 
+            - name: eslint
+              run: yarn eslint
+
             - name: test
               run: yarn test
 
