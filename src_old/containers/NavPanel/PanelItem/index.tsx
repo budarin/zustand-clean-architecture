@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 
 import { IconsByNameKey, iconsByName } from '../../iconsByName.ts';
 import { setSelectedFilter } from '../../../../src/app/useCases/setSelectedFilter.ts';

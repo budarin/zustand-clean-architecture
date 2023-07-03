@@ -1,4 +1,4 @@
-import { FormEventHandler, ForwardedRef, forwardRef, memo } from 'react';
+import React, { FormEventHandler, ForwardedRef, forwardRef, memo } from 'react';
 
 import { getIconCollection } from '../../../../src/app/selectors/getIconCollection.ts';
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import { cn } from '../classNames.ts';
 
 import icon from '../../../assets/todolist.svg';

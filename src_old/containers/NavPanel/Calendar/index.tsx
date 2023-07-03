@@ -1,4 +1,4 @@
-import { MouseEventHandler, useCallback } from 'react';
+import React, { MouseEventHandler, useCallback } from 'react';
 
 import { getCalendarSelectedDate } from '../../../../src/app/selectors/getCalendarSelectedDate.ts';
 import { setSelectedCalendarDate } from '../../../../src/app/useCases/setSelectedCalendarDate.ts';

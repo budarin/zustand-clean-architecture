@@ -1,5 +1,5 @@
 import { useMediaQuery } from 'usehooks-ts';
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { getNavigationFilter } from '../../../src/app/selectors/getNavigationFilter.ts';
 

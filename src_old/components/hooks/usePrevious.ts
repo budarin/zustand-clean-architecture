@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 export default function usePrevious<T>(value: T): T | undefined {
     // Source: https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state

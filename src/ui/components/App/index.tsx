@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { cn } from '@bem-react/classname';
 
 import AppHeader from './AppHeader/index.tsx';

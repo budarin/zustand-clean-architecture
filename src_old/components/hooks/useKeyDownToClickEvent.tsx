@@ -1,4 +1,4 @@
-import { RefObject } from 'react';
+import React, { RefObject } from 'react';
 import { useEventListener } from 'usehooks-ts';
 
 export function useKeyDownToClickEvent<T extends HTMLElement>(ref: RefObject<T>, keyCodes: string[]): void {

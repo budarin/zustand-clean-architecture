@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { navigationFilterTypes } from '../../../../src/domain/store/navigationFilter/index.ts';
 import { getNavigationFilter } from '../../../../src/app/selectors/getNavigationFilter.ts';
 import { getTodosCountByTimestamp } from '../../../../src/app/selectors/getTodosCountByTimestamp.ts';

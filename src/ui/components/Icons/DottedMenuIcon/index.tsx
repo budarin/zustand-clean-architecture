@@ -8,7 +8,14 @@ function DottedMenuIcon(props: DottedMenuIcon) {
     const { className } = props;
 
     return (
-        <svg height="100%" width="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+            className={className}
+            height="100%"
+            width="100%"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
             <path
                 d="M13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6C12.5523 6 13 5.55228 13 5Z"
                 stroke="currentColor"

@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactNode, memo } from 'react';
+import React, { MouseEventHandler, ReactNode, memo } from 'react';
 
 //components
 import AddIcon from '../../Icons/AddIcon';
