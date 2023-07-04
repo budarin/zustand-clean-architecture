@@ -90,7 +90,7 @@
         "test": "jest --verbose",
         "playwright-test": "npx playwright test",
         "tsc": "tsc",
-        "lint": "eslint",
+        "lint": "eslint --fix",
         "stylelint": "stylelint **/*.css --fix",
         "postbuild": "sh ./scripts/postbuild.sh",
         "postinstall": "sh ./scripts/postinstall.sh",
