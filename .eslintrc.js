@@ -9,6 +9,27 @@ module.exports = {
         'plugin:import/recommended',
         'plugin:@typescript-eslint/recommended',
     ],
+
+    parser: '@typescript-eslint/parser',
+    parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+    },
+    plugins: [
+        'jsx-a11y',
+        'optimize-regex',
+        'jest',
+        'jest-dom',
+        'testing-library',
+        '@typescript-eslint',
+        '@babel/eslint-plugin',
+        'react',
+        // должен быть последним!
+        'prettier',
+    ],
+    rules: {
+        'react/prop-types': 'off',
+    },
     overrides: [
         {
             env: {
@@ -19,14 +40,10 @@ module.exports = {
                 sourceType: 'script',
             },
         },
+        {
+            // только для тестов используем плагины для тестов
+            files: '**/?(*.)+(spec|test).(js|ts|tsx)',
+            extends: ['plugin:jest/all', 'plugin:jest-dom/recommended', 'plugin:testing-library/all'],
+        },
     ],
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-    },
-    plugins: ['@typescript-eslint', '@babel/eslint-plugin', 'react', 'jsx-a11y', 'optimize-regex'],
-    rules: {
-        'react/prop-types': 'off',
-    },
 };
