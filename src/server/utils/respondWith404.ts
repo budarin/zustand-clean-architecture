@@ -1,4 +1,4 @@
-import { jsonHeader } from './consts';
+import { jsonHeader } from './consts.ts';
 
 export function respondWith404(): TypedResponse<JsonRpcResult<undefined, undefined>> {
     return new Response(

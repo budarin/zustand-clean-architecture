@@ -1,3 +1,3 @@
-interface TypedResponse<T = any> extends Response {
+interface TypedResponse extends Response<T> {
     json<T>(): Promise<T>;
 }

@@ -1,6 +1,6 @@
-import { addStatus } from '../addStatus';
-import { useTodoStore } from '../../store';
-import { resetStore } from '../../../../utils/jest/store.setup';
+import { addStatus } from '../addStatus.ts';
+import { useTodoStore } from '../../store.tsx';
+import { resetStore } from '../../../../utils/jest/store.setup.ts';
 
 beforeAll(() => {
     resetStore();

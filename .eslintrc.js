@@ -6,8 +6,8 @@ module.exports = {
     extends: [
         'eslint:recommended',
         'plugin:react/recommended',
-        'plugin:import/recommended',
         'plugin:@typescript-eslint/recommended',
+        'plugin:import/recommended',
     ],
 
     parser: '@typescript-eslint/parser',
@@ -16,19 +16,21 @@ module.exports = {
         sourceType: 'module',
     },
     plugins: [
+        '@typescript-eslint',
+        '@babel/eslint-plugin',
+        'react',
         'jsx-a11y',
         'optimize-regex',
         'jest',
         'jest-dom',
         'testing-library',
-        '@typescript-eslint',
-        '@babel/eslint-plugin',
-        'react',
         // должен быть последним!
         'prettier',
     ],
-    rules: {
-        'react/prop-types': 'off',
+    settings: {
+        react: {
+            version: 'detect',
+        },
     },
     overrides: [
         {
@@ -43,7 +45,11 @@ module.exports = {
         {
             // только для тестов используем плагины для тестов
             files: '**/?(*.)+(spec|test).(js|ts|tsx)',
-            extends: ['plugin:jest/all', 'plugin:jest-dom/recommended', 'plugin:testing-library/all'],
+            extends: ['plugin:jest/all', 'plugin:jest-dom/recommended', 'plugin:testing-library/react'],
         },
     ],
+    rules: {
+        'react/prop-types': 'off',
+        '@typescript-eslint/ban-ts-comment': 'off',
+    },
 };

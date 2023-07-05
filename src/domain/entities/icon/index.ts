@@ -20,7 +20,7 @@ export function validate_name(x: UnknownObject): boolean {
     return false;
 }
 
-export function getIconFomObject(input: UnknownObject = {}): Icon | {} {
+export function getIconFomObject(input: UnknownObject = {}): Icon | UnknownObject {
     const { icon_id, icon_name } = input;
 
     return {

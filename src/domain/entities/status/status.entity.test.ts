@@ -1,4 +1,4 @@
-import { validate_id, validate_color, validate_status, getStatusFomObject, validateStatusEntity } from '.';
+import { validate_id, validate_color, validate_status, getStatusFomObject, validateStatusEntity } from './index.ts';
 
 describe('validate_id', () => {
     it('должна возвращать false, если свойство status_id не существует', () => {

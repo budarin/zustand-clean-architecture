@@ -1,5 +1,5 @@
-import { useTodoStore } from '../store';
-import { validateIcon } from './validateIcon';
+import { useTodoStore } from '../store.tsx';
+import { validateIcon } from './validateIcon.ts';
 
 export function addIcon(icon: UnknownObject): JsonRpcResult<Icon, UnknownObject> {
     const state = useTodoStore.getState();
@@ -10,7 +10,7 @@ export function addIcon(icon: UnknownObject): JsonRpcResult<Icon, UnknownObject>
 
         newState.icons.byId = { ...state.icons.byId, [entity.icon_id]: entity };
         newState.icons.ids = [...state.icons.ids, entity.icon_id];
-        
+
         useTodoStore.setState(newState);
 
         return { result: entity };

@@ -1,6 +1,6 @@
-import { useTodoStore } from '../../store/store';
-import { overdueKey, recycleBinKey } from '../navigationFilter';
-import { validateTodo } from './validateTodo';
+import { validateTodo } from './validateTodo.ts';
+import { useTodoStore } from '../../store/store.tsx';
+import { overdueKey, recycleBinKey } from '../navigationFilter/index.ts';
 
 export function deleteTodo(todo: UnknownObject): JsonRpcResult<Todo, UnknownObject> {
     const state = useTodoStore.getState();
@@ -9,12 +9,13 @@ export function deleteTodo(todo: UnknownObject): JsonRpcResult<Todo, UnknownObje
     if (entity) {
         const newState = { ...useTodoStore.getState() };
         const { category_id, due_date_ts } = state.todos.byId[entity.todo_id];
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { [entity.todo_id]: del, ...rest } = state.todos.byId;
 
         newState.todos.byId = rest;
 
         const ids = state.todos.ids;
-        let idx = ids.indexOf(entity.todo_id);
+        const idx = ids.indexOf(entity.todo_id);
         if (idx > -1) {
             newState.todos.ids = ids.filter((item) => item !== entity.todo_id);
         }

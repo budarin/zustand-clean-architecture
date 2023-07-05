@@ -33,7 +33,7 @@ type JsonRpcError<E> = {
     data?: E;
 };
 
-type JsonRpcResult<T, E extends unknown = undefined> =
+type JsonRpcResult<T, E = undefined> =
     | {
           result: T;
           error?: never;

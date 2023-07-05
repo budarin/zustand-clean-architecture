@@ -80,7 +80,7 @@ const due_date: ValidationRule = [validate_dueDate, 'необязательно�
 const completed: ValidationRule = [validate_completed, 'поле completed должно быть boolean'];
 const deleted: ValidationRule = [validate_deleted, 'поле deleted должно быть boolean'];
 
-export function getTodoFomObject(input: UnknownObject): Todo | NewTodo | {} {
+export function getTodoFomObject(input: UnknownObject): Todo | NewTodo | UnknownObject {
     const { todo_id, todo, status_id, category_id, description, due_date, deleted, completed } = input;
 
     return {

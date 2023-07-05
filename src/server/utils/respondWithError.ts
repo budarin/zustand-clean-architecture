@@ -1,4 +1,4 @@
-import { jsonHeader } from './consts';
+import { jsonHeader } from './consts.ts';
 
 export function respondWithError<T = undefined>(msg: string, data?: T): TypedResponse<JsonRpcResult<undefined, T>> {
     return new Response(

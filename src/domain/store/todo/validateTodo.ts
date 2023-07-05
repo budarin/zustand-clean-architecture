@@ -1,5 +1,5 @@
-import { validateTodoEntity } from '../../entities/todo';
-import { createValidationError } from '../../entities/validation_utils/createValidationError';
+import { validateTodoEntity } from '../../entities/todo/index.ts';
+import { createValidationError } from '../../entities/validation_utils/createValidationError.ts';
 
 export function validateTodo(
     todo: UnknownObject,

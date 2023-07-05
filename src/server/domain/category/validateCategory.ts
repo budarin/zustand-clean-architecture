@@ -1,5 +1,5 @@
-import { validateCategoryEntity, validateNewCategoryEntity } from '../../../domain/entities/category';
-import { createValidationError } from '../../../domain/entities/validation_utils/createValidationError';
+import { createValidationError } from '../../../domain/entities/validation_utils/createValidationError.ts';
+import { validateCategoryEntity, validateNewCategoryEntity } from '../../../domain/entities/category/index.ts';
 
 export function validateCategory(
     category: UnknownObject,

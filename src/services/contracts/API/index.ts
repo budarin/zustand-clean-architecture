@@ -1,5 +1,5 @@
-import { onResponse } from './onResponse';
-import { onCatchError } from './onCatchError';
+import { onResponse } from './onResponse.ts';
+import { onCatchError } from './onCatchError.ts';
 
 const jsonHeader = { 'Content-Type': 'application/json; charset=utf-8' };
 

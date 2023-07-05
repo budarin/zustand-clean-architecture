@@ -6,7 +6,7 @@ type CheckButton = {
     checked: boolean;
     unCheckedIcon: JSX.Element;
     checkedIcon: JSX.Element;
-    onClick: (event: any) => void;
+    onClick: (event: unknown) => void;
     title: string;
 };
 

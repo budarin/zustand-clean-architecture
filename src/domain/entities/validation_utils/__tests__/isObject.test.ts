@@ -1,4 +1,4 @@
-import { isObject } from '../isObject';
+import { isObject } from '../isObject.ts';
 
 describe('Функция isObject', () => {
     it('возвращает true если аргумент - объект', () => {
@@ -8,7 +8,11 @@ describe('Функция isObject', () => {
         expect(isObject(/abc/)).toBeTruthy();
     });
     it('возвращает false если аргумент - не объект', () => {
-        expect(isObject(() => {})).toBeFalsy();
+        expect(
+            isObject(() => {
+                //empty function
+            }),
+        ).toBeFalsy();
         expect(isObject(null)).toBeFalsy();
         expect(isObject(undefined)).toBeFalsy();
         expect(isObject(true)).toBeFalsy();

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { shallow } from 'zustand/shallow';
 
 import { useTodoStore } from '../../domain/store/store.tsx';

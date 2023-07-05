@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './index.css';
-import DottedMenuIcon from '../../Icons/DottedMenuIcon';
+import DottedMenuIcon from '../../Icons/DottedMenuIcon/index.tsx';
 
 type DottedMenuButton = {
     className?: string;

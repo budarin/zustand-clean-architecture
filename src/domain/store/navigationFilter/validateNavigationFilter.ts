@@ -1,5 +1,5 @@
-import { navigationFilterKeys, navigationFilterTitles, navigationFilterTypeValues } from '.';
-import { createValidationError } from '../../entities/validation_utils/createValidationError';
+import { createValidationError } from '../../entities/validation_utils/createValidationError.ts';
+import { navigationFilterKeys, navigationFilterTitles, navigationFilterTypeValues } from './index.ts';
 
 export function validateNavigationFilter(filter: UnknownObject, state: TodosState): ValidateEntity<NavigationFilter> {
     const entity = getNavigationFilterFomObject(filter);

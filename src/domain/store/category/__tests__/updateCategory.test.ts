@@ -1,5 +1,5 @@
-import { updateCategory } from '../updateCategory';
-import { resetStore } from '../../../../utils/jest/store.setup';
+import { updateCategory } from '../updateCategory.ts';
+import { resetStore } from '../../../../utils/jest/store.setup.ts';
 
 beforeAll(() => {
     resetStore();

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import CheckButton from '../CheckButton';
-import ExpandIcon from '../../Icons/ExpandIcon';
-import CollapseIcon from '../../Icons/CollapseIcon';
+import CheckButton from '../CheckButton/index.tsx';
+import ExpandIcon from '../../Icons/ExpandIcon/index.tsx';
+import CollapseIcon from '../../Icons/CollapseIcon/index.tsx';
 
 import './index.css';
 

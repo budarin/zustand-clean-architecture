@@ -5,7 +5,7 @@ import { delay } from '../../../utils/promises/delay.ts';
 
 export type NotificationMethod = <TData = unknown>(
     content: Toastify.ToastContent<TData>,
-    options?: Toastify.ToastOptions<{}> | undefined,
+    options?: Toastify.ToastOptions<UnknownObject> | undefined,
 ) => number | string;
 
 const lineHeight = 1.45;

@@ -1,4 +1,4 @@
-import { isFloat } from '../isFloat';
+import { isFloat } from '../isFloat.ts';
 
 describe('функция isFloat', () => {
     it('возвращает true для числового аргумента', () => {

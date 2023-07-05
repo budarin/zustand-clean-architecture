@@ -1,4 +1,4 @@
-import { isInt } from '../isInt';
+import { isInt } from '../isInt.ts';
 
 describe('isInt', () => {
     it('проверка, что целое число возвращает true', () => {
@@ -20,6 +20,10 @@ describe('isInt', () => {
         expect(isInt([])).toBeFalsy();
         expect(isInt({ key: 'value' })).toBeFalsy();
         expect(isInt(undefined)).toBeFalsy();
-        expect(isInt(() => {})).toBeFalsy();
+        expect(
+            isInt(() => {
+                // empty function
+            }),
+        ).toBeFalsy();
     });
 });

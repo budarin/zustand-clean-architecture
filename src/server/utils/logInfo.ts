@@ -1,4 +1,4 @@
-import { LoggerKey, logger, loggerMethods } from '../services/logger';
+import { LoggerKey, logger, loggerMethods } from '../services/logger.ts';
 
 export async function logInfo(request: Request) {
     const data = await request.json();

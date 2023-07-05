@@ -1,7 +1,5 @@
 import {
-    MIN_TODO_LENGTH,
     MAX_TODO_LENGTH,
-    MIN_DESCRIPTION_LENGTH,
     MAX_DESCRIPTION_LENGTH,
     validate_id,
     validate_status_id,
@@ -14,7 +12,7 @@ import {
     getTodoFomObject,
     validateTodoEntity,
     validateNewTodoEntity,
-} from '.';
+} from './index.ts';
 import { getTodayDate } from '../../../utils/dateTime/getTodayDate.ts';
 
 describe('validate_id', () => {

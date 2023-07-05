@@ -1,5 +1,5 @@
-import { useTodoStore } from '../store';
-import { validateStatus } from './validateStatus';
+import { useTodoStore } from '../store.tsx';
+import { validateStatus } from './validateStatus.ts';
 
 export function addStatus(status: UnknownObject): JsonRpcResult<Status, UnknownObject> {
     const state = useTodoStore.getState();

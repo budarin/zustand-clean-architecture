@@ -1,5 +1,5 @@
-import { useTodoStore } from '../store';
-import { validateNavigationFilter } from './validateNavigationFilter';
+import { useTodoStore } from '../store.tsx';
+import { validateNavigationFilter } from './validateNavigationFilter.ts';
 
 export function setNavigationFilter(filter: UnknownObject): JsonRpcResult<NavigationFilter, UnknownObject> {
     const state = useTodoStore.getState();

@@ -1,6 +1,6 @@
 type CheckEntityValidation = { isValid: boolean; errors: Record<string, string> };
 
-export function validateFormEntity<T>(
+export function validateFormEntity(
     entity: UnknownObject,
     rules: ValidationRules,
     errorPrefix: string,

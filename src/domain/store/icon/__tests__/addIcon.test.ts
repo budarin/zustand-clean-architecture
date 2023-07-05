@@ -1,6 +1,6 @@
-import { addIcon } from '../addIcon';
-import { useTodoStore } from '../../store';
-import { resetStore } from '../../../../utils/jest/store.setup';
+import { addIcon } from '../addIcon.ts';
+import { useTodoStore } from '../../store.tsx';
+import { resetStore } from '../../../../utils/jest/store.setup.ts';
 
 beforeAll(() => {
     resetStore();

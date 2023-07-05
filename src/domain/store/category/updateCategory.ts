@@ -1,5 +1,5 @@
-import { useTodoStore } from '../../store/store';
-import { validateCategory } from './validateCategory';
+import { useTodoStore } from '../../store/store.tsx';
+import { validateCategory } from './validateCategory.ts';
 
 export function updateCategory(category: UnknownObject): JsonRpcResult<Category, UnknownObject> {
     const state = useTodoStore.getState();

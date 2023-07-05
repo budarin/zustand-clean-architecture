@@ -3,7 +3,7 @@ import { handleInstall } from './utils/handleInstall.ts';
 import { handleActivate } from './utils/handleActivate.ts';
 import { handleFetchEvent } from './utils/handleFetchEvent.ts';
 
-declare var self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };
+declare let self: ServiceWorkerGlobalScope & typeof globalThis & { VERSION: string };
 
 self.VERSION = '1.0.0';
 

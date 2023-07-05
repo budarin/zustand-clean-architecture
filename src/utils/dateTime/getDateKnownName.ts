@@ -1,5 +1,5 @@
-import { getTodayDate } from './getTodayDate';
-import { getDatesDiffInDays } from './getDatesDiffInDays';
+import { getTodayDate } from './getTodayDate.ts';
+import { getDatesDiffInDays } from './getDatesDiffInDays.ts';
 
 export function getDateKnownName(date: Date) {
     const diff = getDatesDiffInDays(getTodayDate(), date);

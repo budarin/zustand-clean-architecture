@@ -1,5 +1,5 @@
-import { validateNewTodoEntity, validateTodoEntity } from '../../../domain/entities/todo';
-import { createValidationError } from '../../../domain/entities/validation_utils/createValidationError';
+import { validateNewTodoEntity, validateTodoEntity } from '../../../domain/entities/todo/index.ts';
+import { createValidationError } from '../../../domain/entities/validation_utils/createValidationError.ts';
 
 export function validateTodo(todo: UnknownObject, state: Entities, operation: 'create'): ValidateEntity<NewTodo>;
 

@@ -9,7 +9,7 @@ import { handleDeleteRequest } from './handleDeleteRequest.ts';
 // перехватываем запросы к api у сервис-воркера
 export async function handleFetchEvent(event: FetchEvent): Promise<void> {
     const req = event.request.clone();
-    var requestUrl = new URL(event.request.url);
+    const requestUrl = new URL(event.request.url);
     const method = requestUrl.pathname.slice(apiPattern.length);
 
     switch (event.request.method) {
