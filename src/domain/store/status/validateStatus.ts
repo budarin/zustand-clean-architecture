@@ -33,7 +33,7 @@ function isStatusIdExists(state: TodosState, status_id: number): boolean {
     return state.statuses.ids.includes(status_id) === true;
 }
 
-function isStatusNameNotUnique(state: TodosState, entity: Status) {
+function isStatusNameNotUnique(state: TodosState, entity: Status): Status | undefined {
     return Object.values(state.statuses.byId).find(
         (item) => item.status === entity.status && item.status_id !== entity.status_id,
     );

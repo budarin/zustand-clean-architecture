@@ -5,7 +5,9 @@ import { useTodoStore } from '../../domain/store/store.tsx';
  * Возвращает запись status по его id
  */
 
-const getStatusByStatusIdSelector = (status_id: TodoStatusId) => {
+type StatusByStatusIdSelector = (state: TodosState) => Status;
+
+const getStatusByStatusIdSelector = (status_id: TodoStatusId): StatusByStatusIdSelector => {
     return useCallback(
         (state: TodosState): Status => {
             return state.statuses.byId[status_id as Id];

@@ -1,6 +1,6 @@
 import { isNotExists } from '../../../entities/validation_utils/isNotExists.ts';
 
-export function updateTodoCategories(state: TodoState, newTodo: Todo, oldTodo?: Todo) {
+export function updateTodoCategories(state: TodoState, newTodo: Todo, oldTodo?: Todo): void {
     // если обновление задачи и категория не изменилась - выходим
     if (oldTodo && oldTodo.category_id === newTodo.category_id) {
         return;

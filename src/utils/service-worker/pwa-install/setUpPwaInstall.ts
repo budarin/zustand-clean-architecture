@@ -1,4 +1,4 @@
-export function setUpPwaInstall() {
+export function setUpPwaInstall(): void {
     const script = document.createElement('script');
     script.type = 'module';
     script.src = 'https://cdn.jsdelivr.net/gh/khmyznikov/pwa-install@latest/dist/pwa-install.bundle.js';

@@ -1,7 +1,7 @@
 import { getTodayDate } from './getTodayDate.ts';
 import { getDatesDiffInDays } from './getDatesDiffInDays.ts';
 
-export function getDateKnownName(date: Date) {
+export function getDateKnownName(date: Date): 'сегодня' | 'завтра' | 'послезавтра' | 'вчера' | 'позавчера' | '' {
     const diff = getDatesDiffInDays(getTodayDate(), date);
 
     switch (diff) {

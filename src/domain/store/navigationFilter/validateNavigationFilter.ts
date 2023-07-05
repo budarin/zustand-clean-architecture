@@ -57,7 +57,7 @@ export function validateNavigationFilter(filter: UnknownObject, state: TodosStat
     };
 }
 
-function getNavigationFilterFomObject(input: UnknownObject = {}) {
+function getNavigationFilterFomObject(input: UnknownObject = {}): { type: unknown; title: unknown; key: unknown } {
     const { type, title, key } = input;
 
     return {
@@ -67,7 +67,7 @@ function getNavigationFilterFomObject(input: UnknownObject = {}) {
     };
 }
 
-function isCategoryExists(state: TodosState, title: string) {
+function isCategoryExists(state: TodosState, title: string): boolean {
     return Object.values(state.categories.byId)
         .map((item) => item.category)
         .includes(title);

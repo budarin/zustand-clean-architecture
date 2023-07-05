@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react';
 
-export function useEffectOnce(callback: () => void) {
+export function useEffectOnce(callback: () => void): void {
     const isMounted = useRef(false);
 
     useEffect(() => {
         isMounted.current = true;
 
-        function start() {
+        function start(): void {
             if (isMounted.current) {
                 callback();
             }
@@ -14,7 +14,7 @@ export function useEffectOnce(callback: () => void) {
 
         start();
 
-        return () => {
+        return (): void => {
             isMounted.current = false;
         };
     }, []);

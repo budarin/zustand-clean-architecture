@@ -5,7 +5,7 @@ import { useTodoStore } from '../../domain/store/store.tsx';
 
 let initialState: TodosState;
 
-function setupStore() {
+function setupStore(): void {
     const { addTodo: _addTodo } = useTodoStore.getState();
 
     todoSamples.forEach((todo) => {
@@ -17,10 +17,10 @@ function setupStore() {
 
 setupStore();
 
-export const resetStoreForReact = () => {
+export const resetStoreForReact = (): void => {
     act(() => useTodoStore.setState(initialState, true));
 };
 
-export const resetStore = () => {
+export const resetStore = (): void => {
     useTodoStore.setState(initialState, true);
 };

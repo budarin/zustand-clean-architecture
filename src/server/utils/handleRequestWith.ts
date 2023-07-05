@@ -1,7 +1,7 @@
 import { saveState } from './saveState.ts';
 import { loadState } from './loadState.ts';
 
-export function handleRequestWith(event: FetchEvent, handler: () => Promise<Response>) {
+export function handleRequestWith(event: FetchEvent, handler: () => Promise<Response>): void {
     event.respondWith(
         loadState().then(async () => {
             const resp = await handler();

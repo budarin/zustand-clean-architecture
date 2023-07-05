@@ -4,7 +4,7 @@ import { setState, getState } from '../domain/state.ts';
 import { serverInitialState } from './serverInitialState.ts';
 import { logger } from '../services/logger.ts';
 
-export async function loadState() {
+export async function loadState(): Promise<void> {
     if (getState().icons.length === 0) {
         try {
             const cache = await caches.open('todo-sw');

@@ -1,7 +1,7 @@
 import { isNotExists } from '../../../entities/validation_utils/isNotExists.ts';
 
 // обновляем todos.idsByByDueDate
-export function updateTodoDueDate(state: TodoState, newTodo: ExtendedTodo, oldTodo?: ExtendedTodo) {
+export function updateTodoDueDate(state: TodoState, newTodo: ExtendedTodo, oldTodo?: ExtendedTodo): void {
     // если при создании у новой задачи нет due_date
     // или при обновлении due_date не изменилась - выходим и она находится в списке просроченных задач
     if (

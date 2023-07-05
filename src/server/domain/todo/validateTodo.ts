@@ -49,12 +49,12 @@ export function validateTodo(
     };
 }
 
-function isStatusExists(state: Entities, status_id: number) {
+function isStatusExists(state: Entities, status_id: number): boolean {
     return state.statuses.some((status) => status.status_id === status_id);
 }
-function isTodoExists(state: Entities, todo_id: number) {
+function isTodoExists(state: Entities, todo_id: number): boolean {
     return state.todos.some((todo) => todo.todo_id === todo_id);
 }
-function isCategoryExists(state: Entities, category_id: number | undefined) {
+function isCategoryExists(state: Entities, category_id: number | undefined): boolean {
     return state.categories?.some((category) => category.category_id === category_id);
 }

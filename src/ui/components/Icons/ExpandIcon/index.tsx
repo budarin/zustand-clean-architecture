@@ -4,7 +4,7 @@ type ExpandIcon = {
     className?: string;
 };
 
-function ExpandIcon(props: ExpandIcon) {
+function ExpandIcon(props: ExpandIcon): React.JSX.Element {
     const { className } = props;
 
     return (

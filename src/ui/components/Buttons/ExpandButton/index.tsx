@@ -13,7 +13,7 @@ type ExpandButton = {
     title: string;
 };
 
-function ExpandButton(props: ExpandButton) {
+function ExpandButton(props: ExpandButton): React.JSX.Element {
     const { className, isToggled, onClick, title } = props;
 
     return (

@@ -1,1 +1,1 @@
-export const onResponse = (resp: Response) => resp.json();
+export const onResponse = (resp: Response): Promise<unknown> => resp.json();

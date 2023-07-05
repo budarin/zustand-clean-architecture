@@ -39,17 +39,17 @@ export function validateTodo(
     };
 }
 
-function isStatusExists(state: TodosState, status_id: number) {
+function isStatusExists(state: TodosState, status_id: number): boolean {
     return Object.values(state.statuses.byId).some((status) => status.status_id === status_id);
 }
-function isTodoExists(state: TodosState, todo_id: number) {
+function isTodoExists(state: TodosState, todo_id: number): boolean {
     return Object.values(state.todos.byId).some((todo) => todo.todo_id === todo_id);
 }
-function isCategoryExists(state: TodosState, category_id: number) {
+function isCategoryExists(state: TodosState, category_id: number): boolean {
     return Object.values(state.categories?.byId).some((category) => category.category_id === category_id);
 }
 
-function isTodoIdUnique(state: TodosState, todo_id: number) {
+function isTodoIdUnique(state: TodosState, todo_id: number): boolean {
     return !!Object.values(state.todos.byId).find((item) => {
         return item.todo_id === todo_id;
     });

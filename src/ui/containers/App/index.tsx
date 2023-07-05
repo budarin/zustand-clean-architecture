@@ -14,7 +14,7 @@ const AppContainer: FC = () => {
     const matches = useMediaQuery('(max-width: 640px)');
     const [isNavPanelOpen, setNavPaneOpen] = useState(showNavePaneAtStart);
 
-    const toggleNavPane = () => setNavPaneOpen((s) => !s);
+    const toggleNavPane = (): void => setNavPaneOpen((s) => !s);
     const onToggleNavPan = useCallback(toggleNavPane, []);
 
     return (

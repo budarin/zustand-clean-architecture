@@ -4,8 +4,9 @@ import { useTodoStore } from '../../domain/store/store.tsx';
 /**
  * Возвращает число задач для даты в виде Timestamp
  */
+type TodosCountByTimestampSelector = (state: TodosState) => number;
 
-const getTodosCountByTimestampSelector = (timestamp: TimeStamp) => {
+const getTodosCountByTimestampSelector = (timestamp: TimeStamp): TodosCountByTimestampSelector => {
     return useCallback(
         (state: TodosState): number => {
             return state.todos.idsByDueDate[timestamp]?.length || 0;

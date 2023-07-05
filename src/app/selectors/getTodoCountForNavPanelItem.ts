@@ -6,7 +6,12 @@ import { navigationFilterTypes } from '../../domain/store/navigationFilter/index
  * Возвращает количество задач соответствующих категоии или фильтру
  */
 
-const getTodoCountForNavPanelItemSelector = (navigationType: NavigationPanelItemType, id: NavigationFilterKey) =>
+type TodoCountForNavPanelItemSelector = (state: TodosState) => number;
+
+const getTodoCountForNavPanelItemSelector = (
+    navigationType: NavigationPanelItemType,
+    id: NavigationFilterKey,
+): TodoCountForNavPanelItemSelector =>
     useCallback(
         (state: TodosState): number => {
             return navigationType === navigationFilterTypes.category

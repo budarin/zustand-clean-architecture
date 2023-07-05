@@ -10,7 +10,7 @@ type DottedMenuButton = {
     expanded: boolean;
 };
 
-function DottedMenuButton(props: DottedMenuButton) {
+function DottedMenuButton(props: DottedMenuButton): React.JSX.Element {
     const { className, onClick, title, expanded } = props;
 
     return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css'; // Подключение файла стилей
 
-const AnimatedAppIcon = () => {
+const AnimatedAppIcon = (): React.JSX.Element => {
     return (
         <div className="icon-container">
             <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" className="icon" viewBox="0 0 491.526 491.526">

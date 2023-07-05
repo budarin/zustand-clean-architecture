@@ -15,17 +15,17 @@ const isTouchWithVibration = isTouchDevice && 'vibrate' in navigator;
 const au = new Audio(sound);
 au.volume = 0.25;
 
-export const vibrate = (vibrations = [5]) => {
+export const vibrate = (vibrations = [5]): void => {
     if (isTouchWithVibration) {
         window.navigator.vibrate(vibrations);
     }
 };
 
-function onClose() {
+function onClose(): void {
     au.pause();
 }
 
-function onOpen() {
+function onOpen(): void {
     delay(250).then(() => {
         if (isTouchWithVibration) {
             vibrate();
@@ -59,7 +59,7 @@ export const notifyWarning: NotificationMethod = (content, options?) => {
     });
 };
 
-function onJoyfullyOpen() {
+function onJoyfullyOpen(): void {
     delay(250).then(() => {
         au.play();
         vibrate([100, 30, 100, 30, 100]);

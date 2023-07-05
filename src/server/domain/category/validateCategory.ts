@@ -51,16 +51,16 @@ export function validateCategory(
     };
 }
 
-function isCategoryNameNotUnique(state: Entities, entity: Category) {
+function isCategoryNameNotUnique(state: Entities, entity: Category): Category | undefined {
     return state.categories.find(
         (item) => item.category === entity.category && item.category_id !== entity.category_id,
     );
 }
 
-function isCategoryAssociatedWithTasks(state: Entities, category_id: number) {
+function isCategoryAssociatedWithTasks(state: Entities, category_id: number): boolean {
     return state.todos.some((item) => item.category_id === category_id);
 }
 
-function isCategoryExists(state: Entities, category_id: number) {
+function isCategoryExists(state: Entities, category_id: number): boolean {
     return state.categories.some((category) => category.category_id === category_id);
 }

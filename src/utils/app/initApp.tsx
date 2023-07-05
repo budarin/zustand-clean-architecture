@@ -23,7 +23,7 @@ const api = getApi();
 const logger = getLogger();
 const kvStorage = getKVStorage();
 
-export async function initApp() {
+export async function initApp(): Promise<void> {
     api.getTodoStore()
         .then((data) => {
             // console.log(data);

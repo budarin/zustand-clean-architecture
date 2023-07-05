@@ -47,9 +47,17 @@ module.exports = {
             files: '**/?(*.)+(spec|test).(js|ts|tsx)',
             extends: ['plugin:jest/all', 'plugin:jest-dom/recommended', 'plugin:testing-library/react'],
         },
+        {
+            // enable the rule specifically for TypeScript files
+            files: ['*.ts', '*.mts', '*.cts', '*.tsx'],
+            rules: {
+                '@typescript-eslint/explicit-function-return-type': 'error',
+            },
+        },
     ],
     rules: {
         'react/prop-types': 'off',
         '@typescript-eslint/ban-ts-comment': 'off',
+        '@typescript-eslint/explicit-function-return-type': 'off',
     },
 };

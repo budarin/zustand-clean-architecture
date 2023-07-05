@@ -1,6 +1,6 @@
 import { Page } from '@playwright/test';
 
-export async function waitForServiceWorker(page: Page) {
+export async function waitForServiceWorker(page: Page): Promise<void> {
     await page.goto('/');
 
     await page.evaluate(async () => {

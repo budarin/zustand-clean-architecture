@@ -1,7 +1,7 @@
 import { getState } from '../domain/state.ts';
 import { jsonHeader, todosUrl } from './consts.ts';
 
-export async function saveState() {
+export async function saveState(): Promise<void> {
     const state = getState();
     const cache = await caches.open('todo-sw');
     const stateStr = JSON.stringify(state);

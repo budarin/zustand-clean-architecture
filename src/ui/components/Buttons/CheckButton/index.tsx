@@ -10,7 +10,7 @@ type CheckButton = {
     title: string;
 };
 
-function CheckButton(props: CheckButton) {
+function CheckButton(props: CheckButton): React.JSX.Element {
     const { className, checked, unCheckedIcon, checkedIcon, onClick, title } = props;
 
     return (

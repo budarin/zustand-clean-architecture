@@ -3,7 +3,7 @@ import { isOverdueItem } from './isOverdueItem.ts';
 
 // Добавляем задачу в список просроченных
 
-export function updateOverdue(state: TodoState, todo: ExtendedTodo) {
+export function updateOverdue(state: TodoState, todo: ExtendedTodo): void {
     const overdueIds = state.idsByFilterId[overdueKey];
     const idx = overdueIds.indexOf(todo.todo_id);
 

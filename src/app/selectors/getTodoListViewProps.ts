@@ -17,9 +17,10 @@ import {
  * count - количество задач
  *
  */
+type TodoListViewPropsSelector = (state: TodosState) => { title: string; icon: string; count: number };
 
-const getTodoListViewPropsSelector = () =>
-    useCallback((state: TodosState): { title: string; icon: string; count: number } => {
+const getTodoListViewPropsSelector = (): TodoListViewPropsSelector =>
+    useCallback((state: TodosState) => {
         let title = '';
         let icon = '';
         let count = 0;
