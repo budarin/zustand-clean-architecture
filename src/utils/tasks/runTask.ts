@@ -5,12 +5,12 @@ export interface Task {
 export function runTask(callback: () => void, delay: number): Task {
     let timerId: NodeJS.Timeout;
 
-    function run() {
+    function run(): void {
         callback();
         timerId = setTimeout(run, delay);
     }
 
-    function stop() {
+    function stop(): void {
         clearTimeout(timerId);
     }
 

@@ -1,4 +1,4 @@
-import { isNumber } from '../isNumber';
+import { isNumber } from '../isNumber.ts';
 
 describe('isNumber функция', () => {
     it('возвращает true если аргумент - число', () => {

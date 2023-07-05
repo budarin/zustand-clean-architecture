@@ -1,6 +1,6 @@
-import { jsonHeader } from './consts';
+import { jsonHeader } from './consts.ts';
 
-export function respondWithResult<T>(result: T, status = 200): TypedResponse<JsonRpcResult<T>> {
+export function respondWithResult<T>(result: T, status = 200): TypedResponse<JsonRpc<T>> {
     return new Response(
         JSON.stringify({
             result,

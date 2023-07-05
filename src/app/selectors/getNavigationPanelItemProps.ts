@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { shallow } from 'zustand/shallow';
 
 import { useTodoStore } from '../../domain/store/store.tsx';
@@ -24,7 +24,12 @@ type GetNavPanelItemPropsSelector =
  *
  */
 
-export const getNavPanelItemPropsSelector = (navigationType: NavigationFilterType, id: NavigationFilterKey) =>
+type NavPanelItemPropsSelector = (state: TodosState) => GetNavPanelItemPropsSelector;
+
+export const getNavPanelItemPropsSelector = (
+    navigationType: NavigationFilterType,
+    id: NavigationFilterKey,
+): NavPanelItemPropsSelector =>
     useCallback(
         (state: TodosState): GetNavPanelItemPropsSelector => {
             const filter = state.navigationFilter;

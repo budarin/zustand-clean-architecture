@@ -1,8 +1,8 @@
 import { isAppleMobile } from '../browsers/isAppleMobile.ts';
 import { setUpPwaInstall } from './pwa-install/setUpPwaInstall.ts';
-import { isStandaloneMode } from './pwa-install/isStandaloneMode.ts';
+import { isStandaloneMode } from './pwa-install/isStandaloneMode.1.ts';
 
-export async function setupServiceWorker() {
+export async function setupServiceWorker(): Promise<void> {
     if ('serviceWorker' in navigator) {
         if (!navigator.serviceWorker.controller) {
             await new Promise((resolve) => {
@@ -16,7 +16,7 @@ export async function setupServiceWorker() {
                 const waitingServiceWorker = registration.waiting;
 
                 if (waitingServiceWorker) {
-                    const onStateChange = () => {
+                    const onStateChange = function (): void {
                         if (waitingServiceWorker.state === 'activated') {
                             registration.removeEventListener('statechange', onStateChange);
                             resolve(true);

@@ -4,7 +4,7 @@ type CollapseIcon = {
     className?: string;
 };
 
-function CollapseIcon(props: CollapseIcon) {
+function CollapseIcon(props: CollapseIcon): React.JSX.Element {
     const { className } = props;
 
     return (

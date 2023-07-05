@@ -33,7 +33,7 @@ function isIconIdExists(state: TodosState, icon_id: number): boolean {
     return state.icons.ids.includes(icon_id) === true;
 }
 
-function isIconNameNotUnique(state: TodosState, entity: Icon) {
+function isIconNameNotUnique(state: TodosState, entity: Icon): Icon | undefined {
     return Object.values(state.icons.byId).find(
         (item) => item.icon_name === entity.icon_name && item.icon_id !== entity.icon_id,
     );

@@ -1,9 +1,9 @@
-import { addTodo } from '../addTodo';
-import { deleteTodo } from '../deleteTodo';
-import { useTodoStore } from '../../store';
-import { resetStore } from '../../../../utils/jest/store.setup';
-import { overdueKey, recycleBinKey } from '../../navigationFilter';
-import { getDateOverToday } from '../../../../utils/dateTime/getDateOverToday';
+import { addTodo } from '../addTodo.ts';
+import { deleteTodo } from '../deleteTodo.ts';
+import { useTodoStore } from '../../store.tsx';
+import { resetStore } from '../../../../utils/jest/store.setup.ts';
+import { overdueKey, recycleBinKey } from '../../navigationFilter/index.ts';
+import { getDateOverToday } from '../../../../utils/dateTime/getDateOverToday.ts';
 
 beforeAll(() => {
     resetStore();

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './index.css';
-import DottedMenuIcon from '../../Icons/DottedMenuIcon';
+import DottedMenuIcon from '../../Icons/DottedMenuIcon/index.tsx';
 
 type DottedMenuButton = {
     className?: string;
@@ -10,7 +10,7 @@ type DottedMenuButton = {
     expanded: boolean;
 };
 
-function DottedMenuButton(props: DottedMenuButton) {
+function DottedMenuButton(props: DottedMenuButton): React.JSX.Element {
     const { className, onClick, title, expanded } = props;
 
     return (

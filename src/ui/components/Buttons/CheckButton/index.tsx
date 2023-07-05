@@ -6,11 +6,11 @@ type CheckButton = {
     checked: boolean;
     unCheckedIcon: JSX.Element;
     checkedIcon: JSX.Element;
-    onClick: (event: any) => void;
+    onClick: (event: unknown) => void;
     title: string;
 };
 
-function CheckButton(props: CheckButton) {
+function CheckButton(props: CheckButton): React.JSX.Element {
     const { className, checked, unCheckedIcon, checkedIcon, onClick, title } = props;
 
     return (

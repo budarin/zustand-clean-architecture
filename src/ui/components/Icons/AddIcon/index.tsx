@@ -4,7 +4,7 @@ type AddIcon = {
     className?: string;
 };
 
-function AddIcon(props: AddIcon) {
+function AddIcon(props: AddIcon): React.JSX.Element {
     const { className } = props;
 
     return (

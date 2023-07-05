@@ -1,11 +1,11 @@
-import { useTodoStore } from '../store';
-import { validateTodo } from './validateTodo';
-import { updateTodoCategories } from './filters/updateTodoCategories';
-import { getOnlyDateTimestamp } from '../../../utils/dateTime/getOnlyDateTimestamp';
-import { updateTodoFilters } from './filters/updateTodoFilters';
-import { updateTodoDueDate } from './filters/updateTodoDueDate';
+import { useTodoStore } from '../store.tsx';
+import { validateTodo } from './validateTodo.ts';
+import { updateTodoFilters } from './filters/updateTodoFilters.ts';
+import { updateTodoDueDate } from './filters/updateTodoDueDate.ts';
+import { updateTodoCategories } from './filters/updateTodoCategories.ts';
+import { getOnlyDateTimestamp } from '../../../utils/dateTime/getOnlyDateTimestamp.ts';
 
-export function addTodo(todo: UnknownObject): JsonRpcResult<ExtendedTodo, UnknownObject> {
+export function addTodo(todo: UnknownObject): JsonRpc<ExtendedTodo, UnknownObject> {
     const state = useTodoStore.getState();
     const { entity, error } = validateTodo(todo, state, 'add');
 

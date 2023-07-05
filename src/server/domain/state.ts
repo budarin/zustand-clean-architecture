@@ -5,10 +5,10 @@ let state: Entities = {
     icons: [] as Icon[],
 };
 
-export function getState() {
+export function getState(): Entities {
     return state;
 }
 
-export function setState(newSate: Entities) {
+export function setState(newSate: Entities): void {
     state = newSate;
 }

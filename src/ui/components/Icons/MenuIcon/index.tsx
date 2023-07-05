@@ -4,7 +4,7 @@ type MenuIcon = {
     className?: string;
 };
 
-function MenuIcon(props: MenuIcon) {
+function MenuIcon(props: MenuIcon): React.JSX.Element {
     const { className } = props;
 
     return (

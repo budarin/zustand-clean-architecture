@@ -1,4 +1,4 @@
-import { isNotExists } from '../isNotExists';
+import { isNotExists } from '../isNotExists.ts';
 
 describe('isNotExists функция', () => {
     it('Возвращает true для null', () => {

@@ -1,4 +1,4 @@
-import { isNumberLike } from '../isNumberLike';
+import { isNumberLike } from '../isNumberLike.ts';
 
 describe('Функция isNumberLike', () => {
     it('возвращает true если аргумент - число', () => {

@@ -1,9 +1,9 @@
 import { renderHook } from '@testing-library/react';
-import { useTodoStore } from '../../../domain/store/store';
-import { addTodoToOverdueList } from '../addTodoToOverdueList';
-import { resetStoreForReact } from '../../../utils/jest/store.setup';
-import { getDateOverToday } from '../../../utils/dateTime/getDateOverToday';
-import { getOnlyDateTimestamp } from '../../../utils/dateTime/getOnlyDateTimestamp';
+import { useTodoStore } from '../../../domain/store/store.tsx';
+import { addTodoToOverdueList } from '../addTodoToOverdueList.ts';
+import { resetStoreForReact } from '../../../utils/jest/store.setup.ts';
+import { getDateOverToday } from '../../../utils/dateTime/getDateOverToday.ts';
+import { getOnlyDateTimestamp } from '../../../utils/dateTime/getOnlyDateTimestamp.ts';
 
 beforeAll(() => {
     resetStoreForReact();

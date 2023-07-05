@@ -1,4 +1,4 @@
-export function cleanUpHtml() {
+export function cleanUpHtml(): void {
     performance.mark('cleanUpHtml_start');
 
     if (window.scriptLoadError) {

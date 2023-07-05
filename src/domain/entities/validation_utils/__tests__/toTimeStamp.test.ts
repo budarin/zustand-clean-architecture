@@ -1,4 +1,4 @@
-import { toTimeStamp } from '../toTimeStamp';
+import { toTimeStamp } from '../toTimeStamp.ts';
 
 describe('Функция toTimeStamp', () => {
     it('должна возвращать переданное значение, если оно уже является целым числом', () => {

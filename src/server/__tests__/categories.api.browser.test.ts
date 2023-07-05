@@ -7,7 +7,7 @@ test.describe('Service-worker', () => {
         await waitForServiceWorker(page);
 
         const category = await page.evaluate(async () => {
-            let req = await fetch('/api/create_category', {
+            const req = await fetch('/api/create_category', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json; charset=utf-8' },
                 body: JSON.stringify({ category: 'Спорт', icon_id: 1 }),
@@ -87,7 +87,7 @@ test.describe('Service-worker', () => {
         await waitForServiceWorker(page);
 
         const category = await page.evaluate(async () => {
-            let req = await fetch('/api/delete_category', {
+            const req = await fetch('/api/delete_category', {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json; charset=utf-8' },
                 body: JSON.stringify({ category_id: 5, category: 'Спорт', icon_id: 1 }),
@@ -105,7 +105,7 @@ test.describe('Service-worker', () => {
         await waitForServiceWorker(page);
 
         const category = await page.evaluate(async () => {
-            let req = await fetch('/api/delete_category', {
+            const req = await fetch('/api/delete_category', {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json; charset=utf-8' },
                 body: JSON.stringify({ category_id: 1, category: 'Работа', icon_id: 3 }),

@@ -4,7 +4,7 @@ import { unstable_batchedUpdates } from 'react-dom';
 import { useTodoStore } from '../../domain/store/store.tsx';
 import { getNotification } from '../../services/adapters/getNotification.ts';
 
-export function initStore(data: Entities) {
+export function initStore(data: Entities): void {
     let hasError = false;
 
     const { todos } = data;

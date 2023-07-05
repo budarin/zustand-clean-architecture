@@ -1,5 +1,5 @@
-declare var self: ServiceWorkerGlobalScope;
+declare let self: ServiceWorkerGlobalScope;
 
-export function handleInstall(event: ExtendableEvent): void {
+export function handleInstall(): void {
     self.skipWaiting();
 }

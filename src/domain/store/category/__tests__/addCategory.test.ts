@@ -1,6 +1,6 @@
-import { useTodoStore } from '../../store';
-import { addCategory } from '../addCategory';
-import { resetStore } from '../../../../utils/jest/store.setup';
+import { useTodoStore } from '../../store.tsx';
+import { addCategory } from '../addCategory.ts';
+import { resetStore } from '../../../../utils/jest/store.setup.ts';
 
 beforeAll(() => {
     resetStore();

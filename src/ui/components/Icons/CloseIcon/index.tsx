@@ -4,7 +4,7 @@ type CloseIcon = {
     className?: string;
 };
 
-function CloseIcon(props: CloseIcon) {
+function CloseIcon(props: CloseIcon): React.JSX.Element {
     const { className } = props;
 
     return (

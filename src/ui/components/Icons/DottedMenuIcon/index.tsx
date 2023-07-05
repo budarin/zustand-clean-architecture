@@ -4,7 +4,7 @@ type DottedMenuIcon = {
     className?: string;
 };
 
-function DottedMenuIcon(props: DottedMenuIcon) {
+function DottedMenuIcon(props: DottedMenuIcon): React.JSX.Element {
     const { className } = props;
 
     return (

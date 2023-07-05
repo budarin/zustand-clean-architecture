@@ -23,13 +23,18 @@ const api = getApi();
 const logger = getLogger();
 const kvStorage = getKVStorage();
 
-export async function initApp() {
+export async function initApp(): Promise<void> {
     api.getTodoStore()
-        .then((data) => {
-            // console.log(data);
-            initStore(data);
-            setOverdueInBadge();
-            window.addEventListener('beforeunload', runTask(checkOverdueTodos, ONE_MINUTE).stop);
+        .then(({ result, error }) => {
+            // console.log({ result, error });
+
+            if (result) {
+                initStore(result);
+                setOverdueInBadge();
+                window.addEventListener('beforeunload', runTask(checkOverdueTodos, ONE_MINUTE).stop);
+            } else {
+                throw error;
+            }
         })
         .then(() => window.loadingPromise)
         .then(() => {
@@ -49,6 +54,10 @@ export async function initApp() {
             cleanUpHtml();
         })
         .catch((error) => {
-            logger.error({ error, stack: error.stack });
+            if (error instanceof Error) {
+                logger.error({ error, stack: error.stack });
+            } else {
+                logger.error(error);
+            }
         });
 }

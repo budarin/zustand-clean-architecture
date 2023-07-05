@@ -1,4 +1,4 @@
-import { getIconFomObject, validateIconEntity, validate_id, validate_name } from '.';
+import { getIconFomObject, validateIconEntity, validate_id, validate_name } from './index.ts';
 
 describe('validate_id', () => {
     it('должна возвращать true, если свойство icon_id существует и является целочисленным значением', () => {

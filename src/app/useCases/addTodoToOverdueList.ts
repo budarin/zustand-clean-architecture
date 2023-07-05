@@ -1,4 +1,4 @@
-import { useTodoStore } from '../../domain/store/store';
+import { useTodoStore } from '../../domain/store/store.tsx';
 
 export function addTodoToOverdueList(id: Category['category_id']): Category['category_id'] {
     const state = useTodoStore.getState();

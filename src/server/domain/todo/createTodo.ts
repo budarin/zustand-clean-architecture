@@ -3,7 +3,7 @@ import { validateTodo } from './validateTodo.ts';
 import { respondWithError } from '../../utils/respondWithError.ts';
 import { respondWithResult } from '../../utils/respondWithResult.ts';
 
-export async function createTodo(request: Request): Promise<TypedResponse<JsonRpcResult<NewTodo, string | undefined>>> {
+export async function createTodo(request: Request): Promise<TypedResponse<JsonRpc<NewTodo, string | undefined>>> {
     try {
         const state = getState();
         const data = await request.json();

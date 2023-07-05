@@ -1,4 +1,4 @@
-type OneOfEntities = Category | Status | Category | Todo;
+type OneOfEntities = Todo | Category | Status | Icon;
 
 type Entities = {
     todos: Todo[];

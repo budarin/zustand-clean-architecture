@@ -1,12 +1,13 @@
-import { useTodoStore } from '../../store/store';
-import { validateCategory } from './validateCategory';
+import { useTodoStore } from '../../store/store.tsx';
+import { validateCategory } from './validateCategory.ts';
 
-export function deleteCategory(category: UnknownObject): JsonRpcResult<Category, UnknownObject> {
+export function deleteCategory(category: UnknownObject): JsonRpc<Category, UnknownObject> {
     const state = useTodoStore.getState();
     const { entity, error } = validateCategory(category, state, 'delete');
 
     if (entity) {
         const { category_id } = entity;
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { [category_id]: deleted, ...restById } = state.categories.byId;
         const newState = { ...state };
 
@@ -19,6 +20,7 @@ export function deleteCategory(category: UnknownObject): JsonRpcResult<Category,
         }
 
         // удалить в todos idsByCategoryId так как там нет todos
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { [category_id]: del, ...restIdsByCategoryId } = state.todos.idsByCategoryId;
         newState.todos.idsByCategoryId = restIdsByCategoryId;
 

@@ -7,7 +7,7 @@ test.describe('Service-worker', () => {
         await waitForServiceWorker(page);
 
         const category = await page.evaluate(async () => {
-            let req = await fetch('/api/create_todo', {
+            const req = await fetch('/api/create_todo', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json; charset=utf-8' },
                 body: JSON.stringify({
@@ -38,7 +38,7 @@ test.describe('Service-worker', () => {
         await waitForServiceWorker(page);
 
         const category = await page.evaluate(async () => {
-            let req = await fetch('/api/create_todo', {
+            const req = await fetch('/api/create_todo', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json; charset=utf-8' },
                 body: JSON.stringify({
@@ -64,7 +64,7 @@ test.describe('Service-worker', () => {
         await waitForServiceWorker(page);
 
         const category = await page.evaluate(async () => {
-            let req = await fetch('/api/create_todo', {
+            const req = await fetch('/api/create_todo', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json; charset=utf-8' },
                 body: JSON.stringify({
@@ -180,7 +180,7 @@ test.describe('Service-worker', () => {
         await waitForServiceWorker(page);
 
         const category = await page.evaluate(async () => {
-            let req = await fetch('/api/delete_todo', {
+            const req = await fetch('/api/delete_todo', {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json; charset=utf-8' },
                 body: JSON.stringify({

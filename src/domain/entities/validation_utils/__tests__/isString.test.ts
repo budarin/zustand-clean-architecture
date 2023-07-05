@@ -1,4 +1,4 @@
-import { isString } from '../isString';
+import { isString } from '../isString.ts';
 
 describe('Функция isString', () => {
     it('Возвращает true для строки', () => {

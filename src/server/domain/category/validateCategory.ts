@@ -1,5 +1,5 @@
-import { validateCategoryEntity, validateNewCategoryEntity } from '../../../domain/entities/category';
-import { createValidationError } from '../../../domain/entities/validation_utils/createValidationError';
+import { createValidationError } from '../../../domain/entities/validation_utils/createValidationError.ts';
+import { validateCategoryEntity, validateNewCategoryEntity } from '../../../domain/entities/category/index.ts';
 
 export function validateCategory(
     category: UnknownObject,
@@ -17,8 +17,8 @@ export function validateCategory(
     category: UnknownObject,
     state: Entities,
     operation: ServerStateEntityOperations,
-): ValidateEntity<NewCategory | Category> {
-    let result: ValidateEntity<NewCategory | Category>;
+): ValidateEntity<Category | NewCategory> {
+    let result: ValidateEntity<Category | NewCategory>;
 
     if (operation === 'create') {
         result = validateNewCategoryEntity(category) as ValidateEntity<NewCategory>;
@@ -51,16 +51,16 @@ export function validateCategory(
     };
 }
 
-function isCategoryNameNotUnique(state: Entities, entity: Category) {
+function isCategoryNameNotUnique(state: Entities, entity: Category): Category | undefined {
     return state.categories.find(
         (item) => item.category === entity.category && item.category_id !== entity.category_id,
     );
 }
 
-function isCategoryAssociatedWithTasks(state: Entities, category_id: number) {
+function isCategoryAssociatedWithTasks(state: Entities, category_id: number): boolean {
     return state.todos.some((item) => item.category_id === category_id);
 }
 
-function isCategoryExists(state: Entities, category_id: number) {
+function isCategoryExists(state: Entities, category_id: number): boolean {
     return state.categories.some((category) => category.category_id === category_id);
 }

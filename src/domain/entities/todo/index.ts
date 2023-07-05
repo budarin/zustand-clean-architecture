@@ -26,7 +26,7 @@ export const validate_status_id = (x: UnknownObject): boolean => exists(x.status
 export const validate_category_id = (x: UnknownObject): boolean => isUndefined(x.category_id) || isInt(x.category_id);
 
 // поле due_date должно присутствовать и имет целочисленное значение
-export const validate_dueDate = (x: UnknownObject) => isNotExists(x.due_date) || isString(x.due_date);
+export const validate_dueDate = (x: UnknownObject): boolean => isNotExists(x.due_date) || isString(x.due_date);
 
 // Поле completed должно быть логическим типом и по умолчанию должно быть установлено в false,
 // либо оно может быть неопределенным.
@@ -80,7 +80,7 @@ const due_date: ValidationRule = [validate_dueDate, 'необязательно�
 const completed: ValidationRule = [validate_completed, 'поле completed должно быть boolean'];
 const deleted: ValidationRule = [validate_deleted, 'поле deleted должно быть boolean'];
 
-export function getTodoFomObject(input: UnknownObject): Todo | NewTodo | {} {
+export function getTodoFomObject(input: UnknownObject): Todo | NewTodo | UnknownObject {
     const { todo_id, todo, status_id, category_id, description, due_date, deleted, completed } = input;
 
     return {

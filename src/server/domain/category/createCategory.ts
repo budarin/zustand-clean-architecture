@@ -5,7 +5,7 @@ import { respondWithResult } from '../../utils/respondWithResult.ts';
 
 export async function createCategory(
     request: Request,
-): Promise<TypedResponse<JsonRpcResult<NewCategory, string | undefined>>> {
+): Promise<TypedResponse<JsonRpc<NewCategory, string | undefined>>> {
     try {
         const state = getState();
         const data = await request.json();

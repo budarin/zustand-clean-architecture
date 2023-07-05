@@ -1,5 +1,5 @@
 // @ts-nocheck
-export function showInstallPwaDialog() {
+export function showInstallPwaDialog(): void {
     const pwaInstall = document.getElementsByTagName('pwa-install')[0];
 
     if (pwaInstall && pwaInstall.isInstallAvailable) {
