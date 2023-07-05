@@ -2,7 +2,7 @@ import { validateTodo } from './validateTodo.ts';
 import { useTodoStore } from '../../store/store.tsx';
 import { overdueKey, recycleBinKey } from '../navigationFilter/index.ts';
 
-export function deleteTodo(todo: UnknownObject): JsonRpcResult<Todo, UnknownObject> {
+export function deleteTodo(todo: UnknownObject): JsonRpc<Todo, UnknownObject> {
     const state = useTodoStore.getState();
     const { entity, error } = validateTodo(todo, state, 'delete');
 

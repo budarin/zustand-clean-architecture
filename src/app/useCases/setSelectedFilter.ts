@@ -4,7 +4,7 @@ import { createFilterNavigationFilter } from '../../domain/store/navigationFilte
 
 const setNavigationFilter = useTodoStore.getState().setNavigationFilter;
 
-export function setSelectedFilter(key: string, filter: string): JsonRpcResult<NavigationFilter, UnknownObject> {
+export function setSelectedFilter(key: string, filter: string): JsonRpc<NavigationFilter, UnknownObject> {
     const result = setNavigationFilter(createFilterNavigationFilter(key, filter));
     vibrate();
 

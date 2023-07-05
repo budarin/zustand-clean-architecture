@@ -1,7 +1,7 @@
 import { useTodoStore } from '../store.tsx';
 import { validateIcon } from './validateIcon.ts';
 
-export function addIcon(icon: UnknownObject): JsonRpcResult<Icon, UnknownObject> {
+export function addIcon(icon: UnknownObject): JsonRpc<Icon, UnknownObject> {
     const state = useTodoStore.getState();
     const { entity, error } = validateIcon(icon, state, 'add');
 

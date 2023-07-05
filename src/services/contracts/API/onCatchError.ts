@@ -1,4 +1,4 @@
-export const onCatchError = (error: Error): { error: { code: number; error: string; data: Error } } => ({
+export const onCatchError = <T>(error: Error): JsonRpc<T, Error> => ({
     error: {
         code: 500,
         error: error.message,

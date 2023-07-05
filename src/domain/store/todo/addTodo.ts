@@ -5,7 +5,7 @@ import { updateTodoDueDate } from './filters/updateTodoDueDate.ts';
 import { updateTodoCategories } from './filters/updateTodoCategories.ts';
 import { getOnlyDateTimestamp } from '../../../utils/dateTime/getOnlyDateTimestamp.ts';
 
-export function addTodo(todo: UnknownObject): JsonRpcResult<ExtendedTodo, UnknownObject> {
+export function addTodo(todo: UnknownObject): JsonRpc<ExtendedTodo, UnknownObject> {
     const state = useTodoStore.getState();
     const { entity, error } = validateTodo(todo, state, 'add');
 

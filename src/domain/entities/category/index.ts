@@ -30,7 +30,7 @@ const category: ValidationRule = [
 ];
 const icon_id: ValidationRule = [validate_icon_id, 'Category обязан иметь icon_id целым числом'];
 
-export function getCategoryFomObject(input: UnknownObject = {}): NewCategory | Category | UnknownObject {
+export function getCategoryFomObject(input: UnknownObject = {}): NewCategory | NewCategory | UnknownObject {
     const { category_id, category, icon_id } = input;
 
     return {
@@ -46,8 +46,8 @@ const categoryValidationRules: ValidationRules = {
     icon_id,
 };
 
-export function validateCategoryEntity(category: UnknownObject): ValidateEntity<Category> {
-    return validateRawEntity<Category>(getCategoryFomObject(category), categoryValidationRules);
+export function validateCategoryEntity(category: UnknownObject): ValidateEntity<NewCategory> {
+    return validateRawEntity<NewCategory>(getCategoryFomObject(category), categoryValidationRules);
 }
 
 const newCategoryValidationRules: ValidationRules = {

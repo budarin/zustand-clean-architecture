@@ -27,13 +27,13 @@ type TimeStamp = number;
 type UnknownObject = Record<string, unknown>;
 type LikeEntity<T> = Partial<T> | { [key: string]: unknown };
 
-type JsonRpcError<E> = {
+type JsonRpcError<E = Error> = {
     code: number;
     error: string;
     data?: E;
 };
 
-type JsonRpcResult<T, E = undefined> =
+type JsonRpc<T, E = Error> =
     | {
           result: T;
           error?: never;

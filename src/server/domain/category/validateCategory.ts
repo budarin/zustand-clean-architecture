@@ -17,8 +17,8 @@ export function validateCategory(
     category: UnknownObject,
     state: Entities,
     operation: ServerStateEntityOperations,
-): ValidateEntity<NewCategory | Category> {
-    let result: ValidateEntity<NewCategory | Category>;
+): ValidateEntity<Category | NewCategory> {
+    let result: ValidateEntity<Category | NewCategory>;
 
     if (operation === 'create') {
         result = validateNewCategoryEntity(category) as ValidateEntity<NewCategory>;

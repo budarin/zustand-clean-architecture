@@ -1,7 +1,7 @@
 import { useTodoStore } from '../../store/store.tsx';
 import { validateCategory } from './validateCategory.ts';
 
-export function deleteCategory(category: UnknownObject): JsonRpcResult<Category, UnknownObject> {
+export function deleteCategory(category: UnknownObject): JsonRpc<Category, UnknownObject> {
     const state = useTodoStore.getState();
     const { entity, error } = validateCategory(category, state, 'delete');
 

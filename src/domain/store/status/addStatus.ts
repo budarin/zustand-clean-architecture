@@ -1,7 +1,7 @@
 import { useTodoStore } from '../store.tsx';
 import { validateStatus } from './validateStatus.ts';
 
-export function addStatus(status: UnknownObject): JsonRpcResult<Status, UnknownObject> {
+export function addStatus(status: UnknownObject): JsonRpc<Status, UnknownObject> {
     const state = useTodoStore.getState();
     const { entity, error } = validateStatus(status, state, 'add');
 
