@@ -59,5 +59,24 @@ module.exports = {
         'react/prop-types': 'off',
         '@typescript-eslint/ban-ts-comment': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
+        // 'import/no-restricted-paths': [
+        //     'error',
+        //     {
+        //         zones: [
+        //             {
+        //                 target: ['./src/domain/**/*'],
+        //                 from: ['./src/!(domain)/**/*'],
+        //                 except: ['./src/utils/**/*'],
+        //                 message: 'Модули домена не могут импортировать ничего кроме модулей из ./src/utils',
+        //             },
+        //             {
+        //                 target: ['./src/app/**/*'],
+        //                 from: ['./src/**/*'],
+        //                 except: ['./src/utils/**/*'],
+        //                 message: 'Модули прикладного уровня могут импортировать только из domain и utils',
+        //             },
+        //         ],
+        //     },
+        // ],
     },
 };
