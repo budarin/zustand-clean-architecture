@@ -106,31 +106,6 @@
                 overflow: hidden;
             "
         >
-            <script>
-                setTimeout(() => {
-                    const loadingText = document.querySelector('.loading-text');
-                    if (loadingText) {
-                        loadingText.style.visibility = 'visible';
-                    }
-
-                    const icon = document.querySelector('.icon');
-                    if (icon) {
-                        icon.style.visibility = 'visible';
-                    }
-
-                    window.loadingPromise = new Promise((resolve) => {
-                        const timer = setTimeout(() => {
-                            resolve(true);
-                        }, 1500);
-
-                        if (!window._timers) {
-                            window._timers = [];
-                        }
-                        window._timers.push(timer);
-                    });
-                }, 250);
-            </script>
-
             <div class="icon-container" style="display: flex; position: relative; width: 128px; height: 160px">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -240,11 +215,37 @@
                     <circle cx="268.306" cy="359.545" r="5.381" style="fill: rgb(58, 85, 106)"></circle>
                 </svg>
             </div>
+
             <span
                 class="loading-text"
                 style="font-size: 25px; font-weight: 500; position: absolute; visibility: hidden; bottom: 46px"
                 >Мои Задачи</span
             >
+
+            <script>
+                setTimeout(() => {
+                    const loadingText = document.querySelector('.loading-text');
+                    if (loadingText) {
+                        loadingText.style.visibility = 'visible';
+                    }
+
+                    const icon = document.querySelector('.icon');
+                    if (icon) {
+                        icon.style.visibility = 'visible';
+                    }
+
+                    window.loadingPromise = new Promise((resolve) => {
+                        const timer = setTimeout(() => {
+                            resolve(true);
+                        }, 1500);
+
+                        if (!window._timers) {
+                            window._timers = [];
+                        }
+                        window._timers.push(timer);
+                    });
+                }, 250);
+            </script>
         </div>
     </body>
 </html>
