@@ -57,7 +57,7 @@ export async function initApp(): Promise<void> {
             if (error instanceof Error) {
                 logger.error({ error, stack: error.stack });
             } else {
-                logger.error(error);
+                logger.error({ message: 'Ошибка инициализации приложения', error });
             }
         });
 }
