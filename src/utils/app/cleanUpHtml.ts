@@ -1,6 +1,6 @@
-export function cleanUpHtml(): void {
-    performance.mark('cleanUpHtml_start');
+const selectors = ['#loading-styles', '#loading', '#initialScript'];
 
+export function cleanUpHtml(): void {
     if (window.scriptLoadError) {
         window.removeEventListener('error', window.scriptLoadError);
         window.scriptLoadError = undefined;
@@ -14,9 +14,6 @@ export function cleanUpHtml(): void {
         window._timers.length = 0;
     }
 
-    document.querySelector('#loading')?.remove();
-    document.getElementById('initialScript')?.remove();
+    selectors.forEach((selector) => document.querySelector(selector)?.remove());
     document.querySelector('#root')?.classList.remove('hidden');
-
-    performance.mark('cleanUpHtml_end');
 }
