@@ -14,10 +14,12 @@ test.describe('Service-worker', () => {
     test('Получение первоначального состояния', async ({ page }) => {
         await waitForServiceWorker(page);
 
-        const todosStore = await page.evaluate(async () => {
+        const { result: todosStore, error } = await page.evaluate(async () => {
             const req = await fetch('/api/get_todos');
             return req.json();
         });
+
+        expect(error).toBeUndefined();
 
         expect(todosStore.icons).toEqual(serverInitialState.icons);
         expect(todosStore.statuses).toEqual(serverInitialState.statuses);

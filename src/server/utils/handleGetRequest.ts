@@ -7,7 +7,7 @@ export async function handleGetRequest(event: FetchEvent, pathname: string): Pro
     if (pathname === '/api/get_todos') {
         event.respondWith(
             loadState().then(() => {
-                const state = getState();
+                const state = { result: getState() };
 
                 return new Response(JSON.stringify(state), {
                     headers: jsonHeader,
