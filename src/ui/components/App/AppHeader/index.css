@@ -31,7 +31,7 @@
 
     background-color: white;
     border: 0;
-    border-radius: var(--x6);
+    border-radius: 50%;
 }
 
 @media (hover: hover) {
