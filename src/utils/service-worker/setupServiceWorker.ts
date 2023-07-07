@@ -40,5 +40,7 @@ export async function setupServiceWorker(): Promise<void> {
                 setTimeout(setUpPwaInstall, 3000);
             }
         }
+    } else {
+        throw new Error('Браузер не поддерживает service worker');
     }
 }

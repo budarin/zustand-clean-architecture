@@ -8,7 +8,6 @@
 .AppHeader-Logo {
     inline-size: var(--x8);
     block-size: var(--x8);
-    margin-inline-start: var(--x2);
 }
 
 .AppHeader-Title {
