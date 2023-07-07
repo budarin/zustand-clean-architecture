@@ -48,7 +48,7 @@
 
 html,
 body,
-#root {
+.Root {
     inline-size: 100%;
     block-size: 100%;
     margin: 0;
@@ -60,12 +60,12 @@ html {
     color: var(--primaryTextColor);
 }
 
-#root {
-    /* только тут должен быть hidden чтобы работал pull to refresh */
+/* только тут должен быть overflow: hidden чтобы работал pull to refresh */
+.Root {
     overflow: hidden;
     transition: opacity 1s ease;
 }
 
-.hidden {
+.Root_hidden {
     opacity: 0;
 }

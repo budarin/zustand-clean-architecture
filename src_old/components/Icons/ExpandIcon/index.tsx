@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 type ExpandIcon = {
     className?: string;
 };
 
-const ExpandIcon: FC<ExpandIcon> = (props) => {
+const ExpandIcon: React.FC<ExpandIcon> = (props) => {
     const { className } = props;
 
     return (

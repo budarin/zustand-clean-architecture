@@ -15,5 +15,6 @@ export function cleanUpHtml(): void {
     }
 
     selectors.forEach((selector) => document.querySelector(selector)?.remove());
-    document.querySelector('#root')?.classList.remove('hidden');
+
+    document.querySelector('#root')?.classList.remove('Root_hidden');
 }

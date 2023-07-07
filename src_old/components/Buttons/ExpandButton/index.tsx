@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 import CheckButton from '../CheckButton';
 import ExpandIcon from '../../Icons/ExpandIcon';
@@ -13,7 +13,7 @@ type ExpandButton = {
     title: string;
 };
 
-const ExpandButton: FC<ExpandButton> = (props) => {
+const ExpandButton: React.FC<ExpandButton> = (props) => {
     const { className, isToggled, onClick, title } = props;
 
     return (

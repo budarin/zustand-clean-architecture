@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 type AddIcon = {
     className?: string;
 };
 
-const AddIcon: FC<AddIcon> = (props) => {
+const AddIcon: React.FC<AddIcon> = (props) => {
     const { className } = props;
 
     return (

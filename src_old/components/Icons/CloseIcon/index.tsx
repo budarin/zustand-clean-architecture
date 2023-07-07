@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 type CloseIcon = {
     className?: string;
 };
 
-const CloseIcon: FC<CloseIcon> = (props) => {
+const CloseIcon: React.FC<CloseIcon> = (props) => {
     const { className } = props;
 
     return (
