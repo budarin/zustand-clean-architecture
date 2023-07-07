@@ -63,6 +63,7 @@ html {
 /* только тут должен быть overflow: hidden чтобы работал pull to refresh */
 .Root {
     overflow: hidden;
+    opacity: 1;
     transition: opacity 1s ease;
 }
 

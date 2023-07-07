@@ -2,6 +2,7 @@ import Toastify, { toast } from 'react-toastify';
 
 import sound from './error.mp3';
 import { delay } from '../../../utils/promises/delay.ts';
+import { logger } from '../../../server/services/logger.ts';
 
 export type NotificationMethod = <TData = unknown>(
     content: Toastify.ToastContent<TData>,
@@ -14,6 +15,12 @@ const isTouchWithVibration = isTouchDevice && 'vibrate' in navigator;
 
 const au = new Audio(sound);
 au.volume = 0.25;
+
+function onPlaySoundError(error: unknown): void {
+    if (!(error instanceof DOMException && error.name === 'NotAllowedError')) {
+        logger.error({ message: 'Ошибка воспроизведения звука', error });
+    }
+}
 
 export const vibrate = (vibrations = [5]): void => {
     if (isTouchWithVibration) {
@@ -30,7 +37,7 @@ function onOpen(): void {
         if (isTouchWithVibration) {
             vibrate();
         } else {
-            au.play();
+            au.play().catch(onPlaySoundError);
         }
     });
 }
@@ -61,7 +68,7 @@ export const notifyWarning: NotificationMethod = (content, options?) => {
 
 function onJoyfullyOpen(): void {
     delay(250).then(() => {
-        au.play();
+        au.play().catch(onPlaySoundError);
         vibrate([100, 30, 100, 30, 100]);
     });
 }
