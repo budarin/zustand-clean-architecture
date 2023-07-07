@@ -1,5 +1,5 @@
 import { useMediaQuery } from 'usehooks-ts';
-import React, { FC, useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import './index.css';
 import App from '../../components/App/index.tsx';
@@ -10,7 +10,7 @@ if (window) {
     showNavePaneAtStart = window.innerWidth > 640;
 }
 
-const AppContainer: FC = () => {
+const AppContainer: React.FC = () => {
     const matches = useMediaQuery('(max-width: 640px)');
     const [isNavPanelOpen, setNavPaneOpen] = useState(showNavePaneAtStart);
 

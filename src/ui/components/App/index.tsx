@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { cn } from '@bem-react/classname';
 
 import AppHeader from './AppHeader/index.tsx';
@@ -20,7 +20,7 @@ const onScroll: React.UIEventHandler<HTMLDivElement> = (event) => {
     el.className = appContainerCN({ scrolled: el.scrollTop > 0 });
 };
 
-const App: FC<AppProps> = (props) => {
+const App: React.FC<AppProps> = (props) => {
     const { isNavPanelVisible, isSmallScreen, navigationPanel, todoListView, onToggleNavPane } = props;
 
     return (
