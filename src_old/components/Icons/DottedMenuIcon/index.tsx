@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 type DottedMenuIcon = {
     className?: string;
 };
 
-const DottedMenuIcon: FC<DottedMenuIcon> = (props) => {
+const DottedMenuIcon: React.FC<DottedMenuIcon> = (props) => {
     const { className } = props;
 
     return (

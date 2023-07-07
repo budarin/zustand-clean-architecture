@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 type MenuIcon = {
     className?: string;
 };
 
-const MenuIcon: FC<MenuIcon> = (props) => {
+const MenuIcon: React.FC<MenuIcon> = (props) => {
     const { className } = props;
 
     return (

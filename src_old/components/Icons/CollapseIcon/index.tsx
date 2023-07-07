@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 type CollapseIcon = {
     className?: string;
 };
 
-const CollapseIcon: FC<CollapseIcon> = (props) => {
+const CollapseIcon: React.FC<CollapseIcon> = (props) => {
     const { className } = props;
 
     return (

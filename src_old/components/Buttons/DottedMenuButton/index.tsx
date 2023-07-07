@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 import DottedMenuIcon from '../../Icons/DottedMenuIcon';
 
@@ -11,7 +11,7 @@ type DottedMenuButton = {
     expanded: boolean;
 };
 
-const DottedMenuButton: FC<DottedMenuButton> = (props) => {
+const DottedMenuButton: React.FC<DottedMenuButton> = (props) => {
     const { className, onClick, title, expanded } = props;
 
     return (

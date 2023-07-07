@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 import './index.css';
 
@@ -11,7 +11,7 @@ type CheckButton = {
     title: string;
 };
 
-const CheckButton: FC<CheckButton> = (props) => {
+const CheckButton: React.FC<CheckButton> = (props) => {
     const { className, checked, unCheckedIcon, checkedIcon, onClick, title } = props;
 
     return (

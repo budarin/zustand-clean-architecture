@@ -1,7 +1,7 @@
 ```tsx
-type MyComponent = {...}
+type MyComponentProps = {...}
 
-const MyComponent: FC<MyComponent> = ({...})=> {...}
+const MyComponent: React.FC<MyComponentProps> = ({...})=> {...}
 
 // regular HTML input element
 type InputElementProps = ComponentProps<'input'>;
